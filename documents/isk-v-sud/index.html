@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Черновик искового заявления — text2me</title>
+<meta name="description" content="Соберите базовый черновик искового заявления в браузере, скачайте или скопируйте текст. Проверьте требования к вашей категории дела перед подачей.">
+<link rel="canonical" href="https://rytikov0285.github.io/text2me/documents/isk-v-sud/">
+<link rel="stylesheet" href="/text2me/assets/style.css"><script defer src="/text2me/assets/main.js"></script>
+<meta name="robots" content="index,follow">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/text2me/"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a>
+<nav class="main-nav" aria-label="Основная навигация"><a href="/text2me/#quick-actions">Выбрать задачу</a><a href="/text2me/people/">Документы</a></nav>
+<a class="button button-small button-outline" href="/text2me/">Главная</a>
+</div></header>
+<main id="main">
+<section class="page-hero"><div class="container narrow">
+<p class="eyebrow">Документы · Судебные споры</p>
+<h1>Черновик искового заявления</h1>
+<p class="hero-lead">Опишите участников, обстоятельства и требования. Сформируем основу текста, которую можно скопировать или скачать.</p>
+<div class="article-meta"><span>Для споров в России</span><span>Черновик, не бланк суда</span><span>Обработка в браузере</span></div>
+<p class="notice"><strong>Важно.</strong> Универсальный шаблон не подходит автоматически для каждого дела. Он не определяет подсудность, не проверяет сроки, не рассчитывает госпошлину и не заменяет специальные формы. Перед подачей проверьте правила именно для вашего вида спора и суда.</p>
+</div></section>
+<section class="section"><div class="container builder-layout">
+<div class="builder-main">
+<form id="court-builder" class="document-builder">
+<div class="builder-step-heading"><span class="builder-step-number">1</span><div><h2>Суд и участники</h2><p>Если сведения пока неизвестны, оставьте необязательные поля пустыми и дополните черновик позже.</p></div></div>
+<div class="form-grid">
+<div class="form-field form-field-full"><label for="court-name">Наименование суда</label><input id="court-name" maxlength="240" placeholder="Укажите после проверки подсудности"></div>
+<div class="form-field"><label for="plaintiff-name">Истец — ФИО или название *</label><input id="plaintiff-name" required maxlength="240" placeholder="Кто обращается в суд"></div>
+<div class="form-field"><label for="plaintiff-address">Адрес истца</label><input id="plaintiff-address" maxlength="300" placeholder="Адрес для документов"></div>
+<div class="form-field form-field-full"><label for="plaintiff-contact">Контактные данные истца</label><input id="plaintiff-contact" maxlength="240" placeholder="Телефон, электронная почта — если уместно"></div>
+<div class="form-field"><label for="defendant-name">Ответчик *</label><input id="defendant-name" required maxlength="240" placeholder="ФИО или наименование организации"></div>
+<div class="form-field"><label for="defendant-address">Адрес ответчика</label><input id="defendant-address" maxlength="300" placeholder="Если известен"></div>
+</div>
+<div class="builder-step-heading"><span class="builder-step-number">2</span><div><h2>Суть спора</h2><p>Излагайте факты последовательно: дата, событие, доказательство.</p></div></div>
+<div class="form-grid">
+<div class="form-field"><label for="court-case-type">О чём иск? *</label><input id="court-case-type" required maxlength="240" placeholder="Например: взыскании долга"></div>
+<div class="form-field"><label for="court-price">Цена иска, ₽ (если применимо)</label><input id="court-price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Сумма требований"></div>
+<div class="form-field form-field-full"><label for="court-facts">Обстоятельства дела *</label><textarea id="court-facts" required rows="6" maxlength="8000" placeholder="Что произошло, когда, между кем, какие договорённости были, что нарушено. Укажите, какими документами или другими доказательствами подтверждаются факты."></textarea></div>
+<div class="form-field form-field-full"><label for="court-demands">Что просите у суда? *</label><textarea id="court-demands" required rows="4" maxlength="5000" placeholder="Сформулируйте конкретные требования к ответчику. Если требований несколько, перечислите их."></textarea></div>
+<div class="form-field form-field-full"><label for="court-pretrial">Досудебное обращение</label><textarea id="court-pretrial" rows="3" maxlength="3000" placeholder="Направляли ли претензию, когда и каким способом? Получен ли ответ? Если не направляли, укажите это. Проверьте, обязателен ли такой порядок."></textarea></div>
+<div class="form-field form-field-full"><label for="court-attachments">Приложения</label><textarea id="court-attachments" rows="4" maxlength="5000" placeholder="Перечислите только документы, которые действительно приложите, каждый с новой строки. Например: договор, расчёт суммы, переписка, подтверждение отправки копии ответчику."></textarea></div>
+</div>
+<div class="builder-actions"><button class="button" type="submit">Сформировать черновик</button><button class="button button-outline" type="reset">Очистить форму</button></div>
+<p class="form-privacy"><strong>Приватность:</strong> текст формируется в браузере. Форма не отправляет введённые данные на сервер и не сохраняет их между посещениями. Не вводите лишние персональные данные.</p>
+</form>
+<div id="court-result" class="generated-result" hidden>
+<div class="generated-result-heading"><div><p class="eyebrow">Результат заполнения</p><h2>Черновик иска</h2></div><span class="status-chip">Текст сформирован</span></div>
+<p class="small-copy">Проверьте текст, дополните пропущенные сведения и удалите подсказки в квадратных скобках. Генератор не проверяет юридическую обоснованность требований.</p>
+<pre id="court-output" class="document-preview"></pre>
+<div class="builder-actions"><button id="download-court" class="button" type="button">Скачать .txt</button><button id="copy-court" class="button button-outline" type="button">Скопировать текст</button></div>
+<p id="court-action-status" class="field-help" aria-live="polite"></p>
+</div>
+</div>
+<aside class="side-panel builder-aside">
+<p class="eyebrow">Перед подачей</p><h2>Проверочный список</h2>
+<ul class="check-list"><li>Правильно ли выбраны суд и вид судопроизводства.</li><li>Сформулированы ли конкретные требования и их расчёт.</li><li>Проверены ли сроки и обязательный досудебный порядок.</li><li>Проверена ли госпошлина или основание льготы, если применимо.</li><li>Есть ли обязательные документы и подтверждения направления копий другим участникам.</li><li>Подписано ли заявление и выбран ли допустимый способ подачи.</li></ul>
+<div class="side-divider"></div><h3>Официальная подача</h3>
+<p class="small-copy">Используйте официальный сервис и проверьте, поддерживает ли он подачу документов именно по вашему виду дела.</p>
+<a class="text-link" href="https://ej.sudrf.ru/" target="_blank" rel="noopener noreferrer">ГАС «Правосудие» <span>↗</span></a>
+<div class="side-divider"></div><h3>Другие варианты</h3>
+<a class="text-link" href="https://xn--80aeec0cfsgl1g.xn--p1ai/" target="_blank" rel="noopener noreferrer">Податьвсуд.РФ <span>↗</span></a>
+<p class="small-copy">Это сторонняя платформа, не государственный сайт. Перед использованием проверьте условия, стоимость и порядок обработки данных.</p>
+<a class="text-link" href="/text2me/">Вернуться к выбору задачи <span>→</span></a>
+</aside>
+</div></section>
+</main>
+<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Инструмент для подготовки черновика документа.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/">Главная</a><a href="/text2me/people/">Населению</a><a href="/text2me/knowledge/">База знаний</a></nav></div><div class="container footer-bottom"><span>Сценарий 0.1</span><span>Черновик требует проверки перед использованием.</span></div></footer>
+</body></html>
