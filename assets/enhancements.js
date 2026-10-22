@@ -21,17 +21,15 @@ function initExports(){addExports("claim-output","pretenziya-prodavtsu","Пре�
 function initBrandAndFooter(){
 document.querySelectorAll(".brand").forEach(function(b){if(!b.querySelector(".brand-mark"))b.innerHTML='<span class="brand-mark" aria-hidden="true">t2</span><span>text2me<span class="brand-dot">.</span>ru</span>'});
 var primaryLinks=[
-["/text2me/space/","Моё пространство"],
+["/text2me/situations/","Ситуации"],
 ["/text2me/documents/","Документы"],
-["/text2me/prompts/#personal-prompts","Личное"],
+["/text2me/prompts/","Тексты и редактура"],
 ["/text2me/guides/","Инструкции"],
-["/text2me/people/","Гражданам"],
-["/text2me/business/","Организациям"],
 ["/text2me/knowledge/","База знаний"],
-["/text2me/sources/","Официальные источники"]
+["/text2me/sources/","Источники"]
 ];
 document.querySelectorAll(".site-header .main-nav").forEach(function(nav){
-nav.setAttribute("aria-label","Быстрая навигация");
+nav.setAttribute("aria-label","Основные разделы");
 nav.replaceChildren();
 primaryLinks.forEach(function(pair){var a=el("a",{href:pair[0]},pair[1]);if(location.pathname===pair[0].replace(/#.*$/,""))a.setAttribute("aria-current","page");nav.appendChild(a)});
 });
@@ -46,18 +44,18 @@ if(nav)inner.insertBefore(form,nav);else inner.appendChild(form);
 });
 var footerLinks=[
 ["/text2me/","Главная"],
-["/text2me/space/","Моё пространство"],
+["/text2me/situations/","Ситуации"],
 ["/text2me/documents/","Документы"],
-["/text2me/prompts/#personal-prompts","Личное"],
+["/text2me/prompts/","Тексты и редактура"],
 ["/text2me/guides/","Инструкции"],
-["/text2me/people/","Гражданам"],
-["/text2me/business/","Организациям"],
 ["/text2me/knowledge/","База знаний"],
 ["/text2me/sources/","Официальные источники"],
+["/text2me/space/","Моё пространство"],
+["/text2me/updates/","Обновления"],
+["/text2me/site-map/","Карта сайта"],
 ["/text2me/privacy/","Конфиденциальность"],
 ["/text2me/security/","Безопасность данных"],
-["/text2me/terms/","Условия использования"],
-["/text2me/updates/","Обновления"]
+["/text2me/terms/","Условия использования"]
 ];
 document.querySelectorAll(".site-footer nav").forEach(function(nav){
 nav.setAttribute("aria-label","Быстрая навигация и информация о сайте");
@@ -75,15 +73,14 @@ var top=document.querySelector("[data-back-to-top]");
 if(!top){top=el("a",{href:"#main",class:"back-to-top","data-back-to-top":"true","aria-label":"Наверх",title:"Наверх"},"↑");document.body.appendChild(top)}
 var path=location.pathname.toLowerCase(),section="Материалы",audience="Гражданам и организациям";
 var routes=[
-["/text2me/people/","Гражданам","Гражданам"],
-["/text2me/prompts/","Личное и тексты","Для разных задач"],
-["/text2me/business/","Организациям","Организациям"],
-["/text2me/guides/","Инструкции","Гражданам и организациям"],
+["/text2me/situations/","Ситуации","Гражданам и организациям"],
 ["/text2me/documents/","Документы","Гражданам и организациям"],
-["/text2me/situations/","Жизненные ситуации","Гражданам"],
-["/text2me/knowledge/","Справочные материалы","Гражданам и организациям"],
+["/text2me/prompts/","Тексты и редактура","Гражданам и организациям"],
+["/text2me/guides/","Инструкции","Гражданам и организациям"],
+["/text2me/knowledge/","База знаний","Гражданам и организациям"],
 ["/text2me/sources/","Официальные источники","Гражданам и организациям"],
-["/text2me/prompts/","Тексты и редактура","Для разных задач"],
+["/text2me/people/","Материалы для граждан","Гражданам"],
+["/text2me/business/","Материалы для организаций","Организациям"],
 ["/text2me/space/","Моё пространство","Пользователям сервиса"],
 ["/text2me/updates/","Обновления","Всем посетителям"]
 ];
