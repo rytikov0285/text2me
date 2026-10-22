@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>text2me — найдите документ и решите задачу</title>
-<meta name="description" content="Выберите главу: каталог документов, инструменты, тематические разделы или пошаговые инструкции. Три способа начать: по ситуации, по названию документа или через демонстрационный навигатор.">
+<title>text2me — рабочее пространство документов</title>
+<meta name="description" content="Рабочее пространство для создания документов: конструкторы, шаблоны, инструкции, редактирование и экспорт.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://rytikov0285.github.io/text2me/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="text2me — что нужно решить?">
-<meta property="og:description" content="Найдите документ по названию, разберите ситуацию или начните с вопроса.">
+<meta property="og:title" content="text2me — рабочее пространство документов">
+<meta property="og:description" content="Создавайте документы через пошаговые конструкторы, используйте шаблоны и сохраняйте черновики.">
 <meta property="og:url" content="https://rytikov0285.github.io/text2me/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"text2me","url":"https://rytikov0285.github.io/text2me/","inLanguage":"ru-RU"}</script>
 <link rel="stylesheet" href="/text2me/assets/style.css">
@@ -43,7 +43,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <form id="title-search-form" role="search" class="workspace-search">
 <label class="sr-only" for="title-search">Поиск документов, ситуаций и материалов</label>
 <span class="workspace-search-icon" aria-hidden="true">⌕</span>
-<input id="title-search" type="search" autocomplete="off" placeholder="Найти документ, ситуацию или тему…" aria-describedby="title-search-status">
+<input id="title-search" type="search" autocomplete="off" placeholder="Найти документ, шаблон или инструмент…" aria-describedby="title-search-status">
 <button class="workspace-search-submit" type="submit">Найти</button>
 <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
 </form>
@@ -73,43 +73,52 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 </div>
 </aside>
 <main id="main" class="workspace-main">
-<section class="dash-hero" aria-labelledby="main-title">
-<div class="dash-eyebrow">Документы · знания · инструменты</div>
-<h1 id="main-title">Что нужно решить?</h1>
-<p class="dash-lead">Выберите, что произошло. Сначала покажем первые шаги, что подготовить и куда обратиться; документ — один из возможных следующих шагов.</p>
+<section class="dash-hero office-home" aria-labelledby="main-title">
+<div class="dash-eyebrow">text2me · рабочее пространство</div>
+<h1 id="main-title">Создание документа</h1>
+<p class="dash-lead">Выберите команду или готовый конструктор. Ответьте на необходимые вопросы, проверьте результат и сохраните документ.</p>
+</section>
 
+<nav class="document-ribbon" aria-label="Панель инструментов">
+<a href="/text2me/documents/" title="Создать документ"><span class="ribbon-icon" aria-hidden="true">＋</span><span>Создать</span></a>
+<a href="/text2me/documents/" title="Каталог шаблонов"><span class="ribbon-icon" aria-hidden="true">▤</span><span>Шаблоны</span></a>
+<a href="/text2me/space/" title="Открыть сохранённые документы"><span class="ribbon-icon" aria-hidden="true">▣</span><span>Открыть</span></a>
+<a href="/text2me/space/" title="Мои документы"><span class="ribbon-icon" aria-hidden="true">▧</span><span>Мои документы</span></a>
+<a href="/text2me/guides/" title="Инструкции и справка"><span class="ribbon-icon" aria-hidden="true">ⓘ</span><span>Справка</span></a>
+<a href="/text2me/updates/" title="Посмотреть изменения"><span class="ribbon-icon" aria-hidden="true">◷</span><span>Обновления</span></a>
+</nav>
 
-<div class="entry-grid">
-<section class="entry-card" aria-labelledby="situation-title">
-<div class="entry-no">ПУТЬ 1</div><h2 id="situation-title">Разобраться по ситуации</h2>
-<p>Расскажите, что произошло и какого результата хотите добиться.</p>
-<form id="situation-form">
-<label class="sr-only" for="situation-select">Выберите тему ситуации</label>
-<select id="situation-select" name="area"><option value="">Выберите тему</option><option value="consumer">Покупка, товар или услуга</option><option value="housing">Жильё и ЖКХ</option><option value="work">Работа и зарплата</option><option value="money">Деньги и платежи</option><option value="government">Государственная услуга</option><option value="court">Судебный вопрос</option><option value="business">Бизнес и договоры</option><option value="other">Другое / не знаю</option></select>
-<button class="dash-btn" type="submit">Подобрать по ситуации →</button>
-</form>
+<section class="office-start-panel" aria-labelledby="office-start-title">
+<div class="office-section-title"><div><h2 id="office-start-title">Новый документ</h2><p>Выберите тип документа — приложение проведёт вас через заполнение.</p></div><a href="/text2me/documents/">Все документы <span aria-hidden="true">→</span></a></div>
+<div class="office-command-grid">
+<a class="office-command" href="/text2me/documents/pretenziya-prodavtsu/"><span class="office-command-icon" aria-hidden="true">↩</span><span><strong>Претензия</strong><small>Возврат денег, товар или услуга</small><em class="office-state live">Конструктор доступен</em></span></a>
+<a class="office-command" href="/text2me/documents/isk-v-sud/"><span class="office-command-icon" aria-hidden="true">⚖</span><span><strong>Исковое заявление</strong><small>Подготовка черновика для суда</small><em class="office-state live">Конструктор доступен</em></span></a>
+<a class="office-command" href="/text2me/documents/dogovor-arendy/"><span class="office-command-icon" aria-hidden="true">⌂</span><span><strong>Договор найма жилья</strong><small>Договор и акт приёма-передачи</small><em class="office-state live">Конструктор доступен</em></span></a>
+<a class="office-command" href="/text2me/documents/"><span class="office-command-icon" aria-hidden="true">▤</span><span><strong>Заявление или обращение</strong><small>Найти подходящий вид документа</small><em class="office-state planned">Каталог документов</em></span></a>
+<a class="office-command" href="/text2me/business/"><span class="office-command-icon" aria-hidden="true">▥</span><span><strong>Деловой документ</strong><small>Письма, договоры и документы организации</small><em class="office-state planned">Каталог материалов</em></span></a>
+<a class="office-command" href="/text2me/prompts/"><span class="office-command-icon" aria-hidden="true">✎</span><span><strong>Текст и редактура</strong><small>Подготовка, улучшение и проверка текста</small><em class="office-state planned">Инструменты и материалы</em></span></a>
+</div>
 </section>
-<section class="entry-card" aria-labelledby="catalog-path-title">
-<div class="entry-no">ПУТЬ 2</div><h2 id="catalog-path-title">Выбрать документ</h2>
-<p>Откройте каталог, сравните доступные конструкторы и выберите подходящий материал.</p>
-<a class="dash-btn secondary" href="/text2me/documents/">Открыть каталог →</a>
-<p class="microcopy">Сейчас полностью работают отдельные конструкторы претензии и искового заявления; договор найма добавляется как рабочий сценарий.</p>
+
+<div class="office-lower-grid">
+<section class="office-recent-panel" aria-labelledby="office-recent-title">
+<div class="office-section-title"><div><h2 id="office-recent-title">Продолжить работу</h2><p>Сохранённые документы и черновики в этом браузере.</p></div></div>
+<div class="office-recent-actions">
+<a href="/text2me/space/"><span aria-hidden="true">▣</span><span><strong>Моё пространство</strong><small>Открыть библиотеку и черновики</small></span><b aria-hidden="true">→</b></a>
+<a href="/text2me/space/"><span aria-hidden="true">◷</span><span><strong>Последние документы</strong><small>Перейти к сохранённым материалам</small></span><b aria-hidden="true">→</b></a>
+<a href="/text2me/guides/"><span aria-hidden="true">☷</span><span><strong>Как работать с документом</strong><small>Заполнение, проверка и экспорт</small></span><b aria-hidden="true">→</b></a>
+</div>
 </section>
-<section class="entry-card" aria-labelledby="ai-title">
-<div class="entry-no">ПУТЬ 3</div><h2 id="ai-title">Описать задачу</h2>
-<p>Опишите задачу своими словами. Демо-навигатор поможет выбрать подходящее направление.</p>
-<form id="ai-launch-form">
-<label class="sr-only" for="ai-task">Что хотите решить?</label>
-<textarea id="ai-task" maxlength="1200" placeholder="Например: магазин не возвращает деньги за неисправный товар"></textarea>
-<button class="dash-btn" type="submit">Начать диалог →</button>
-<p class="microcopy">Демо-навигатор: генеративная AI-модель пока не подключена.</p>
-</form>
-</section>
+<aside class="office-status-panel" aria-label="Возможности приложения">
+<h2>Инструменты</h2>
+<div class="office-status-row"><span>Редактирование черновика</span><b>Доступно в конструкторах</b></div>
+<div class="office-status-row"><span>Сохранение</span><b>В этом браузере</b></div>
+<div class="office-status-row"><span>Экспорт</span><b>DOCX / PDF — в поддерживаемых конструкторах</b></div>
+<p>Облачная синхронизация и полноценный редактор Word пока не подключены.</p>
+</aside>
 </div>
 
-</section>
-
-<div class="workspace-search-shortcuts" aria-label="Популярные запросы"><span>Популярное:</span><button type="button" data-search-chip="договор найма жилья">Договор найма жилья</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button><button type="button" data-search-chip="исковое заявление">Исковое заявление</button></div>
+<div class="workspace-search-shortcuts" aria-label="Быстрый доступ"><span>Быстрый доступ:</span><button type="button" data-search-chip="договор найма жилья">Договор найма жилья</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button><button type="button" data-search-chip="исковое заявление">Исковое заявление</button></div>
 
 <section class="section-block" id="situations">
 <div class="section-head"><div><h2>Что делать в конкретной ситуации</h2><p>Пошаговые объяснения простым языком: с чего начать, какие документы собрать и куда обращаться.</p></div><a href="/text2me/situations/">Все инструкции →</a></div>
@@ -244,8 +253,8 @@ function search(){var q=(searchInput.value||"").trim().toLocaleLowerCase("ru");r
 searchForm.addEventListener("submit",function(e){e.preventDefault();search()});
 searchInput.addEventListener("input",function(){if(searchInput.value.trim().length>=2)search();else{results.replaceChildren();status.textContent=""}});
 document.querySelectorAll("[data-search-chip]").forEach(function(btn){btn.addEventListener("click",function(){searchInput.value=btn.getAttribute("data-search-chip")||"";searchInput.focus();search()})});
-document.getElementById("situation-form").addEventListener("submit",function(e){e.preventDefault();var area=document.getElementById("situation-select").value;if(!area){document.getElementById("situation-select").focus();return}location.href="/text2me/start/?area="+encodeURIComponent(area)+"#route-builder"});
-document.getElementById("ai-launch-form").addEventListener("submit",function(e){e.preventDefault();var task=document.getElementById("ai-task").value.trim();if(!task){document.getElementById("ai-task").focus();return}try{sessionStorage.setItem("text2me.pending-ai-task",task)}catch(err){}location.href="/text2me/start/#ai-path"});
+
+
 document.getElementById("back-to-top").addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
 
 var catGrid=document.getElementById("dash-category-grid"),catCount=document.getElementById("dash-category-count");
