@@ -16,7 +16,7 @@
         card.hidden = !match;
         if (match) visible++;
       });
-      if (status) status.textContent = query ? "Найдено задач: " + visible : "";
+      if (status) status.textContent = query ? "Подходящих ситуаций: " + visible : "";
       if (empty) empty.hidden = visible !== 0;
     }
     searchForm.addEventListener("submit", function (event) {
@@ -263,7 +263,7 @@
       if (!courtForm.reportValidity()) return;
       courtOutput.textContent = makeCourtDraft();
       courtResult.hidden = false;
-      courtStatus.textContent = "Черновик сформирован в браузере. Проверьте текст и применимые требования перед подачей.";
+      courtStatus.textContent = "Черновик готов в этом браузере. Перечитайте его и проверьте требования перед подачей.";
       courtResult.scrollIntoView({behavior:"smooth",block:"start"});
     });
     courtForm.addEventListener("reset", function () {
@@ -283,7 +283,7 @@
       link.click();
       link.remove();
       URL.revokeObjectURL(url);
-      courtStatus.textContent = "Файл с черновиком подготовлен для скачивания.";
+      courtStatus.textContent = "Файл с черновиком готов к скачиванию.";
     });
     var courtCopy = document.getElementById("copy-court");
     if (courtCopy) courtCopy.addEventListener("click", function () {
@@ -392,7 +392,7 @@
     if (!claimForm.reportValidity()) return;
     output.textContent = makeClaim();
     resultPanel.hidden = false;
-    actionStatus.textContent = "Черновик сформирован в браузере. Проверьте весь текст перед использованием.";
+    actionStatus.textContent = "Черновик готов. Перечитайте весь текст и проверьте детали перед использованием.";
     resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
@@ -415,7 +415,7 @@
       link.click();
       link.remove();
       URL.revokeObjectURL(url);
-      actionStatus.textContent = "Файл с черновиком подготовлен для скачивания.";
+      actionStatus.textContent = "Файл с черновиком готов к скачиванию.";
     });
   }
 
@@ -427,10 +427,10 @@
         navigator.clipboard.writeText(output.textContent).then(function () {
           actionStatus.textContent = "Текст скопирован.";
         }).catch(function () {
-          actionStatus.textContent = "Не удалось автоматически скопировать текст. Выделите его в поле черновика и скопируйте вручную.";
+          actionStatus.textContent = "Автоматически скопировать не получилось. Выделите текст черновика и скопируйте вручную.";
         });
       } else {
-        actionStatus.textContent = "Автоматическое копирование недоступно в этом браузере. Выделите текст в поле черновика и скопируйте вручную.";
+        actionStatus.textContent = "В этом браузере автоматическое копирование недоступно. Выделите текст черновика и скопируйте вручную.";
       }
     });
   }
