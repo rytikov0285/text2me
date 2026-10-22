@@ -278,3 +278,13 @@ body.capture-modal-open{overflow:hidden}
 .dadata-party-fields dt{font-weight:750;color:var(--muted,#63728a)}
 .dadata-party-fields dd{margin:0;overflow-wrap:anywhere;color:var(--ink,#17243a)}
 @media(max-width:560px){.dadata-party-panel{padding:12px}.dadata-party-controls>.button{width:100%}.dadata-party-fields{grid-template-columns:1fr;gap:4px}.dadata-party-fields dd{margin-bottom:8px}}
+
+/* Reusable party profile cards (local browser storage only). */
+.party-profile-panel{margin:0 0 18px;padding:16px;border:1px solid var(--line,#dce4ee);border-radius:14px;background:var(--surface-soft,#f7f9fc);color:var(--ink,#17243a)}
+.party-profile-panel h3{font-size:16px;margin:0 0 6px}
+.party-profile-note,.party-profile-status{font-size:12px;line-height:1.5;color:var(--muted,#63728a);margin:0 0 12px}
+.party-profile-select-label,.party-profile-name-label{display:grid;gap:6px;font-size:12px;font-weight:700;margin:0 0 10px}
+.party-profile-panel select,.party-profile-panel input{width:100%;min-height:42px;padding:9px 11px;border:1px solid var(--line,#dce4ee);border-radius:9px;background:var(--surface,#fff);color:inherit;font:inherit}
+.party-profile-actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.party-profile-status{margin:8px 0 0}
+@media(max-width:560px){.party-profile-panel{padding:12px}.party-profile-actions{display:grid}.party-profile-actions .button{width:100%}}
