@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>text2me.ru — подготовка документов для жизни и бизнеса</title>
-  <meta name="description" content="Помогаем разобраться, какой документ нужен, собрать сведения по понятному сценарию и подготовить основу документа с помощью шаблонов и ИИ. Россия.">
+  <title>text2me — документы, жизненные ситуации и база знаний</title>
+  <meta name="description" content="Найдите нужный документ, разберитесь в порядке действий и изучите инструкции по жизненным и деловым ситуациям. Концепция сервиса для России.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://rytikov0285.github.io/text2me/">
   <link rel="stylesheet" href="/text2me/assets/style.css">
   <script defer src="/text2me/assets/main.js"></script>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="text2me.ru — документы понятным языком">
-  <meta property="og:description" content="Сценарии, шаблоны и ИИ-помощник для подготовки документов.">
+  <meta property="og:title" content="text2me — документы и решения повседневных задач">
+  <meta property="og:description" content="Каталог документов, жизненные ситуации и база знаний в одном месте.">
   <meta property="og:url" content="https://rytikov0285.github.io/text2me/">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"text2me.ru","url":"https://rytikov0285.github.io/text2me/","inLanguage":"ru-RU","description":"Концепт сервиса подготовки документов для населения и бизнеса в России"}
+  {"@context":"https://schema.org","@type":"WebSite","name":"text2me","url":"https://rytikov0285.github.io/text2me/","inLanguage":"ru-RU","description":"Концепция портала жизненных и деловых ситуаций, подготовки документов и базы знаний для России"}
   </script>
 </head>
 <body>
@@ -23,72 +23,121 @@
   <div class="container header-inner">
     <a class="brand" href="/text2me/" aria-label="text2me — главная"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a>
     <nav class="main-nav" aria-label="Основная навигация">
-      <a href="/text2me/people/">Для населения</a>
-      <a href="/text2me/business/">Для бизнеса</a>
-      <a href="/text2me/ai/">Как работает ИИ</a>
+      <a href="#situations">Жизненные ситуации</a>
+      <a href="/text2me/people/">Населению</a>
+      <a href="/text2me/business/">Бизнесу</a>
       <a href="/text2me/knowledge/">База знаний</a>
     </nav>
-    <a class="button button-small button-outline" href="#start">Выбрать задачу</a>
+    <a class="button button-small button-outline" href="#catalog">Найти документ</a>
   </div>
 </header>
 <main id="main">
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> Сервис подготовки документов</p>
-        <h1>Решайте вопросы.<br><span class="text-gradient">Оформляйте документы.</span></h1>
-        <p class="hero-lead">Найдите нужный документ, разберитесь в порядке действий и подготовьте основу обращения для личной или деловой ситуации. Начните с описания своей задачи.</p>
-        <div class="hero-actions"><a class="button" href="#start">Подобрать документ <span aria-hidden="true">→</span></a><a class="text-link" href="/text2me/ai/">Как устроен сервис</a></div>
-        <p class="micro-note">Для ситуаций в России · Подходящий документ зависит от обстоятельств</p>
-      </div>
-      <div class="hero-panel" aria-label="Пример этапов подготовки документа">
-        <div class="panel-top"><span class="status-dot"></span><span>Путь к документу</span><span class="panel-label">Концепт</span></div>
-        <div class="step-row"><span class="step-number">01</span><div><strong>Опишите задачу</strong><p>Что произошло и чего хотите добиться?</p></div><span class="step-check">✓</span></div>
-        <div class="step-row"><span class="step-number">02</span><div><strong>Ответьте на вопросы</strong><p>Сценарий соберёт нужные сведения.</p></div><span class="step-check">✓</span></div>
-        <div class="step-row active-step"><span class="step-number">03</span><div><strong>Проверьте результат</strong><p>Поля, пояснения и предупреждения.</p></div><span class="step-arrow">↗</span></div>
-        <div class="panel-foot"><span class="file-icon">DOC</span><div><strong>Ваш документ</strong><small>Предпросмотр перед скачиванием</small></div><span class="lock-icon">◇</span></div>
-      </div>
-    </div>
-  </section>
-  <section class="section" id="start">
+  <section class="portal-hero">
     <div class="container">
-      <div class="section-heading"><div><p class="eyebrow">С чего начать</p><h2>Что вам нужно сделать?</h2></div><p>Выберите категорию или введите название документа либо опишите ситуацию своими словами. Каталог пока работает в демонстрационном режиме.</p></div>
-      <form class="search-box" role="search" id="document-search">
-        <label class="sr-only" for="search-input">Поиск документа или ситуации</label>
-        <span class="search-symbol" aria-hidden="true">⌕</span><input id="search-input" name="q" type="search" placeholder="Например: вернуть товар, составить претензию, подготовить договор" autocomplete="off"><button class="button" type="submit">Найти</button>
-      </form>
-      <p class="search-status" id="search-status" aria-live="polite"></p>
-      <div class="choice-grid" id="document-cards">
-        <a class="choice-card" data-search="население личные документы заявление претензия расписка" href="/text2me/people/"><span class="card-icon lavender">↗</span><span class="card-kicker">Личные задачи</span><h3>Для населения</h3><p>Заявления, обращения, претензии и другие документы для повседневных ситуаций.</p><span class="card-link">Перейти к разделу <b>→</b></span></a>
-        <a class="choice-card" data-search="бизнес компания договор акт деловое письмо кадровый документ" href="/text2me/business/"><span class="card-icon mint">▤</span><span class="card-kicker">Рабочие процессы</span><h3>Для бизнеса</h3><p>Договоры, акты, деловая переписка и повторяющиеся документы компании.</p><span class="card-link">Перейти к разделу <b>→</b></span></a>
-        <a class="choice-card" data-search="претензия продавцу товар возврат покупка потребитель" href="/text2me/documents/pretenziya-prodavtsu/"><span class="card-icon peach">✎</span><span class="card-kicker">Пример сценария</span><h3>Претензия продавцу</h3><p>Разобраться, какие сведения понадобятся для черновика претензии.</p><span class="card-link">Посмотреть сценарий <b>→</b></span></a>
-        <a class="choice-card" data-search="искусственный интеллект ии шаблоны как работает контроль качества" href="/text2me/ai/"><span class="card-icon blue">✳</span><span class="card-kicker">Технология</span><h3>Сценарии + шаблоны + ИИ</h3><p>Узнайте, как планируется сочетать автоматизацию и контроль качества.</p><span class="card-link">Как это работает <b>→</b></span></a>
+      <div class="portal-heading">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Документы и понятные инструкции</p>
+        <h1>Решение начинается<br>с вашей <span class="text-gradient">ситуации</span></h1>
+        <p class="portal-lead">Опишите, что произошло или чего хотите добиться. Найдите подходящий документ, разберитесь в последовательности действий и изучите полезные материалы.</p>
       </div>
-      <p class="empty-state" id="empty-state" hidden>Ничего не найдено. Попробуйте более короткий запрос или выберите раздел.</p>
+      <div class="portal-search-wrap" id="catalog">
+        <form class="search-box portal-search" role="search" id="document-search">
+          <label class="sr-only" for="search-input">Поиск документов и жизненных ситуаций</label>
+          <span class="search-symbol" aria-hidden="true">⌕</span>
+          <input id="search-input" name="q" type="search" placeholder="Например: вернуть деньги за товар, договор аренды, жалоба в УК" autocomplete="off">
+          <button class="button" type="submit">Найти</button>
+        </form>
+        <p class="search-status" id="search-status" aria-live="polite"></p>
+        <p class="portal-hint">Можно искать по названию документа или описать задачу обычными словами.</p>
+      </div>
+      <div class="portal-quicklinks" aria-label="Быстрые переходы">
+        <a href="/text2me/people/"><span class="quick-icon">⌂</span><span>Личные вопросы</span><b>→</b></a>
+        <a href="/text2me/business/"><span class="quick-icon">▤</span><span>Документы для бизнеса</span><b>→</b></a>
+        <a href="/text2me/knowledge/"><span class="quick-icon">▧</span><span>Инструкции и справки</span><b>→</b></a>
+      </div>
     </div>
   </section>
+
+  <section class="section portal-section" id="situations">
+    <div class="container">
+      <div class="section-heading">
+        <div><p class="eyebrow">Выберите направление</p><h2>С чем нужно разобраться?</h2></div>
+        <p>Начните с проблемы, а не с юридического термина. Каталог будет расширяться по темам и типам документов.</p>
+      </div>
+      <div class="choice-grid portal-card-grid" id="document-cards">
+        <a class="choice-card portal-card" data-search="товар магазин возврат деньги покупка гарантия потребитель претензия" href="/text2me/documents/pretenziya-prodavtsu/">
+          <span class="card-icon lavender">↩</span><span class="card-kicker">Покупки и услуги</span><h3>Вернуть деньги или пожаловаться</h3><p>Что делать, если товар не подошёл, оказался с браком или услуга оказана плохо.</p><span class="card-link">Посмотреть пример <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="дом ЖКХ управляющая компания соседи ремонт коммунальные услуги жалоба" href="/text2me/knowledge/">
+          <span class="card-icon mint">⌂</span><span class="card-kicker">Дом и ЖКХ</span><h3>Решить вопрос с домом</h3><p>Разобраться, какие сведения собрать, куда направить обращение и что проверить.</p><span class="card-link">Перейти к материалам <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="работа работодатель отпуск зарплата трудовой договор заявление" href="/text2me/knowledge/">
+          <span class="card-icon peach">▣</span><span class="card-kicker">Работа</span><h3>Работа и трудовые вопросы</h3><p>Заявления, документы для работодателя и справочные материалы по типовым ситуациям.</p><span class="card-link">Изучить раздел <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="бизнес ИП ООО договор акт счёт деловое письмо компания" href="/text2me/business/">
+          <span class="card-icon blue">▤</span><span class="card-kicker">Предпринимательство</span><h3>Подготовить документ для бизнеса</h3><p>Договоры, акты, письма и повторяющиеся документы для рабочих процессов.</p><span class="card-link">Для бизнеса <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="деньги долг расписка задолженность претензия взыскание" href="/text2me/knowledge/">
+          <span class="card-icon lavender">₽</span><span class="card-kicker">Деньги и обязательства</span><h3>Разобраться с долгом или оплатой</h3><p>Подготовить факты, проверить варианты действий и найти подходящий тип обращения.</p><span class="card-link">Найти информацию <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="заявление обращение жалоба ведомство организация образец" href="/text2me/people/">
+          <span class="card-icon mint">✎</span><span class="card-kicker">Заявления и обращения</span><h3>Оформить обращение</h3><p>Понять структуру заявления, какие данные нужны и что проверить перед отправкой.</p><span class="card-link">Для населения <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="договор аренда услуги подряд соглашение шаблон документ" href="/text2me/business/">
+          <span class="card-icon peach">▧</span><span class="card-kicker">Договоры</span><h3>Найти подходящий договор</h3><p>Выбрать тип документа и разобраться, какие условия необходимо согласовать.</p><span class="card-link">Каталог для бизнеса <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="инструкция база знаний порядок действий сроки документы справка" href="/text2me/knowledge/">
+          <span class="card-icon blue">?</span><span class="card-kicker">Справочная информация</span><h3>Сначала понять, что делать</h3><p>Инструкции, пояснения и чек-листы, которые помогают подготовиться к следующему шагу.</p><span class="card-link">Открыть базу знаний <b>→</b></span>
+        </a>
+      </div>
+      <p class="empty-state" id="empty-state" hidden>Ничего не найдено. Попробуйте другой запрос или выберите направление выше.</p>
+    </div>
+  </section>
+
+  <section class="section section-muted" id="how-it-works">
+    <div class="container portal-split">
+      <div class="portal-intro">
+        <p class="eyebrow">Понятный маршрут</p>
+        <h2>От ситуации —<br>к следующему шагу</h2>
+        <p>Не обязательно заранее знать название нужного документа. Важно понять цель, собрать факты и проверить, какой путь подходит именно вашей ситуации.</p>
+        <a class="text-link" href="/text2me/ai/">Как планируется работа сервиса <span>→</span></a>
+      </div>
+      <div class="route-list">
+        <article class="route-item"><span class="route-number">01</span><div><h3>Опишите задачу</h3><p>Кратко изложите ситуацию и желаемый результат.</p></div></article>
+        <article class="route-item"><span class="route-number">02</span><div><h3>Уточните важные сведения</h3><p>Подготовьте даты, участников, суммы и подтверждающие материалы, если они нужны.</p></div></article>
+        <article class="route-item"><span class="route-number">03</span><div><h3>Изучите порядок действий</h3><p>Проверьте требования, ограничения и возможные следующие шаги.</p></div></article>
+        <article class="route-item"><span class="route-number">04</span><div><h3>Подготовьте документ</h3><p>Будущий конструктор поможет собрать документ из проверяемых сценариев и шаблонов.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="knowledge">
+    <div class="container">
+      <div class="section-heading">
+        <div><p class="eyebrow">Не только генератор</p><h2>База знаний для самостоятельных решений</h2></div>
+        <p>Материалы должны помогать понять ситуацию даже тогда, когда документ пока не нужен или сначала требуется проверить факты.</p>
+      </div>
+      <div class="knowledge-grid">
+        <a class="knowledge-card" href="/text2me/knowledge/"><span class="knowledge-icon">☷</span><span class="knowledge-label">Пошаговые инструкции</span><h3>Что делать и в каком порядке</h3><p>Последовательность действий, необходимые сведения и типичные ошибки.</p><span class="knowledge-link">Открыть базу знаний →</span></a>
+        <a class="knowledge-card" href="/text2me/people/"><span class="knowledge-icon">⌂</span><span class="knowledge-label">Для повседневных задач</span><h3>Права, обращения и документы</h3><p>Объяснения для личных ситуаций и ссылки на источники, которые нужно проверить.</p><span class="knowledge-link">Материалы для населения →</span></a>
+        <a class="knowledge-card" href="/text2me/business/"><span class="knowledge-icon">▤</span><span class="knowledge-label">Для рабочих процессов</span><h3>Документы и правила для бизнеса</h3><p>Типы документов, условия, реквизиты и контрольные списки перед оформлением.</p><span class="knowledge-link">Материалы для бизнеса →</span></a>
+      </div>
+      <div class="knowledge-note"><span class="knowledge-note-icon">i</span><p><strong>Принцип качества:</strong> у справочных материалов должны быть источники, дата проверки и понятные ограничения. ИИ не заменяет проверку законодательства или индивидуальную юридическую консультацию.</p></div>
+    </div>
+  </section>
+
   <section class="section section-muted">
-    <div class="container feature-layout">
-      <div><p class="eyebrow">Принцип работы</p><h2>ИИ помогает.<br>Правила держат структуру.</h2><p class="section-intro">Юридический документ нельзя считать корректным только потому, что его написал ИИ. Поэтому предполагаемая модель text2me опирается на управляемые сценарии, версии шаблонов и явные проверки.</p><a class="text-link" href="/text2me/ai/">Подробнее о подходе <span>→</span></a></div>
-      <div class="feature-list">
-        <article class="feature-item"><span class="feature-index">01</span><div><h3>Сценарии по ситуации</h3><p>Вопросы меняются в зависимости от ответов; сервис не просит лишние сведения без необходимости.</p></div></article>
-        <article class="feature-item"><span class="feature-index">02</span><div><h3>Управляемые шаблоны</h3><p>У каждого опубликованного шаблона должны быть версия, область применения и сведения о проверке.</p></div></article>
-        <article class="feature-item"><span class="feature-index">03</span><div><h3>Проверка до результата</h3><p>Проверка заполнения и противоречий не подменяет юридическую экспертизу.</p></div></article>
+    <div class="container portal-bottom-grid">
+      <div><p class="eyebrow">Открытая структура</p><h2>Сначала полезная информация. Затем — документ.</h2><p>Разделы базы знаний и каталог документов должны быть связаны между собой: инструкция объясняет порядок действий, а карточка документа помогает подготовить нужный текст.</p></div>
+      <div class="portal-bottom-links">
+        <a href="/text2me/knowledge/"><span><strong>База знаний</strong><small>Инструкции, ответы и источники</small></span><b>→</b></a>
+        <a href="/text2me/people/"><span><strong>Для населения</strong><small>Личные вопросы и обращения</small></span><b>→</b></a>
+        <a href="/text2me/business/"><span><strong>Для бизнеса</strong><small>Договоры и рабочие документы</small></span><b>→</b></a>
       </div>
     </div>
   </section>
-  <section class="section">
-    <div class="container">
-      <div class="section-heading"><div><p class="eyebrow">Открытая информация</p><h2>Понятно людям и поисковым системам</h2></div><p>Страницы строятся вокруг конкретных вопросов: какой документ нужен, какие сведения подготовить и какие ограничения учитывать.</p></div>
-      <div class="info-grid">
-        <article class="info-card"><span class="info-icon">⌕</span><h3>Для поиска</h3><p>Отдельные страницы под реальные задачи, описательные заголовки, внутренняя перелинковка и технически доступный HTML.</p></article>
-        <article class="info-card"><span class="info-icon">¶</span><h3>Для ответов ИИ</h3><p>Краткие определения, пошаговые инструкции, проверяемые источники и даты актуализации там, где проверка проведена.</p></article>
-        <article class="info-card"><span class="info-icon">◎</span><h3>Для пользователя</h3><p>Объяснение назначения документа, недостающих данных, возможных ограничений и следующего шага.</p></article>
-      </div>
-    </div>
-  </section>
-  <section class="cta-section"><div class="container cta-inner"><div><p class="eyebrow">Проект в разработке</p><h2>Начнём с вашей задачи</h2><p>Выберите пример, чтобы оценить будущую логику сервиса. Формирование и сохранение документов пока не подключены.</p></div><a class="button button-light" href="/text2me/documents/pretenziya-prodavtsu/">Открыть пример <span>→</span></a></div></section>
+
+  <section class="cta-section"><div class="container cta-inner"><div><p class="eyebrow">Проект в разработке</p><h2>Начните с описания задачи</h2><p>Сейчас доступны демонстрационные разделы. Автоматическое формирование, скачивание и сохранение документов ещё предстоит подключить.</p></div><a class="button button-light" href="#catalog">Найти направление <span>→</span></a></div></section>
 </main>
-<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Концепция сервиса подготовки документов для России.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Населению</a><a href="/text2me/business/">Бизнесу</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/README.md">О проекте</a></nav></div><div class="container footer-bottom"><span>© text2me.ru · Концепт сайта</span><span>Материалы не являются индивидуальной юридической консультацией.</span></div></footer>
+<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Концепция портала документов и базы знаний для России.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Населению</a><a href="/text2me/business/">Бизнесу</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/README.md">О проекте</a></nav></div><div class="container footer-bottom"><span>© text2me · Концепт сайта</span><span>Материалы носят справочный характер и не являются индивидуальной юридической консультацией.</span></div></footer>
 </body>
 </html>
