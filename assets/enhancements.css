@@ -288,3 +288,10 @@ body.capture-modal-open{overflow:hidden}
 .party-profile-actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
 .party-profile-status{margin:8px 0 0}
 @media(max-width:560px){.party-profile-panel{padding:12px}.party-profile-actions{display:grid}.party-profile-actions .button{width:100%}}
+
+/* Explicit, user-triggered OCR controls in the document capture modal. */
+.document-ocr-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.document-ocr-output{display:block;width:100%;min-height:180px;margin:12px 0;padding:12px;border:1px solid var(--line,#dce4ee);border-radius:10px;background:var(--surface,#fff);color:var(--ink,#17243a);font:14px/1.55 inherit;resize:vertical}
+.document-ocr-output[hidden],.document-ocr-actions[hidden]{display:none!important}
+.document-ocr-actions button:disabled{opacity:.65;cursor:wait}
+@media(max-width:560px){.document-ocr-actions{display:grid}.document-ocr-actions .button{width:100%}}
