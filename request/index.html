@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сложный вопрос или задача — text2me</title>
+<meta name="description" content="Опишите сложную задачу, для которой недостаточно обычного шаблона. Подготовьте структурированное обращение для отправки владельцу сервиса.">
+<link rel="canonical" href="https://rytikov0285.github.io/text2me/request/">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="/text2me/assets/style.css">
+<link rel="stylesheet" href="/text2me/assets/enhancements.css">
+<script defer src="/text2me/assets/contact-config.js"></script>
+<style>
+.request-shell{max-width:920px;margin:0 auto;padding:24px 20px 64px}.request-hero{padding:22px 0 24px}.request-hero h1{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.04em;margin:8px 0 12px}.request-lead{max-width:740px;color:var(--muted,#63728a);font-size:17px}.request-panel{background:var(--surface,#fff);border:1px solid var(--line,#dce4ee);border-radius:18px;padding:24px;box-shadow:0 10px 30px #1c34520b}.request-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.request-field{display:grid;gap:7px;min-width:0}.request-field.full{grid-column:1/-1}.request-field label{font-weight:750;font-size:14px}.request-field input,.request-field select,.request-field textarea{width:100%;min-width:0;border:1px solid #cbd6e4;border-radius:10px;padding:12px;background:#fff;color:#17243a;font:inherit}.request-field textarea{min-height:145px;resize:vertical}.request-help{font-size:12px;color:var(--muted,#63728a);line-height:1.5;margin:0}.request-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.request-actions button,.request-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 15px;border:1px solid #d1dbea;border-radius:10px;font:inherit;font-size:14px;font-weight:750;text-decoration:none;cursor:pointer;background:#edf3ff;color:#214b9b}.request-actions .primary{background:#2259c7;color:#fff;border-color:#2259c7}.request-result{margin-top:20px}.request-result textarea{width:100%;min-height:220px;border:1px solid #cbd6e4;border-radius:10px;padding:12px;font:13px/1.55 ui-monospace,monospace}.request-note{margin-top:16px;padding:14px 16px;background:#f5f8fc;border:1px solid #dce4ee;border-radius:12px;font-size:13px;line-height:1.55}.request-status{min-height:20px;margin:12px 0 0;font-size:13px}.request-status[data-kind=error]{color:#a32b23}.request-status[data-kind=success]{color:#14613d}
+@media(max-width:620px){.request-shell{padding:12px 14px 42px}.request-panel{padding:16px}.request-grid{grid-template-columns:1fr}.request-field.full{grid-column:auto}.request-actions{display:grid}.request-actions button,.request-actions a{width:100%}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/text2me/" aria-label="text2me — главная"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a>
+<nav class="main-nav" aria-label="Основная навигация"><a href="/text2me/documents/">Документы</a><a href="/text2me/business/">Организации и бизнес</a><a href="/text2me/knowledge/">Знания</a><a href="/text2me/space/">Моё пространство</a></nav>
+</div></header>
+<main id="main" class="request-shell">
+<div class="room-breadcrumb" aria-label="Навигационная цепочка"><a href="/text2me/">Главная</a><span aria-hidden="true">/</span><span aria-current="page">Сложная задача</span></div>
+<section class="request-hero"><p class="eyebrow">Индивидуальная задача</p><h1>Сложный вопрос или задача</h1><p class="request-lead">Если обычного шаблона недостаточно, опишите ситуацию, документы и желаемый результат. Так можно подготовить предметное обращение по комплексной задаче.</p></section>
+<section class="request-panel" aria-labelledby="request-form-title">
+<h2 id="request-form-title">Опишите задачу</h2>
+<p class="request-help">Пока адрес получателя не подключён, сайт не отправляет данные автоматически. После заполнения можно сформировать обращение, скопировать его или скачать файл для отправки.</p>
+<form id="complex-request-form">
+<div class="request-grid">
+<div class="request-field"><label for="request-kind">Тип задачи</label><select id="request-kind" name="Тип задачи"><option>Комплект связанных документов</option><option>Проверка или сравнение договора</option><option>Судебный спор или претензия</option><option>Задача для организации</option><option>Разбор сложной жизненной ситуации</option><option>Исследование или анализ информации</option><option>Другое</option></select></div>
+<div class="request-field"><label for="request-audience">Для кого задача</label><select id="request-audience" name="Аудитория"><option>Гражданин</option><option>Организация или предприниматель</option><option>Специалист</option><option>Пока не определено</option></select></div>
+<div class="request-field full"><label for="request-summary">Кратко: что нужно сделать? *</label><input id="request-summary" name="Краткое описание" required maxlength="180" placeholder="Например: подготовить комплект документов для спора с подрядчиком"></div>
+<div class="request-field full"><label for="request-details">Описание ситуации и исходные данные *</label><textarea id="request-details" name="Подробности" required minlength="30" maxlength="12000" placeholder="Что произошло, какие стороны участвуют, какие действия уже предпринимались, что известно и чего пока не хватает?"></textarea><p class="request-help">Не вставляйте пароли, коды подтверждения, полные платёжные реквизиты или избыточные персональные данные.</p></div>
+<div class="request-field full"><label for="request-result">Какой результат нужен?</label><textarea id="request-result" name="Желаемый результат" maxlength="3000" placeholder="Например: перечень действий, анализ рисков, проект документов, список недостающих сведений"></textarea></div>
+<div class="request-field"><label for="request-deadline">Срок или дата</label><input id="request-deadline" name="Срок" maxlength="120" placeholder="Например: до 15 ноября; не срочно"></div>
+<div class="request-field"><label for="request-contact">Как с вами связаться? (необязательно)</label><input id="request-contact" name="Контакт заявителя" maxlength="180" placeholder="Email или имя в мессенджере"></div>
+<div class="request-field full"><label for="request-files">Какие материалы есть?</label><input id="request-files" name="Материалы" maxlength="500" placeholder="Например: договор, переписка, несколько счетов — без прикрепления файлов"><p class="request-help">Файлы через эту форму не загружаются. Если материалы нужны, согласуйте способ передачи после подключения контакта.</p></div>
+</div>
+<div class="request-actions"><button class="primary" type="submit">Сформировать обращение</button><button type="button" id="request-copy" disabled>Скопировать текст</button><button type="button" id="request-download" disabled>Скачать TXT</button><a id="request-email" href="#" hidden>Открыть email</a><a id="request-telegram" href="#" hidden target="_blank" rel="noopener noreferrer">Открыть Telegram</a></div>
+<p class="request-status" id="request-status" aria-live="polite"></p>
+<div class="request-result" id="request-result-wrap" hidden><label for="request-output"><strong>Готовый текст обращения — проверьте перед отправкой</strong></label><textarea id="request-output" readonly></textarea></div>
+</form>
+<div class="request-note"><strong>Как будет работать отправка.</strong> После подключения адреса владельца сервис сможет открыть подготовленное письмо или чат. Для автоматической доставки без почтовой программы понадобится серверный обработчик. Сейчас форма не отправляет содержимое на сервер и не сохраняет его в базе.</div>
+</section>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><span>text2me · сложные задачи</span><nav aria-label="Правовая информация"><a href="/text2me/privacy/">Конфиденциальность</a><a href="/text2me/security/">Безопасность</a><a href="/text2me/terms/">Условия использования</a></nav></div></footer>
+<script>
+(function(){
+"use strict";
+var form=document.getElementById("complex-request-form"),output=document.getElementById("request-output"),wrap=document.getElementById("request-result-wrap"),status=document.getElementById("request-status"),copy=document.getElementById("request-copy"),download=document.getElementById("request-download"),emailLink=document.getElementById("request-email"),telegramLink=document.getElementById("request-telegram"),lastText="";
+function buildText(){var data=new FormData(form),order=["Тип задачи","Аудитория","Краткое описание","Подробности","Желаемый результат","Срок","Контакт заявителя","Материалы"];var lines=["ОБРАЩЕНИЕ ПО СЛОЖНОЙ ЗАДАЧЕ","Дата: "+new Date().toLocaleDateString("ru-RU"),""];order.forEach(function(k){var v=String(data.get(k)||"").trim();if(v)lines.push(k.toUpperCase()+":\n"+v+"\n")});lines.push("Источник: text2me — https://rytikov0285.github.io/text2me/request/");return lines.join("\n")}
+function setStatus(text,kind){status.textContent=text;status.dataset.kind=kind||""}
+function syncContactLinks(){var mail=String(window.TEXT2ME_CONTACT_EMAIL||"").trim(),tg=String(window.TEXT2ME_TELEGRAM_URL||"").trim();if(mail){emailLink.href="mailto:"+mail+"?subject="+encodeURIComponent("Сложная задача с text2me")+"&body="+encodeURIComponent(lastText);emailLink.hidden=false}else emailLink.hidden=true;if(tg){var sep=tg.indexOf("?")>=0?"&":"?";telegramLink.href=tg+sep+"text="+encodeURIComponent(lastText);telegramLink.hidden=false}else telegramLink.hidden=true}
+form.addEventListener("submit",function(e){e.preventDefault();if(!form.reportValidity())return;lastText=buildText();output.value=lastText;wrap.hidden=false;copy.disabled=false;download.disabled=false;syncContactLinks();setStatus(emailLink.hidden&&telegramLink.hidden?"Обращение сформировано. Адрес получателя ещё не подключён: скопируйте текст или скачайте файл.":"Обращение сформировано. Выберите подключённый способ отправки.", "success")});
+copy.addEventListener("click",async function(){if(!lastText)return;try{await navigator.clipboard.writeText(lastText);setStatus("Текст скопирован.","success")}catch(e){output.focus();output.select();setStatus("Автоматическое копирование недоступно. Текст выделен — скопируйте его вручную.","") }});
+download.addEventListener("click",function(){if(!lastText)return;var blob=new Blob(["\ufeff"+lastText],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="text2me-slozhnaya-zadacha.txt";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);setStatus("Файл обращения подготовлен.","success")});
+form.addEventListener("input",function(){if(lastText){lastText="";wrap.hidden=true;copy.disabled=true;download.disabled=true;emailLink.hidden=true;telegramLink.hidden=true;setStatus("Данные изменились. Сформируйте обращение заново.","")}});
+})();
+</script>
+</body>
+</html>
