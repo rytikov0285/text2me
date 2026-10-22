@@ -22,19 +22,26 @@
   var searchForm = document.getElementById("document-search");
   if (searchForm) {
     var input = document.getElementById("search-input");
-    var cards = Array.prototype.slice.call(document.querySelectorAll("#quick-actions a"));
+    var quickCards = Array.prototype.slice.call(document.querySelectorAll("#quick-actions a"));
+    var catalogCards = Array.prototype.slice.call(document.querySelectorAll("#catalog-cards [data-search-item]"));
     var status = document.getElementById("search-status");
     var empty = document.getElementById("empty-state");
     function filterCards() {
       var query = (input.value || "").trim().toLocaleLowerCase("ru");
       var visible = 0;
-      cards.forEach(function (card) {
+      quickCards.forEach(function (card) {
         var haystack = ((card.innerText || "") + " " + (card.getAttribute("data-search") || "")).toLocaleLowerCase("ru");
         var match = !query || haystack.indexOf(query) !== -1;
         card.hidden = !match;
         if (match) visible++;
       });
-      if (status) status.textContent = query ? "Подходящих ситуаций: " + visible : "";
+      catalogCards.forEach(function (card) {
+        var haystack = ((card.innerText || "") + " " + (card.getAttribute("data-search") || "")).toLocaleLowerCase("ru");
+        var match = !query || haystack.indexOf(query) !== -1;
+        card.hidden = !match;
+        if (match) visible++;
+      });
+      if (status) status.textContent = query ? "Найдено подходящих направлений: " + visible : "";
       if (empty) empty.hidden = visible !== 0;
     }
     searchForm.addEventListener("submit", function (event) {
@@ -42,6 +49,40 @@
       filterCards();
     });
     input.addEventListener("input", filterCards);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-search-chip]"), function (chip) {
+    chip.addEventListener("click", function () {
+      var input = document.getElementById("search-input");
+      var form = document.getElementById("document-search");
+      if (!input) return;
+      input.value = chip.getAttribute("data-search-chip") || "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      var catalog = document.getElementById("catalog");
+      if (catalog) catalog.scrollIntoView({ behavior: "smooth", block: "start" });
+      else if (form) form.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
+
+  var aiPathForm = document.getElementById("ai-path-form");
+  if (aiPathForm) {
+    aiPathForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var prompt = document.getElementById("ai-path-input");
+      var description = document.getElementById("need-description");
+      var status = document.getElementById("ai-path-status");
+      var routeBuilder = document.getElementById("route-builder");
+      if (!prompt || !prompt.value.trim()) {
+        if (status) status.textContent = "Сначала кратко опишите задачу.";
+        if (prompt) prompt.focus();
+        return;
+      }
+      if (description) description.value = prompt.value.trim();
+      if (status) status.textContent = "ИИ пока не подключён. Описание перенесено в форму ситуации ниже: выберите тему и желаемый результат, чтобы получить стартовую подсказку.";
+      if (routeBuilder) routeBuilder.scrollIntoView({ behavior: "smooth", block: "start" });
+      var area = document.getElementById("need-area");
+      if (area) area.focus({ preventScroll: true });
+    });
   }
 
   var needForm = document.getElementById("need-form");
@@ -478,6 +519,14 @@
       }
     });
   }
+  var backToTop = document.querySelector("[data-back-to-top]");
+  if (backToTop) {
+    backToTop.addEventListener("click", function (event) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
 
 
 }());
