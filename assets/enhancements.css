@@ -33,3 +33,6 @@
 .space-item-status{display:inline-block;margin:4px 0 8px;padding:4px 8px;border-radius:7px;background:#e8f4ff;color:#15598a;font-size:12px;font-weight:700}
 .space-item-status[data-status="warning"]{background:#fff1d4;color:#7a4c00}
 @media(max-width:680px){.space-dashboard-grid{grid-template-columns:1fr}.selection-edit-menu{max-width:calc(100vw - 16px)}}
+
+/* Inline editor in the local document library */
+.space-edit-text{display:block;width:100%;min-height:220px;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical}.space-edit-text:focus{outline:2px solid #8fb3ed;outline-offset:1px}
