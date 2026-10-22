@@ -79,6 +79,24 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <p class="dash-lead">Выберите команду или готовый конструктор. Ответьте на необходимые вопросы, проверьте результат и сохраните документ.</p>
 </section>
 
+<section class="home-situation-box" aria-labelledby="home-situation-title">
+<form id="home-situation-form" action="/text2me/start/" method="get">
+<label id="home-situation-title" for="home-situation">Опишите ситуацию</label>
+<p>Напишите своими словами, что нужно решить или какой текст подготовить.</p>
+<textarea id="home-situation" name="task" rows="3" placeholder="Например: не возвращают деньги за покупку, нужно написать поздравление или составить договор." autocomplete="off"></textarea>
+<div class="home-situation-actions"><button class="dash-btn" type="submit">Подобрать первые шаги</button><span>Можно написать обычными словами — специальные термины не нужны.</span></div>
+</form>
+<div class="home-situation-chips" aria-label="Примеры ситуаций">
+<span>Быстрый выбор:</span>
+<button type="button" data-situation-chip="Не возвращают деньги за покупку">Не возвращают деньги</button>
+<button type="button" data-situation-chip="Проблема с жильём или ЖКХ">Жильё и ЖКХ</button>
+<button type="button" data-situation-chip="Не выплатили зарплату">Задержали зарплату</button>
+<button type="button" data-situation-chip="Нужно написать заявление">Нужно заявление</button>
+<button type="button" data-situation-chip="Поздравление с днём рождения">Поздравление</button>
+<button type="button" data-situation-chip="Нужен рецепт из имеющихся продуктов">Рецепт из того, что есть</button>
+</div>
+</section>
+
 <nav class="document-ribbon" aria-label="Панель инструментов">
 <a href="/text2me/documents/" title="Создать документ"><span class="ribbon-icon" aria-hidden="true">＋</span><span>Создать</span></a>
 <a href="/text2me/documents/" title="Каталог шаблонов"><span class="ribbon-icon" aria-hidden="true">▤</span><span>Шаблоны</span></a>
@@ -137,7 +155,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <section class="section-block" id="categories">
 <div class="section-head"><div><h2>Каталог документов</h2><p>Крупные разделы → виды документов. Числа показывают только доступные конструкторы.</p></div><a href="/text2me/documents/">Открыть каталог →</a></div>
 <div class="catalog-filters dashboard-filters" aria-label="Фильтры каталога">
-<label>Тип документа<select id="dash-filter-type"><option value="">Все типы</option><option value="Договоры">Договоры</option><option value="Доверенности">Доверенности</option><option value="Заявления">Заявления</option><option value="Акты">Акты</option><option value="Приказы">Приказы</option><option value="Протоколы">Протоколы</option><option value="Письма">Письма</option><option value="Соглашения">Соглашения</option><option value="Дипломы">Дипломы</option><option value="Инструкции">Инструкции</option><option value="Расписки">Расписки</option></select></label>
+<label>Тип документа<select id="dash-filter-type"><option value="">Все типы</option><option value="Договоры">Договоры</option><option value="Доверенности">Доверенности</option><option value="Заявления">Заявления</option><option value="Акты">Акты</option><option value="Приказы">Приказы</option><option value="Протоколы">Протоколы</option><option value="Письма">Письма</option><option value="Соглашения">Соглашения</option><option value="Личное">Личное</option><option value="Дипломы">Дипломы</option><option value="Инструкции">Инструкции</option><option value="Расписки">Расписки</option></select></label>
 <label>Ситуация<select id="dash-filter-situation"><option value="">Все ситуации</option><option value="Работа">Работа</option><option value="Покупки">Покупки и услуги</option><option value="Жильё">Жильё и аренда</option><option value="Деньги">Деньги и долги</option><option value="Суд">Суд</option><option value="Бизнес">Бизнес</option></select></label>
 <label>Правовая природа<select id="dash-filter-nature"><option value="">Любая</option><option value="ГПХ">ГПХ</option><option value="Трудовые">Трудовые</option><option value="Аренда">Аренда</option><option value="Купля-продажа">Купля-продажа</option><option value="Дарение">Дарение</option><option value="Займы">Займы</option><option value="Информационные">Информационные</option></select></label>
 </div>
@@ -152,6 +170,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <a class="category-card" data-cat="Письма" data-situation="Работа Покупки Бизнес" data-nature="Информационные Правовые" href="/text2me/prompts/"><strong>Письма</strong><span class="category-count">0 отдельных конструкторов</span><span class="category-sub">Деловые · сопроводительные · обращения</span><span class="status-badge" data-status="demo">Материалы</span></a>
 <a class="category-card" data-cat="Соглашения" data-situation="Бизнес Работа Деньги" data-nature="ГПХ Аренда Займы" href="/text2me/business/"><strong>Соглашения</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Изменения условий · расторжение · расчёты</span><span class="status-badge" data-status="soon">Скоро</span></a>
 <a class="category-card" data-cat="Дипломы" data-situation="Работа" data-nature="Информационные" href="/text2me/knowledge/"><strong>Дипломы и сертификаты</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Справочные материалы и макеты</span><span class="status-badge" data-status="soon">Скоро</span></a>
+<a class="category-card" data-cat="Личное" data-situation="Личное" data-nature="Тексты" href="/text2me/prompts/#personal-prompts"><strong>Личное</strong><span class="category-count">Поздравления, рецепты, дипломы</span><span class="category-sub">Тексты для семьи, друзей, учёбы и повседневной жизни</span><span class="status-badge" data-status="demo">Готовые примеры</span></a>
 <a class="category-card" data-cat="Инструкции" data-situation="Покупки Жильё Работа Бизнес" data-nature="Информационные" href="/text2me/knowledge/"><strong>Инструкции</strong><span class="category-count">Каталог материалов</span><span class="category-sub">Порядок действий · контрольные списки</span><span class="status-badge" data-status="live">Материалы</span></a>
 <a class="category-card" data-cat="Расписки" data-situation="Деньги Бизнес" data-nature="Займы" href="/text2me/business/"><strong>Расписки</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Получение денег · передача имущества</span><span class="status-badge" data-status="soon">Скоро</span></a>
 <a class="category-card" data-cat="Претензии" data-situation="Покупки Деньги" data-nature="Купля-продажа Правовые" href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензии</strong><span class="category-count">1 конструктор</span><span class="category-sub">Продавцу · возврат денег · товар</span><span class="status-badge" data-status="live">Работает</span></a>
@@ -181,7 +200,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <div class="dash-note"><strong>Важно:</strong> AI-диалог на текущем сайте — демонстрационный сценарий с заранее заданными правилами, а не подключённая генеративная модель. Для настоящего AI-сервиса нужна безопасная серверная интеграция. Автозаполнение по ИНН также не включено: его следует добавлять в мастер после выбора задачи, с проверкой источника данных.</div>
 </section>
 <section class="section-block" id="guides">
-<div class="section-head"><div><h2>Инструкции</h2><p>Коротко и по шагам: как выбрать документ и что проверить перед подписанием.</p></div><a href="/text2me/guides/">Все инструкции →</a></div>
+<div class="section-head"><div><h2>Инструкции</h2><p>Коротко и по шагам: как выбрать документ и что проверить перед подписанием.</p></div></div>
 <div class="resource-grid">
 <a class="resource-card" href="/text2me/guides/#choose-document"><strong>Как понять, какой документ нужен</strong><span>Сначала цель и адресат, затем форма документа.</span></a>
 <a class="resource-card" href="/text2me/guides/#before-signing"><strong>Что проверить перед подписанием</strong><span>Стороны, предмет, сумма, сроки, ответственность и приложения.</span></a>
@@ -216,7 +235,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <section class="workspace-aside-card workspace-space-card"><h2>Моё пространство</h2><p id="workspace-local-summary">Черновики хранятся в этом браузере.</p><a href="/text2me/space/">Открыть библиотеку →</a></section>
 </aside>
 </div>
-<footer class="dash-footer"><nav class="dash-footer-catalog" aria-label="Основные разделы сайта"><strong>Разделы сайта:</strong><a href="/text2me/documents/">Каталог документов</a><a href="/text2me/situations/">Жизненные ситуации</a><a href="/text2me/people/">Гражданам</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/business/">Для организаций</a><a href="/text2me/prompts/">Тексты и редактура</a><a href="/text2me/updates/">Обновления</a></nav><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
+<footer class="dash-footer"><nav class="dash-footer-catalog" aria-label="Быстрая навигация и информация о сайте"><strong>Разделы сайта:</strong><a href="/text2me/">Главная</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/prompts/#personal-prompts">Личное</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/people/">Гражданам</a><a href="/text2me/business/">Организациям</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/privacy/">Конфиденциальность</a><a href="/text2me/security/">Безопасность данных</a><a href="/text2me/terms/">Условия использования</a><a href="/text2me/updates/">Обновления</a></nav><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
 </div>
 <button class="top-button" type="button" id="back-to-top" data-back-to-top aria-label="Наверх" title="Наверх">↑</button>
 <script>
@@ -232,7 +251,7 @@ var index=[
 {title:"Деловое письмо",desc:"Каталог текстовых инструментов и материалов для организаций.",url:"/text2me/business/",keys:"деловое письмо коммерческое предложение бизнес организация"},
 {title:"PDF и печать",desc:"Сохранение документа в PDF через диалог печати браузера.",url:"/text2me/documents/pretenziya-prodavtsu/",keys:"pdf печать файл скачать"},
 {title:"Электронная подпись",desc:"Справочная информация; подключённого сервиса подписания нет.",url:"/text2me/knowledge/",keys:"подпись электронная подписать проверка"},
-{title:"Моё пространство",desc:"Локальная библиотека черновиков, коллекции, теги, архив и экспорт JSON.",url:"/text2me/space/",keys:"пространство сохранить черновик коллекция теги архив экспорт json"}
+{title:"Моё пространство",desc:"Сохранённые документы, черновики, поиск, коллекции, архив и резервная копия.",url:"/text2me/space/",keys:"пространство сохранить черновик коллекция теги архив резервная копия скачать файл"}
 ,
 {title:"Договоры",desc:"Категория запланированных конструкторов; доступны справочные материалы.",url:"/text2me/documents/",keys:"договоры договор аренда ГПХ трудовой купля-продажа дарение заем займ соглашение"},
 {title:"Доверенности",desc:"Отдельный конструктор пока не опубликован.",url:"/text2me/documents/",keys:"доверенность доверенности представитель автомобиль авто"},
@@ -253,6 +272,10 @@ function search(){var q=(searchInput.value||"").trim().toLocaleLowerCase("ru");r
 searchForm.addEventListener("submit",function(e){e.preventDefault();search()});
 searchInput.addEventListener("input",function(){if(searchInput.value.trim().length>=2)search();else{results.replaceChildren();status.textContent=""}});
 document.querySelectorAll("[data-search-chip]").forEach(function(btn){btn.addEventListener("click",function(){searchInput.value=btn.getAttribute("data-search-chip")||"";searchInput.focus();search()})});
+var situationForm=document.getElementById("home-situation-form"),situationField=document.getElementById("home-situation");
+document.querySelectorAll("[data-situation-chip]").forEach(function(btn){btn.addEventListener("click",function(){if(!situationField)return;situationField.value=btn.getAttribute("data-situation-chip")||"";situationField.focus()})});
+if(situationForm&&situationField){situationForm.addEventListener("submit",function(e){var task=situationField.value.trim();if(!task){e.preventDefault();situationField.focus();situationField.setCustomValidity("Опишите ситуацию или выберите пример ниже.");situationField.reportValidity();return}situationField.setCustomValidity("");situationField.value=task});situationField.addEventListener("input",function(){situationField.setCustomValidity("")})}
+
 
 
 document.getElementById("back-to-top").addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});

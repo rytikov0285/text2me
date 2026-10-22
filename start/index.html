@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Подбор по ситуации и ИИ-помощник — text2me</title>
+  <title>Найти документ и подобрать первые шаги — text2me</title>
   <meta name="description" content="Найдите документ по ситуации или названию, используйте инструменты для PDF и подписи, получите ориентир для следующего шага и сохраните полезное в своём пространстве.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://rytikov0285.github.io/text2me/start/">
@@ -12,8 +12,8 @@
   <script defer src="/text2me/assets/main.js"></script>
   <script defer src="/text2me/assets/enhancements.js"></script>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Подбор по ситуации и ИИ-помощник — text2me">
-  <meta property="og:description" content="Опишите задачу, выберите ситуацию или воспользуйтесь демонстрационным помощником, чтобы найти подходящий раздел и подготовить черновик.">
+  <meta property="og:title" content="Подбор по ситуации и пошаговый подбор — text2me">
+  <meta property="og:description" content="Опишите задачу или найдите документ по названию. Посмотрите подходящие инструкции и доступные формы.">
   <meta property="og:url" content="https://rytikov0285.github.io/text2me/start/">
 </head>
 <body>
@@ -30,8 +30,8 @@
   <section class="portal-hero">
     <div class="container">
       <div class="portal-heading">
-        <p class="eyebrow">Документы для жизни, работы и бизнеса</p><h1>Нужен документ?<br><span class="text-gradient">Начните с результата.</span></h1>
-        <p class="portal-lead">Опишите ситуацию, найдите документ по названию или начните с ИИ-помощника. Вы получите понятный следующий шаг, ориентир по адресату и основу документа, когда для задачи есть подходящий сценарий.</p>
+        <p class="eyebrow">Документы для жизни, работы и бизнеса</p><h1>Что нужно сделать?<br><span class="text-gradient">Опишите задачу своими словами.</span></h1>
+        <p class="portal-lead">Опишите задачу своими словами или найдите документ по названию. Мы покажем подходящие инструкции, что подготовить и доступные формы.</p>
       </div>
       <div class="portal-search-wrap">
         <form class="search-box portal-search" role="search" id="document-search">
@@ -42,7 +42,7 @@
         <p class="search-status" id="search-status" aria-live="polite"></p>
         <div class="popular-chips" aria-label="Популярные документы"><span>Популярное:</span><button type="button" data-search-chip="договор аренды">Договор аренды</button><button type="button" data-search-chip="доверенность на авто">Доверенность на авто</button><button type="button" data-search-chip="заявление на увольнение">Заявление на увольнение</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button></div>
       </div>
-      <div class="portal-path-links" aria-label="Выберите способ начать"><a href="#route-builder"><strong>1. По ситуации</strong><span>Расскажите, что произошло</span></a><a href="#catalog"><strong>2. По названию</strong><span>Найдите конкретный документ</span></a><a href="#ai-path"><strong>3. Через ИИ</strong><span>Опишите задачу своими словами</span></a></div>
+      <div class="portal-path-links" aria-label="Выберите способ начать"><a href="#route-builder"><strong>1. По ситуации</strong><span>Расскажите, что произошло</span></a><a href="#catalog"><strong>2. По названию</strong><span>Найдите конкретный документ</span></a><a href="#ai-path"><strong>3. По вопросам</strong><span>Опишите задачу своими словами</span></a></div>
       <div class="portal-quicklinks task-buttons" id="quick-actions" aria-label="Популярные вопросы">
         <a href="#need-result" data-route-preset="consumer" data-route-goal="document" data-route-detail="refund"><span>↩</span> Вернуть деньги за товар <b>→</b></a>
         <a href="#need-result" data-route-preset="housing" data-route-goal="official" data-route-detail="maintenance"><span>⌂</span> Проблема с ЖКХ <b>→</b></a>
@@ -91,7 +91,7 @@
 
   <section class="section" id="ai-path">
     <div class="container ai-path-layout">
-      <div><p class="eyebrow">Третий путь — через ИИ</p><h2>Не знаете название документа? Начните с вопроса.</h2><p>Опишите задачу обычными словами. ИИ-путь должен помочь определить цель, задать необходимые уточнения и подобрать направление — без выдуманных фактов и обещаний гарантированного результата.</p><p class="field-help">Демонстрация интерфейса: подключение ИИ к форме пока не выполнено.</p></div>
+      <div><p class="eyebrow">Подбор по ответам</p><h2>Не знаете название документа? Начните с вопроса.</h2><p>Опишите задачу обычными словами. Подбор по ответам должен помочь определить цель, задать необходимые уточнения и подобрать направление — без выдуманных фактов и обещаний гарантированного результата.</p><p class="field-help">Подбор работает по заранее заданным правилам, а не с помощью искусственного интеллекта.</p></div>
       <form id="ai-path-form" class="ai-path-form">
         <label for="ai-path-input">Что вы хотите решить?</label>
         <textarea id="ai-path-input" rows="4" maxlength="1200" placeholder="Например: снимаю квартиру, хочу зафиксировать условия и ответственность сторон…"></textarea>
@@ -157,7 +157,7 @@
             <p class="field-help">Даты и подробности помогут точнее подсказать следующий шаг. Текст пока остаётся в этом браузере.</p>
           </div>
         </div>
-        <div class="builder-actions"><button class="button" type="submit">Подсказать, с чего начать</button><button class="button button-outline" type="reset">Начать заново</button></div>
+        <div class="builder-actions"><button class="button" type="submit">Подобрать раздел</button><button class="button button-outline" type="reset">Начать заново</button></div>
       </form>
       <div id="need-result" class="need-result" hidden aria-live="polite">
         <p class="eyebrow">Что можно сделать дальше</p>
