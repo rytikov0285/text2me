@@ -4,7 +4,32 @@
 <meta name="description" content="Выберите документ по задаче: претензия продавцу, исковое заявление, заявление, деловое письмо и другие направления. Доступность каждого инструмента указана на странице.">
 <meta name="robots" content="index,follow"><link rel="canonical" href="https://rytikov0285.github.io/text2me/documents/">
 <link rel="stylesheet" href="/text2me/assets/style.css"><link rel="stylesheet" href="/text2me/assets/enhancements.css"><script defer src="/text2me/assets/dadata-config.js"></script>
-<script defer src="/text2me/assets/enhancements.js"></script><style>.catalog-search-panel{display:grid;gap:8px;padding:16px;border:1px solid var(--line);border-radius:14px;background:#fff}.catalog-search-panel input{width:100%;padding:12px;border:1px solid #cbd6e5;border-radius:10px}.full-catalog-grid>a{min-height:160px}.full-catalog-grid .status-badge{align-self:flex-start}.full-catalog-grid>a[hidden]{display:none}@media(max-width:560px){.catalog-filters{grid-template-columns:1fr}}</style></head>
+<script defer src="/text2me/assets/enhancements.js"></script><script defer src="/text2me/assets/document-route-picker.js"></script><style>.catalog-search-panel{display:grid;gap:8px;padding:16px;border:1px solid var(--line);border-radius:14px;background:#fff}.catalog-search-panel input{width:100%;padding:12px;border:1px solid #cbd6e5;border-radius:10px}.full-catalog-grid>a{min-height:160px}.full-catalog-grid .status-badge{align-self:flex-start}.full-catalog-grid>a[hidden]{display:none}@media(max-width:560px){.catalog-filters{grid-template-columns:1fr}}
+.route-picker{margin:28px 0;padding:22px;border:1px solid #cbd9ec;border-radius:18px;background:linear-gradient(135deg,#fff,#f3f7ff)}
+.route-picker h2{margin:0 0 7px;font-size:clamp(22px,3vw,30px);letter-spacing:-.035em}
+.route-picker-intro{max-width:850px;margin:0 0 17px;color:var(--muted);font-size:14px}
+.route-vocabulary{position:relative;margin-bottom:14px}
+.route-vocabulary input,.route-custom input{width:100%;padding:13px 14px;border:1px solid #c5d3e5;border-radius:11px;background:#fff}
+.route-vocabulary-results{display:grid;gap:6px;max-height:360px;overflow:auto;margin-top:8px}
+.route-search-result{display:flex;flex-direction:column;gap:3px;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;cursor:pointer}
+.route-search-result strong{font-size:13px}.route-search-result span{font-size:11px;color:var(--muted)}
+.route-picker-trail{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.route-back{padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-size:12px;cursor:pointer}
+.route-back:disabled{opacity:.5;cursor:default}
+.route-levels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.route-level-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;padding:14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.route-level-card strong{font-size:14px}.route-depth{color:var(--purple);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.route-aliases{margin:0;color:var(--muted);font-size:11px}
+.route-level-actions,.route-choice-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:4px}
+.route-level-actions .button,.route-choice-actions .button{min-height:36px;padding:8px 10px;font-size:11px}
+.route-chosen{margin-top:15px;padding:15px;border:1px solid #bfd2f2;border-radius:12px;background:#fff}
+.route-chosen p{margin:7px 0;color:var(--muted);font-size:13px}
+.route-small-link{align-self:center;font-size:12px;color:var(--purple);text-decoration:underline}
+.route-custom{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:15px}
+.route-custom .button{min-height:42px}
+.route-picker-note{font-size:12px;color:var(--muted);margin:12px 0 0}
+@media(max-width:650px){.route-picker{padding:15px}.route-levels{grid-template-columns:1fr}.route-custom{grid-template-columns:1fr}.route-choice-actions{align-items:stretch}.route-choice-actions>*{flex:1 1 100%;text-align:center}}
+</style></head>
 <body><a class="skip-link" href="#main">Перейти к содержанию</a>
 <header class="site-header"><div class="container header-inner"><a class="brand" href="/text2me/" aria-label="text2me — входное пространство"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a>
 <nav class="main-nav" aria-label="Тематические комнаты"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/knowledge/">Знания</a><a href="/text2me/business/">Организации и бизнес</a><a href="/text2me/prompts/">Тексты и инструменты</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/request/">Сложная задача</a></nav><a class="button button-small" href="/text2me/start/#route-builder">Подобрать по ситуации</a></div></header>
@@ -22,6 +47,26 @@
 <a href="#full-doc-catalog" data-catalog-term="личное"><span class="taxonomy-level">01 · Область</span><strong>Личные и повседневные тексты</strong><span class="taxonomy-path">Личная задача → тип текста → пример или заготовка</span><span class="taxonomy-leaf">Открыть материалы →</span></a>
 </div>
 <p class="field-help">Это навигационная классификация, а не заявление о доступности каждого конструктора. Статус каждого инструмента указан в карточке.</p>
+</section>
+
+<section class="route-picker" id="global-document-route" aria-labelledby="route-picker-title">
+<p class="eyebrow">Глобальный каталог</p>
+<h2 id="route-picker-title">Подберите название документа, текста или цифрового материала</h2>
+<p class="route-picker-intro">Сначала выберите широкую область, затем уточняйте ветвь. Можно остановиться и выбрать уже на втором шаге или углубляться дальше — фиксированного ограничения по числу уровней нет. Каталог охватывает не только готовые шаблоны, но и тексты, справочные материалы, код, промпты и структурированные данные.</p>
+<div class="route-vocabulary">
+<label for="route-vocabulary-search"><strong>Поиск по большому словарю названий</strong></label>
+<input id="route-vocabulary-search" type="search" placeholder="Например: код для бота, описательные конструкции, договор, отчёт…" autocomplete="off">
+<div id="route-vocabulary-results" class="route-vocabulary-results" hidden></div>
+</div>
+<div id="route-picker-trail" class="route-picker-trail" aria-label="Управление уровнями выбора"></div>
+<div id="route-levels" class="route-levels" aria-live="polite"></div>
+<div id="route-chosen" class="route-chosen" hidden></div>
+<div class="route-custom">
+<label class="sr-only" for="route-custom-name">Своё название документа или материала</label>
+<input id="route-custom-name" type="text" placeholder="Не нашли название? Введите своё">
+<button type="button" id="route-custom-choose" class="button">Выбрать своё название</button>
+</div>
+<p class="route-picker-note">Выбор пункта не означает, что для него уже есть готовый конструктор. Поиск по каталогу покажет существующие материалы; нестандартную задачу можно передать на отдельный разбор.</p>
 </section>
 <section class="complex-showcase" aria-labelledby="complex-showcase-title">
 <div class="catalog-taxonomy-heading"><div><p class="eyebrow">Витрина</p><h2 id="complex-showcase-title">Сложные документы и услуги</h2></div><p>Комплексные сценарии, где одного шаблона недостаточно. Сейчас это направления развития, а не готовые платные услуги.</p></div>
