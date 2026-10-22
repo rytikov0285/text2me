@@ -26,6 +26,88 @@
     input.addEventListener("input", filterCards);
   }
 
+  var needForm = document.getElementById("need-form");
+  if (needForm) {
+    var needResult = document.getElementById("need-result");
+    var needArea = document.getElementById("need-area");
+    var needGoal = document.getElementById("need-goal");
+    var needDescription = document.getElementById("need-description");
+    var routeData = {
+      consumer: {
+        title: "Покупка или услуга: начните с фактов и требования",
+        copy: "Сохраните чек или заказ, переписку, фотографии и даты. Если товар с недостатком, можно подготовить черновик претензии, а затем проверить, подходит ли выбранное требование.",
+        links: [{label:"Подготовить черновик претензии",url:"/text2me/documents/pretenziya-prodavtsu/"},{label:"Официальные рекомендации Роспотребнадзора",url:"https://www.rospotrebnadzor.ru/"}]
+      },
+      housing: {
+        title: "Дом и ЖКХ: зафиксируйте проблему и адресата",
+        copy: "Уточните, кто отвечает за услугу, зафиксируйте дату и обстоятельства, сохраните обращения и ответы. Дальше выберите официальный канал для вашей услуги или подготовьте письменное обращение.",
+        links: [{label:"Каталог жизненных ситуаций на Госуслугах",url:"https://www.gosuslugi.ru/landing/forcitizens"},{label:"Подготовить обращение",url:"/text2me/people/"}]
+      },
+      work: {
+        title: "Работа: соберите подтверждения и уточните способ обращения",
+        copy: "Сохраните договор, расчётные листки, график, переписку и даты событий. Не отправляйте оригиналы документов без необходимости. По трудовому вопросу проверьте официальный канал инспекции труда.",
+        links: [{label:"Онлайнинспекция.рф",url:"https://онлайнинспекция.рф/"},{label:"Подготовить письменное обращение",url:"/text2me/people/"}]
+      },
+      money: {
+        title: "Деньги или платёж: определите получателя и основание",
+        copy: "Найдите дату, сумму и получателя операции; сохраните выписку и номер обращения. Не публикуйте полный номер карты, пароль или коды подтверждения. Канал дальнейшего обращения зависит от типа операции.",
+        links: [{label:"Банк России — финансовые вопросы",url:"https://www.cbr.ru/"},{label:"ФНС России — налоги и вычеты",url:"https://www.nalog.gov.ru/"}]
+      },
+      government: {
+        title: "Государственная услуга: найдите сценарий по жизненной ситуации",
+        copy: "Уточните, что именно нужно получить, кто заявитель и в каком регионе оказывается услуга. На официальном портале проверьте условия, список документов и способ подачи.",
+        links: [{label:"Каталог услуг для граждан",url:"https://www.gosuslugi.ru/landing/forcitizens"}]
+      },
+      business: {
+        title: "Деловая задача: зафиксируйте договорённости и желаемый результат",
+        copy: "Уточните стороны, предмет договорённости, сумму, сроки и что уже согласовано. Затем выберите подходящий формат письма или документа и проверьте условия перед подписанием.",
+        links: [{label:"Материалы для бизнеса",url:"/text2me/business/"}]
+      },
+      other: {
+        title: "Начните с описания результата, который вам нужен",
+        copy: "Опишите, что произошло, кто участвует, что вы уже пробовали и что должно измениться. Если непонятно, какой документ или сервис нужен, начните с короткого письменного обращения с фактами и конкретной просьбой.",
+        links: [{label:"Материалы для населения",url:"/text2me/people/"},{label:"Официальный каталог Госуслуг",url:"https://www.gosuslugi.ru/landing/forcitizens"}]
+      }
+    };
+    function renderNeedRoute() {
+      var route = routeData[needArea.value] || routeData.other;
+      var goal = needGoal.value;
+      var extra = "";
+      if (goal === "document") extra = " Цель — документ: в тексте изложите факты по датам, приложите подтверждения и сформулируйте одно конкретное требование.";
+      if (goal === "official") extra = " Цель — официальная услуга: перед подачей проверьте условия, регион, срок и перечень документов на сайте ведомства.";
+      if (goal === "money") extra = " Цель — получить деньги: укажите сумму, основание требования и доказательства оплаты; не считайте возврат гарантированным.";
+      if (goal === "contact") extra = " Цель — письмо: обозначьте адресата, кратко изложите ситуацию и сформулируйте, какого ответа или действия ожидаете.";
+      document.getElementById("need-result-title").textContent = route.title;
+      document.getElementById("need-result-copy").textContent = route.copy + extra;
+      var links = document.getElementById("need-result-links");
+      links.textContent = "";
+      route.links.forEach(function (item) {
+        var a = document.createElement("a");
+        a.href = item.url;
+        a.textContent = item.label + (item.url.indexOf("http") === 0 ? " ↗" : " →");
+        if (item.url.indexOf("http") === 0) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+        links.appendChild(a);
+      });
+      needResult.hidden = false;
+    }
+    needForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!needForm.reportValidity()) return;
+      renderNeedRoute();
+      needResult.scrollIntoView({behavior:"smooth",block:"nearest"});
+    });
+    needForm.addEventListener("reset", function () {
+      needResult.hidden = true;
+      if (needDescription) needDescription.value = "";
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-route-preset]"), function (link) {
+      link.addEventListener("click", function () {
+        needArea.value = link.getAttribute("data-route-preset");
+        document.getElementById("route-builder").scrollIntoView({behavior:"smooth",block:"start"});
+      });
+    });
+  }
+
   var claimForm = document.getElementById("claim-builder");
   if (!claimForm) return;
 
