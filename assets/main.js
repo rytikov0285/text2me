@@ -148,10 +148,21 @@
     });
     updateDetailOptions();
     Array.prototype.forEach.call(document.querySelectorAll("[data-route-preset]"), function (link) {
-      link.addEventListener("click", function () {
+      link.addEventListener("click", function (event) {
         needArea.value = link.getAttribute("data-route-preset");
         updateDetailOptions();
-        document.getElementById("route-builder").scrollIntoView({behavior:"smooth",block:"start"});
+        var goal = link.getAttribute("data-route-goal");
+        if (goal) needGoal.value = goal;
+        var detail = link.getAttribute("data-route-detail");
+        if (detail) needDetail.value = detail;
+        needStatus.value = "unsure";
+        if (link.getAttribute("href") === "#need-result") {
+          event.preventDefault();
+          renderNeedRoute();
+          needResult.scrollIntoView({behavior:"smooth",block:"center"});
+        } else {
+          document.getElementById("route-builder").scrollIntoView({behavior:"smooth",block:"start"});
+        }
       });
     });
   }
