@@ -150,6 +150,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-route-preset]"), function (link) {
       link.addEventListener("click", function () {
         needArea.value = link.getAttribute("data-route-preset");
+        updateDetailOptions();
         document.getElementById("route-builder").scrollIntoView({behavior:"smooth",block:"start"});
       });
     });
