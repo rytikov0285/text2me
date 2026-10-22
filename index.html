@@ -85,6 +85,23 @@
               <option value="contact">Составить письмо или обращение</option>
             </select>
           </div>
+          <div class="form-field" id="need-detail-wrap" hidden>
+            <label for="need-detail">Что именно произошло?</label>
+            <select id="need-detail" name="detail">
+              <option value="">Выберите уточнение</option>
+            </select>
+          </div>
+          <div class="form-field" id="need-status-wrap" hidden>
+            <label for="need-status">На каком этапе ситуация?</label>
+            <select id="need-status" name="status">
+              <option value="">Выберите этап</option>
+              <option value="not-contacted">Ещё никуда не обращался</option>
+              <option value="waiting">Обратился, жду ответ</option>
+              <option value="refused">Получил отказ или ответ не решил вопрос</option>
+              <option value="deadline">Срок ответа или исполнения прошёл</option>
+              <option value="unsure">Не знаю, как определить этап</option>
+            </select>
+          </div>
           <div class="form-field form-field-full">
             <label for="need-description">Коротко опишите, что произошло</label>
             <textarea id="need-description" name="description" rows="3" maxlength="1800" placeholder="Что случилось? Кто участвует? Что вы уже пробовали? Какой ответ или результат получили?"></textarea>
