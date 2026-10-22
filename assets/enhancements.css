@@ -295,3 +295,14 @@ body.capture-modal-open{overflow:hidden}
 .document-ocr-output[hidden],.document-ocr-actions[hidden]{display:none!important}
 .document-ocr-actions button:disabled{opacity:.65;cursor:wait}
 @media(max-width:560px){.document-ocr-actions{display:grid}.document-ocr-actions .button{width:100%}}
+
+/* Automatically saved local files in My Documents */
+.space-file-vault{margin-top:20px;padding:18px;border:1px solid var(--line,#dce4ee);border-radius:14px;background:var(--surface,#fff)}
+.space-file-vault h2{margin:0 0 8px;font-size:20px}
+.space-file-intro{margin:0 0 12px;color:var(--muted,#63728a);font-size:13px}
+.space-file-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-top:1px solid var(--line,#dce4ee)}
+.space-file-meta{display:grid;gap:4px;min-width:0}.space-file-meta strong{overflow-wrap:anywhere;font-size:14px}.space-file-meta small{color:var(--muted,#63728a);font-size:12px}
+.space-file-actions{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}.space-file-actions button{white-space:nowrap}
+.home-situation-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.home-situation-actions a{text-decoration:none}
+.home-situation-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.home-situation-chips button{border:1px solid #d3e0f2;border-radius:999px;padding:8px 12px;background:#fff;color:#214b80;font-size:12px;font-weight:750;cursor:pointer}.home-situation-chips button:hover{border-color:#91b0e5;background:#eaf2ff}
+@media(max-width:620px){.space-file-row{align-items:flex-start;flex-direction:column}.space-file-actions{width:100%;justify-content:flex-start}.space-file-actions button{flex:1}.home-situation-actions>*{flex:1 1 100%;text-align:center}}
