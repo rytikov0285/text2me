@@ -29,15 +29,15 @@ function initRole(config){
  actions.appendChild(save);actions.appendChild(apply);actions.appendChild(remove);panel.appendChild(actions);
  var status=node("p",{class:"party-profile-status","aria-live":"polite"},"Сохраняются только название, адрес и ИНН. СНИЛС и другие поля не копируются.");
  panel.appendChild(status);marker.parentNode.insertBefore(panel,marker);
- function refresh(selectId){var profiles=readProfiles().filter(function(p){return p.role===config.role});select.textContent="";select.appendChild(node("option",{value:""},"Выберите карточку…"));profiles.forEach(function(p){select.appendChild(node("option",{value:p.id},p.label||p.name))});if(selectId)select.value=selectId;updateLabel()}
- function selected(){return readProfiles().find(function(p){return p.id===select.value&&p.role===config.role})}
+ function refresh(selectId){var profiles=readProfiles().filter(function(p){return true});select.textContent="";select.appendChild(node("option",{value:""},"Выберите карточку…"));profiles.forEach(function(p){select.appendChild(node("option",{value:p.id},p.label||p.name))});if(selectId)select.value=selectId;updateLabel()}
+ function selected(){return readProfiles().find(function(p){return p.id===select.value})}
  function updateLabel(){var p=selected();if(p&&!nameInput.value)nameInput.value=p.label||p.name}
  select.addEventListener("change",function(){var p=selected();nameInput.value=p?(p.label||p.name):"";status.textContent=p?"Выбрана карточка. Перед подстановкой проверьте, что это нужный участник.":"Выберите сохранённую карточку."});
  save.addEventListener("click",function(){
  var name=(nameField.value||"").trim(),address=(field(form,config.address)&&field(form,config.address).value||"").trim(),inn=(field(form,config.inn)&&field(form,config.inn).value||"").replace(/\D/g,"");
  if(!name){status.textContent="Сначала укажите имя или наименование участника.";nameField.focus();return}
  if(inn&&!/^\d{10}(\d{2})?$/.test(inn)){status.textContent="ИНН должен содержать 10 или 12 цифр.";field(form,config.inn).focus();return}
- var label=(nameInput.value||"").trim()||name,items=readProfiles(),existing=selected(),record={id:existing?existing.id:"party-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8),role:config.role,label:label,name:name,address:address,inn:inn,updatedAt:new Date().toISOString()};
+ var label=(nameInput.value||"").trim()||name,items=readProfiles(),existing=selected(),record={id:existing?existing.id:"party-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8),role:existing?existing.role:config.role,label:label,name:name,address:address,inn:inn,updatedAt:new Date().toISOString()};
  if(existing)items=items.filter(function(p){return p.id!==existing.id});items.unshift(record);items=items.slice(0,50);
  if(!writeProfiles(items)){status.textContent="Не удалось сохранить карточку: проверьте настройки хранения браузера.";return}
  refresh(record.id);status.textContent="Карточка сохранена в локальном хранилище этого браузера.";
