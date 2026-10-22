@@ -131,3 +131,28 @@
 .reading-context-inner a{color:#214b9b;font-weight:750;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 @media(max-width:620px){.reading-context-inner{padding:7px 12px;gap:7px;font-size:11px}.reading-context-where{max-width:calc(100vw - 24px);width:100%}.reading-context-label{margin-left:0}.reading-context-audience{padding:4px 7px}}
 @media(prefers-reduced-motion:reduce){.reading-context{transition:none}}
+
+
+/* Keep the home screen focused on search and the three primary paths.
+   Secondary shortcuts remain available below the main task content. */
+.workspace-layout{grid-template-columns:190px minmax(0,1fr);grid-template-areas:"sidebar main" "sidebar aside"}
+.workspace-sidebar{grid-area:sidebar}
+.workspace-main{grid-area:main}
+.workspace-aside{grid-area:aside;position:static;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-height:none;overflow:visible;align-self:start}
+.workspace-aside-card,.workspace-tip{margin:0}
+.workspace-nav-link.active{background:#eaf1ff;color:#214b9b;border-color:#b9ccef}
+@media(max-width:1180px){
+ .workspace-layout{grid-template-columns:175px minmax(0,1fr);grid-template-areas:"sidebar main" "sidebar aside"}
+ .workspace-aside{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .workspace-layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"sidebar" "main" "aside"}
+ .workspace-sidebar{grid-area:sidebar}
+ .workspace-main{grid-area:main}
+ .workspace-aside{grid-area:aside;grid-template-columns:1fr}
+}
+@media(max-width:620px){
+ .reading-context-inner{align-items:flex-start}
+ .reading-context-where{width:100%;max-width:100%}
+ .reading-context-label{margin-left:0}
+}
