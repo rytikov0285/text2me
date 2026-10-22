@@ -32,6 +32,38 @@
     var needArea = document.getElementById("need-area");
     var needGoal = document.getElementById("need-goal");
     var needDescription = document.getElementById("need-description");
+    var needDetail = document.getElementById("need-detail");
+    var needDetailWrap = document.getElementById("need-detail-wrap");
+    var needStatus = document.getElementById("need-status");
+    var needStatusWrap = document.getElementById("need-status-wrap");
+    var detailOptions = {
+      consumer: [["defect","Товар с недостатком"],["refund","Не возвращают деньги"],["service","Некачественная услуга"],["delivery","Проблема с доставкой"],["warranty","Спор по гарантии"],["other","Другое"]],
+      housing: [["maintenance","Плохое содержание дома"],["utilities","Перебои с коммунальной услугой"],["payment","Начисление или платёж"],["neighbors","Действия соседей"],["management","Управляющая организация не отвечает"],["other","Другое"]],
+      work: [["salary","Задержка или невыплата зарплаты"],["dismissal","Увольнение или давление"],["conditions","Условия труда"],["leave","Отпуск или больничный"],["contract","Трудовой договор"],["other","Другое"]],
+      money: [["unknown-charge","Непонятное списание"],["bank","Спор с банком"],["debt","Долг или взыскание"],["tax","Налог или вычет"],["benefit","Выплата или пособие"],["other","Другое"]],
+      government: [["application","Подать заявление"],["status","Узнать статус заявления"],["document","Получить справку или документ"],["benefit","Оформить выплату"],["refusal","Отказали в услуге"],["other","Другое"]],
+      business: [["contract","Договор или условия сделки"],["payment","Оплата или задолженность"],["client","Письмо клиенту или партнёру"],["claim","Претензия контрагенту"],["offer","Коммерческое предложение"],["other","Другое"]],
+      other: [["document","Нужен документ"],["official","Нужен официальный сервис"],["advice","Не понимаю, с чего начать"],["other","Другое"]]
+    };
+    function updateDetailOptions() {
+      var options = detailOptions[needArea.value] || [];
+      needDetail.textContent = "";
+      var placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "Выберите уточнение";
+      needDetail.appendChild(placeholder);
+      options.forEach(function (item) {
+        var option = document.createElement("option");
+        option.value = item[0];
+        option.textContent = item[1];
+        needDetail.appendChild(option);
+      });
+      needDetailWrap.hidden = !needArea.value;
+      needDetail.required = !!needArea.value;
+      needStatusWrap.hidden = !needArea.value;
+      needStatus.required = !!needArea.value;
+    }
+    needArea.addEventListener("change", updateDetailOptions);
     var routeData = {
       consumer: {
         title: "Покупка или услуга: начните с фактов и требования",
@@ -72,7 +104,17 @@
     function renderNeedRoute() {
       var route = routeData[needArea.value] || routeData.other;
       var goal = needGoal.value;
+      var selectedDetail = needDetail.options[needDetail.selectedIndex];
+      var detailText = selectedDetail && selectedDetail.value ? selectedDetail.textContent : "";
       var extra = "";
+      if (detailText) extra += " Уточнение ситуации: " + detailText + ".";
+      if (needStatus.value === "not-contacted") extra += " Вы ещё не обращались: сначала зафиксируйте факты, определите ответственного адресата и сформулируйте конкретную просьбу.";
+      if (needStatus.value === "waiting") extra += " Вы уже обратились и ждёте ответ: сохраните подтверждение обращения и дату подачи, проверьте официальный срок ответа для этого вида обращения.";
+      if (needStatus.value === "refused") extra += " Вы получили отказ или вопрос не решён: сохраните полный текст ответа, выясните мотивировку и порядок обжалования. Не отправляйте повторное обращение, не разобравшись с причиной отказа.";
+      if (needStatus.value === "deadline") extra += " Срок, по вашему мнению, прошёл: проверьте дату получения обращения адресатом и применимый срок именно для вашей процедуры.";
+      if (needStatus.value === "unsure") extra += " Если этап непонятен, начните с хронологии: дата события, кому обращались, что ответили и что остаётся нерешённым.";
+      var descriptionText = (needDescription.value || "").trim();
+      if (descriptionText) extra += " Ваше описание сохранено только в этом окне и не отправляется на сервер: «" + descriptionText.slice(0, 420) + (descriptionText.length > 420 ? "…" : "") + "». Проверьте, что в нём нет лишних персональных или финансовых данных.");
       if (goal === "document") extra = " Цель — документ: в тексте изложите факты по датам, приложите подтверждения и сформулируйте одно конкретное требование.";
       if (goal === "official") extra = " Цель — официальная услуга: перед подачей проверьте условия, регион, срок и перечень документов на сайте ведомства.";
       if (goal === "money") extra = " Цель — получить деньги: укажите сумму, основание требования и доказательства оплаты; не считайте возврат гарантированным.";
@@ -99,7 +141,12 @@
     needForm.addEventListener("reset", function () {
       needResult.hidden = true;
       if (needDescription) needDescription.value = "";
+      if (needDetail) needDetail.value = "";
+      if (needStatus) needStatus.value = "";
+      needArea.value = "";
+      updateDetailOptions();
     });
+    updateDetailOptions();
     Array.prototype.forEach.call(document.querySelectorAll("[data-route-preset]"), function (link) {
       link.addEventListener("click", function () {
         needArea.value = link.getAttribute("data-route-preset");
