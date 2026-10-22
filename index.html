@@ -38,26 +38,46 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
 <div class="dash-shell">
-<header class="dash-header">
+<header class="dash-header workspace-header">
 <a class="dash-logo" href="/text2me/" aria-label="text2me — главная">text<span>2</span>me</a>
-<nav class="dash-nav" aria-label="Основные разделы"><a href="#situations">Ситуации</a><a href="/text2me/documents/">Каталог</a><a href="/text2me/space/">Моё пространство</a></nav>
+<form id="title-search-form" role="search" class="workspace-search">
+<label class="sr-only" for="title-search">Поиск документов, ситуаций и материалов</label>
+<span class="workspace-search-icon" aria-hidden="true">⌕</span>
+<input id="title-search" type="search" autocomplete="off" placeholder="Найти документ, ситуацию или тему…" aria-describedby="title-search-status">
+<button class="workspace-search-submit" type="submit">Найти</button>
+<div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
+</form>
+<nav class="dash-nav workspace-top-links" aria-label="Быстрый доступ"><a href="/text2me/space/" title="Моё пространство"><span aria-hidden="true">▣</span><span>Моё пространство</span></a><a href="/text2me/guides/" title="Помощь"><span aria-hidden="true">?</span><span>Помощь</span></a></nav>
 </header>
 
-<main id="main">
+<div class="workspace-layout">
+<aside class="workspace-sidebar" aria-label="Навигация по сайту">
+<div class="workspace-nav-group"><p>Работа</p>
+<a class="workspace-nav-link active" href="#main"><span aria-hidden="true">⌂</span>Главная</a>
+<a class="workspace-nav-link" href="#my-space-preview"><span aria-hidden="true">▣</span>Моё пространство</a>
+<a class="workspace-nav-link" href="#updates-feed"><span aria-hidden="true">◷</span>Обновления</a>
+</div>
+<div class="workspace-nav-group"><p>Каталоги</p>
+<a class="workspace-nav-link" href="#situations"><span aria-hidden="true">⌘</span>Ситуации</a>
+<a class="workspace-nav-link" href="/text2me/documents/"><span aria-hidden="true">▤</span>Все документы</a>
+<a class="workspace-nav-link" href="/text2me/guides/"><span aria-hidden="true">☷</span>Гайды</a>
+<a class="workspace-nav-link" href="/text2me/knowledge/"><span aria-hidden="true">◈</span>База знаний</a>
+<a class="workspace-nav-link" href="/text2me/sources/"><span aria-hidden="true">↗</span>Источники</a>
+</div>
+<div class="workspace-nav-group"><p>Разделы</p>
+<a class="workspace-nav-link" href="#categories"><span aria-hidden="true">▦</span>Категории</a>
+<a class="workspace-nav-link" href="#tools"><span aria-hidden="true">⌁</span>Инструменты</a>
+<a class="workspace-nav-link" href="/text2me/business/"><span aria-hidden="true">▥</span>Бизнес</a>
+<a class="workspace-nav-link" href="/text2me/prompts/"><span aria-hidden="true">✎</span>Работа с текстом</a>
+</div>
+</aside>
+<main id="main" class="workspace-main">
 <section class="dash-hero" aria-labelledby="main-title">
 <div class="dash-eyebrow">Документы · знания · инструменты</div>
 <h1 id="main-title">Что нужно решить?</h1>
 <p class="dash-lead">Выберите, что произошло. Сначала покажем первые шаги, что подготовить и куда обратиться; документ — один из возможных следующих шагов.</p>
-<section class="universal-search-panel" aria-labelledby="universal-search-title">
-<div class="universal-search-copy"><span class="universal-search-kicker">БЫСТРЫЙ ПОИСК</span><h2 id="universal-search-title">Найти документ или текст</h2><p>Введите название документа или опишите задачу. Доступные инструменты отмечены отдельно от справочных материалов.</p></div>
-<form id="title-search-form" role="search" class="universal-search-form">
-<label class="sr-only" for="title-search">Название документа или задачи</label>
-<div class="universal-search-controls"><input id="title-search" type="search" autocomplete="off" placeholder="Например: вернуть деньги за товар" aria-describedby="title-search-status"><button class="dash-btn" type="submit">Найти →</button></div>
-<p class="inline-status" id="title-search-status" aria-live="polite"></p>
-<div id="title-search-results" class="search-results" aria-live="polite"></div>
-</form>
-<div class="search-chips" aria-label="Популярные запросы"><span>Популярное:</span><button type="button" data-search-chip="договор найма жилья">Договор найма жилья</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button><button type="button" data-search-chip="исковое заявление">Исковое заявление</button></div>
-</section>
+<div class="workspace-search-shortcuts" aria-label="Популярные запросы"><span>Популярное:</span><button type="button" data-search-chip="договор найма жилья">Договор найма жилья</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button><button type="button" data-search-chip="исковое заявление">Исковое заявление</button></div>
+
 <div class="entry-grid">
 <section class="entry-card" aria-labelledby="situation-title">
 <div class="entry-no">ПУТЬ 1</div><h2 id="situation-title">Разобраться по ситуации</h2>
@@ -179,6 +199,22 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 </section>
 
 </main>
+<aside class="workspace-aside" aria-label="Быстрый доступ и подсказки">
+<section class="workspace-aside-card"><h2><span aria-hidden="true">●</span> Состояние сервиса</h2>
+<div class="workspace-status-row"><span>Конструкторы документов</span><strong class="workspace-status good">3 работают</strong></div>
+<div class="workspace-status-row"><span>AI-помощник</span><strong class="workspace-status demo">Демо</strong></div>
+<div class="workspace-status-row"><span>Синхронизация</span><strong class="workspace-status planned">Не подключена</strong></div>
+</section>
+<section class="workspace-aside-card"><h2><span aria-hidden="true">⌁</span> Частые задачи</h2>
+<a class="workspace-quick-link" href="/text2me/documents/dogovor-arendy/"><span aria-hidden="true">⌂</span><span><strong>Сдать или снять жильё</strong><small>Договор и акт передачи</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/documents/pretenziya-prodavtsu/"><span aria-hidden="true">↩</span><span><strong>Вернуть деньги за товар</strong><small>Подготовить претензию</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/documents/isk-v-sud/"><span aria-hidden="true">⚖</span><span><strong>Подготовиться к суду</strong><small>Черновик искового заявления</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/situations/"><span aria-hidden="true">☷</span><span><strong>Не знаю, с чего начать</strong><small>Пошаговые инструкции</small></span><span aria-hidden="true">›</span></a>
+</section>
+<section class="workspace-tip"><strong><span aria-hidden="true">✦</span> Подсказка</strong><p>Не знаете название документа? Опишите задачу в блоке «Описать задачу» или воспользуйтесь поиском сверху.</p><a href="/text2me/guides/">Как выбрать документ →</a></section>
+<section class="workspace-aside-card workspace-space-card"><h2>Моё пространство</h2><p id="workspace-local-summary">Черновики хранятся в этом браузере.</p><a href="/text2me/space/">Открыть библиотеку →</a></section>
+</aside>
+</div>
 <footer class="dash-footer"><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
 </div>
 <button class="top-button" type="button" id="back-to-top" data-back-to-top aria-label="Наверх" title="Наверх">↑</button>
@@ -215,7 +251,7 @@ var searchForm=document.getElementById("title-search-form"),searchInput=document
 function search(){var q=(searchInput.value||"").trim().toLocaleLowerCase("ru");results.replaceChildren();if(!q){status.textContent="Введите название или несколько ключевых слов.";searchInput.focus();return}var terms=q.split(/\s+/).filter(Boolean);var found=index.map(function(item){var hay=(item.title+" "+item.desc+" "+item.keys).toLocaleLowerCase("ru");var score=terms.reduce(function(n,t){return n+(hay.includes(t)?1:0)},0);return {item:item,score:score}}).filter(function(x){return x.score>0}).sort(function(a,b){return b.score-a.score}).slice(0,5);if(!found.length){status.textContent="Совпадений в текущем каталоге нет. Попробуйте другое название.";return}status.textContent="Найдено направлений: "+found.length+". Проверяйте статус перед переходом.";found.forEach(function(x){var a=document.createElement("a");a.className="search-result";a.href=x.item.url;var s=document.createElement("strong");s.textContent=x.item.title;var sm=document.createElement("small");sm.textContent=x.item.desc;a.append(s,sm);results.appendChild(a)})}
 searchForm.addEventListener("submit",function(e){e.preventDefault();search()});
 searchInput.addEventListener("input",function(){if(searchInput.value.trim().length>=2)search();else{results.replaceChildren();status.textContent=""}});
-document.querySelectorAll("[data-search-chip]").forEach(function(btn){btn.addEventListener("click",function(){searchInput.value=btn.getAttribute("data-search-chip")||"";search()})});
+document.querySelectorAll("[data-search-chip]").forEach(function(btn){btn.addEventListener("click",function(){searchInput.value=btn.getAttribute("data-search-chip")||"";searchInput.focus();search()})});
 document.getElementById("situation-form").addEventListener("submit",function(e){e.preventDefault();var area=document.getElementById("situation-select").value;if(!area){document.getElementById("situation-select").focus();return}location.href="/text2me/start/?area="+encodeURIComponent(area)+"#route-builder"});
 document.getElementById("ai-launch-form").addEventListener("submit",function(e){e.preventDefault();var task=document.getElementById("ai-task").value.trim();if(!task){document.getElementById("ai-task").focus();return}try{sessionStorage.setItem("text2me.pending-ai-task",task)}catch(err){}location.href="/text2me/start/#ai-path"});
 document.getElementById("back-to-top").addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
@@ -223,6 +259,7 @@ document.getElementById("back-to-top").addEventListener("click",function(){windo
 var catGrid=document.getElementById("dash-category-grid"),catCount=document.getElementById("dash-category-count");
 function filterDashCategories(){if(!catGrid)return;var type=(document.getElementById("dash-filter-type")||{}).value||"",sit=(document.getElementById("dash-filter-situation")||{}).value||"",nature=(document.getElementById("dash-filter-nature")||{}).value||"",cards=Array.from(catGrid.querySelectorAll(".category-card")),visible=0;cards.forEach(function(card){var ok=(!type||card.dataset.cat===type)&&(!sit||(card.dataset.situation||"").split(" ").includes(sit))&&(!nature||(card.dataset.nature||"").split(" ").includes(nature));card.hidden=!ok;if(ok)visible++});if(catCount)catCount.textContent="Показано категорий: "+visible+" из "+cards.length+". Доступных конструкторов: 3."}
 ["dash-filter-type","dash-filter-situation","dash-filter-nature"].forEach(function(id){var node=document.getElementById(id);if(node)node.addEventListener("change",filterDashCategories)});
+var workspaceSummary=document.getElementById("workspace-local-summary");if(workspaceSummary){try{var workspaceDocs=JSON.parse(localStorage.getItem("text2me.space.v1")||"[]"),workspaceDrafts=JSON.parse(localStorage.getItem("text2me.drafts.v1")||"{}"),workspaceActive=workspaceDocs.filter(function(x){return x&&!x.archived}).length,workspaceDraftCount=Object.keys(workspaceDrafts).length;workspaceSummary.textContent=workspaceActive+" сохранённых документов · "+workspaceDraftCount+" автосохранённых форм. Данные доступны только в этом браузере."}catch(e){workspaceSummary.textContent="Черновики хранятся локально в браузере."}}
 var spaceSummary=document.getElementById("home-space-summary");if(spaceSummary){try{var saved=JSON.parse(localStorage.getItem("text2me.space.v1")||"[]"),drafts=JSON.parse(localStorage.getItem("text2me.drafts.v1")||"{}"),active=saved.filter(function(x){return x&&!x.archived}),archived=saved.filter(function(x){return x&&x.archived}).length,draftCount=Object.keys(drafts).length;spaceSummary.textContent="В этом браузере: "+active.length+" активных документов, "+archived+" в архиве, "+draftCount+" автосохранённых форм. Данные не синхронизируются между устройствами.";var items=document.getElementById("home-space-items");if(items){items.replaceChildren();if(active.length){active.slice(0,3).forEach(function(doc){var a=document.createElement("a");a.href="/text2me/space/";a.textContent="↳ "+(doc.title||"Без названия");items.appendChild(a)});if(active.length>3){var more=document.createElement("a");more.href="/text2me/space/";more.textContent="Ещё "+(active.length-3)+" документов →";items.appendChild(more)}}else{var empty=document.createElement("p");empty.textContent="Пока нет сохранённых документов. После создания черновика сохраните его в «Моё пространство».";items.appendChild(empty)}}}catch(e){spaceSummary.textContent="Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет."}}
 
 })();
