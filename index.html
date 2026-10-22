@@ -21,7 +21,7 @@
 <a class="skip-link" href="#main">Перейти к содержанию</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/text2me/" aria-label="text2me — главная"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a>
+    <a class="brand" href="/text2me/" aria-label="text2me — главная"><span>text2me<span class="brand-dot">.</span>ru</span></a>
     <nav class="main-nav" aria-label="Основная навигация">
       <a href="#situations">Жизненные ситуации</a>
       <a href="/text2me/people/">Населению</a>
@@ -35,24 +35,24 @@
   <section class="portal-hero">
     <div class="container">
       <div class="portal-heading">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> Документы и понятные инструкции</p>
-        <h1>Решение начинается<br>с вашей <span class="text-gradient">ситуации</span></h1>
-        <p class="portal-lead">Опишите, что произошло или чего хотите добиться. Найдите подходящий документ, разберитесь в последовательности действий и изучите полезные материалы.</p>
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Помогаем разобраться с обычными делами</p>
+        <h1>Когда не знаешь, с чего начать</h1>
+        <p class="portal-lead">Пришла квитанция больше обычного, магазин не возвращает деньги, сосед шумит, потерялся документ или нужно написать заявление? Начните с простого описания — разложим вопрос по шагам и подскажем, что стоит проверить.</p>
       </div>
       <div class="portal-search-wrap" id="catalog">
         <form class="search-box portal-search" role="search" id="document-search">
           <label class="sr-only" for="search-input">Поиск документов и жизненных ситуаций</label>
           <span class="search-symbol" aria-hidden="true">⌕</span>
-          <input id="search-input" name="q" type="search" placeholder="Например: вернуть деньги за товар, договор аренды, жалоба в УК" autocomplete="off">
+          <input id="search-input" name="q" type="search" placeholder="Например: не пришла посылка, шумят соседи, списали деньги за подписку" autocomplete="off">
           <button class="button" type="submit">Найти</button>
         </form>
         <p class="search-status" id="search-status" aria-live="polite"></p>
-        <p class="portal-hint">Можно искать по названию документа или описать задачу обычными словами.</p>
+        <p class="portal-hint">Пишите как другу объяснили бы, что случилось. Юридические термины знать не нужно.</p>
       </div>
       <div class="portal-quicklinks" aria-label="Быстрые переходы">
-        <a href="/text2me/people/"><span class="quick-icon">⌂</span><span>Личные вопросы</span><b>→</b></a>
-        <a href="/text2me/business/"><span class="quick-icon">▤</span><span>Документы для бизнеса</span><b>→</b></a>
-        <a href="/text2me/knowledge/"><span class="quick-icon">▧</span><span>Инструкции и справки</span><b>→</b></a>
+        <a href="/text2me/people/"><span class="quick-icon">⌂</span><span>Дела дома и семьи</span><b>→</b></a>
+        <a href="/text2me/business/"><span class="quick-icon">▤</span><span>Работа и своё дело</span><b>→</b></a>
+        <a href="/text2me/knowledge/"><span class="quick-icon">▧</span><span>Подсказки и документы</span><b>→</b></a>
       </div>
     </div>
   </section>
@@ -60,33 +60,45 @@
   <section class="section portal-section" id="situations">
     <div class="container">
       <div class="section-heading">
-        <div><p class="eyebrow">Выберите направление</p><h2>С чем нужно разобраться?</h2></div>
-        <p>Начните с проблемы, а не с юридического термина. Каталог будет расширяться по темам и типам документов.</p>
+        <div><p class="eyebrow">С чего начнём?</p><h2>Что случилось или что нужно сделать?</h2></div>
+        <p>Не нужно заранее подбирать правильные слова. Выберите похожую ситуацию — дальше будет проще.</p>
       </div>
       <div class="choice-grid portal-card-grid" id="document-cards">
         <a class="choice-card portal-card" data-search="товар магазин возврат деньги покупка гарантия потребитель претензия" href="/text2me/documents/pretenziya-prodavtsu/">
-          <span class="card-icon lavender">↩</span><span class="card-kicker">Покупки и услуги</span><h3>Вернуть деньги или пожаловаться</h3><p>Что делать, если товар не подошёл, оказался с браком или услуга оказана плохо.</p><span class="card-link">Посмотреть пример <b>→</b></span>
+          <span class="card-icon lavender">↩</span><span class="card-kicker">Покупки и услуги</span><h3>Покупка подвела или услуга не понравилась</h3><p>Товар сломался, заказ не приехал, мастер сделал не так, а деньги возвращать не спешат.</p><span class="card-link">Посмотреть пример <b>→</b></span>
         </a>
         <a class="choice-card portal-card" data-search="дом ЖКХ управляющая компания соседи ремонт коммунальные услуги жалоба" href="/text2me/knowledge/">
-          <span class="card-icon mint">⌂</span><span class="card-kicker">Дом и ЖКХ</span><h3>Решить вопрос с домом</h3><p>Разобраться, какие сведения собрать, куда направить обращение и что проверить.</p><span class="card-link">Перейти к материалам <b>→</b></span>
+          <span class="card-icon mint">⌂</span><span class="card-kicker">Дом и ЖКХ</span><h3>Дома что-то не так</h3><p>Протекает крыша, не работает лифт, в подъезде грязно, батареи холодные или квитанция непонятная.</p><span class="card-link">Перейти к материалам <b>→</b></span>
         </a>
         <a class="choice-card portal-card" data-search="работа работодатель отпуск зарплата трудовой договор заявление" href="/text2me/knowledge/">
-          <span class="card-icon peach">▣</span><span class="card-kicker">Работа</span><h3>Работа и трудовые вопросы</h3><p>Заявления, документы для работодателя и справочные материалы по типовым ситуациям.</p><span class="card-link">Изучить раздел <b>→</b></span>
+          <span class="card-icon peach">▣</span><span class="card-kicker">Работа</span><h3>На работе возник вопрос</h3><p>Не выплатили зарплату, не согласовали отпуск, попросили написать заявление или поменяли график.</p><span class="card-link">Изучить раздел <b>→</b></span>
         </a>
         <a class="choice-card portal-card" data-search="бизнес ИП ООО договор акт счёт деловое письмо компания" href="/text2me/business/">
-          <span class="card-icon blue">▤</span><span class="card-kicker">Предпринимательство</span><h3>Подготовить документ для бизнеса</h3><p>Договоры, акты, письма и повторяющиеся документы для рабочих процессов.</p><span class="card-link">Для бизнеса <b>→</b></span>
+          <span class="card-icon blue">▤</span><span class="card-kicker">Предпринимательство</span><h3>Бумаги для работы и своего дела</h3><p>Нужно договориться об оплате, оформить услугу, выставить счёт или спокойно напомнить о долге.</p><span class="card-link">Для бизнеса <b>→</b></span>
         </a>
         <a class="choice-card portal-card" data-search="деньги долг расписка задолженность претензия взыскание" href="/text2me/knowledge/">
-          <span class="card-icon lavender">₽</span><span class="card-kicker">Деньги и обязательства</span><h3>Разобраться с долгом или оплатой</h3><p>Подготовить факты, проверить варианты действий и найти подходящий тип обращения.</p><span class="card-link">Найти информацию <b>→</b></span>
+          <span class="card-icon lavender">₽</span><span class="card-kicker">Деньги и обязательства</span><h3>Деньги списали или не вернули</h3><p>Неожиданное списание, спорный штраф, подписка, которую трудно отменить, или долг, о котором забыли.</p><span class="card-link">Найти информацию <b>→</b></span>
         </a>
         <a class="choice-card portal-card" data-search="заявление обращение жалоба ведомство организация образец" href="/text2me/people/">
-          <span class="card-icon mint">✎</span><span class="card-kicker">Заявления и обращения</span><h3>Оформить обращение</h3><p>Понять структуру заявления, какие данные нужны и что проверить перед отправкой.</p><span class="card-link">Для населения <b>→</b></span>
+          <span class="card-icon mint">✎</span><span class="card-kicker">Заявления и обращения</span><h3>Написать заявление без лишней путаницы</h3><p>Записаться, запросить справку, пожаловаться, попросить пересмотр или получить письменный ответ.</p><span class="card-link">Для населения <b>→</b></span>
         </a>
         <a class="choice-card portal-card" data-search="договор аренда услуги подряд соглашение шаблон документ" href="/text2me/business/">
-          <span class="card-icon peach">▧</span><span class="card-kicker">Договоры</span><h3>Найти подходящий договор</h3><p>Выбрать тип документа и разобраться, какие условия необходимо согласовать.</p><span class="card-link">Каталог для бизнеса <b>→</b></span>
+          <span class="card-icon peach">▧</span><span class="card-kicker">Договоры</span><h3>Договориться заранее и письменно</h3><p>Аренда квартиры, ремонт, услуги мастера, передача вещи или договорённость о сроках и оплате.</p><span class="card-link">Каталог для бизнеса <b>→</b></span>
         </a>
         <a class="choice-card portal-card" data-search="инструкция база знаний порядок действий сроки документы справка" href="/text2me/knowledge/">
-          <span class="card-icon blue">?</span><span class="card-kicker">Справочная информация</span><h3>Сначала понять, что делать</h3><p>Инструкции, пояснения и чек-листы, которые помогают подготовиться к следующему шагу.</p><span class="card-link">Открыть базу знаний <b>→</b></span>
+          <span class="card-icon blue">?</span><span class="card-kicker">Справочная информация</span><h3>Разобраться, прежде чем действовать</h3><p>Что сохранить, кому написать, какие даты важны и что спросить, если ответ непонятен.</p><span class="card-link">Открыть базу знаний <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="посылка доставка заказ курьер потерялась не пришла" href="/text2me/knowledge/">
+          <span class="card-icon blue">□</span><span class="card-kicker">Заказы и доставка</span><h3>Заказ не пришёл или потерялся</h3><p>Сохранить номер заказа, проверить статус и написать продавцу или службе доставки.</p><span class="card-link">Что проверить <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="подписка автоплатеж списание банк карта деньги отменить" href="/text2me/knowledge/">
+          <span class="card-icon lavender">₽</span><span class="card-kicker">Банк и подписки</span><h3>Списали деньги непонятно за что</h3><p>Найти название операции, проверить подписки и подготовить обращение в поддержку.</p><span class="card-link">Разобраться с оплатой <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="соседи шум ремонт музыка мусор парковка конфликт" href="/text2me/knowledge/">
+          <span class="card-icon mint">⌂</span><span class="card-kicker">Соседи и двор</span><h3>Возникла проблема с соседями</h3><p>Как зафиксировать ситуацию, начать разговор и понять, куда обращаться, если это не помогло.</p><span class="card-link">Посмотреть варианты <b>→</b></span>
+        </a>
+        <a class="choice-card portal-card" data-search="врач поликлиника запись справка школа детский сад документы" href="/text2me/people/">
+          <span class="card-icon peach">✎</span><span class="card-kicker">Справки и записи</span><h3>Нужна справка или запись</h3><p>Подготовить вопросы, проверить список документов и написать запрос без лишней путаницы.</p><span class="card-link">Подготовиться заранее <b>→</b></span>
         </a>
       </div>
       <p class="empty-state" id="empty-state" hidden>Ничего не найдено. Попробуйте другой запрос или выберите направление выше.</p>
@@ -97,8 +109,8 @@
     <div class="container portal-split">
       <div class="portal-intro">
         <p class="eyebrow">Понятный маршрут</p>
-        <h2>От ситуации —<br>к следующему шагу</h2>
-        <p>Не обязательно заранее знать название нужного документа. Важно понять цель, собрать факты и проверить, какой путь подходит именно вашей ситуации.</p>
+        <h2>Спокойно, по порядку</h2>
+        <p>Когда что-то случилось, легко запутаться в советах и сроках. Здесь можно начать с фактов, понять ближайший шаг и только потом готовить письмо или заявление.</p>
         <a class="text-link" href="/text2me/ai/">Как планируется работа сервиса <span>→</span></a>
       </div>
       <div class="route-list">
@@ -113,8 +125,8 @@
   <section class="section" id="knowledge">
     <div class="container">
       <div class="section-heading">
-        <div><p class="eyebrow">Не только генератор</p><h2>База знаний для самостоятельных решений</h2></div>
-        <p>Материалы должны помогать понять ситуацию даже тогда, когда документ пока не нужен или сначала требуется проверить факты.</p>
+        <div><p class="eyebrow">Не только генератор</p><h2>Полезные подсказки для обычной жизни</h2></div>
+        <p>Иногда нужен не документ, а понятный ответ: что сфотографировать, какие чеки оставить, куда позвонить и как зафиксировать разговор.</p>
       </div>
       <div class="knowledge-grid">
         <a class="knowledge-card" href="/text2me/knowledge/"><span class="knowledge-icon">☷</span><span class="knowledge-label">Пошаговые инструкции</span><h3>Что делать и в каком порядке</h3><p>Последовательность действий, необходимые сведения и типичные ошибки.</p><span class="knowledge-link">Открыть базу знаний →</span></a>
@@ -127,7 +139,7 @@
 
   <section class="section section-muted">
     <div class="container portal-bottom-grid">
-      <div><p class="eyebrow">Открытая структура</p><h2>Сначала полезная информация. Затем — документ.</h2><p>Разделы базы знаний и каталог документов должны быть связаны между собой: инструкция объясняет порядок действий, а карточка документа помогает подготовить нужный текст.</p></div>
+      <div><p class="eyebrow">Открытая структура</p><h2>Без сложных слов и лишней суеты</h2><p>Начните с того, что произошло. Разберитесь, какие детали важны, и выберите подходящий вариант: сохранить информацию, написать обращение или подготовить документ.</p></div>
       <div class="portal-bottom-links">
         <a href="/text2me/knowledge/"><span><strong>База знаний</strong><small>Инструкции, ответы и источники</small></span><b>→</b></a>
         <a href="/text2me/people/"><span><strong>Для населения</strong><small>Личные вопросы и обращения</small></span><b>→</b></a>
@@ -136,8 +148,8 @@
     </div>
   </section>
 
-  <section class="cta-section"><div class="container cta-inner"><div><p class="eyebrow">Проект в разработке</p><h2>Начните с описания задачи</h2><p>Сейчас доступны демонстрационные разделы. Автоматическое формирование, скачивание и сохранение документов ещё предстоит подключить.</p></div><a class="button button-light" href="#catalog">Найти направление <span>→</span></a></div></section>
+  <section class="cta-section"><div class="container cta-inner"><div><p class="eyebrow">Проект в разработке</p><h2>Опишите ситуацию своими словами</h2><p>Проект развивается. Часть разделов пока демонстрационная; перед использованием важных документов проверяйте факты, сроки и требования.</p></div><a class="button button-light" href="#catalog">Найти направление <span>→</span></a></div></section>
 </main>
-<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Концепция портала документов и базы знаний для России.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Населению</a><a href="/text2me/business/">Бизнесу</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/README.md">О проекте</a></nav></div><div class="container footer-bottom"><span>© text2me · Концепт сайта</span><span>Материалы носят справочный характер и не являются индивидуальной юридической консультацией.</span></div></footer>
+<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Понятные подсказки и документы для повседневных дел.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Населению</a><a href="/text2me/business/">Бизнесу</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/README.md">О проекте</a></nav></div><div class="container footer-bottom"><span>© text2me · Концепт сайта</span><span>Материалы носят справочный характер и не являются индивидуальной юридической консультацией.</span></div></footer>
 </body>
 </html>
