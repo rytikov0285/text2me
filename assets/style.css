@@ -338,3 +338,8 @@ body{background:#fff;color:#193b5a;line-height:1.6}
 .site-footer{background:#153652}
 @media(max-width:980px){.portal-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.portal-heading h1{font-size:34px}.portal-lead{font-size:15px}.portal-quicklinks{grid-template-columns:1fr}.portal-card-grid,.official-grid,.need-form-grid{grid-template-columns:1fr}.need-form .form-field-full{grid-column:auto}.need-form{padding:16px}.route-result-links{flex-direction:column}.section{padding:38px 0}.main-nav{gap:17px}}
+
+/* Contextual follow-up fields */
+.need-form [hidden]{display:none!important}
+.need-form .form-field select{width:100%;min-height:44px;padding:10px 12px;background:#fff;color:#193b5a}
+.need-form .field-help{font-size:12px}
