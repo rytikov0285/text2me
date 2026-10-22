@@ -25,7 +25,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 .category-sub{display:block;color:var(--dash-muted);font-size:11px;line-height:1.45}.dashboard-category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-filters{margin-top:12px}.situation-mega{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.situation-mega details{background:#fff;border:1px solid var(--dash-line);border-radius:13px;overflow:hidden}.situation-mega summary{list-style:none;cursor:pointer;padding:15px 16px;font-weight:800}.situation-mega summary::-webkit-details-marker{display:none}.situation-mega summary:after{content:"+";float:right;color:var(--dash-blue)}.situation-mega details[open] summary:after{content:"−"}.situation-mega summary span{display:block;color:var(--dash-muted);font-weight:450;font-size:12px;margin-top:4px}.mega-links{display:flex;flex-wrap:wrap;gap:8px;padding:0 15px 15px}.mega-links a{font-size:12px;color:var(--dash-blue);text-decoration:underline;text-underline-offset:3px}.resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.resource-card{display:flex;flex-direction:column;gap:7px;padding:17px;background:#fff;border:1px solid var(--dash-line);border-radius:14px;text-decoration:none}.resource-card strong{font-size:14px}.resource-card span{font-size:12px;color:var(--dash-muted);line-height:1.5}.updates-feed{display:grid;gap:10px}.updates-feed article{padding:16px 18px;border:1px solid var(--dash-line);border-radius:13px;background:#fff}.updates-feed time{display:block;font-size:11px;color:var(--dash-muted);margin-bottom:5px}.updates-feed strong{font-size:14px}.updates-feed p{margin:5px 0 0;font-size:12px;color:var(--dash-muted)}.wishlist-panel{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px;border:1px solid var(--dash-line);border-radius:16px;background:#fff}.wishlist-panel p{margin:6px 0 0;color:var(--dash-muted);font-size:13px}.wishlist-actions{display:flex;flex-wrap:wrap;gap:8px}.wishlist-actions a{padding:9px 12px;border:1px solid #d7e3fb;border-radius:9px;background:#edf3ff;color:#214b9b;font-size:12px;font-weight:750;text-decoration:none}
 @media(max-width:900px){.dashboard-category-grid,.resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.situation-mega{grid-template-columns:1fr}.wishlist-panel{align-items:flex-start;flex-direction:column}}
 @media(max-width:620px){.dashboard-category-grid,.resource-grid{grid-template-columns:1fr}.wishlist-actions{width:100%}.wishlist-actions a{flex:1 1 100%;text-align:center}.dash-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}.dash-nav a{font-size:12px}}
-</style>
+.dashboard-tool-strip{display:flex;gap:10px;align-items:center;overflow-x:auto;padding:10px max(24px,calc((100vw - 1152px)/2));background:#edf3fb;border-bottom:1px solid var(--dash-line)}.dashboard-tool-strip>a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;padding:7px 10px;border-radius:9px;background:#fff;border:1px solid var(--dash-line);text-decoration:none;font-size:11px;font-weight:800;color:var(--dash-ink)}.dashboard-tool-strip .status-badge{font-size:9px;padding:2px 6px}.hero-situation-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}.hero-situation-links strong{font-size:12px}.hero-situation-links a{font-size:12px;padding:7px 10px;background:#eaf1ff;border:1px solid #d7e3fb;border-radius:999px;text-decoration:none;color:#214b9b}.hero-situation-links a:hover{background:#dce8ff}@media(max-width:620px){.dashboard-tool-strip{padding-inline:15px}.hero-situation-links{gap:6px}.hero-situation-links a{font-size:11px}}</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -34,6 +34,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <a class="dash-logo" href="/text2me/" aria-label="text2me — главная">text<span>2</span>me</a>
 <nav class="dash-nav" aria-label="Основные разделы"><a href="#situations">Ситуации</a><a href="#categories">Каталог</a><a href="#guides">Гайды</a><a href="#sources">Источники</a><a href="#tools">Инструменты</a><a href="/text2me/space/">Моё пространство</a></nav>
 </header>
+<nav class="dashboard-tool-strip" aria-label="Быстрые инструменты"><a href="/text2me/documents/pretenziya-prodavtsu/">PDF / печать <span class="status-badge" data-status="live">Работает</span></a><a href="/text2me/knowledge/">Электронная подпись <span class="status-badge" data-status="demo">Инструкция</span></a><a href="/text2me/documents/">Конструктор <span class="status-badge" data-status="live">Работает</span></a><a href="/text2me/prompts/">Проверка реквизитов <span class="status-badge" data-status="soon">Скоро</span></a><a href="/text2me/prompts/">Объединить / сжать PDF <span class="status-badge" data-status="soon">Скоро</span></a></nav>
 <main id="main">
 <section class="dash-hero" aria-labelledby="main-title">
 <div class="dash-eyebrow">Документы · знания · инструменты</div>
@@ -71,6 +72,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 </form>
 </section>
 </div>
+<div class="hero-situation-links" aria-label="Частые ситуации"><strong>Частые ситуации:</strong><a href="/text2me/documents/pretenziya-prodavtsu/">Вернуть деньги за товар</a><a href="/text2me/people/">Решить вопрос с работой</a><a href="/text2me/people/">Жильё и ЖКХ</a><a href="/text2me/documents/isk-v-sud/">Подготовиться к суду</a><a href="#situations">Все ситуации ↓</a></div>
 </section>
 
 <section class="section-block" id="categories">
@@ -132,7 +134,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 </section>
 <section class="section-block" id="my-space-preview">
 <div class="section-head"><div><h2>Моё пространство</h2><p>Ваши черновики, сохранённые документы и избранные материалы на этом устройстве.</p></div><a href="/text2me/space/">Открыть библиотеку →</a></div>
-<div class="wishlist-panel"><div><strong>Личная библиотека</strong><p id="home-space-summary">Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет.</p></div><div class="wishlist-actions"><a href="/text2me/space/">Мои документы</a><a href="/text2me/documents/pretenziya-prodavtsu/">Начать черновик</a><a href="/text2me/updates/">Избранное и обновления</a></div></div>
+<div class="wishlist-panel"><div><strong>Личная библиотека</strong><p id="home-space-summary">Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет.</p></div><div class="wishlist-actions"><a href="/text2me/space/">Мои документы</a><a href="/text2me/documents/pretenziya-prodavtsu/">Начать черновик</a><a href="/text2me/updates/">Обновления</a></div></div>
 </section>
 <section class="section-block" id="tools">
 <div class="section-head"><div><h2>Инструменты</h2><p>Отдельно от каталога документов — работа с готовым текстом.</p></div></div>
@@ -182,7 +184,21 @@ var index=[
 {title:"PDF и печать",desc:"Сохранение документа в PDF через диалог печати браузера.",url:"/text2me/documents/pretenziya-prodavtsu/",keys:"pdf печать файл скачать"},
 {title:"Электронная подпись",desc:"Справочная информация; подключённого сервиса подписания нет.",url:"/text2me/knowledge/",keys:"подпись электронная подписать проверка"},
 {title:"Моё пространство",desc:"Локальная библиотека черновиков, коллекции, теги, архив и экспорт JSON.",url:"/text2me/space/",keys:"пространство сохранить черновик коллекция теги архив экспорт json"}
-];
+,
+{title:"Договоры",desc:"Категория запланированных конструкторов; доступны справочные материалы.",url:"/text2me/documents/",keys:"договоры договор аренда ГПХ трудовой купля-продажа дарение заем займ соглашение"},
+{title:"Доверенности",desc:"Отдельный конструктор пока не опубликован.",url:"/text2me/documents/",keys:"доверенность доверенности представитель автомобиль авто"},
+{title:"Заявления",desc:"Подбор направления по жизненной ситуации.",url:"/text2me/people/",keys:"заявление заявления приказ увольнение обращение жалоба"},
+{title:"Акты",desc:"Отдельный конструктор пока не опубликован.",url:"/text2me/documents/",keys:"акт акты приём передачи выполнение работ сверка"},
+{title:"Приказы",desc:"Категория запланированных кадровых и организационных документов.",url:"/text2me/documents/",keys:"приказ приказы кадровый работа"},
+{title:"Протоколы",desc:"Категория запланированных документов.",url:"/text2me/documents/",keys:"протокол протоколы совещание собрание"},
+{title:"Письма",desc:"Материалы для деловой переписки и обращений.",url:"/text2me/prompts/",keys:"письмо письма деловое сопроводительное запрос"},
+{title:"Соглашения",desc:"Категория запланированных документов.",url:"/text2me/documents/",keys:"соглашение соглашения расторжение изменение условий"},
+{title:"Дипломы и сертификаты",desc:"Справочные материалы; генератор не опубликован.",url:"/text2me/knowledge/",keys:"диплом сертификат образование"},
+{title:"Инструкции",desc:"Практические гайды по выбору и проверке документов.",url:"/text2me/guides/",keys:"инструкция инструкции гайд проверить перед подписанием"},
+{title:"Расписки",desc:"Отдельный конструктор пока не опубликован.",url:"/text2me/documents/",keys:"расписка расписки заем долг деньги"},
+{title:"Официальные источники",desc:"Справочник государственных органов, нотариата и финансовых источников.",url:"/text2me/sources/",keys:"источник официальные органы нотариат банк фнс закон"},
+{title:"Гайды по документам",desc:"Как выбрать документ и что проверить перед подписанием.",url:"/text2me/guides/",keys:"гайд гайды подписанием договор проверить документ"},
+{title:"Обновления сайта",desc:"Журнал изменений и доступности функций.",url:"/text2me/updates/",keys:"обновления что изменилось шаблоны изменения законов"};
 var searchForm=document.getElementById("title-search-form"),searchInput=document.getElementById("title-search"),results=document.getElementById("title-search-results"),status=document.getElementById("title-search-status");
 function search(){var q=(searchInput.value||"").trim().toLocaleLowerCase("ru");results.replaceChildren();if(!q){status.textContent="Введите название или несколько ключевых слов.";searchInput.focus();return}var terms=q.split(/\s+/).filter(Boolean);var found=index.map(function(item){var hay=(item.title+" "+item.desc+" "+item.keys).toLocaleLowerCase("ru");var score=terms.reduce(function(n,t){return n+(hay.includes(t)?1:0)},0);return {item:item,score:score}}).filter(function(x){return x.score>0}).sort(function(a,b){return b.score-a.score}).slice(0,5);if(!found.length){status.textContent="Совпадений в текущем каталоге нет. Попробуйте другое название.";return}status.textContent="Найдено направлений: "+found.length+". Проверяйте статус перед переходом.";found.forEach(function(x){var a=document.createElement("a");a.className="search-result";a.href=x.item.url;var s=document.createElement("strong");s.textContent=x.item.title;var sm=document.createElement("small");sm.textContent=x.item.desc;a.append(s,sm);results.appendChild(a)})}
 searchForm.addEventListener("submit",function(e){e.preventDefault();search()});
