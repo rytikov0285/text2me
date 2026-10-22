@@ -72,19 +72,18 @@ var progress=el("div",{class:"reading-progress","aria-hidden":"true"});
 document.body.appendChild(progress);
 var top=document.querySelector("[data-back-to-top]");
 if(!top){top=el("a",{href:"#main",class:"back-to-top","data-back-to-top":"true","aria-label":"Наверх",title:"Наверх"},"↑");document.body.appendChild(top)}
-var path=location.pathname.toLowerCase(),section="Материалы";
+var path=location.pathname.toLowerCase(),section=path==="/text2me/"?"Главная":"Материалы";
 var routes=[
-["/text2me/people/","Гражданам","Гражданам"],
-["/text2me/prompts/","Личное и тексты","Для разных задач"],
-["/text2me/business/","Организациям","Организациям"],
-["/text2me/guides/","Инструкции","Гражданам и организациям"],
-["/text2me/documents/","Документы","Гражданам и организациям"],
-["/text2me/situations/","Жизненные ситуации","Гражданам"],
-["/text2me/knowledge/","Справочные материалы","Гражданам и организациям"],
-["/text2me/sources/","Официальные источники","Гражданам и организациям"],
-["/text2me/prompts/","Тексты и редактура","Для разных задач"],
-["/text2me/space/","Моё пространство","Пользователям сервиса"],
-["/text2me/updates/","Обновления","Всем посетителям"]
+["/text2me/people/","Для граждан"],
+["/text2me/business/","Для организаций"],
+["/text2me/situations/","Жизненные ситуации"],
+["/text2me/documents/","Документы"],
+["/text2me/prompts/","Тексты и примеры"],
+["/text2me/knowledge/","База знаний"],
+["/text2me/guides/","Инструкции"],
+["/text2me/sources/","Официальные источники"],
+["/text2me/space/","Моё пространство"],
+["/text2me/updates/","Обновления"]
 ];
 routes.forEach(function(r){if(path.indexOf(r[0])===0)section=r[1]});
 if(path.indexOf("/text2me/documents/dogovor-arendy/")===0)section="Договор найма жилья";
@@ -107,7 +106,6 @@ var currentHeading=null;
 headings.forEach(function(h){if(h.getBoundingClientRect().top<155)currentHeading=h});
 if(currentHeading&&window.scrollY>100){
 current.textContent=currentHeading.textContent.trim().replace(/\s+/g," ").slice(0,70);
-var parentSection=currentHeading.closest("section[id]");
 
 }else{
 current.textContent=section;
