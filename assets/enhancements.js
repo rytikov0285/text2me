@@ -183,9 +183,10 @@ if(form&&params.get("focus")==="form"){var field=form.querySelector("input:not([
 function initDaDataPartyLookup(){
 var endpoint=String(window.TEXT2ME_DADATA_ENDPOINT||"").trim();
 function panelFor(form,config){
-if(!form||form.querySelector(".dadata-party-panel"))return;
+if(!form)return;
 var target=form.querySelector(config.target);if(!target)return;
-var panel=el("section",{class:"dadata-party-panel","aria-label":"Проверка реквизитов организации или ИП"});
+var existingPanels=form.querySelectorAll(".dadata-party-panel");for(var pi=0;pi<existingPanels.length;pi++){if(existingPanels[pi].getAttribute("data-target")===config.nameTarget)return;}
+var panel=el("section",{class:"dadata-party-panel","aria-label":"Проверка реквизитов организации или ИП"});panel.setAttribute("data-target",config.nameTarget);
 panel.appendChild(el("h3",{},"Проверить ИНН и заполнить реквизиты"));
 panel.appendChild(el("p",{class:"field-help"},"Введите ИНН организации (10 цифр) или ИП (12 цифр). Данные будут показаны для проверки; поля изменятся только после вашего подтверждения."));
 var grid=el("div",{class:"dadata-party-controls"});
