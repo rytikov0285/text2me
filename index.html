@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Что делать, если возникла проблема? Документы и помощь — text2me</title>
-  <meta name="description" content="Не возвращают деньги, проблема с ЖКХ, зарплатой или договором? Разберитесь, что делать дальше, найдите официальный ресурс или соберите черновик документа.">
+  <title>Документы, инструменты и ИИ-помощник — text2me</title>
+  <meta name="description" content="Найдите документ по ситуации или названию, используйте инструменты для PDF и подписи, получите ориентир для следующего шага и сохраните полезное в своём пространстве.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://rytikov0285.github.io/text2me/">
   <link rel="stylesheet" href="/text2me/assets/style.css">
   <script defer src="/text2me/assets/main.js"></script>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Что делать, если возникла проблема? Документы и помощь — text2me">
-  <meta property="og:description" content="Не возвращают деньги, проблема с ЖКХ, зарплатой или договором? Разберитесь, что делать дальше и какой документ может понадобиться.">
+  <meta property="og:title" content="Документы, инструменты и ИИ-помощник — text2me">
+  <meta property="og:description" content="По ситуации, названию документа или через ИИ-помощник. Каталог и инструменты text2me в одном месте.">
   <meta property="og:url" content="https://rytikov0285.github.io/text2me/">
 </head>
 <body>
@@ -19,24 +19,25 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/text2me/" aria-label="text2me — главная"><span>text2me<span class="brand-dot">.</span>ru</span></a>
-    <nav class="main-nav" aria-label="Основная навигация"><a href="#route-builder">Найти помощь</a><a href="/text2me/people/">Для граждан</a><a href="/text2me/business/">Для организаций</a><a href="/text2me/prompts/">Каталог</a><a href="/text2me/knowledge/">База знаний</a></nav>
-    <a class="button button-small" href="#quick-actions">Выбрать, что случилось</a>
+    <nav class="main-nav" aria-label="Основная навигация"><a href="#route-builder">По ситуации</a><a href="#catalog">По названию</a><a href="#ai-path">ИИ-помощник</a><a href="#tools">Инструменты</a><a href="/text2me/space/">Моё пространство</a></nav>
+    <a class="button button-small" href="#catalog">Каталог документов</a>
   </div>
 </header>
 <main id="main">
   <section class="portal-hero">
     <div class="container">
       <div class="portal-heading">
-        <h1>Что нужно решить?</h1>
-        <p class="portal-lead">Опишите, что случилось, или выберите свой вопрос. Поможем понять, что делать дальше, куда обратиться и как подготовить нужный документ.</p>
+        <p class="eyebrow">Документы для жизни, работы и бизнеса</p><h1>Нужен документ?<br><span class="text-gradient">Начните с результата.</span></h1>
+        <p class="portal-lead">Опишите ситуацию, найдите документ по названию или начните с ИИ-помощника. Вы получите понятный следующий шаг, ориентир по адресату и основу документа, когда для задачи есть подходящий сценарий.</p>
       </div>
       <div class="portal-search-wrap">
         <form class="search-box portal-search" role="search" id="document-search">
           <label class="sr-only" for="search-input">Найти ответ на свой вопрос</label>
           <input id="search-input" name="q" type="search" placeholder="Например: вернуть деньги, проблема с домом, зарплата…" autocomplete="off">
-          <button class="button" type="submit">Искать</button>
+          <button class="button" type="submit">Найти</button>
         </form>
         <p class="search-status" id="search-status" aria-live="polite"></p>
+        <div class="popular-chips" aria-label="Популярные документы"><span>Популярное:</span><button type="button" data-search-chip="договор аренды">Договор аренды</button><button type="button" data-search-chip="доверенность на авто">Доверенность на авто</button><button type="button" data-search-chip="заявление на увольнение">Заявление на увольнение</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button></div>
       </div>
       <div class="portal-quicklinks task-buttons" id="quick-actions" aria-label="Популярные вопросы">
         <a href="#need-result" data-route-preset="consumer" data-route-goal="document" data-route-detail="refund"><span>↩</span> Вернуть деньги за товар <b>→</b></a>
@@ -49,6 +50,46 @@
         <a href="#need-result" data-route-preset="business" data-route-goal="contact" data-route-detail="client"><span>▤</span> Написать деловое письмо <b>→</b></a>
         <a href="#route-builder" data-route-preset="other" data-route-goal="understand" data-route-detail="advice"><span>…</span> Другая задача <b>→</b></a>
       </div>
+    </div>
+  </section>
+
+  </section>
+
+  <section class="section" id="catalog">
+    <div class="container">
+      <div class="section-heading"><div><p class="eyebrow">Второй путь — по названию</p><h2>Знаете, какой документ нужен?</h2></div><p>Не обязательно описывать всю историю. Начните с названия документа и уточните, подходит ли он к вашей ситуации.</p></div>
+      <div class="document-category-grid" id="catalog-cards">
+        <a class="document-category" data-search-item data-search="договор аренды договор жильё недвижимость бизнес граждане" href="/text2me/business/"><span class="category-count">Договоры</span><h3>Договор аренды</h3><p>Начните с типа аренды, сторон и условий. Конкретный шаблон нужно подобрать под обстоятельства.</p><span class="card-link">Подобрать направление <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="доверенность на авто доверенность автомобиль представитель" href="/text2me/prompts/"><span class="category-count">Доверенности</span><h3>Доверенность на авто</h3><p>Уточните, какие действия должен совершать представитель и нужна ли специальная форма.</p><span class="card-link">Посмотреть каталог <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="заявление на увольнение заявление работа трудовой договор" href="/text2me/people/"><span class="category-count">Заявления</span><h3>Заявление на увольнение</h3><p>Сверьте формулировку с основанием и датами. Порядок зависит от обстоятельств трудовых отношений.</p><span class="card-link">Выбрать сценарий <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="претензия продавцу товар возврат деньги покупки" href="/text2me/documents/pretenziya-prodavtsu/"><span class="category-count">Претензии</span><h3>Претензия продавцу</h3><p>Соберите сведения о покупке, недостатке и желаемом результате; черновик формируется в браузере.</p><span class="card-link">Открыть конструктор <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="иск в суд исковое заявление судебный спор взыскание" href="/text2me/documents/isk-v-sud/"><span class="category-count">Судебные документы</span><h3>Исковое заявление</h3><p>Сначала определите требования, ответчика, доказательства и процессуальные условия.</p><span class="card-link">Перейти к материалу <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="деловое письмо коммерческое предложение акт компания бизнес" href="/text2me/business/"><span class="category-count">Деловые документы</span><h3>Письмо или коммерческое предложение</h3><p>Подберите формат под адресата, цель общения и желаемое действие.</p><span class="card-link">Для организаций <b>→</b></span></a>
+      </div>
+      <p class="catalog-disclaimer">Это стартовая подборка, а не заявление о размере полной базы. Если нужного документа пока нет, каталог покажет ближайшее направление или сообщит об ограничениях.</p>
+    </div>
+  </section>
+
+  <section class="section section-muted" id="tools">
+    <div class="container">
+      <div class="section-heading"><div><p class="eyebrow">Не только генерация</p><h2>Инструменты для работы с документами</h2></div><p>Подготовка текста — только один этап. Важно привести файл в порядок, проверить его и выбрать подходящий способ подписания.</p></div>
+      <div class="tool-grid">
+        <a class="tool-card" href="/text2me/prompts/"><span class="tool-icon">PDF</span><h3>PDF и файлы</h3><p>Найдите подходящий способ работы с документом и требованиями к формату. Онлайн-обработка файлов пока не подключена.</p><span>Инструменты и сценарии →</span></a>
+        <a class="tool-card" href="/text2me/knowledge/"><span class="tool-icon">✓</span><h3>Подпись и проверка</h3><p>Разберитесь, какой вид подписи и какие проверки могут понадобиться. Сервис пока не подписывает документы за пользователя.</p><span>Узнать больше →</span></a>
+        <a class="tool-card" href="/text2me/documents/pretenziya-prodavtsu/"><span class="tool-icon">▤</span><h3>Конструктор документа</h3><p>Заполните поля и получите локальный черновик претензии. Данные формы не отправляются на сервер.</p><span>Открыть пример →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ai-path">
+    <div class="container ai-path-layout">
+      <div><p class="eyebrow">Третий путь — через ИИ</p><h2>Не знаете название документа? Начните с вопроса.</h2><p>Опишите задачу обычными словами. ИИ-путь должен помочь определить цель, задать необходимые уточнения и подобрать направление — без выдуманных фактов и обещаний гарантированного результата.</p><p class="field-help">Демонстрация интерфейса: подключение ИИ к форме пока не выполнено.</p></div>
+      <form id="ai-path-form" class="ai-path-form">
+        <label for="ai-path-input">Что вы хотите решить?</label>
+        <textarea id="ai-path-input" rows="4" maxlength="1200" placeholder="Например: снимаю квартиру, хочу зафиксировать условия и ответственность сторон…"></textarea>
+        <button class="button" type="submit">Подобрать направление</button>
+        <p id="ai-path-status" class="field-help" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -121,6 +162,8 @@
   </section>
 
 </main>
-<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Понятные решения для граждан и организаций.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/">Главная</a><a href="/text2me/people/">Для граждан</a><a href="/text2me/business/">Для организаций</a><a href="/text2me/prompts/">Каталог</a><a href="/text2me/knowledge/">База знаний</a></nav></div><div class="container footer-bottom"><span>Информационный сервис</span><span>Проверяйте применимость документов и актуальность официальных источников.</span></div></footer>
+  <section class="section audience-section" id="audiences"><div class="container"><div class="section-heading"><div><p class="eyebrow">Шесть направлений</p><h2>Выберите свою рабочую задачу</h2></div><p>Документы нужны в разных обстоятельствах. Мы разделяем материалы по задачам и типу работы, чтобы быстрее привести вас к подходящему сценарию.</p></div><div class="audience-grid"><a href="/text2me/people/"><strong>Гражданам</strong><span>Заявления, обращения, претензии и повседневные вопросы.</span></a><a href="/text2me/business/"><strong>Предпринимателям</strong><span>Договоры, счета, предложения и переписка с клиентами.</span></a><a href="/text2me/business/"><strong>Компаниям и руководителям</strong><span>Регламенты, деловые документы и повторяющиеся процессы.</span></a><a href="/text2me/knowledge/"><strong>Юристам и правовым специалистам</strong><span>Черновики, проверочные списки, источники и структурирование материалов.</span></a><a href="/text2me/business/"><strong>Кадровикам и бухгалтерам</strong><span>Кадровые и расчётные документы с обязательной проверкой оснований.</span></a><a href="/text2me/prompts/"><strong>Студентам, преподавателям и исследователям</strong><span>Планы, доклады, учебные и аналитические материалы.</span></a></div></div></section>
+  <section class="section section-muted"><div class="container trust-layout"><div><p class="eyebrow">Без выдуманных обещаний</p><h2>Понятный процесс вместо громких цифр</h2></div><div class="trust-points"><p><strong>3 способа начать:</strong> по ситуации, по названию документа или через ИИ-путь.</p><p><strong>6 направлений аудитории:</strong> от личных вопросов до рабочих и учебных задач.</p><p><strong>Прозрачный статус:</strong> работающие демонстрационные формы отделены от функций, которые ещё не подключены.</p></div></div></section>
+<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Помощь с документами для граждан, специалистов и организаций.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Гражданам</a><a href="/text2me/business/">Бизнесу</a><a href="/text2me/prompts/">Каталог</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/knowledge/">База знаний</a></nav></div><div class="container footer-bottom"><span>Информационный сервис · Концепт</span><span>Проверяйте применимость документов и актуальность официальных источников.</span></div></footer>
 </body>
 </html>
