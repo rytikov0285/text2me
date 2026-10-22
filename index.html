@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>text2me — рабочее пространство документов</title>
-<meta name="description" content="Рабочее пространство для создания документов: конструкторы, шаблоны, инструкции, редактирование и экспорт.">
+<title>text2me — понятные шаги и документы</title>
+<meta name="description" content="Опишите ситуацию, найдите нужный документ и продолжите работу с сохранёнными материалами.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://rytikov0285.github.io/text2me/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="text2me — рабочее пространство документов">
+<meta property="og:title" content="text2me — понятные шаги и документы">
 <meta property="og:description" content="Создавайте документы через пошаговые конструкторы, используйте шаблоны и сохраняйте черновики.">
 <meta property="og:url" content="https://rytikov0285.github.io/text2me/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"text2me","url":"https://rytikov0285.github.io/text2me/","inLanguage":"ru-RU"}</script>
@@ -48,7 +48,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <button class="workspace-search-submit" type="submit">Найти</button>
 <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
 </form>
-<nav class="dash-nav workspace-top-links" aria-label="Быстрый доступ"><a href="/text2me/space/" title="Моё пространство"><span aria-hidden="true">▣</span><span>Моё пространство</span></a><a href="/text2me/guides/" title="Помощь"><span aria-hidden="true">?</span><span>Помощь</span></a><a href="/text2me/request/" title="Отправить сложную задачу"><span aria-hidden="true">↗</span><span>Сложная задача</span></a></nav>
+<nav class="dash-nav workspace-top-links" aria-label="Быстрый доступ"><a href="/text2me/space/" title="Моё пространство"><span aria-hidden="true">▣</span><span>Мои документы</span></a><a href="/text2me/guides/" title="Помощь"><span aria-hidden="true">?</span><span>Помощь</span></a><a href="/text2me/request/" title="Отправить сложную задачу"><span aria-hidden="true">↗</span><span>Сложная задача</span></a></nav>
 </header>
 
 <div class="workspace-layout">
@@ -75,49 +75,48 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 </aside>
 <main id="main" class="workspace-main">
 <section class="dash-hero office-home" aria-labelledby="main-title">
-<div class="dash-eyebrow">text2me · рабочее пространство</div>
-<h1 id="main-title">Создание документа</h1>
-<p class="dash-lead">Выберите команду или готовый конструктор. Ответьте на необходимые вопросы, проверьте результат и сохраните документ.</p>
+
+<h1 id="main-title">Что нужно решить?</h1>
+<p class="dash-lead">Напишите словами, что случилось — подскажем шаги и документы.</p>
 </section>
 
 <section class="home-situation-box" aria-labelledby="home-situation-title">
 <form id="home-situation-form" action="/text2me/start/" method="get">
 <label id="home-situation-title" for="home-situation">Опишите ситуацию</label>
-<p>Напишите своими словами, что нужно решить или какой текст подготовить.</p>
-<textarea id="home-situation" name="task" rows="3" placeholder="Например: не возвращают деньги за покупку, нужно написать поздравление или составить договор." autocomplete="off"></textarea>
-<div class="home-situation-actions"><button class="dash-btn" type="submit">Подобрать первые шаги</button><span>Можно написать обычными словами — специальные термины не нужны.</span></div>
+
+<textarea id="home-situation" name="task" rows="3" placeholder="Например: сдаю квартиру, нужен договор и акт" autocomplete="off"></textarea>
+<div class="home-situation-actions"><button class="dash-btn" type="submit">Подобрать документы</button><a class="dash-btn secondary" href="/text2me/documents/">Выбрать шаблон</a></div>
 </form>
 <div class="home-situation-chips" aria-label="Примеры ситуаций">
-<span>Быстрый выбор:</span>
-<button type="button" data-situation-chip="Не возвращают деньги за покупку">Не возвращают деньги</button>
-<button type="button" data-situation-chip="Проблема с жильём или ЖКХ">Жильё и ЖКХ</button>
-<button type="button" data-situation-chip="Не выплатили зарплату">Задержали зарплату</button>
+
+<button type="button" data-situation-chip="Сдаю квартиру, нужен договор и акт">Сдаю квартиру</button>
+<button type="button" data-situation-chip="Увольняюсь, нужны документы">Увольняюсь</button>
+<button type="button" data-situation-chip="Продаю автомобиль, нужен договор">Продаю авто</button>
+<button type="button" data-situation-chip="Нужна доверенность">Нужна доверенность</button>
+<button type="button" data-situation-chip="Не возвращают деньги за покупку">Возврат денег</button>
 <button type="button" data-situation-chip="Нужно написать заявление">Нужно заявление</button>
-<button type="button" data-situation-chip="Поздравление с днём рождения">Поздравление</button>
-<button type="button" data-situation-chip="Нужен рецепт из имеющихся продуктов">Рецепт из того, что есть</button>
 </div>
 </section>
 
-<nav class="document-ribbon" aria-label="Панель инструментов">
-<a href="/text2me/documents/" title="Создать документ"><span class="ribbon-icon" aria-hidden="true">＋</span><span>Создать</span></a>
-<a href="/text2me/documents/" title="Каталог шаблонов"><span class="ribbon-icon" aria-hidden="true">▤</span><span>Шаблоны</span></a>
-<a href="/text2me/space/" title="Открыть сохранённые документы"><span class="ribbon-icon" aria-hidden="true">▣</span><span>Открыть</span></a>
-<a href="/text2me/space/" title="Мои документы"><span class="ribbon-icon" aria-hidden="true">▧</span><span>Мои документы</span></a>
-<a href="/text2me/guides/" title="Инструкции и справка"><span class="ribbon-icon" aria-hidden="true">ⓘ</span><span>Справка</span></a>
-<a href="/text2me/updates/" title="Посмотреть изменения"><span class="ribbon-icon" aria-hidden="true">◷</span><span>Обновления</span></a>
-</nav>
+<section class="section-block" id="my-space-preview">
+<div class="section-head"><div><h2>Моё пространство</h2><p>Ваши черновики, сохранённые документы и избранные материалы на этом устройстве.</p></div><a href="/text2me/space/">Открыть библиотеку →</a></div>
+<div class="wishlist-panel"><div><strong>Личная библиотека</strong><p id="home-space-summary">Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет.</p><div id="home-space-items" class="home-space-items" aria-live="polite"></div></div><div class="wishlist-actions"><a href="/text2me/space/">Мои документы</a><a href="/text2me/documents/pretenziya-prodavtsu/">Начать черновик</a><a href="/text2me/updates/">Обновления</a></div></div>
+</section>
 
-<section class="office-start-panel" aria-labelledby="office-start-title">
-<div class="office-section-title"><div><h2 id="office-start-title">Новый документ</h2><p>Выберите тип документа — приложение проведёт вас через заполнение.</p></div><a href="/text2me/documents/">Все документы <span aria-hidden="true">→</span></a></div>
-<div class="office-command-grid">
-<a class="office-command" href="/text2me/documents/pretenziya-prodavtsu/"><span class="office-command-icon" aria-hidden="true">↩</span><span><strong>Претензия</strong><small>Возврат денег, товар или услуга</small><em class="office-state live">Конструктор доступен</em></span></a>
-<a class="office-command" href="/text2me/documents/isk-v-sud/"><span class="office-command-icon" aria-hidden="true">⚖</span><span><strong>Исковое заявление</strong><small>Подготовка черновика для суда</small><em class="office-state live">Конструктор доступен</em></span></a>
-<a class="office-command" href="/text2me/documents/dogovor-arendy/"><span class="office-command-icon" aria-hidden="true">⌂</span><span><strong>Договор найма жилья</strong><small>Договор и акт приёма-передачи</small><em class="office-state live">Конструктор доступен</em></span></a>
-<a class="office-command" href="/text2me/documents/"><span class="office-command-icon" aria-hidden="true">▤</span><span><strong>Заявление или обращение</strong><small>Найти подходящий вид документа</small><em class="office-state planned">Каталог документов</em></span></a>
-<a class="office-command" href="/text2me/business/"><span class="office-command-icon" aria-hidden="true">▥</span><span><strong>Деловой документ</strong><small>Письма, договоры и документы организации</small><em class="office-state planned">Каталог материалов</em></span></a>
-<a class="office-command" href="/text2me/prompts/"><span class="office-command-icon" aria-hidden="true">✎</span><span><strong>Текст и редактура</strong><small>Подготовка, улучшение и проверка текста</small><em class="office-state planned">Инструменты и материалы</em></span></a>
+<section class="section-block" id="tools">
+<div class="section-head"><div><h2>Инструменты</h2><p>Отдельно от каталога документов — работа с готовым текстом.</p></div></div>
+<div class="tool-row">
+<a class="tool-item" href="/text2me/documents/"><span class="tool-icon">PDF</span><span><strong>Сохранить черновик в PDF</strong><small>В доступном конструкторе выберите «Печать / PDF»</small><span class="status-badge" data-status="live">Работает</span></span></a>
+<a class="tool-item" href="/text2me/knowledge/"><span class="tool-icon">✓</span><span><strong>Подпись и проверка</strong><small>Инструкция; сервис подписи не подключён</small><span class="status-badge" data-status="demo">Инструкция</span></span></a>
+<a class="tool-item" href="/text2me/documents/"><span class="tool-icon">DOC</span><span><strong>Конструктор документа</strong><small>Черновик, предпросмотр и экспорт там, где поддерживаются</small><span class="status-badge" data-status="live">Работает</span></span></a>
 </div>
 </section>
+
+
+
+
+
+
 
 <div class="office-lower-grid">
 <section class="office-recent-panel" aria-labelledby="office-recent-title">
@@ -179,14 +178,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 </div><p class="microcopy">Каталог постепенно расширяется. Нулевое число означает, что отдельный конструктор этой категории ещё не опубликован.</p>
 </section>
 
-<section class="section-block" id="tools">
-<div class="section-head"><div><h2>Инструменты</h2><p>Отдельно от каталога документов — работа с готовым текстом.</p></div></div>
-<div class="tool-row">
-<a class="tool-item" href="/text2me/documents/"><span class="tool-icon">PDF</span><span><strong>Сохранить черновик в PDF</strong><small>В доступном конструкторе выберите «Печать / PDF»</small><span class="status-badge" data-status="live">Работает</span></span></a>
-<a class="tool-item" href="/text2me/knowledge/"><span class="tool-icon">✓</span><span><strong>Подпись и проверка</strong><small>Инструкция; сервис подписи не подключён</small><span class="status-badge" data-status="demo">Инструкция</span></span></a>
-<a class="tool-item" href="/text2me/documents/"><span class="tool-icon">DOC</span><span><strong>Конструктор документа</strong><small>Черновик, предпросмотр и экспорт там, где поддерживаются</small><span class="status-badge" data-status="live">Работает</span></span></a>
-</div>
-</section>
+
 
 
 
@@ -209,10 +201,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 </div>
 </section>
 
-<section class="section-block" id="my-space-preview">
-<div class="section-head"><div><h2>Моё пространство</h2><p>Ваши черновики, сохранённые документы и избранные материалы на этом устройстве.</p></div><a href="/text2me/space/">Открыть библиотеку →</a></div>
-<div class="wishlist-panel"><div><strong>Личная библиотека</strong><p id="home-space-summary">Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет.</p><div id="home-space-items" class="home-space-items" aria-live="polite"></div></div><div class="wishlist-actions"><a href="/text2me/space/">Мои документы</a><a href="/text2me/documents/pretenziya-prodavtsu/">Начать черновик</a><a href="/text2me/updates/">Обновления</a></div></div>
-</section>
+
 
 <section class="section-block" id="updates-feed">
 <div class="section-head"><div><h2>Обновления</h2><p>История изменений сайта и доступности инструментов.</p></div><a href="/text2me/updates/">Весь журнал →</a></div>
