@@ -346,3 +346,44 @@ body{background:#fff;color:#193b5a;line-height:1.6}
 
 /* Compact task-first homepage */
 .portal-hero{padding:24px 0 20px;background:#f4f8fc}.portal-heading h1{font-size:clamp(28px,3.5vw,40px);line-height:1.15;letter-spacing:-.8px;margin:0}.portal-lead{margin:8px 0 0;font-size:15px}.portal-search-wrap{margin:14px 0 0;max-width:760px}.portal-quicklinks.task-buttons{max-width:980px;margin:14px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.task-buttons a{display:flex;align-items:center;gap:9px;min-height:54px;padding:10px 12px;border:1px solid #cbdbea;border-radius:9px;background:#fff;color:#174a75;font-size:14px;font-weight:700;line-height:1.3}.task-buttons a>span{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:7px;background:#e7f2fc;color:#1769aa;font-size:17px}.task-buttons a b{margin-left:auto;color:#1769aa}.task-buttons a:hover{border-color:#1769aa;background:#f8fbff}.route-builder-section{padding:22px 0}.need-form{padding:16px;box-shadow:none}.need-result{margin-top:12px;padding:16px}.site-footer{padding:14px 0}@media(max-width:900px){.portal-quicklinks.task-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.portal-quicklinks.task-buttons{grid-template-columns:1fr}.task-buttons a{min-height:50px}.portal-heading h1{font-size:30px}.main-nav{display:none}.route-builder-section{padding:18px 0}}
+
+
+/* High-clarity color pass: vivid blue, saturated accents, stronger contrast */
+:root{--ink:#102f4f;--muted:#425d77;--line:#c4d6e7;--paper:#fff;--soft:#eef6ff;--purple:#075fc7;--purple-dark:#064b9e;--mint:#dff3ff;--shadow:0 5px 18px rgba(8,55,105,.10)}
+body{color:#102f4f;background:#fff}
+a:hover{color:#064b9e}
+.site-header{border-bottom:2px solid #c6dcf1}
+.brand{color:#123f68}
+.brand-dot{color:#0878e8}
+.button{background:#0868d7;border-color:#0868d7;color:#fff;font-weight:750}
+.button:hover{background:#064b9e;border-color:#064b9e}
+.button-outline{color:#075fc7;border:2px solid #8dbbe8;background:#fff}
+.button-outline:hover{background:#eaf4ff;color:#064b9e}
+.portal-hero,.hero,.page-hero{background:#eaf4ff;border-bottom-color:#c8def2}
+.portal-heading h1,.hero h1,.page-hero h1{color:#103b63}
+.text-gradient{color:#075fc7}
+.eyebrow{color:#075fc7}
+.eyebrow-dot{background:#0878e8;box-shadow:0 0 0 4px #d5eaff}
+.portal-lead,.hero-lead{color:#294f72}
+.portal-search,.search-box{border:2px solid #9dc6ec;background:#fff;box-shadow:0 4px 14px rgba(8,72,135,.08)}
+.search-symbol{color:#075fc7}
+.portal-quicklinks a,.choice-card,.knowledge-card,.info-card,.side-panel,.document-builder{border-color:#c6d9eb}
+.portal-quicklinks a{color:#143f66}
+.quick-icon,.card-icon,.knowledge-icon,.info-icon,.route-number,.builder-step-number,.task-buttons a>span{background:#dceeff;color:#075fc7}
+.lavender,.mint,.peach,.blue{background:#dceeff;color:#075fc7}
+.task-buttons a{border:1px solid #b3cfe9;color:#103f6c;box-shadow:0 2px 5px rgba(12,68,120,.035)}
+.task-buttons a:hover{border-color:#0878e8;background:#edf6ff;box-shadow:0 4px 12px rgba(8,72,135,.10)}
+.task-buttons a b,.card-link,.knowledge-link,.text-link{color:#075fc7}
+.choice-card h3,.portal-card h3,.knowledge-card h3{color:#143f66}
+.choice-card p,.portal-card p,.knowledge-card p{color:#425d77}
+.need-result{background:#eef7ff;border-color:#83b8e6;border-left-color:#0878e8}
+.need-result h3{color:#103b63}
+.route-result-links a{border-color:#9fc7eb;color:#075fc7}
+.notice{border-left-color:#0878e8;background:#eaf4ff;color:#294f72}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:#0878e8;box-shadow:0 0 0 3px rgba(8,120,232,.16)}
+.status-chip{background:#d9f8e7;color:#12633b}
+.site-footer{background:#0d2b49}
+.site-footer .brand-dot{color:#8dc7ff}
+.portal-hint,.micro-note{color:#526f8a}
+::selection{background:#b9dcff;color:#102f4f}
+@media(max-width:700px){.portal-hero,.hero,.page-hero{background:#eaf4ff}.task-buttons a{min-height:52px}}
