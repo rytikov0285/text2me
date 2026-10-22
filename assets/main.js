@@ -300,6 +300,32 @@
     });
   }
 
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest("[data-copy-target]");
+    if (!button) return;
+    var target = document.getElementById(button.getAttribute("data-copy-target"));
+    if (!target) return;
+    var value = target.value || target.textContent || "";
+    if (!value) return;
+    function copied() {
+      var oldLabel = button.getAttribute("data-original-label") || button.textContent;
+      button.setAttribute("data-original-label", oldLabel);
+      button.textContent = "Скопировано";
+      window.setTimeout(function () { button.textContent = oldLabel; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(copied).catch(function () {
+        target.focus();
+        target.select();
+        button.textContent = "Выделено — скопируйте";
+      });
+    } else {
+      target.focus();
+      target.select();
+      button.textContent = "Выделено — скопируйте";
+    }
+  });
+
   var claimForm = document.getElementById("claim-builder");
   if (!claimForm) return;
 
@@ -435,29 +461,5 @@
     });
   }
 
-  document.addEventListener("click", function (event) {
-    var button = event.target.closest("[data-copy-target]");
-    if (!button) return;
-    var target = document.getElementById(button.getAttribute("data-copy-target"));
-    if (!target) return;
-    var value = target.value || target.textContent || "";
-    if (!value) return;
-    function copied() {
-      var oldLabel = button.getAttribute("data-original-label") || button.textContent;
-      button.setAttribute("data-original-label", oldLabel);
-      button.textContent = "Скопировано";
-      window.setTimeout(function () { button.textContent = oldLabel; }, 1600);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(value).then(copied).catch(function () {
-        target.focus();
-        target.select();
-        button.textContent = "Выделено — скопируйте";
-      });
-    } else {
-      target.focus();
-      target.select();
-      button.textContent = "Выделено — скопируйте";
-    }
-  });
+
 }());
