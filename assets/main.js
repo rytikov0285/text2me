@@ -274,7 +274,7 @@
     var courtDownload = document.getElementById("download-court");
     if (courtDownload) courtDownload.addEventListener("click", function () {
       if (!courtOutput.textContent) return;
-      var blob = new Blob(["\\ufeff", courtOutput.textContent], {type:"text/plain;charset=utf-8"});
+      var blob = new Blob(["\ufeff", courtOutput.textContent], {type:"text/plain;charset=utf-8"});
       var url = URL.createObjectURL(blob);
       var link = document.createElement("a");
       link.href = url;
