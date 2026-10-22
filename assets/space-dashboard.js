@@ -43,6 +43,7 @@ function install(){
  host.insertAdjacentElement("beforebegin",panel);
  refresh();
  renderFileVault();
+ window.addEventListener("text2me:file-vault-changed",renderFileVault);
  if(window.MutationObserver){new MutationObserver(refresh).observe(host,{childList:true})}
  window.addEventListener("storage",refresh);
 }
