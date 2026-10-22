@@ -1,6 +1,21 @@
 (function () {
   "use strict";
 
+  function fitPromptFields() {
+    var fields = document.querySelectorAll("#main textarea[readonly]");
+    fields.forEach(function (field) {
+      field.style.overflowY = "hidden";
+      field.style.height = "auto";
+      field.style.height = (field.scrollHeight + 2) + "px";
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", fitPromptFields);
+  } else {
+    fitPromptFields();
+  }
+  window.addEventListener("resize", fitPromptFields);
+
   var searchForm = document.getElementById("document-search");
   if (searchForm) {
     var input = document.getElementById("search-input");
