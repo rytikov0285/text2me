@@ -3,19 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>text2me — тексты, документы и полезные материалы</title>
-  <meta name="description" content="Подготовка текстов, документов, поздравлений, деловых материалов, учебных работ и таблиц. Работа с шаблонами и файлами.">
+  <title>text2me — найдите решение своей задачи</title>
+  <meta name="description" content="Опишите жизненную ситуацию, уточните цель и получите понятный маршрут: нужный официальный ресурс, список действий или черновик документа.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://rytikov0285.github.io/text2me/">
   <link rel="stylesheet" href="/text2me/assets/style.css">
   <script defer src="/text2me/assets/main.js"></script>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="text2me — тексты и документы для разных задач">
-  <meta property="og:description" content="Поздравления, подписи, деловые тексты, документы, учебные материалы, таблицы и работа с файлами.">
+  <meta property="og:title" content="text2me — решение задач по шагам">
+  <meta property="og:description" content="Сначала выясним, что произошло и какого результата вы хотите добиться. Затем подберём следующий шаг.">
   <meta property="og:url" content="https://rytikov0285.github.io/text2me/">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"text2me","url":"https://rytikov0285.github.io/text2me/","inLanguage":"ru-RU","description":"Сервис подготовки текстов, документов, учебных материалов и деловых материалов"}
-  </script>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -23,195 +20,143 @@
   <div class="container header-inner">
     <a class="brand" href="/text2me/" aria-label="text2me — главная"><span>text2me<span class="brand-dot">.</span>ru</span></a>
     <nav class="main-nav" aria-label="Основная навигация">
-      <a href="#create">Создать текст</a>
-      <a href="/text2me/people/">Населению</a>
-      <a href="/text2me/business/">Бизнесу</a>
-      <a href="#files">Файлы и PDF</a>
+      <a href="#situations">Жизненные ситуации</a>
+      <a href="#route-builder">Подобрать решение</a>
+      <a href="/text2me/people/">Документы</a>
+      <a href="#official-links">Полезные ресурсы</a>
     </nav>
-    <a class="button button-small button-outline" href="#account">Личный кабинет</a>
+    <a class="button button-small button-outline" href="#route-builder">Начать</a>
   </div>
 </header>
 <main id="main">
   <section class="portal-hero">
     <div class="container">
       <div class="portal-heading">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> Тексты и документы для повседневных задач</p>
-        <h1>Что нужно написать или оформить?</h1>
-        <p class="portal-lead">Поздравление, подпись к фотографии, продающий текст, доклад, заявление, таблица или документ по шаблону — опишите задачу обычными словами и укажите, каким должен быть результат.</p>
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Сначала задача — потом нужный сервис</p>
+        <h1>Что случилось и какого результата вы хотите добиться?</h1>
+        <p class="portal-lead">Не нужно заранее знать название услуги или документа. Расскажите, что произошло, выберите цель — и мы подскажем ближайший практический шаг.</p>
       </div>
-      <div class="portal-search-wrap" id="catalog">
+      <div class="portal-search-wrap">
         <form class="search-box portal-search" role="search" id="document-search">
-          <label class="sr-only" for="search-input">Поиск нужного формата или задачи</label>
+          <label class="sr-only" for="search-input">Найти ситуацию или действие</label>
           <span class="search-symbol" aria-hidden="true">⌕</span>
-          <input id="search-input" name="q" type="search" placeholder="Например: поздравление маме, продающий текст, доклад, иск в суд, таблица" autocomplete="off">
+          <input id="search-input" name="q" type="search" placeholder="Например: не вернули деньги, шумят соседи, нужна справка" autocomplete="off">
           <button class="button" type="submit">Найти</button>
         </form>
         <p class="search-status" id="search-status" aria-live="polite"></p>
-        <p class="portal-hint">Не нужно знать специальные термины. Укажите тему, цель, адресата и желаемый стиль.</p>
       </div>
-      <div class="portal-quicklinks" aria-label="Быстрые переходы">
-        <a href="/text2me/people/"><span class="quick-icon">⌂</span><span>Личные тексты и поздравления</span><b>→</b></a>
-        <a href="/text2me/business/"><span class="quick-icon">▤</span><span>Работа, учёба и бизнес</span><b>→</b></a>
-        <a href="/text2me/knowledge/"><span class="quick-icon">▧</span><span>Шаблоны и файлы</span><b>→</b></a>
+      <div class="portal-quicklinks" aria-label="Популярные действия">
+        <a href="#route-builder" data-route-preset="consumer"><span class="quick-icon">↩</span><span>Вернуть деньги за товар</span><b>→</b></a>
+        <a href="#route-builder" data-route-preset="housing"><span class="quick-icon">⌂</span><span>Решить вопрос с домом</span><b>→</b></a>
+        <a href="#route-builder" data-route-preset="work"><span class="quick-icon">▤</span><span>Проблема на работе</span><b>→</b></a>
       </div>
     </div>
   </section>
 
-  <section class="section portal-section" id="situations">
+  <section class="section route-builder-section" id="route-builder">
     <div class="container">
       <div class="section-heading">
-        <div><p class="eyebrow">С чего начнём?</p><h2>Что хотите подготовить?</h2></div>
-        <p>Выберите подходящий формат. Если задача необычная или сочетает несколько форматов, её можно будет описать в свободном запросе.</p>
+        <div><p class="eyebrow">Шаг 1 из 2</p><h2>Уточним вашу ситуацию</h2></div>
+        <p>Ответьте только на главное. Не указывайте пароли, паспортные данные, банковские реквизиты или другие секретные сведения.</p>
+      </div>
+      <form id="need-form" class="need-form">
+        <div class="need-form-grid">
+          <div class="form-field">
+            <label for="need-area">С чем связан вопрос?</label>
+            <select id="need-area" name="area" required>
+              <option value="">Выберите направление</option>
+              <option value="consumer">Покупка, товар или услуга</option>
+              <option value="housing">Дом, ЖКХ или соседи</option>
+              <option value="work">Работа и работодатель</option>
+              <option value="money">Деньги, платежи или долг</option>
+              <option value="government">Государственная услуга или справка</option>
+              <option value="business">Бизнес, договор или деловое письмо</option>
+              <option value="other">Другое / пока не знаю</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="need-goal">Какой результат вам нужен?</label>
+            <select id="need-goal" name="goal" required>
+              <option value="">Выберите цель</option>
+              <option value="understand">Понять, что делать и куда обращаться</option>
+              <option value="document">Подготовить заявление, жалобу или претензию</option>
+              <option value="official">Найти официальный сервис или подать заявление</option>
+              <option value="money">Вернуть деньги / добиться выплаты</option>
+              <option value="contact">Составить письмо или обращение</option>
+            </select>
+          </div>
+          <div class="form-field form-field-full">
+            <label for="need-description">Коротко опишите, что произошло</label>
+            <textarea id="need-description" name="description" rows="3" maxlength="1800" placeholder="Что случилось? Кто участвует? Что вы уже пробовали? Какой ответ или результат получили?"></textarea>
+            <p class="field-help">Факты, даты и уже предпринятые действия помогут выбрать правильный маршрут. Пока это описание никуда не отправляется.</p>
+          </div>
+        </div>
+        <div class="builder-actions"><button class="button" type="submit">Подобрать следующий шаг</button><button class="button button-outline" type="reset">Очистить</button></div>
+      </form>
+      <div id="need-result" class="need-result" hidden aria-live="polite">
+        <p class="eyebrow">Ваш маршрут</p>
+        <h3 id="need-result-title">Следующий шаг</h3>
+        <p id="need-result-copy"></p>
+        <div id="need-result-links" class="route-result-links"></div>
+        <p class="field-help">Это первичная навигация, а не подтверждение права на выплату или юридическое заключение. Перед подачей проверьте условия на официальном ресурсе.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted" id="situations">
+    <div class="container">
+      <div class="section-heading">
+        <div><p class="eyebrow">Популярные жизненные ситуации</p><h2>Выберите, что нужно решить</h2></div>
+        <p>Каждая карточка ведёт к следующему действию, а не к общему описанию темы.</p>
       </div>
       <div class="choice-grid portal-card-grid" id="document-cards">
-        <a class="choice-card portal-card" data-search="товар магазин возврат деньги покупка гарантия потребитель претензия" href="/text2me/documents/pretenziya-prodavtsu/">
-          <span class="card-icon lavender">↩</span><span class="card-kicker">Покупки и услуги</span><h3>Покупка подвела или услуга не понравилась</h3><p>Товар сломался, заказ не приехал, мастер сделал не так, а деньги возвращать не спешат.</p><span class="card-link">Посмотреть пример <b>→</b></span>
+        <a class="choice-card portal-card" data-search="покупка товар сломался возврат денег претензия продавцу гарантия" href="/text2me/documents/pretenziya-prodavtsu/">
+          <span class="card-icon">↩</span><span class="card-kicker">Покупки и услуги</span><h3>Товар сломался или деньги не возвращают</h3><p>Подготовить черновик претензии продавцу, затем проверить требования и приложения.</p><span class="card-link">Подготовить претензию <b>→</b></span>
         </a>
-        <a class="choice-card portal-card" data-search="дом ЖКХ управляющая компания соседи ремонт коммунальные услуги жалоба" href="/text2me/knowledge/">
-          <span class="card-icon mint">⌂</span><span class="card-kicker">Дом и ЖКХ</span><h3>Дома что-то не так</h3><p>Протекает крыша, не работает лифт, в подъезде грязно, батареи холодные или квитанция непонятная.</p><span class="card-link">Перейти к материалам <b>→</b></span>
+        <a class="choice-card portal-card" data-search="дом ЖКХ управляющая компания отопление лифт крыша вода жалоба" href="https://www.gosuslugi.ru/landing/forcitizens" target="_blank" rel="noopener noreferrer">
+          <span class="card-icon">⌂</span><span class="card-kicker">Дом и ЖКХ</span><h3>Проблема с домом или коммунальными услугами</h3><p>Уточнить, какая услуга или мера подходит, и найти официальный путь обращения.</p><span class="card-link">Открыть каталог услуг <b>↗</b></span>
         </a>
-        <a class="choice-card portal-card" data-search="работа работодатель отпуск зарплата трудовой договор заявление" href="/text2me/knowledge/">
-          <span class="card-icon peach">▣</span><span class="card-kicker">Работа</span><h3>На работе возник вопрос</h3><p>Не выплатили зарплату, не согласовали отпуск, попросили написать заявление или поменяли график.</p><span class="card-link">Изучить раздел <b>→</b></span>
+        <a class="choice-card portal-card" data-search="работа зарплата работодатель отпуск трудовой договор увольнение жалоба" href="https://онлайнинспекция.рф/" target="_blank" rel="noopener noreferrer">
+          <span class="card-icon">▤</span><span class="card-kicker">Работа</span><h3>Нарушили трудовые права</h3><p>Проверить варианты обращения в инспекцию труда и подготовить факты по ситуации.</p><span class="card-link">Перейти в инспекцию труда <b>↗</b></span>
         </a>
-        <a class="choice-card portal-card" data-search="бизнес ИП ООО договор акт счёт деловое письмо компания" href="/text2me/business/">
-          <span class="card-icon blue">▤</span><span class="card-kicker">Предпринимательство</span><h3>Бумаги для работы и своего дела</h3><p>Нужно договориться об оплате, оформить услугу, выставить счёт или спокойно напомнить о долге.</p><span class="card-link">Для бизнеса <b>→</b></span>
+        <a class="choice-card portal-card" data-search="государственная услуга справка пособие регистрация документы заявление" href="https://www.gosuslugi.ru/landing/forcitizens" target="_blank" rel="noopener noreferrer">
+          <span class="card-icon">✓</span><span class="card-kicker">Госуслуги</span><h3>Нужна услуга, справка или выплата</h3><p>Начать с официального каталога и подобрать услугу по жизненной ситуации.</p><span class="card-link">Найти услугу <b>↗</b></span>
         </a>
-        <a class="choice-card portal-card" data-search="деньги долг расписка задолженность претензия взыскание" href="/text2me/knowledge/">
-          <span class="card-icon lavender">₽</span><span class="card-kicker">Деньги и обязательства</span><h3>Деньги списали или не вернули</h3><p>Неожиданное списание, спорный штраф, подписка, которую трудно отменить, или долг, о котором забыли.</p><span class="card-link">Найти информацию <b>→</b></span>
+        <a class="choice-card portal-card" data-search="налог налоговый вычет декларация задолженность ФНС" href="https://www.nalog.gov.ru/" target="_blank" rel="noopener noreferrer">
+          <span class="card-icon">₽</span><span class="card-kicker">Налоги</span><h3>Вычет, налог или задолженность</h3><p>Проверить информацию и доступные сервисы на сайте Федеральной налоговой службы.</p><span class="card-link">Открыть сайт ФНС <b>↗</b></span>
         </a>
-        <a class="choice-card portal-card" data-search="заявление обращение жалоба ведомство организация образец" href="/text2me/people/">
-          <span class="card-icon mint">✎</span><span class="card-kicker">Заявления и обращения</span><h3>Написать заявление без лишней путаницы</h3><p>Записаться, запросить справку, пожаловаться, попросить пересмотр или получить письменный ответ.</p><span class="card-link">Для населения <b>→</b></span>
+        <a class="choice-card portal-card" data-search="долг банк списание платеж подписка финансовая услуга жалоба" href="https://www.cbr.ru/" target="_blank" rel="noopener noreferrer">
+          <span class="card-icon">₽</span><span class="card-kicker">Платежи и финансы</span><h3>Непонятное списание или спор с банком</h3><p>Проверить порядок обращения и защиту прав потребителей финансовых услуг.</p><span class="card-link">Ресурсы Банка России <b>↗</b></span>
         </a>
-        <a class="choice-card portal-card" data-search="договор аренда услуги подряд соглашение шаблон документ" href="/text2me/business/">
-          <span class="card-icon peach">▧</span><span class="card-kicker">Договоры</span><h3>Договориться заранее и письменно</h3><p>Аренда квартиры, ремонт, услуги мастера, передача вещи или договорённость о сроках и оплате.</p><span class="card-link">Каталог для бизнеса <b>→</b></span>
+        <a class="choice-card portal-card" data-search="договор счёт акт коммерческое предложение письмо клиент бизнес" href="/text2me/business/">
+          <span class="card-icon">▧</span><span class="card-kicker">Бизнес</span><h3>Нужно оформить договорённость с клиентом</h3><p>Перейти к материалам для деловой переписки и документов компании.</p><span class="card-link">Для бизнеса <b>→</b></span>
         </a>
-        <a class="choice-card portal-card" data-search="инструкция база знаний порядок действий сроки документы справка" href="/text2me/knowledge/">
-          <span class="card-icon blue">?</span><span class="card-kicker">Справочная информация</span><h3>Разобраться, прежде чем действовать</h3><p>Что сохранить, кому написать, какие даты важны и что спросить, если ответ непонятен.</p><span class="card-link">Открыть базу знаний <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="посылка доставка заказ курьер потерялась не пришла" href="/text2me/knowledge/">
-          <span class="card-icon blue">□</span><span class="card-kicker">Заказы и доставка</span><h3>Заказ не пришёл или потерялся</h3><p>Сохранить номер заказа, проверить статус и написать продавцу или службе доставки.</p><span class="card-link">Что проверить <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="подписка автоплатеж списание банк карта деньги отменить" href="/text2me/knowledge/">
-          <span class="card-icon lavender">₽</span><span class="card-kicker">Банк и подписки</span><h3>Списали деньги непонятно за что</h3><p>Найти название операции, проверить подписки и подготовить обращение в поддержку.</p><span class="card-link">Разобраться с оплатой <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="соседи шум ремонт музыка мусор парковка конфликт" href="/text2me/knowledge/">
-          <span class="card-icon mint">⌂</span><span class="card-kicker">Соседи и двор</span><h3>Возникла проблема с соседями</h3><p>Как зафиксировать ситуацию, начать разговор и понять, куда обращаться, если это не помогло.</p><span class="card-link">Посмотреть варианты <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="врач поликлиника запись справка школа детский сад документы" href="/text2me/people/">
-          <span class="card-icon peach">✎</span><span class="card-kicker">Справки и записи</span><h3>Нужна справка или запись</h3><p>Подготовить вопросы, проверить список документов и написать запрос без лишней путаницы.</p><span class="card-link">Подготовиться заранее <b>→</b></span>
-        </a>
-
-        <a class="choice-card portal-card" data-search="поздравление день рождения юбилей праздник пожелание тост открытка" href="#create">
-          <span class="card-icon peach">♡</span><span class="card-kicker">Личные события</span><h3>Поздравления и пожелания</h3><p>На день рождения, юбилей, свадьбу, праздник или просто так — с учётом человека, повода и нужного тона.</p><span class="card-link">Подготовить поздравление <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="подпись фото социальные сети статус короткий текст публикация" href="#create">
-          <span class="card-icon lavender">✎</span><span class="card-kicker">Короткие тексты</span><h3>Подпись к фото или публикации</h3><p>Коротко, с юмором, тепло, нейтрально или профессионально — для разных площадок и ситуаций.</p><span class="card-link">Подобрать подпись <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="продающий текст реклама карточка товара описание услуги предложение маркетинг" href="#create">
-          <span class="card-icon blue">↗</span><span class="card-kicker">Продажи и продвижение</span><h3>Продающий текст и описание товара</h3><p>Текст для объявления, сайта, карточки товара, услуги, рассылки или коммерческого предложения.</p><span class="card-link">Подготовить текст <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="доклад реферат диплом учебная работа план конспект урок учебные материалы" href="#create">
-          <span class="card-icon mint">▤</span><span class="card-kicker">Учёба и обучение</span><h3>Доклады, дипломы и учебные материалы</h3><p>План, структура, тезисы, конспект, памятка, задания и материалы для объяснения темы.</p><span class="card-link">Описать учебную задачу <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="иск суд исковое заявление возражение ходатайство жалоба юридический документ" href="/text2me/people/">
-          <span class="card-icon lavender">§</span><span class="card-kicker">Официальные документы</span><h3>Иски, жалобы и заявления</h3><p>Подготовка черновика по введённым фактам и шаблону с обязательной проверкой перед подачей.</p><span class="card-link">Посмотреть документы <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="таблица список план график расчёт сравнение данные структура" href="#create">
-          <span class="card-icon blue">▦</span><span class="card-kicker">Данные и планирование</span><h3>Таблицы, списки и планы</h3><p>Сравнения, графики работ, списки покупок, планы расходов и структурированные данные.</p><span class="card-link">Подготовить структуру <b>→</b></span>
+        <a class="choice-card portal-card" data-search="заявление жалоба обращение документ письмо черновик" href="/text2me/people/">
+          <span class="card-icon">✎</span><span class="card-kicker">Документы</span><h3>Нужно написать заявление или обращение</h3><p>Выбрать тип документа и подготовить понятный черновик для дальнейшей проверки.</p><span class="card-link">Выбрать документ <b>→</b></span>
         </a>
       </div>
-      <p class="empty-state" id="empty-state" hidden>Ничего не найдено. Попробуйте другой запрос или выберите направление выше.</p>
+      <p class="empty-state" id="empty-state" hidden>Не нашли подходящую ситуацию. Попробуйте описать её другими словами или воспользуйтесь формой подбора решения выше.</p>
     </div>
   </section>
 
-  <section class="section section-muted" id="how-it-works">
-    <div class="container portal-split">
-      <div class="portal-intro">
-        <p class="eyebrow">Понятный маршрут</p>
-        <h2>От задачи к готовому материалу</h2>
-        <p>Для простого текста хватит короткого описания. Для официального документа можно будет заполнить поля, выбрать шаблон и проверить реквизиты перед сохранением.</p>
-        <a class="text-link" href="#create">Как подготовить нужный материал <span>→</span></a>
-      </div>
-      <div class="route-list">
-        <article class="route-item"><span class="route-number">01</span><div><h3>Опишите задачу</h3><p>Кратко изложите ситуацию и желаемый результат.</p></div></article>
-        <article class="route-item"><span class="route-number">02</span><div><h3>Уточните важные сведения</h3><p>Подготовьте даты, участников, суммы и подтверждающие материалы, если они нужны.</p></div></article>
-        <article class="route-item"><span class="route-number">03</span><div><h3>Изучите порядок действий</h3><p>Проверьте требования, ограничения и возможные следующие шаги.</p></div></article>
-        <article class="route-item"><span class="route-number">04</span><div><h3>Сохраните и проверьте результат</h3><p>Предусматриваются копирование, выгрузка в файл, шаблоны и конвертация документов в PDF.</p></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="knowledge">
+  <section class="section" id="official-links">
     <div class="container">
       <div class="section-heading">
-        <div><p class="eyebrow">Разные задачи — одно место</p><h2>Не только официальные документы</h2></div>
-        <p>От короткой подписи до объёмного доклада — сервис задуман для любых материалов, которые нужно написать, оформить, отредактировать или отправить.</p>
+        <div><p class="eyebrow">Проверенные точки входа</p><h2>Официальные ресурсы</h2></div>
+        <p>Для заявлений, платежей и правовых вопросов переходите на сайты соответствующих ведомств.</p>
       </div>
-      <div class="knowledge-grid">
-        <a class="knowledge-card" href="/text2me/knowledge/"><span class="knowledge-icon">☷</span><span class="knowledge-label">Пошаговые инструкции</span><h3>Что делать и в каком порядке</h3><p>Последовательность действий, необходимые сведения и типичные ошибки.</p><span class="knowledge-link">Открыть базу знаний →</span></a>
-        <a class="knowledge-card" href="/text2me/people/"><span class="knowledge-icon">⌂</span><span class="knowledge-label">Для повседневных задач</span><h3>Права, обращения и документы</h3><p>Объяснения для личных ситуаций и ссылки на источники, которые нужно проверить.</p><span class="knowledge-link">Материалы для населения →</span></a>
-        <a class="knowledge-card" href="/text2me/business/"><span class="knowledge-icon">▤</span><span class="knowledge-label">Для рабочих процессов</span><h3>Документы и правила для бизнеса</h3><p>Типы документов, условия, реквизиты и контрольные списки перед оформлением.</p><span class="knowledge-link">Материалы для бизнеса →</span></a>
-      </div>
-      <div class="knowledge-note"><span class="knowledge-note-icon">i</span><p><strong>Важно:</strong> сложные документы, особенно юридические и официальные, перед отправкой нужно внимательно проверить: данные, факты, даты, реквизиты и применимые требования.</p></div>
-    </div>
-  </section>
-
-
-  <section class="section" id="create">
-    <div class="container">
-      <div class="section-heading">
-        <div><p class="eyebrow">Свободный формат</p><h2>Если нет подходящего шаблона</h2></div>
-        <p>Необычную задачу можно будет описать своими словами: что нужно получить, для кого, в каком стиле и в каком формате.</p>
-      </div>
-      <div class="knowledge-grid">
-        <article class="knowledge-card"><span class="knowledge-icon">✍</span><span class="knowledge-label">Текст по описанию</span><h3>Напишите, что требуется</h3><p>Письмо, речь, объявление, план мероприятия, сценарий, инструкция, памятка, описание проекта или другой текст.</p></article>
-        <article class="knowledge-card"><span class="knowledge-icon">▧</span><span class="knowledge-label">Оформление</span><h3>Задайте формат и стиль</h3><p>Официально или по-домашнему, коротко или подробно, списком, таблицей, докладом или готовым документом.</p></article>
-        <article class="knowledge-card"><span class="knowledge-icon">↻</span><span class="knowledge-label">Доработка</span><h3>Приведите готовый текст в порядок</h3><p>Перепишите понятнее, сократите, исправьте ошибки, смените тон, соберите из заметок связный материал.</p></article>
+      <div class="official-grid">
+        <a href="https://www.gosuslugi.ru/landing/forcitizens" target="_blank" rel="noopener noreferrer"><strong>Госуслуги</strong><span>Государственные услуги и жизненные ситуации</span><b>↗</b></a>
+        <a href="https://www.rospotrebnadzor.ru/" target="_blank" rel="noopener noreferrer"><strong>Роспотребнадзор</strong><span>Защита прав потребителей и санитарные вопросы</span><b>↗</b></a>
+        <a href="https://онлайнинспекция.рф/" target="_blank" rel="noopener noreferrer"><strong>Онлайнинспекция.рф</strong><span>Вопросы трудовых прав и обращение в инспекцию труда</span><b>↗</b></a>
+        <a href="https://www.nalog.gov.ru/" target="_blank" rel="noopener noreferrer"><strong>ФНС России</strong><span>Налоги, вычеты и налоговые сервисы</span><b>↗</b></a>
       </div>
     </div>
   </section>
-  <section class="section section-muted" id="files">
-    <div class="container portal-split">
-      <div class="portal-intro">
-        <p class="eyebrow">Документы и файлы</p>
-        <h2>Загрузить, преобразовать, сохранить</h2>
-        <p>Планируется работа с пользовательскими файлами: загрузка документа, подготовка содержимого к редактированию и конвертация в PDF при необходимости.</p>
-      </div>
-      <div class="route-list">
-        <article class="route-item"><span class="route-number">01</span><div><h3>Загрузить свой документ</h3><p>Использовать файл как основу для редактирования, продолжения или подготовки новой версии.</p></div></article>
-        <article class="route-item"><span class="route-number">02</span><div><h3>Получить нужный формат</h3><p>Предусматриваются выгрузка готового материала и преобразование в PDF. Конвертация пока заявлена как будущая возможность.</p></div></article>
-        <article class="route-item"><span class="route-number">03</span><div><h3>Вернуться к материалам</h3><p>В личном кабинете планируется хранение черновиков, документов и истории работы.</p></div></article>
-      </div>
-    </div>
-  </section>
-  <section class="section" id="account">
-    <div class="container portal-split">
-      <div class="portal-intro">
-        <p class="eyebrow">Персональные инструменты</p>
-        <h2>Личный кабинет и автозаполнение</h2>
-        <p>Цель — не заставлять человека каждый раз заполнять всё заново. Сохранённые сведения и шаблоны смогут ускорить повторную подготовку документов.</p>
-      </div>
-      <div class="route-list">
-        <article class="route-item"><span class="route-number">01</span><div><h3>Заполнить шаблон по данным</h3><p>Ввести ИНН, фамилию или другой идентификатор — и подставить доступные сведения в соответствующие поля, когда источник и правила обработки это позволяют.</p></div></article>
-        <article class="route-item"><span class="route-number">02</span><div><h3>Сохранить свои шаблоны</h3><p>Повторно использовать реквизиты, типовые формулировки и структуру документов, не начиная с нуля.</p></div></article>
-        <article class="route-item"><span class="route-number">03</span><div><h3>Управлять своими файлами</h3><p>Просматривать, продолжать и скачивать сохранённые материалы. Личный кабинет ещё предстоит разработать.</p></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-muted">
-    <div class="container portal-bottom-grid">
-      <div><p class="eyebrow">Открытая структура</p><h2>Сохраняйте нужное и возвращайтесь к работе</h2><p>В дальнейшем личный кабинет позволит хранить свои материалы, возвращаться к черновикам и повторно использовать заполненные данные и шаблоны.</p></div>
-      <div class="portal-bottom-links">
-        <a href="/text2me/knowledge/"><span><strong>База знаний</strong><small>Инструкции, ответы и источники</small></span><b>→</b></a>
-        <a href="/text2me/people/"><span><strong>Для населения</strong><small>Личные вопросы и обращения</small></span><b>→</b></a>
-        <a href="/text2me/business/"><span><strong>Для бизнеса</strong><small>Договоры и рабочие документы</small></span><b>→</b></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section"><div class="container cta-inner"><div><p class="eyebrow">Проект в разработке</p><h2>Опишите ситуацию своими словами</h2><p>Сервис расширяется. Некоторые возможности находятся в планах и пока не работают на сайте. Перед отправкой официальных и юридических документов проверяйте содержание и реквизиты.</p></div><a class="button button-light" href="#catalog">Найти направление <span>→</span></a></div></section>
 </main>
-<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Тексты, документы и материалы для разных задач.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Населению</a><a href="/text2me/business/">Бизнесу</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/README.md">О проекте</a></nav></div><div class="container footer-bottom"><span>© text2me · Концепт сайта</span><span>Материалы носят справочный характер и не являются индивидуальной юридической консультацией.</span></div></footer>
+<footer class="site-footer">
+  <div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span>text2me<span class="brand-dot">.</span>ru</span></a><p>От жизненной ситуации — к понятному следующему шагу.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Документы для населения</a><a href="/text2me/business/">Для бизнеса</a><a href="/text2me/knowledge/">Принципы качества</a></nav></div>
+  <div class="container footer-bottom"><span>© text2me</span><span>Внешние ссылки ведут на сайты соответствующих организаций. Проверяйте применимость информации к своей ситуации.</span></div>
+</footer>
 </body>
 </html>
