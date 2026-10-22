@@ -221,6 +221,7 @@ var response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"applic
 var payload=await response.json().catch(function(){return {}});
 if(!response.ok||!payload.result){var messages={invalid_inn:"ИНН должен содержать 10 или 12 цифр.",not_found:"По этому ИНН организация или ИП не найдены.",service_not_configured:"Серверная интеграция не настроена.",provider_error:"DaData временно не отвечает.",upstream_unavailable:"Не удалось связаться с DaData."};throw new Error(messages[payload.error]||payload.message||"Проверка не выполнена. Попробуйте позже.")}
 found=payload.result;
+var previousFields=resultBox.querySelector(".dadata-party-fields");if(previousFields)previousFields.remove();
 var dl=el("dl",{class:"dadata-party-fields"});
 [["Наименование",found.name],["ИНН",found.inn],["КПП",found.kpp],["ОГРН",found.ogrn],["Адрес",found.address],["Руководитель",found.manager],["Статус",({ACTIVE:"Действует",LIQUIDATING:"В процессе ликвидации",LIQUIDATED:"Ликвидирована",BANKRUPT:"Банкротство",REORGANIZING:"Реорганизация"})[found.status]||found.status],["Отметка о недостоверности",found.invalid?"Есть отметка в данных сервиса":"Не указана"]].forEach(function(pair){if(!pair[1])return;dl.appendChild(el("dt",{},pair[0]));dl.appendChild(el("dd",{},String(pair[1])));});
 resultBox.insertBefore(dl,apply);resultBox.hidden=false;apply.disabled=false;
@@ -231,6 +232,8 @@ finally{lookup.disabled=false;lookup.textContent="Проверить ИНН"}
 }
 panelFor(document.getElementById("claim-builder"),{target:".form-grid",nameTarget:"#seller-name",addressTarget:"#seller-address",innTarget:"#seller-inn"});
 panelFor(document.getElementById("rental-builder"),{target:".rental-form-grid",nameTarget:"#rental-landlord",innTarget:"#rental-inn"});
+panelFor(document.getElementById("court-builder"),{target:".form-grid",nameTarget:"#plaintiff-name",addressTarget:"#plaintiff-address",innTarget:"#plaintiff-inn"});
+panelFor(document.getElementById("court-builder"),{target:".form-grid",nameTarget:"#defendant-name",addressTarget:"#defendant-address",innTarget:"#defendant-inn"});
 }
 function initDocumentCapture(){
 var header=document.querySelector(".site-header .header-inner")||document.querySelector(".workspace-header")||document.querySelector(".dash-header");
