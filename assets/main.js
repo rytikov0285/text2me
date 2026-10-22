@@ -247,6 +247,42 @@
     });
   }
 
+  function digitsOnly(value) { return String(value || "").replace(/\D/g, ""); }
+  function validInn(value) {
+    var d = digitsOnly(value);
+    if (d.length === 10) return [2,4,10,3,5,9,4,6,8].reduce(function(s,w,i){return s+w*Number(d[i]);},0)%11%10 === Number(d[9]);
+    if (d.length === 12) {
+      var c11=[7,2,4,10,3,5,9,4,6,8].reduce(function(s,w,i){return s+w*Number(d[i]);},0)%11%10;
+      var c12=[3,7,2,4,10,3,5,9,4,6,8].reduce(function(s,w,i){return s+w*Number(d[i]);},0)%11%10;
+      return c11===Number(d[10]) && c12===Number(d[11]);
+    }
+    return false;
+  }
+  function validSnils(value) {
+    var d=digitsOnly(value); if(d.length!==11) return false;
+    if(Number(d.slice(0,9))<1001998) return true;
+    var sum=0; for(var i=0;i<9;i++) sum+=Number(d[i])*(9-i);
+    var check=sum%101; if(check===100||check===101) check=0;
+    return check===Number(d.slice(9));
+  }
+  function setIdentityValidity(id,kind) {
+    var node=document.getElementById(id); if(!node) return;
+    var value=node.value.trim(), message="";
+    if(value && kind==="inn" && !validInn(value)) message="Проверьте длину и контрольные цифры ИНН.";
+    if(value && kind==="snils" && !validSnils(value)) message="Проверьте формат и контрольное число СНИЛС.";
+    node.setCustomValidity(message); node.setAttribute("aria-invalid",message?"true":"false");
+  }
+  ["plaintiff-inn","defendant-inn"].forEach(function(id){var n=document.getElementById(id);if(n){["input","blur"].forEach(function(ev){n.addEventListener(ev,function(){setIdentityValidity(id,"inn");});});}});
+  ["plaintiff-snils"].forEach(function(id){var n=document.getElementById(id);if(n){["input","blur"].forEach(function(ev){n.addEventListener(ev,function(){setIdentityValidity(id,"snils");});});}});
+  var courtPriceInput=document.getElementById("court-price");
+  if(courtPriceInput) courtPriceInput.addEventListener("input",function(){var v=courtPriceInput.value.trim();courtPriceInput.setCustomValidity(v&&(!Number.isFinite(Number(v))||Number(v)<=0)?"Укажите сумму больше нуля или оставьте поле пустым.":"");});
+  var readinessButton=document.getElementById("court-readiness-check");
+  if(readinessButton) readinessButton.addEventListener("click",function(){
+    var checks=Array.prototype.slice.call(document.querySelectorAll("#court-readiness input[type=checkbox]"));
+    var checked=checks.filter(function(x){return x.checked;}).length, missing=checks.filter(function(x){return !x.checked;}).map(function(x){return x.parentElement.textContent.trim();});
+    var status=document.getElementById("court-readiness-status"); if(!status)return;
+    status.textContent=checked===checks.length?"Отмечены все 5 пунктов. Это не подтверждает юридическую готовность: проверьте требования для вашего вида дела.":"Отмечено "+checked+" из "+checks.length+". Проверьте: "+missing.join("; ")+". Некоторые пункты могут быть неприменимы.";
+  });
   var courtForm = document.getElementById("court-builder");
   if (courtForm) {
     var courtOutput = document.getElementById("court-output");
@@ -274,9 +310,13 @@
       lines.push("");
       lines.push("Истец: " + (plaintiff || "[ФИО или наименование истца]"));
       lines.push("Адрес истца: " + (plaintiffAddress || "[укажите адрес, если он требуется для выбранного порядка]"));
+      var plaintiffInn=courtField("plaintiff-inn"), plaintiffSnils=courtField("plaintiff-snils"), defendantInn=courtField("defendant-inn");
+      if(plaintiffInn) lines.push("ИНН истца: "+digitsOnly(plaintiffInn));
+      if(plaintiffSnils) lines.push("СНИЛС истца: "+digitsOnly(plaintiffSnils));
       if (plaintiffContact) lines.push("Контактные данные истца: " + plaintiffContact);
       lines.push("Ответчик: " + (defendant || "[ФИО или наименование ответчика]"));
       if (defendantAddress) lines.push("Адрес ответчика: " + defendantAddress);
+      if(defendantInn) lines.push("ИНН ответчика: "+digitsOnly(defendantInn));
       lines.push("");
       lines.push("ИСКОВОЕ ЗАЯВЛЕНИЕ");
       lines.push("о " + (caseType || "[укажите предмет иска]"));
@@ -319,6 +359,8 @@
     }
     courtForm.addEventListener("submit", function (event) {
       event.preventDefault();
+      ["plaintiff-inn","defendant-inn"].forEach(function(id){setIdentityValidity(id,"inn");});
+      ["plaintiff-snils"].forEach(function(id){setIdentityValidity(id,"snils");});
       if (!courtForm.reportValidity()) return;
       courtOutput.textContent = makeCourtDraft();
       courtResult.hidden = false;
