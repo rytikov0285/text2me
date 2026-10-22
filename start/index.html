@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Подбор по ситуации и ИИ-помощник — text2me</title>
+  <meta name="description" content="Найдите документ по ситуации или названию, используйте инструменты для PDF и подписи, получите ориентир для следующего шага и сохраните полезное в своём пространстве.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://rytikov0285.github.io/text2me/start/">
+  <link rel="stylesheet" href="/text2me/assets/style.css">
+  <link rel="stylesheet" href="/text2me/assets/enhancements.css">
+  <script defer src="/text2me/assets/main.js"></script>
+  <script defer src="/text2me/assets/enhancements.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Подбор по ситуации и ИИ-помощник — text2me">
+  <meta property="og:description" content="Опишите задачу, выберите ситуацию или воспользуйтесь демонстрационным помощником, чтобы найти подходящий раздел и подготовить черновик.">
+  <meta property="og:url" content="https://rytikov0285.github.io/text2me/">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/text2me/" aria-label="text2me — главная"><span>text2me<span class="brand-dot">.</span>ru</span></a>
+    <nav class="main-nav" aria-label="Тематические комнаты"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/knowledge/">Знания</a><a href="/text2me/business/">Организации и бизнес</a><a href="/text2me/prompts/">Тексты и инструменты</a><a href="/text2me/documents/">Документы</a><a href="/text2me/space/">Моё пространство</a></nav>
+    <a class="button button-small" href="/text2me/">Входное пространство</a>
+  </div>
+</header>
+<nav class="room-breadcrumb container" aria-label="Навигационная цепочка"><a href="/text2me/">Входное пространство</a><span aria-hidden="true">/</span><span aria-current="page">Подбор по ситуации</span></nav>
+<main id="main">
+  <section class="portal-hero">
+    <div class="container">
+      <div class="portal-heading">
+        <p class="eyebrow">Документы для жизни, работы и бизнеса</p><h1>Нужен документ?<br><span class="text-gradient">Начните с результата.</span></h1>
+        <p class="portal-lead">Опишите ситуацию, найдите документ по названию или начните с ИИ-помощника. Вы получите понятный следующий шаг, ориентир по адресату и основу документа, когда для задачи есть подходящий сценарий.</p>
+      </div>
+      <div class="portal-search-wrap">
+        <form class="search-box portal-search" role="search" id="document-search">
+          <label class="sr-only" for="search-input">Найти ответ на свой вопрос</label>
+          <input id="search-input" name="q" type="search" placeholder="Например: вернуть деньги, проблема с домом, зарплата…" autocomplete="off">
+          <button class="button" type="submit">Найти</button>
+        </form>
+        <p class="search-status" id="search-status" aria-live="polite"></p>
+        <div class="popular-chips" aria-label="Популярные документы"><span>Популярное:</span><button type="button" data-search-chip="договор аренды">Договор аренды</button><button type="button" data-search-chip="доверенность на авто">Доверенность на авто</button><button type="button" data-search-chip="заявление на увольнение">Заявление на увольнение</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button></div>
+      </div>
+      <div class="portal-path-links" aria-label="Выберите способ начать"><a href="#route-builder"><strong>1. По ситуации</strong><span>Расскажите, что произошло</span></a><a href="#catalog"><strong>2. По названию</strong><span>Найдите конкретный документ</span></a><a href="#ai-path"><strong>3. Через ИИ</strong><span>Опишите задачу своими словами</span></a></div>
+      <div class="portal-quicklinks task-buttons" id="quick-actions" aria-label="Популярные вопросы">
+        <a href="#need-result" data-route-preset="consumer" data-route-goal="document" data-route-detail="refund"><span>↩</span> Вернуть деньги за товар <b>→</b></a>
+        <a href="#need-result" data-route-preset="housing" data-route-goal="official" data-route-detail="maintenance"><span>⌂</span> Проблема с ЖКХ <b>→</b></a>
+        <a href="#need-result" data-route-preset="work" data-route-goal="official" data-route-detail="salary"><span>₽</span> Не платят зарплату <b>→</b></a>
+        <a href="#need-result" data-route-preset="money" data-route-goal="understand" data-route-detail="unknown-charge"><span>↗</span> Непонятное списание <b>→</b></a>
+        <a href="#need-result" data-route-preset="court" data-route-goal="document" data-route-detail="claim"><span>§</span> Подать в суд <b>→</b></a>
+        <a href="#need-result" data-route-preset="government" data-route-goal="official" data-route-detail="document"><span>✓</span> Нужна справка или услуга <b>→</b></a>
+        <a href="#need-result" data-route-preset="consumer" data-route-goal="document" data-route-detail="defect"><span>✎</span> Написать претензию <b>→</b></a>
+        <a href="#need-result" data-route-preset="business" data-route-goal="contact" data-route-detail="client"><span>▤</span> Написать деловое письмо <b>→</b></a>
+        <a href="#route-builder" data-route-preset="other" data-route-goal="understand" data-route-detail="advice"><span>…</span> Другая задача <b>→</b></a>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+  <section class="section" id="catalog">
+    <div class="container">
+      <div class="section-heading"><div><p class="eyebrow">Второй путь — по названию</p><h2>Знаете, какой документ нужен?</h2></div><p>Не обязательно описывать всю историю. Начните с названия документа и уточните, подходит ли он к вашей ситуации.</p></div>
+      <div class="document-category-grid" id="catalog-cards">
+        <a class="document-category" data-search-item data-search="договор аренды договор жильё недвижимость бизнес граждане" href="/text2me/business/"><span class="category-count">Договоры</span><h3>Договор аренды</h3><p>Начните с типа аренды, сторон и условий. Конкретный шаблон нужно подобрать под обстоятельства.</p><span class="card-link">Подобрать направление <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="доверенность на авто доверенность автомобиль представитель" href="/text2me/prompts/"><span class="category-count">Доверенности</span><h3>Доверенность на авто</h3><p>Уточните, какие действия должен совершать представитель и нужна ли специальная форма.</p><span class="card-link">Посмотреть каталог <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="заявление на увольнение заявление работа трудовой договор" href="/text2me/people/"><span class="category-count">Заявления</span><h3>Заявление на увольнение</h3><p>Сверьте формулировку с основанием и датами. Порядок зависит от обстоятельств трудовых отношений.</p><span class="card-link">Выбрать сценарий <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="претензия продавцу товар возврат деньги покупки" href="/text2me/documents/pretenziya-prodavtsu/"><span class="category-count">Претензии</span><h3>Претензия продавцу</h3><p>Соберите сведения о покупке, недостатке и желаемом результате; черновик формируется в браузере.</p><span class="card-link">Открыть конструктор <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="иск в суд исковое заявление судебный спор взыскание" href="/text2me/documents/isk-v-sud/"><span class="category-count">Судебные документы</span><h3>Исковое заявление</h3><p>Сначала определите требования, ответчика, доказательства и процессуальные условия.</p><span class="card-link">Перейти к материалу <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="деловое письмо коммерческое предложение акт компания бизнес" href="/text2me/business/"><span class="category-count">Деловые документы</span><h3>Письмо или коммерческое предложение</h3><p>Подберите формат под адресата, цель общения и желаемое действие.</p><span class="card-link">Для организаций <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="акт выполненных работ акт приёма передачи расписка" href="/text2me/business/"><span class="category-count">Акты и расписки</span><h3>Акт или расписка</h3><p>Зафиксируйте событие, передачу, выполнение работ или получение денег в подходящей форме.</p><span class="card-link">Для деловых задач <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="кадровые документы бухгалтерские приказ отпуск расчёт" href="/text2me/business/"><span class="category-count">Кадры и бухгалтерия</span><h3>Кадровый или расчётный документ</h3><p>Определите вид документа и исходные данные. Перед применением проверьте требования и основания.</p><span class="card-link">Выбрать направление <b>→</b></span></a>
+        <a class="document-category" data-search-item data-search="доклад диплом учебная работа аналитический отчёт исследование" href="/text2me/prompts/"><span class="category-count">Учёба и аналитика</span><h3>Доклад или аналитический отчёт</h3><p>Сформулируйте тему, аудиторию, источники и требования к структуре и объёму.</p><span class="card-link">Открыть каталог задач <b>→</b></span></a>
+      </div>
+      <p class="empty-state" id="empty-state" hidden>Подходящих направлений не найдено. Попробуйте другое название или откройте полный каталог задач.</p>
+      <p class="catalog-disclaimer">Фильтры используют текст карточек и помогают сузить выбор; результат — ориентир, не экспертная классификация.</p><p class="catalog-disclaimer">Это стартовая подборка, а не заявление о размере полной базы. Если нужного документа пока нет, каталог покажет ближайшее направление или сообщит об ограничениях.</p>
+    </div>
+  </section>
+
+  <section class="section section-muted" id="tools">
+    <div class="container">
+      <div class="section-heading"><div><p class="eyebrow">Не только генерация</p><h2>Инструменты для работы с документами</h2></div><p>Подготовка текста — только один этап. Важно привести файл в порядок, проверить его и выбрать подходящий способ подписания.</p></div>
+      <div class="tool-grid">
+        <a class="tool-card" href="/text2me/prompts/"><span class="tool-icon">PDF</span><h3>PDF и файлы</h3><p>Найдите подходящий способ работы с документом и требованиями к формату. Онлайн-обработка файлов пока не подключена.</p><span>Инструменты и сценарии →</span></a>
+        <a class="tool-card" href="/text2me/knowledge/"><span class="tool-icon">✓</span><h3>Подпись и проверка</h3><p>Разберитесь, какой вид подписи и какие проверки могут понадобиться. Сервис пока не подписывает документы за пользователя.</p><span>Узнать больше →</span></a>
+        <a class="tool-card" href="/text2me/documents/pretenziya-prodavtsu/"><span class="tool-icon">▤</span><h3>Конструктор документа</h3><p>Заполните поля и получите локальный черновик претензии. Данные формы не отправляются на сервер.</p><span>Открыть пример →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ai-path">
+    <div class="container ai-path-layout">
+      <div><p class="eyebrow">Третий путь — через ИИ</p><h2>Не знаете название документа? Начните с вопроса.</h2><p>Опишите задачу обычными словами. ИИ-путь должен помочь определить цель, задать необходимые уточнения и подобрать направление — без выдуманных фактов и обещаний гарантированного результата.</p><p class="field-help">Демонстрация интерфейса: подключение ИИ к форме пока не выполнено.</p></div>
+      <form id="ai-path-form" class="ai-path-form">
+        <label for="ai-path-input">Что вы хотите решить?</label>
+        <textarea id="ai-path-input" rows="4" maxlength="1200" placeholder="Например: снимаю квартиру, хочу зафиксировать условия и ответственность сторон…"></textarea>
+        <button class="button" type="submit">Подобрать направление</button>
+        <p id="ai-path-status" class="field-help" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section route-builder-section" id="route-builder">
+    <div class="container">
+      <div class="section-heading">
+        <div><p class="eyebrow">Не нашли свой вопрос?</p><h2>Расскажите, что случилось</h2></div>
+        <p>Не нашли подходящее? Расскажите, что случилось и чего хотите добиться.</p>
+      </div>
+      <form id="need-form" class="need-form">
+        <div class="need-form-grid">
+          <div class="form-field">
+            <label for="need-area">С чем связан вопрос?</label>
+            <select id="need-area" name="area" required>
+              <option value="">Выберите тему</option>
+              <option value="consumer">Покупка, товар или услуга</option>
+              <option value="housing">Дом, ЖКХ или соседи</option>
+              <option value="work">Работа и работодатель</option>
+              <option value="money">Деньги, платежи или долг</option>
+              <option value="government">Государственная услуга или справка</option>
+              <option value="business">Бизнес, договор или деловое письмо</option>
+              <option value="court">Суд, иск или судебный спор</option>
+              <option value="other">Другое / пока не знаю</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="need-goal">Чего хотите добиться?</label>
+            <select id="need-goal" name="goal" required>
+              <option value="">Выберите результат</option>
+              <option value="understand">Понять, что делать и куда обращаться</option>
+              <option value="document">Подготовить заявление, жалобу или претензию</option>
+              <option value="official">Найти официальный сервис или подать заявление</option>
+              <option value="money">Вернуть деньги / добиться выплаты</option>
+              <option value="contact">Составить письмо или обращение</option>
+            </select>
+          </div>
+          <div class="form-field" id="need-detail-wrap" hidden>
+            <label for="need-detail">Что именно произошло?</label>
+            <select id="need-detail" name="detail">
+              <option value="">Что ближе к вашей ситуации?</option>
+            </select>
+          </div>
+          <div class="form-field" id="need-status-wrap" hidden>
+            <label for="need-status">На каком этапе ситуация?</label>
+            <select id="need-status" name="status">
+              <option value="">Что уже произошло?</option>
+              <option value="not-contacted">Ещё никуда не обращался</option>
+              <option value="waiting">Обратился, жду ответ</option>
+              <option value="refused">Получил отказ или ответ не решил вопрос</option>
+              <option value="deadline">Срок ответа или исполнения прошёл</option>
+              <option value="unsure">Не знаю, как определить этап</option>
+            </select>
+          </div>
+          <div class="form-field form-field-full">
+            <label for="need-description">Расскажите своими словами</label>
+            <textarea id="need-description" name="description" rows="3" maxlength="1800" placeholder="Что случилось? Кто участвует? Что вы уже пробовали? Какой ответ или результат получили?"></textarea>
+            <p class="field-help">Даты и подробности помогут точнее подсказать следующий шаг. Текст пока остаётся в этом браузере.</p>
+          </div>
+        </div>
+        <div class="builder-actions"><button class="button" type="submit">Подсказать, с чего начать</button><button class="button button-outline" type="reset">Начать заново</button></div>
+      </form>
+      <div id="need-result" class="need-result" hidden aria-live="polite">
+        <p class="eyebrow">Что можно сделать дальше</p>
+        <h3 id="need-result-title">Следующий шаг</h3>
+        <p id="need-result-copy"></p>
+        <div id="need-result-links" class="route-result-links"></div>
+        <p class="field-help">Это подсказка для старта, не юридическое заключение и не гарантия выплаты. Перед обращением проверьте условия на официальном сайте.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted" id="space"><div class="container"><div class="section-heading"><div><p class="eyebrow">Продолжить позже</p><h2>Моё пространство</h2></div><p>Сохраняйте сформированные документы, группируйте их по коллекциям и экспортируйте данные. В текущей версии всё хранится локально в вашем браузере.</p></div><div class="space-preview"><article><h3>Черновики и документы</h3><p>Автосохранение форм и сохранение сформированного текста на этом устройстве.</p></article><article><h3>Коллекции и теги</h3><p>Собирайте материалы по ситуации, проекту или делу.</p></article><article><h3>Экспорт и импорт</h3><p>Экспорт JSON и импорт CSV UTF-8 из Excel. Облачная синхронизация и прямой XLSX пока не доступны.</p></article></div><p><a class="button" href="/text2me/space/">Открыть Моё пространство</a></p></div></section>
+</main>
+  <section class="section audience-section" id="audiences"><div class="container"><div class="section-heading"><div><p class="eyebrow">Шесть направлений</p><h2>Выберите свою рабочую задачу</h2></div><p>Документы нужны в разных обстоятельствах. Мы разделяем материалы по задачам и типу работы, чтобы быстрее привести вас к подходящему сценарию.</p></div><div class="audience-grid"><a href="/text2me/people/"><strong>Гражданам</strong><span>Заявления, обращения, претензии и повседневные вопросы.</span></a><a href="/text2me/business/"><strong>Предпринимателям</strong><span>Договоры, счета, предложения и переписка с клиентами.</span></a><a href="/text2me/business/"><strong>Компаниям и руководителям</strong><span>Регламенты, деловые документы и повторяющиеся процессы.</span></a><a href="/text2me/knowledge/"><strong>Юристам и правовым специалистам</strong><span>Черновики, проверочные списки, источники и структурирование материалов.</span></a><a href="/text2me/business/"><strong>Кадровикам и бухгалтерам</strong><span>Кадровые и расчётные документы с обязательной проверкой оснований.</span></a><a href="/text2me/prompts/"><strong>Студентам, преподавателям и исследователям</strong><span>Планы, доклады, учебные и аналитические материалы.</span></a></div></div></section>
+  <section class="section section-muted"><div class="container trust-layout"><div><p class="eyebrow">Без выдуманных обещаний</p><h2>Понятный процесс вместо громких цифр</h2></div><div class="trust-points"><p><strong>3 способа начать:</strong> по ситуации, по названию документа или через ИИ-путь.</p><p><strong>6 направлений аудитории:</strong> от личных вопросов до рабочих и учебных задач.</p><p><strong>Прозрачный статус:</strong> работающие демонстрационные формы отделены от функций, которые ещё не подключены.</p></div></div></section>
+<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span>text2me<span class="brand-dot">.</span>ru</span></a><p>Помощь с документами для граждан, специалистов и организаций.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Гражданам</a><a href="/text2me/business/">Бизнесу</a><a href="/text2me/prompts/">Каталог</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/knowledge/">База знаний</a></nav></div><div class="container footer-bottom"><span>Информационный сервис · Концепт</span><span>Проверяйте применимость документов и актуальность официальных источников.</span></div></footer>
+<a class="back-to-top" href="#main" data-back-to-top aria-label="Наверх" title="Наверх">↑</a>
+</body>
+</html>
