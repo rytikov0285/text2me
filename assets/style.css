@@ -550,3 +550,10 @@ a:hover{color:#0d548f}.brand-dot{color:#1769aa}.brand-mark,.site-footer .brand-m
 .space-status{padding:18px;border:1px solid #c8dced;border-radius:10px;background:#edf6ff;color:#284563;font-size:14px;line-height:1.7}
 @media(max-width:850px){.document-category-grid,.audience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid{grid-template-columns:1fr}.ai-path-layout,.trust-layout{grid-template-columns:1fr;gap:25px}}
 @media(max-width:600px){.document-category-grid,.audience-grid,.space-preview{grid-template-columns:1fr}.popular-chips{align-items:flex-start}.popular-chips>span{width:100%}.document-category{min-height:0}.back-to-top{right:12px;bottom:12px;width:42px;height:42px}}
+
+.portal-path-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:900px;margin:18px auto 0}
+.portal-path-links a{display:flex;flex-direction:column;gap:4px;padding:13px 15px;border:1px solid #b9d1e6;border-radius:9px;background:#fff}
+.portal-path-links a:hover{border-color:#1769aa;background:#f7fbff;color:#0d548f}
+.portal-path-links strong{font-size:13px}
+.portal-path-links span{color:#526783;font-size:11px;line-height:1.5}
+@media(max-width:600px){.portal-path-links{grid-template-columns:1fr}.portal-path-links a{padding:11px 13px}}
