@@ -8,7 +8,7 @@ function install(){
  function missing(d){
   var data=d&&d.data||{},required=[];
   if(d&&d.form==="court-builder")required=["plaintiff-name","defendant-name","court-case-type","court-facts","court-demands"];
-  else if(d&&d.form==="claim-builder")required=["claimant-name","seller-name","product-name","claim-demand"];
+  else if(d&&d.form==="claim-builder")required=["seller","buyer","product","defect","demand"];
   else return [];
   return required.filter(function(k){return !String(data[k]||"").trim()});
  }
@@ -41,7 +41,7 @@ function install(){
  }
  host.insertAdjacentElement("beforebegin",panel);
  refresh();
- if(window.MutationObserver){new MutationObserver(refresh).observe(host,{childList:true,subtree:true})}
+ if(window.MutationObserver){new MutationObserver(refresh).observe(host,{childList:true})}
  window.addEventListener("storage",refresh);
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
