@@ -117,6 +117,20 @@
         "https://sudrf.ru/"
       ],
       "status": "draft_only"
+    },
+    {
+      "document": "Договор найма жилого помещения",
+      "url": "/text2me/documents/dogovor-arendy/",
+      "situations": [
+        "/text2me/situations/#rental"
+      ],
+      "knowledge": [
+        "/text2me/knowledge/"
+      ],
+      "sources": [
+        "https://publication.pravo.gov.ru/"
+      ],
+      "status": "working"
     }
   ]
 }
