@@ -27,7 +27,7 @@ export default {
       let imageBody;
       try { imageBody = await request.json(); } catch { return new Response(JSON.stringify({ error: "invalid_json" }), { status: 400, headers }); }
       const mimeType = String(imageBody.mimeType || "").toLowerCase();
-      const content = String(imageBody.imageBase64 || "").replace(/^data:[^,]+,/, "").replace(/\\s/g, "");
+      const content = String(imageBody.imageBase64 || "").replace(/^data:[^,]+,/, "").replace(/\s/g, "");
       if (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(mimeType)) return new Response(JSON.stringify({ error: "unsupported_image", message: "Поддерживаются изображения JPG, PNG, WEBP и GIF. PDF пока не поддерживается." }), { status: 415, headers });
       if (!content || !/^[A-Za-z0-9+/]+={0,2}$/.test(content) || content.length > 7 * 1024 * 1024) return new Response(JSON.stringify({ error: "invalid_image", message: "Не удалось прочитать изображение или превышен лимит размера." }), { status: 400, headers });
       try {
