@@ -20,14 +20,101 @@ function addExports(outputId,baseName,title){var output=document.getElementById(
 function initExports(){addExports("claim-output","pretenziya-prodavtsu","Претензия продавцу");addExports("court-output","iskovoe-zayavlenie","Исковое заявление");addExports("rental-output","dogovor-nayma-zhilya","Договор найма жилого помещения");addExports("rental-act-output","akt-priema-peredachi","Акт приёма-передачи") }
 function initBrandAndFooter(){document.querySelectorAll(".brand").forEach(function(b){if(!b.querySelector(".brand-mark"))b.innerHTML='<span class="brand-mark" aria-hidden="true">t2</span><span>text2me<span class="brand-dot">.</span>ru</span>'});document.querySelectorAll(".site-footer nav").forEach(function(nav){[["/text2me/privacy/","Конфиденциальность"],["/text2me/security/","Безопасность данных"],["/text2me/terms/","Условия использования"],["/text2me/updates/","Что изменилось"]].forEach(function(pair){if(!nav.querySelector('a[href="'+pair[0]+'"]'))nav.appendChild(el("a",{href:pair[0]},pair[1]))})})}
 function initToolNav(){var header=document.querySelector(".site-header");if(!header||header.querySelector(".tool-nav"))return;var nav=el("nav",{class:"tool-nav","aria-label":"Инструменты"}),inner=el("div",{class:"container tool-nav-inner"});[["/text2me/prompts/","PDF и файлы","demo"],["/text2me/knowledge/","Подпись","demo"],["/text2me/documents/pretenziya-prodavtsu/","Конструктор","live"]].forEach(function(x){var a=el("a",{href:x[0]}),label=el("span",{},x[1]);a.appendChild(label);a.appendChild(statusBadge(x[2],x[2]==="live"?"Работает":"Демо"));inner.appendChild(a)});nav.appendChild(inner);header.appendChild(nav)}
-function initGlobalNavigation(){var main=document.querySelector("body > main")||document.querySelector(".dash-shell > main")||document.querySelector(".workspace-main");if(!main)return;var progress=el("div",{class:"reading-progress","aria-hidden":"true"});document.body.appendChild(progress);var top=document.querySelector("[data-back-to-top]");if(!top){top=el("a",{href:"#main",class:"back-to-top","data-back-to-top":"true","aria-label":"Наверх",title:"Наверх"},"↑");document.body.appendChild(top)}
-var path=location.pathname.toLowerCase(),section="Материалы",audience="Люди и организации",audienceHref="/text2me/people/";
-var routes=[["/text2me/people/","Для людей","Человек","/text2me/people/"],["/text2me/business/","Для организаций","Организация","/text2me/business/"],["/text2me/guides/","Инструкции","Люди и организации","/text2me/guides/"],["/text2me/documents/","Документы","Люди и организации","/text2me/documents/"],["/text2me/situations/","Жизненные ситуации","Люди и организации","/text2me/situations/"],["/text2me/knowledge/","Справочные материалы","Люди и организации","/text2me/knowledge/"],["/text2me/sources/","Официальные источники","Люди и организации","/text2me/sources/"],["/text2me/prompts/","Тексты и редактура","Люди и организации","/text2me/prompts/"],["/text2me/space/","Моё пространство","Личный кабинет","/text2me/space/"],["/text2me/updates/","Обновления","Люди и организации","/text2me/updates/"]];
-routes.forEach(function(r){if(path.indexOf(r[0])===0){section=r[1];audience=r[2];audienceHref=r[3]}});if(path.indexOf("/text2me/documents/dogovor-arendy/")===0){section="Договор найма жилья";audience="Люди";audienceHref="/text2me/people/"}else if(path.indexOf("/text2me/documents/pretenziya-prodavtsu/")===0){section="Претензия продавцу";audience="Человек";audienceHref="/text2me/people/"}else if(path.indexOf("/text2me/documents/isk-v-sud/")===0){section="Исковое заявление";audience="Человек";audienceHref="/text2me/people/"}
-var context=el("div",{class:"reading-context","aria-label":"Текущее место на сайте"}),innerContext=el("div",{class:"reading-context-inner"}),where=el("span",{class:"reading-context-where"},"Раздел: "),current=el("strong",{class:"reading-context-section"},section),forWho=el("span",{class:"reading-context-audience"},"Для кого: "+audience),people=el("a",{href:"/text2me/people/"},"Людям"),orgs=el("a",{href:"/text2me/business/"},"Организациям");where.appendChild(current);innerContext.appendChild(where);innerContext.appendChild(forWho);innerContext.appendChild(el("span",{class:"reading-context-label"},"Перейти:"));innerContext.appendChild(people);innerContext.appendChild(orgs);context.appendChild(innerContext);document.body.appendChild(context);
-var headings=Array.from(main.querySelectorAll("h1,h2")).filter(function(h){return h.textContent.trim()&&!h.closest("aside")});function activeHeading(){var currentHeading=null;headings.forEach(function(h){if(h.getBoundingClientRect().top<150)currentHeading=h});if(currentHeading&&window.scrollY>160){current.textContent=currentHeading.textContent.trim().replace(/\\s+/g," ").slice(0,70)}else current.textContent=section}
-function update(){var max=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=(max>0?Math.min(100,window.scrollY/max*100):0)+"%";top.classList.toggle("is-visible",window.scrollY>420);context.classList.toggle("is-visible",window.scrollY>180);activeHeading()}window.addEventListener("scroll",update,{passive:true});update();
-var ids=[["route-builder","Ситуации"],["ai-path","Помощь"],["catalog","Документы"],["space","Моё пространство"],["faq","Вопросы"],["categories","Категории"],["tools","Инструменты"],["rooms","Разделы"],["trust","О сервисе"]].filter(function(x){return document.getElementById(x[0])});if(ids.length>=3){var nav=el("nav",{class:"section-nav","aria-label":"Оглавление страницы"}),inner=el("div",{class:"container section-nav-inner"});ids.forEach(function(x){inner.appendChild(el("a",{href:"#"+x[0]},x[1]))});nav.appendChild(inner);var header=document.querySelector(".site-header")||document.querySelector(".dash-header");if(header)header.insertAdjacentElement("afterend",nav)}}
+function initGlobalNavigation(){
+var main=document.querySelector("body > main")||document.querySelector(".dash-shell > main")||document.querySelector(".workspace-main");
+if(!main)return;
+var progress=el("div",{class:"reading-progress","aria-hidden":"true"});
+document.body.appendChild(progress);
+var top=document.querySelector("[data-back-to-top]");
+if(!top){top=el("a",{href:"#main",class:"back-to-top","data-back-to-top":"true","aria-label":"Наверх",title:"Наверх"},"↑");document.body.appendChild(top)}
+var path=location.pathname.toLowerCase(),section="Материалы",audience="Гражданам и организациям";
+var routes=[
+["/text2me/people/","Гражданам","Гражданам"],
+["/text2me/business/","Организациям","Организациям"],
+["/text2me/guides/","Инструкции","Гражданам и организациям"],
+["/text2me/documents/","Документы","Гражданам и организациям"],
+["/text2me/situations/","Жизненные ситуации","Гражданам"],
+["/text2me/knowledge/","Справочные материалы","Гражданам и организациям"],
+["/text2me/sources/","Официальные источники","Гражданам и организациям"],
+["/text2me/prompts/","Тексты и редактура","Для разных задач"],
+["/text2me/space/","Моё пространство","Пользователям сервиса"],
+["/text2me/updates/","Обновления","Всем посетителям"]
+];
+routes.forEach(function(r){if(path.indexOf(r[0])===0){section=r[1];audience=r[2]}});
+if(path.indexOf("/text2me/documents/dogovor-arendy/")===0){section="Договор найма жилья";audience="Гражданам"}
+else if(path.indexOf("/text2me/documents/pretenziya-prodavtsu/")===0){section="Претензия продавцу";audience="Гражданам"}
+else if(path.indexOf("/text2me/documents/isk-v-sud/")===0){section="Исковое заявление";audience="Гражданам"}
+var context=el("div",{class:"reading-context","aria-label":"Текущее место на сайте"});
+var innerContext=el("div",{class:"reading-context-inner"});
+var where=el("span",{class:"reading-context-where"},"Раздел: ");
+var current=el("strong",{class:"reading-context-section"},section);
+var forWho=el("span",{class:"reading-context-audience","aria-live":"polite"},"Аудитория: "+audience);
+where.appendChild(current);
+innerContext.appendChild(where);
+innerContext.appendChild(forWho);
+innerContext.appendChild(el("span",{class:"reading-context-label"},"Перейти:"));
+innerContext.appendChild(el("a",{href:"/text2me/people/"},"Гражданам"));
+innerContext.appendChild(el("a",{href:"/text2me/business/"},"Организациям"));
+context.appendChild(innerContext);
+document.body.appendChild(context);
+var headings=Array.from(main.querySelectorAll("h1,h2")).filter(function(h){return h.textContent.trim()&&!h.closest("aside")});
+var sectionAudience={
+"situations":"Гражданам",
+"categories":"Гражданам и организациям",
+"tools":"Гражданам и организациям",
+"trust":"Всем посетителям",
+"guides":"Гражданам и организациям",
+"my-space-preview":"Пользователям сервиса",
+"updates-feed":"Всем посетителям",
+"route-builder":"Гражданам и организациям",
+"ai-path":"Гражданам и организациям",
+"catalog":"Гражданам и организациям",
+"space":"Пользователям сервиса",
+"faq":"Всем посетителям"
+};
+function updateCurrentContext(){
+var currentHeading=null;
+headings.forEach(function(h){if(h.getBoundingClientRect().top<155)currentHeading=h});
+if(currentHeading&&window.scrollY>100){
+current.textContent=currentHeading.textContent.trim().replace(/\s+/g," ").slice(0,70);
+var parentSection=currentHeading.closest("section[id]");
+if(parentSection&&sectionAudience[parentSection.id])forWho.textContent="Аудитория: "+sectionAudience[parentSection.id];
+}else{
+current.textContent=section;
+forWho.textContent="Аудитория: "+audience;
+}
+var activeSection=currentHeading&&currentHeading.closest("section[id]"),activeId=activeSection?activeSection.id:"main";
+document.querySelectorAll(".workspace-nav-link").forEach(function(a){
+var href=a.getAttribute("href")||"";
+var active=href==="#"+activeId||(activeId==="main"&&href==="#main");
+a.classList.toggle("active",active);
+if(active)a.setAttribute("aria-current","location");else a.removeAttribute("aria-current");
+});
+document.querySelectorAll(".section-nav a").forEach(function(a){
+var active=a.getAttribute("href")==="#"+activeId;
+if(active)a.setAttribute("aria-current","location");else a.removeAttribute("aria-current");
+});
+}
+function update(){
+var max=document.documentElement.scrollHeight-window.innerHeight;
+progress.style.width=(max>0?Math.min(100,window.scrollY/max*100):0)+"%";
+top.classList.toggle("is-visible",window.scrollY>420);
+context.classList.toggle("is-visible",window.scrollY>180);
+updateCurrentContext();
+}
+window.addEventListener("scroll",update,{passive:true});
+window.addEventListener("resize",update);
+update();
+var ids=[["route-builder","Ситуации"],["ai-path","Помощь"],["catalog","Документы"],["space","Моё пространство"],["faq","Вопросы"],["categories","Категории"],["tools","Инструменты"],["trust","О сервисе"]].filter(function(x){return document.getElementById(x[0])});
+if(ids.length>=3){
+var nav=el("nav",{class:"section-nav","aria-label":"Оглавление страницы"});
+var inner=el("div",{class:"container section-nav-inner"});
+ids.forEach(function(x){inner.appendChild(el("a",{href:"#"+x[0]},x[1]))});
+nav.appendChild(inner);
+var header=document.querySelector(".site-header")||document.querySelector(".dash-header");
+if(header)header.insertAdjacentElement("afterend",nav);
+}
+}
 function initStatusLabels(){document.querySelectorAll(".tool-card,.ai-path-form,.space-preview article,[data-feature-status]").forEach(function(card){if(card.querySelector(".status-badge"))return;var text=(card.innerText||"").toLocaleLowerCase("ru"),status=card.getAttribute("data-feature-status");if(!status){if(card.id==="ai-path-form"||/пока не подключ|ещё не подключ|не подписывает|не подключена|не доступны|не реализован|не поддерживается|нет облачной|демонстрац|пока не выполнено|будущая функция/.test(text))status="demo";else if(/скоро|будет добав|планируется/.test(text))status="soon";else status="live"}card.appendChild(el("div",{class:"feature-status-line"})).appendChild(statusBadge(status,status==="live"?"Работает":status==="demo"?"Демо":"Скоро"))})}
 function parseCSV(text){var rows=[],row=[],cell="",quoted=false;for(var i=0;i<text.length;i++){var ch=text[i];if(ch==='"'){if(quoted&&text[i+1]==='"'){cell+='"';i++}else quoted=!quoted}else if(ch===","&&!quoted){row.push(cell);cell=""}else if((ch==="\n"||ch==="\r")&&!quoted){if(ch==="\r"&&text[i+1]==="\n")i++;row.push(cell);rows.push(row);row=[];cell=""}else cell+=ch}if(cell.length||row.length){row.push(cell);rows.push(row)}return rows}
 function initFormImport(){document.querySelectorAll("#claim-builder,#court-builder,#need-form").forEach(function(form){var input=el("input",{type:"file",accept:".csv,.txt,text/csv","aria-label":"Импорт CSV из Excel или CRM"});input.hidden=true;var row=el("div",{class:"space-controls"}),b=button("Заполнить поля из CSV (Excel / CRM)","button button-outline",function(){input.click()}),note=el("p",{class:"save-draft-status","aria-live":"polite"},"Поддерживается CSV UTF-8: первая строка — имена полей (name или id), вторая — значения. API-подключение к CRM не настроено.");row.appendChild(b);row.appendChild(input);form.insertAdjacentElement("beforebegin",row);row.insertAdjacentElement("afterend",note);input.addEventListener("change",function(){var file=input.files&&input.files[0];if(!file)return;var reader=new FileReader();reader.onload=function(){try{var rows=parseCSV(String(reader.result).replace(/^\uFEFF/,""));if(rows.length<2)throw new Error("empty");var headers=rows[0],values=rows[1],filled=0;headers.forEach(function(h,i){var key=h.trim(),field=form.elements.namedItem(key)||document.getElementById(key);if(!field||field.form!==form||["file","button","submit","reset"].includes(field.type))return;field.value=values[i]||"";field.dispatchEvent(new Event("input",{bubbles:true}));field.dispatchEvent(new Event("change",{bubbles:true}));filled++});note.textContent=filled?"Заполнено полей: "+filled+". Проверьте каждое значение перед генерацией.":"Не найдено совпадений. Используйте в заголовках CSV точные имена name или id из формы."}catch(e){note.textContent="Не удалось разобрать CSV. Сохраните файл как CSV UTF-8 и проверьте структуру."}};reader.readAsText(file,"utf-8")})})}
