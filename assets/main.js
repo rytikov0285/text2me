@@ -456,6 +456,7 @@
   function makeClaim() {
     var seller = field("seller-name");
     var sellerAddress = field("seller-address");
+    var sellerInn = field("seller-inn");
     var buyer = field("buyer-name");
     var buyerAddress = field("buyer-address");
     var buyerContact = field("buyer-contact");
@@ -468,6 +469,7 @@
     var lines = [];
 
     lines.push(seller);
+    if (sellerInn) lines.push("ИНН: " + sellerInn);
     if (sellerAddress) lines.push(sellerAddress);
     lines.push("");
     lines.push("От: " + buyer);

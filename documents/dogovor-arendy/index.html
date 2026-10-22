@@ -9,6 +9,7 @@
 <meta name="robots" content="index,follow">
 <link rel="stylesheet" href="/text2me/assets/style.css">
 <link rel="stylesheet" href="/text2me/assets/enhancements.css">
+<script defer src="/text2me/assets/dadata-config.js"></script>
 <script defer src="/text2me/assets/enhancements.js"></script>
 <script defer src="/text2me/assets/rental-builder.js"></script>
 <style>
@@ -33,6 +34,7 @@
 <div class="rental-form-grid">
 <div class="form-field"><label for="rental-landlord">Наймодатель — ФИО *</label><input id="rental-landlord" name="landlord" required maxlength="240" autocomplete="name" placeholder="Кто предоставляет жильё"></div>
 <div class="form-field"><label for="rental-tenant">Наниматель — ФИО *</label><input id="rental-tenant" name="tenant" required maxlength="240" placeholder="Кто будет проживать"></div>
+<div class="form-field"><label for="rental-inn">ИНН наймодателя (если известен)</label><input id="rental-inn" name="landlord-inn" inputmode="numeric" maxlength="12" placeholder="10 или 12 цифр"></div>
 <div class="form-field form-field-full"><label for="rental-address">Адрес жилого помещения *</label><input id="rental-address" name="property-address" required maxlength="500" placeholder="Город, улица, дом, квартира"></div>
 <div class="form-field"><label for="rental-area">Площадь, кв. м (если известна)</label><input id="rental-area" name="area" type="number" min="1" max="10000" step="0.1" placeholder="Например, 42.5"></div>
 <div class="form-field"><label for="rental-rooms">Комнаты / описание</label><input id="rental-rooms" name="rooms" maxlength="240" placeholder="Например, 2 комнаты"></div>

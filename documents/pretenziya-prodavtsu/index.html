@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/text2me/assets/style.css"><link rel="stylesheet" href="/text2me/assets/enhancements.css"><script defer src="/text2me/assets/main.js"></script><script defer src="/text2me/assets/document-editor.js"></script>
 <meta name="robots" content="index,follow">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Как подготовить черновик претензии продавцу","inLanguage":"ru-RU","mainEntityOfPage":"https://rytikov0285.github.io/text2me/documents/pretenziya-prodavtsu/","step":[{"@type":"HowToStep","name":"Заполнить сведения","text":"Укажите сведения о продавце, покупке, недостатке и желаемом требовании."},{"@type":"HowToStep","name":"Проверить черновик","text":"Проверьте точность данных, применимость требования и приложения."},{"@type":"HowToStep","name":"Скачать текст","text":"Скачайте черновик и проверьте его перед передачей продавцу."}]}</script>
+<script defer src="/text2me/assets/dadata-config.js"></script>
 <script defer src="/text2me/assets/enhancements.js"></script></head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -34,6 +35,7 @@
 <form id="claim-builder" class="document-builder">
 <div class="form-grid">
 <div class="form-field"><label for="seller-name">Продавец / организация *</label><input id="seller-name" name="seller" required maxlength="180" placeholder="Название магазина или ИП"></div>
+<div class="form-field"><label for="seller-inn">ИНН продавца (если известен)</label><input id="seller-inn" name="sellerInn" inputmode="numeric" maxlength="12" placeholder="10 или 12 цифр"></div>
 <div class="form-field"><label for="seller-address">Адрес продавца</label><input id="seller-address" name="sellerAddress" maxlength="240" placeholder="Адрес, если известен"></div>
 <div class="form-field"><label for="buyer-name">Ваши ФИО *</label><input id="buyer-name" name="buyer" required maxlength="180" placeholder="Фамилия, имя, отчество"></div>
 <div class="form-field"><label for="buyer-address">Ваш адрес для ответа</label><input id="buyer-address" name="buyerAddress" maxlength="240" placeholder="Почтовый адрес"></div>

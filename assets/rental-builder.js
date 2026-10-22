@@ -8,12 +8,12 @@ function dateLabel(v){if(!v)return "[указать дату]";var p=v.split("-"
 function money(v){if(!v)return "[указать сумму]";return new Intl.NumberFormat("ru-RU",{maximumFractionDigits:2}).format(Number(v))+" руб."}
 function field(v,label){return v||"["+label+"]"}
 function buildContract(){
- var landlord=value("landlord"),tenant=value("tenant"),address=value("property-address"),start=value("start-date"),end=value("end-date"),rent=value("rent"),deposit=value("deposit"),due=value("due-day")||"5",utilities=value("utilities"),area=value("area"),rooms=value("rooms"),inventory=value("inventory"),extra=value("extra-terms");
+ var landlord=value("landlord"),landlordInn=value("landlord-inn"),tenant=value("tenant"),address=value("property-address"),start=value("start-date"),end=value("end-date"),rent=value("rent"),deposit=value("deposit"),due=value("due-day")||"5",utilities=value("utilities"),area=value("area"),rooms=value("rooms"),inventory=value("inventory"),extra=value("extra-terms");
  var lines=[
  "ДОГОВОР НАЙМА ЖИЛОГО ПОМЕЩЕНИЯ",
  "г. [указать населённый пункт]                                      Дата: "+dateLabel(start),
  "",
- field(landlord,"ФИО наймодателя")+", именуемый(ая) далее «Наймодатель», с одной стороны, и "+field(tenant,"ФИО нанимателя")+", именуемый(ая) далее «Наниматель», с другой стороны, заключили настоящий договор о нижеследующем.",
+ field(landlord,"ФИО наймодателя")+(landlordInn?" (ИНН "+landlordInn+")":"")+", именуемый(ая) далее «Наймодатель», с одной стороны, и "+field(tenant,"ФИО нанимателя")+", именуемый(ая) далее «Наниматель», с другой стороны, заключили настоящий договор о нижеследующем.",
  "",
  "1. ПРЕДМЕТ ДОГОВОРА",
  "1.1. Наймодатель предоставляет Нанимателю за плату во временное владение и пользование для проживания жилое помещение по адресу: "+field(address,"адрес помещения")+".",
