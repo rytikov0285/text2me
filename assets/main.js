@@ -247,7 +247,7 @@
     });
   }
 
-  function digitsOnly(value) { return String(value || "").replace(/\\D/g, ""); }
+  function digitsOnly(value) { return String(value || "").replace(/\D/g, ""); }
   function validInn(value) {
     var d = digitsOnly(value);
     if (d.length === 10) return [2,4,10,3,5,9,4,6,8].reduce(function(s,w,i){return s+w*Number(d[i]);},0)%11%10 === Number(d[9]);
