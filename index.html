@@ -19,36 +19,34 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/text2me/" aria-label="text2me — главная"><span>text2me<span class="brand-dot">.</span>ru</span></a>
-    <nav class="main-nav" aria-label="Основная навигация">
-      <a href="#situations">Жизненные ситуации</a>
-      <a href="#route-builder">Подобрать решение</a>
-      <a href="/text2me/people/">Документы</a>
-      <a href="#official-links">Полезные ресурсы</a>
-    </nav>
-    <a class="button button-small button-outline" href="#route-builder">Начать</a>
+    <nav class="main-nav" aria-label="Основная навигация"><a href="#route-builder">Подобрать решение</a><a href="/text2me/people/">Документы</a></nav>
+    <a class="button button-small" href="#quick-actions">Выбрать задачу</a>
   </div>
 </header>
 <main id="main">
   <section class="portal-hero">
     <div class="container">
       <div class="portal-heading">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> Сначала задача — потом нужный сервис</p>
-        <h1>Что случилось и какого результата вы хотите добиться?</h1>
-        <p class="portal-lead">Не нужно заранее знать название услуги или документа. Расскажите, что произошло, выберите цель — и мы подскажем ближайший практический шаг.</p>
+        <h1>Что нужно сделать?</h1>
+        <p class="portal-lead">Нажмите на задачу — покажем следующий шаг.</p>
       </div>
       <div class="portal-search-wrap">
         <form class="search-box portal-search" role="search" id="document-search">
-          <label class="sr-only" for="search-input">Найти ситуацию или действие</label>
-          <span class="search-symbol" aria-hidden="true">⌕</span>
-          <input id="search-input" name="q" type="search" placeholder="Например: не вернули деньги, шумят соседи, нужна справка" autocomplete="off">
+          <label class="sr-only" for="search-input">Найти задачу</label>
+          <input id="search-input" name="q" type="search" placeholder="Поиск: возврат, ЖКХ, зарплата, справка…" autocomplete="off">
           <button class="button" type="submit">Найти</button>
         </form>
         <p class="search-status" id="search-status" aria-live="polite"></p>
       </div>
-      <div class="portal-quicklinks" aria-label="Популярные действия">
-        <a href="#route-builder" data-route-preset="consumer"><span class="quick-icon">↩</span><span>Вернуть деньги за товар</span><b>→</b></a>
-        <a href="#route-builder" data-route-preset="housing"><span class="quick-icon">⌂</span><span>Решить вопрос с домом</span><b>→</b></a>
-        <a href="#route-builder" data-route-preset="work"><span class="quick-icon">▤</span><span>Проблема на работе</span><b>→</b></a>
+      <div class="portal-quicklinks task-buttons" id="quick-actions" aria-label="Выберите задачу">
+        <a href="#need-result" data-route-preset="consumer" data-route-goal="document" data-route-detail="refund"><span>↩</span> Вернуть деньги за товар <b>→</b></a>
+        <a href="#need-result" data-route-preset="housing" data-route-goal="official" data-route-detail="maintenance"><span>⌂</span> Проблема с ЖКХ <b>→</b></a>
+        <a href="#need-result" data-route-preset="work" data-route-goal="official" data-route-detail="salary"><span>₽</span> Не платят зарплату <b>→</b></a>
+        <a href="#need-result" data-route-preset="money" data-route-goal="understand" data-route-detail="unknown-charge"><span>↗</span> Непонятное списание <b>→</b></a>
+        <a href="#need-result" data-route-preset="government" data-route-goal="official" data-route-detail="document"><span>✓</span> Нужна справка или услуга <b>→</b></a>
+        <a href="#need-result" data-route-preset="consumer" data-route-goal="document" data-route-detail="defect"><span>✎</span> Написать претензию <b>→</b></a>
+        <a href="#need-result" data-route-preset="business" data-route-goal="contact" data-route-detail="client"><span>▤</span> Написать деловое письмо <b>→</b></a>
+        <a href="#route-builder" data-route-preset="other" data-route-goal="understand" data-route-detail="advice"><span>…</span> Другая задача <b>→</b></a>
       </div>
     </div>
   </section>
@@ -56,8 +54,8 @@
   <section class="section route-builder-section" id="route-builder">
     <div class="container">
       <div class="section-heading">
-        <div><p class="eyebrow">Шаг 1 из 2</p><h2>Уточним вашу ситуацию</h2></div>
-        <p>Ответьте только на главное. Не указывайте пароли, паспортные данные, банковские реквизиты или другие секретные сведения.</p>
+        <div><p class="eyebrow">Другой вопрос</p><h2>Уточнить маршрут</h2></div>
+        <p>Если нужной кнопки нет — выберите тему и цель.</p>
       </div>
       <form id="need-form" class="need-form">
         <div class="need-form-grid">
@@ -120,60 +118,7 @@
     </div>
   </section>
 
-  <section class="section section-muted" id="situations">
-    <div class="container">
-      <div class="section-heading">
-        <div><p class="eyebrow">Популярные жизненные ситуации</p><h2>Выберите, что нужно решить</h2></div>
-        <p>Каждая карточка ведёт к следующему действию, а не к общему описанию темы.</p>
-      </div>
-      <div class="choice-grid portal-card-grid" id="document-cards">
-        <a class="choice-card portal-card" data-search="покупка товар сломался возврат денег претензия продавцу гарантия" href="/text2me/documents/pretenziya-prodavtsu/">
-          <span class="card-icon">↩</span><span class="card-kicker">Покупки и услуги</span><h3>Товар сломался или деньги не возвращают</h3><p>Подготовить черновик претензии продавцу, затем проверить требования и приложения.</p><span class="card-link">Подготовить претензию <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="дом ЖКХ управляющая компания отопление лифт крыша вода жалоба" href="https://www.gosuslugi.ru/landing/forcitizens" target="_blank" rel="noopener noreferrer">
-          <span class="card-icon">⌂</span><span class="card-kicker">Дом и ЖКХ</span><h3>Проблема с домом или коммунальными услугами</h3><p>Уточнить, какая услуга или мера подходит, и найти официальный путь обращения.</p><span class="card-link">Открыть каталог услуг <b>↗</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="работа зарплата работодатель отпуск трудовой договор увольнение жалоба" href="https://онлайнинспекция.рф/" target="_blank" rel="noopener noreferrer">
-          <span class="card-icon">▤</span><span class="card-kicker">Работа</span><h3>Нарушили трудовые права</h3><p>Проверить варианты обращения в инспекцию труда и подготовить факты по ситуации.</p><span class="card-link">Перейти в инспекцию труда <b>↗</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="государственная услуга справка пособие регистрация документы заявление" href="https://www.gosuslugi.ru/landing/forcitizens" target="_blank" rel="noopener noreferrer">
-          <span class="card-icon">✓</span><span class="card-kicker">Госуслуги</span><h3>Нужна услуга, справка или выплата</h3><p>Начать с официального каталога и подобрать услугу по жизненной ситуации.</p><span class="card-link">Найти услугу <b>↗</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="налог налоговый вычет декларация задолженность ФНС" href="https://www.nalog.gov.ru/" target="_blank" rel="noopener noreferrer">
-          <span class="card-icon">₽</span><span class="card-kicker">Налоги</span><h3>Вычет, налог или задолженность</h3><p>Проверить информацию и доступные сервисы на сайте Федеральной налоговой службы.</p><span class="card-link">Открыть сайт ФНС <b>↗</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="долг банк списание платеж подписка финансовая услуга жалоба" href="https://www.cbr.ru/" target="_blank" rel="noopener noreferrer">
-          <span class="card-icon">₽</span><span class="card-kicker">Платежи и финансы</span><h3>Непонятное списание или спор с банком</h3><p>Проверить порядок обращения и защиту прав потребителей финансовых услуг.</p><span class="card-link">Ресурсы Банка России <b>↗</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="договор счёт акт коммерческое предложение письмо клиент бизнес" href="/text2me/business/">
-          <span class="card-icon">▧</span><span class="card-kicker">Бизнес</span><h3>Нужно оформить договорённость с клиентом</h3><p>Перейти к материалам для деловой переписки и документов компании.</p><span class="card-link">Для бизнеса <b>→</b></span>
-        </a>
-        <a class="choice-card portal-card" data-search="заявление жалоба обращение документ письмо черновик" href="/text2me/people/">
-          <span class="card-icon">✎</span><span class="card-kicker">Документы</span><h3>Нужно написать заявление или обращение</h3><p>Выбрать тип документа и подготовить понятный черновик для дальнейшей проверки.</p><span class="card-link">Выбрать документ <b>→</b></span>
-        </a>
-      </div>
-      <p class="empty-state" id="empty-state" hidden>Не нашли подходящую ситуацию. Попробуйте описать её другими словами или воспользуйтесь формой подбора решения выше.</p>
-    </div>
-  </section>
-
-  <section class="section" id="official-links">
-    <div class="container">
-      <div class="section-heading">
-        <div><p class="eyebrow">Проверенные точки входа</p><h2>Официальные ресурсы</h2></div>
-        <p>Для заявлений, платежей и правовых вопросов переходите на сайты соответствующих ведомств.</p>
-      </div>
-      <div class="official-grid">
-        <a href="https://www.gosuslugi.ru/landing/forcitizens" target="_blank" rel="noopener noreferrer"><strong>Госуслуги</strong><span>Государственные услуги и жизненные ситуации</span><b>↗</b></a>
-        <a href="https://www.rospotrebnadzor.ru/" target="_blank" rel="noopener noreferrer"><strong>Роспотребнадзор</strong><span>Защита прав потребителей и санитарные вопросы</span><b>↗</b></a>
-        <a href="https://онлайнинспекция.рф/" target="_blank" rel="noopener noreferrer"><strong>Онлайнинспекция.рф</strong><span>Вопросы трудовых прав и обращение в инспекцию труда</span><b>↗</b></a>
-        <a href="https://www.nalog.gov.ru/" target="_blank" rel="noopener noreferrer"><strong>ФНС России</strong><span>Налоги, вычеты и налоговые сервисы</span><b>↗</b></a>
-      </div>
-    </div>
-  </section>
 </main>
-<footer class="site-footer">
-  <div class="container footer-top"><a class="brand brand-footer" href="/text2me/"><span>text2me<span class="brand-dot">.</span>ru</span></a><p>От жизненной ситуации — к понятному следующему шагу.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Документы для населения</a><a href="/text2me/business/">Для бизнеса</a><a href="/text2me/knowledge/">Принципы качества</a></nav></div>
-  <div class="container footer-bottom"><span>© text2me</span><span>Внешние ссылки ведут на сайты соответствующих организаций. Проверяйте применимость информации к своей ситуации.</span></div>
-</footer>
+<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/">text2me<span class="brand-dot">.</span>ru</a><p>Выберите задачу — получите следующий шаг.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/people/">Документы</a><a href="/text2me/business/">Бизнес</a></nav></div></footer>
 </body>
 </html>
