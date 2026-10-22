@@ -5,7 +5,7 @@
 <title>Как составить иск в суд: черновик заявления — text2me</title>
 <meta name="description" content="Соберите черновик иска: укажите стороны, факты, требования и приложения. Проверьте подсудность, сроки и правила подачи.">
 <link rel="canonical" href="https://rytikov0285.github.io/text2me/documents/isk-v-sud/">
-<link rel="stylesheet" href="/text2me/assets/style.css"><link rel="stylesheet" href="/text2me/assets/enhancements.css"><script defer src="/text2me/assets/main.js"></script>
+<link rel="stylesheet" href="/text2me/assets/style.css"><link rel="stylesheet" href="/text2me/assets/enhancements.css"><script defer src="/text2me/assets/main.js"></script><script defer src="/text2me/assets/document-editor.js"></script>
 <meta name="robots" content="index,follow">
 <script defer src="/text2me/assets/enhancements.js"></script></head>
 <body>
@@ -42,21 +42,21 @@
 <div class="builder-step-heading"><span class="builder-step-number">1</span><div><h2>Суд и участники</h2><p>Не знаете какие-то данные? Пропустите необязательные поля и вернитесь к ним позже.</p></div></div>
 <div class="form-grid">
 <div class="form-field form-field-full"><label for="court-name">Какой суд (после проверки)</label><input id="court-name" maxlength="240" placeholder="Укажите после проверки подсудности"></div>
-<div class="form-field"><label for="plaintiff-name">Кто подаёт иск — ФИО или название *</label><input id="plaintiff-name" required maxlength="240" placeholder="Кто обращается в суд"></div>
+<div class="form-field"><label for="plaintiff-name">Кто подаёт иск — ФИО или название *</label><input id="plaintiff-name" name="plaintiff-name" required maxlength="240" placeholder="Кто обращается в суд"></div>
 <div class="form-field"><label for="plaintiff-address">Адрес для ответа</label><input id="plaintiff-address" name="plaintiff-address" maxlength="300" placeholder="Адрес для документов"></div>
 <div class="form-field"><label for="plaintiff-inn">ИНН истца (если нужен)</label><input id="plaintiff-inn" name="plaintiff-inn" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="10 или 12 цифр"><small class="field-help">Необязательно. Проверяется контрольная сумма, а не наличие ИНН в реестре.</small></div>
 <div class="form-field"><label for="plaintiff-snils">СНИЛС истца (только если требуется)</label><input id="plaintiff-snils" name="plaintiff-snils" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="000-000-000 00"><small class="field-help">Не вводите, если реквизит не нужен для вашего дела.</small></div>
 <div class="form-field form-field-full"><label for="plaintiff-contact">Как с вами связаться</label><input id="plaintiff-contact" maxlength="240" placeholder="Телефон, электронная почта — если уместно"></div>
-<div class="form-field"><label for="defendant-name">На кого подаёте иск *</label><input id="defendant-name" required maxlength="240" placeholder="ФИО или наименование организации"></div>
+<div class="form-field"><label for="defendant-name">На кого подаёте иск *</label><input id="defendant-name" name="defendant-name" required maxlength="240" placeholder="ФИО или наименование организации"></div>
 <div class="form-field"><label for="defendant-address">Адрес ответчика, если известен</label><input id="defendant-address" name="defendant-address" maxlength="300" placeholder="Если известен"></div>
 <div class="form-field"><label for="defendant-inn">ИНН ответчика (если известен и нужен)</label><input id="defendant-inn" name="defendant-inn" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="10 или 12 цифр"><small class="field-help">Необязательно. Не угадывайте реквизит и не вводите его, если он неизвестен.</small></div>
 </div>
 <div class="builder-step-heading"><span class="builder-step-number">2</span><div><h2>Суть спора</h2><p>По порядку: когда это было, что случилось и чем это подтвердить.</p></div></div>
 <div class="form-grid">
-<div class="form-field"><label for="court-case-type">Из-за чего спор? *</label><input id="court-case-type" required maxlength="240" placeholder="Например: взыскании долга"></div>
+<div class="form-field"><label for="court-case-type">Из-за чего спор? *</label><input id="court-case-type" name="court-case-type" required maxlength="240" placeholder="Например: взыскании долга"></div>
 <div class="form-field"><label for="court-price">Сумма требований, ₽ (если есть)</label><input id="court-price" name="court-price" type="number" min="0.01" max="1000000000000" step="0.01" inputmode="decimal" placeholder="Сумма требований"><small class="field-help">Если указана, сумма должна быть больше нуля. Это не расчёт цены иска или госпошлины.</small></div>
-<div class="form-field form-field-full"><label for="court-facts">Что произошло? *</label><textarea id="court-facts" required rows="6" maxlength="8000" placeholder="Что произошло, когда, между кем, какие договорённости были, что нарушено. Укажите, какими документами или другими доказательствами подтверждаются факты."></textarea></div>
-<div class="form-field form-field-full"><label for="court-demands">Чего хотите добиться через суд? *</label><textarea id="court-demands" required rows="4" maxlength="5000" placeholder="Сформулируйте конкретные требования к ответчику. Если требований несколько, перечислите их."></textarea></div>
+<div class="form-field form-field-full"><label for="court-facts">Что произошло? *</label><textarea id="court-facts" name="court-facts" required rows="6" maxlength="8000" placeholder="Что произошло, когда, между кем, какие договорённости были, что нарушено. Укажите, какими документами или другими доказательствами подтверждаются факты."></textarea></div>
+<div class="form-field form-field-full"><label for="court-demands">Чего хотите добиться через суд? *</label><textarea id="court-demands" name="court-demands" required rows="4" maxlength="5000" placeholder="Сформулируйте конкретные требования к ответчику. Если требований несколько, перечислите их."></textarea></div>
 <div class="form-field form-field-full"><label for="court-pretrial">Пытались решить вопрос до суда?</label><textarea id="court-pretrial" rows="3" maxlength="3000" placeholder="Направляли ли претензию, когда и каким способом? Получен ли ответ? Если не направляли, укажите это. Проверьте, обязателен ли такой порядок."></textarea></div>
 <div class="form-field form-field-full"><label for="court-attachments">Какие документы приложите</label><textarea id="court-attachments" rows="4" maxlength="5000" placeholder="Перечислите только документы, которые действительно приложите, каждый с новой строки. Например: договор, расчёт суммы, переписка, подтверждение отправки копии ответчику."></textarea></div>
 </div>
@@ -66,7 +66,7 @@
 <div id="court-result" class="generated-result" hidden>
 <div class="generated-result-heading"><div><p class="eyebrow">Готово — проверьте текст</p><h2>Черновик заявления</h2></div><span class="status-chip">Текст сформирован</span></div>
 <p class="small-copy">Перечитайте весь текст, заполните пропуски и уберите подсказки в квадратных скобках. Здесь не проверяется, насколько требования обоснованы по закону.</p>
-<pre id="court-output" class="document-preview"></pre>
+<p class="field-help">Чтобы поправить результат, выделите фрагмент текста ниже: появится меню «Изменить» или «Удалить». Изменения войдут в копируемый и скачиваемый текст.</p><pre id="court-output" class="document-preview"></pre>
 <div class="builder-actions"><button id="download-court" class="button" type="button">Скачать .txt</button><button id="copy-court" class="button button-outline" type="button">Скопировать текст</button></div>
 <p id="court-action-status" class="field-help" aria-live="polite"></p>
 </div>

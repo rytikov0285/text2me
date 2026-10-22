@@ -17,3 +17,19 @@
 @media(max-width:420px){.catalog-filters{grid-template-columns:1fr}.ai-dialogue{padding:13px}.document-preview{padding:12px;font-size:13px}}
 
 .room-breadcrumb{display:flex;gap:9px;flex-wrap:wrap;padding:12px 0;color:var(--muted);font-size:.86rem}.room-breadcrumb a{color:var(--purple);text-decoration:underline}.room-breadcrumb [aria-current=page]{font-weight:700;color:var(--ink)}.main-nav{display:flex;flex-wrap:wrap;gap:8px 14px;max-width:760px}.main-nav a{font-size:.86rem;line-height:1.35}.room-direct-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.room-direct-grid>a{display:flex;flex-direction:column;gap:7px;padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff}.room-direct-grid span{color:var(--muted);font-size:.9rem}@media(max-width:900px){.header-inner{align-items:flex-start}.main-nav{justify-content:flex-start}.room-direct-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.main-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.main-nav a{font-size:.82rem}.room-direct-grid{grid-template-columns:1fr}}
+
+/* Selection editing menu and personal-space dashboard */
+.selection-edit-menu{position:fixed;z-index:1000;display:flex;gap:6px;padding:7px;background:#17233b;border:1px solid #34425b;border-radius:10px;box-shadow:0 8px 26px rgba(10,20,40,.22)}
+.selection-edit-menu[hidden]{display:none}
+.selection-edit-menu button{border:0;border-radius:7px;background:#fff;color:#17233b;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer}
+.selection-edit-menu button:hover{background:#e5f3ff}
+.space-dashboard{margin:0 0 22px}
+.space-dashboard-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.space-metric{display:flex;flex-direction:column;gap:5px;padding:18px;border:1px solid var(--line);border-radius:15px;background:#fff}
+.space-metric strong{font-size:28px;line-height:1.2;color:var(--purple)}
+.space-metric span{font-weight:750}
+.space-metric small{color:var(--muted);font-size:12px;line-height:1.45}
+.space-dashboard-notice{margin-top:14px;padding:14px 16px;border:1px solid #f0d9a7;border-radius:12px;background:#fff9e9;color:#59451d;font-size:14px}
+.space-item-status{display:inline-block;margin:4px 0 8px;padding:4px 8px;border-radius:7px;background:#e8f4ff;color:#15598a;font-size:12px;font-weight:700}
+.space-item-status[data-status="warning"]{background:#fff1d4;color:#7a4c00}
+@media(max-width:680px){.space-dashboard-grid{grid-template-columns:1fr}.selection-edit-menu{max-width:calc(100vw - 16px)}}
