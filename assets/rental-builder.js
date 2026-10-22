@@ -82,8 +82,8 @@ function buildAct(){
  "Наниматель: "+field(value("tenant"),"ФИО")+"  Подпись: __________________"
  ].join("\n")
 }
-function updateSavedText(){if(savedText)savedText.value=output.textContent; savedText.dispatchEvent(new Event("input",{bubbles:true}))}
-function showActions(){document.querySelectorAll(".document-export-actions").forEach(function(n){if(n.parentElement===output.parentElement||n.parentElement===actOutput.parentElement)n.hidden=false})}
+function updateSavedText(){if(!savedText)return;savedText.value=output.textContent;savedText.dispatchEvent(new Event("input",{bubbles:true}))}
+function showActions(){document.querySelectorAll(".document-export-actions").forEach(function(n){if(n.parentElement===output.parentElement||n.parentElement===actOutput.parentElement)n.hidden=false;n.style.display=""})}
 function restore(){
  if(savedText&&savedText.value.trim()){output.textContent=savedText.value;output.hidden=false;empty.hidden=true;result.hidden=false;status.textContent="Сохранённый текст восстановлен. Можно продолжить редактирование и экспортировать файл.";showActions()}
  else if(value("landlord")||value("tenant")||value("property-address")){status.textContent="Найден локальный черновик формы. Проверьте поля и нажмите «Сформировать договор»."}
