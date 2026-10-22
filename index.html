@@ -30,7 +30,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 .universal-search-panel{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:8px 24px;align-items:start;margin:22px 0 18px;padding:22px;border:1px solid #cbd9ec;border-radius:18px;background:linear-gradient(120deg,#fff 0%,#f0f6ff 100%);box-shadow:0 12px 32px #1b34520b}
 .universal-search-copy{min-width:0}.universal-search-kicker{font-size:10px;font-weight:900;letter-spacing:.13em;color:var(--dash-blue)}.universal-search-copy h2{margin:7px 0 6px;font-size:clamp(21px,2.4vw,28px);letter-spacing:-.04em}.universal-search-copy p{margin:0;color:var(--dash-muted);font-size:13px;line-height:1.55}
 .universal-search-form{min-width:0}.universal-search-controls{display:flex;gap:8px}.universal-search-controls input{flex:1;min-width:0;border:1px solid #b8c9df;border-radius:11px;padding:13px 14px;background:#fff;color:var(--dash-ink);font:inherit;font-size:14px}.universal-search-controls .dash-btn{flex:0 0 auto;white-space:nowrap}.universal-search-form .inline-status{margin-top:6px}.search-chips{grid-column:1/-1;display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:5px}.search-chips>span{font-size:11px;color:var(--dash-muted);font-weight:800}.search-chips button{border:1px solid #d3e0f2;border-radius:999px;padding:6px 10px;background:#fff;color:#214b80;font-size:11px;font-weight:750;cursor:pointer}.search-chips button:hover{border-color:#91b0e5;background:#eaf2ff}
-.entry-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16px}.entry-card{padding:19px}.entry-card h2{font-size:18px}.dash-shell .section-nav{display:none}.dash-hero{padding:22px 0 14px}.dash-hero h1{font-size:clamp(32px,4.3vw,48px)}.dash-lead{font-size:15px}.universal-search-panel{margin:16px 0 14px;padding:17px}.search-chips{gap:6px}
+.entry-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16px}.entry-card{padding:19px}.entry-card h2{font-size:18px}.dash-hero{padding:22px 0 14px}.dash-hero h1{font-size:clamp(32px,4.3vw,48px)}.dash-lead{font-size:15px}.universal-search-panel{margin:16px 0 14px;padding:17px}.search-chips{gap:6px}
 @media(max-width:760px){.universal-search-panel{grid-template-columns:1fr;gap:12px;padding:17px}.search-chips{grid-column:auto}.entry-grid{grid-template-columns:1fr}.entry-card:last-child{grid-column:auto}}
 @media(max-width:420px){.universal-search-controls{flex-direction:column}.universal-search-controls .dash-btn{width:100%}.search-chips{gap:6px}.search-chips button{font-size:10px}}
 </style>
@@ -51,60 +51,29 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 </header>
 
 <div class="workspace-layout">
-<aside class="workspace-sidebar" aria-label="Навигация по сайту">
-<div class="workspace-nav-group"><p>Навигация</p>
-<a class="workspace-nav-link active" href="#main"><span aria-hidden="true">⌂</span>Главная</a>
-<a class="workspace-nav-link" href="#my-space-preview"><span aria-hidden="true">▣</span>Моё пространство</a>
-<a class="workspace-nav-link" href="#updates-feed"><span aria-hidden="true">◷</span>Обновления</a>
-</div>
-<div class="workspace-nav-group"><p>Каталоги</p>
-<a class="workspace-nav-link" href="#situations"><span aria-hidden="true">⌘</span>Ситуации</a>
-<a class="workspace-nav-link" href="/text2me/documents/"><span aria-hidden="true">▤</span>Все документы</a>
+<aside class="workspace-sidebar" aria-label="Основные разделы сайта">
+<div class="workspace-nav-group"><p>Основные разделы</p>
+<a class="workspace-nav-link active" href="/text2me/"><span aria-hidden="true">⌂</span>Главная</a>
+<a class="workspace-nav-link" href="/text2me/situations/"><span aria-hidden="true">⌘</span>Ситуации</a>
+<a class="workspace-nav-link" href="/text2me/documents/"><span aria-hidden="true">▤</span>Документы</a>
+<a class="workspace-nav-link" href="/text2me/prompts/"><span aria-hidden="true">✎</span>Тексты и редактура</a>
 <a class="workspace-nav-link" href="/text2me/guides/"><span aria-hidden="true">☷</span>Инструкции</a>
 <a class="workspace-nav-link" href="/text2me/knowledge/"><span aria-hidden="true">◈</span>База знаний</a>
-<a class="workspace-nav-link" href="/text2me/sources/"><span aria-hidden="true">↗</span>Источники</a>
-</div>
-<div class="workspace-nav-group"><p>Аудитория и инструменты</p>
-<a class="workspace-nav-link" href="#categories"><span aria-hidden="true">▦</span>Категории</a>
-<a class="workspace-nav-link" href="#tools"><span aria-hidden="true">⌁</span>Инструменты</a>
-<a class="workspace-nav-link" href="/text2me/people/"><span aria-hidden="true">♙</span>Гражданам</a>
-<a class="workspace-nav-link" href="/text2me/business/"><span aria-hidden="true">▥</span>Организациям</a>
-<a class="workspace-nav-link" href="/text2me/prompts/"><span aria-hidden="true">✎</span>Тексты и редактура</a>
+<a class="workspace-nav-link" href="/text2me/sources/"><span aria-hidden="true">↗</span>Официальные источники</a>
 </div>
 </aside>
 <main id="main" class="workspace-main">
 <section class="dash-hero office-home" aria-labelledby="main-title">
 <div class="dash-eyebrow">text2me · рабочее пространство</div>
-<h1 id="main-title">Создание документа</h1>
-<p class="dash-lead">Выберите команду или готовый конструктор. Ответьте на необходимые вопросы, проверьте результат и сохраните документ.</p>
+<h1 id="main-title">Что нужно сделать?</h1>
+<p class="dash-lead">Выберите один из трёх путей или найдите документ через поиск сверху.</p>
 </section>
 
-<section class="home-situation-box" aria-labelledby="home-situation-title">
-<form id="home-situation-form" action="/text2me/start/" method="get">
-<label id="home-situation-title" for="home-situation">Опишите ситуацию</label>
-<p>Напишите своими словами, что нужно решить или какой текст подготовить.</p>
-<textarea id="home-situation" name="task" rows="3" placeholder="Например: не возвращают деньги за покупку, нужно написать поздравление или составить договор." autocomplete="off"></textarea>
-<div class="home-situation-actions"><button class="dash-btn" type="submit">Подобрать первые шаги</button><span>Можно написать обычными словами — специальные термины не нужны.</span></div>
-</form>
-<div class="home-situation-chips" aria-label="Примеры ситуаций">
-<span>Быстрый выбор:</span>
-<button type="button" data-situation-chip="Не возвращают деньги за покупку">Не возвращают деньги</button>
-<button type="button" data-situation-chip="Проблема с жильём или ЖКХ">Жильё и ЖКХ</button>
-<button type="button" data-situation-chip="Не выплатили зарплату">Задержали зарплату</button>
-<button type="button" data-situation-chip="Нужно написать заявление">Нужно заявление</button>
-<button type="button" data-situation-chip="Поздравление с днём рождения">Поздравление</button>
-<button type="button" data-situation-chip="Нужен рецепт из имеющихся продуктов">Рецепт из того, что есть</button>
-</div>
+<section class="situation-first-grid" aria-label="Выберите путь">
+<a href="/text2me/documents/"><strong>Создать документ</strong><span>Выбрать документ в каталоге, ответить на вопросы и получить редактируемый черновик.</span></a>
+<a href="/text2me/start/"><strong>Разобраться в ситуации</strong><span>Найти первые шаги, необходимые сведения и подходящие материалы.</span></a>
+<a href="/text2me/prompts/"><strong>Подготовить или улучшить текст</strong><span>Подобрать пример, сформулировать запрос или отредактировать текст.</span></a>
 </section>
-
-<nav class="document-ribbon" aria-label="Панель инструментов">
-<a href="/text2me/documents/" title="Создать документ"><span class="ribbon-icon" aria-hidden="true">＋</span><span>Создать</span></a>
-<a href="/text2me/documents/" title="Каталог шаблонов"><span class="ribbon-icon" aria-hidden="true">▤</span><span>Шаблоны</span></a>
-<a href="/text2me/space/" title="Открыть сохранённые документы"><span class="ribbon-icon" aria-hidden="true">▣</span><span>Открыть</span></a>
-<a href="/text2me/space/" title="Мои документы"><span class="ribbon-icon" aria-hidden="true">▧</span><span>Мои документы</span></a>
-<a href="/text2me/guides/" title="Инструкции и справка"><span class="ribbon-icon" aria-hidden="true">ⓘ</span><span>Справка</span></a>
-<a href="/text2me/updates/" title="Посмотреть изменения"><span class="ribbon-icon" aria-hidden="true">◷</span><span>Обновления</span></a>
-</nav>
 
 <section class="office-start-panel" aria-labelledby="office-start-title">
 <div class="office-section-title"><div><h2 id="office-start-title">Новый документ</h2><p>Выберите тип документа — приложение проведёт вас через заполнение.</p></div><a href="/text2me/documents/">Все документы <span aria-hidden="true">→</span></a></div>
@@ -142,7 +111,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <div class="section-head"><div><h2>Что делать в конкретной ситуации</h2><p>Пошаговые объяснения простым языком: с чего начать, какие документы собрать и куда обращаться.</p></div><a href="/text2me/situations/">Все инструкции →</a></div>
 <div class="situation-mega" id="situation-mega">
 <details><summary>Покупки и услуги <span>брак, возврат денег, отказ в услуге</span></summary><div class="mega-links"><a href="/text2me/situations/#bad-goods">Что делать по шагам</a><a href="/text2me/documents/pretenziya-prodavtsu/">Черновик претензии</a><a href="/text2me/knowledge/">Нормы и материалы базы знаний</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
-<details><summary>Работа и зарплата <span>задержка выплаты, документы, увольнение</span></summary><div class="mega-links"><a href="/text2me/situations/#salary">Пошаговая инструкция</a><a href="/text2me/situations/#salary">Пошаговая инструкция по работе</a><a href="/text2me/knowledge/">Трудовые нормы и источники</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
+<details><summary>Работа и зарплата <span>задержка выплаты, документы, увольнение</span></summary><div class="mega-links"><a href="/text2me/situations/#salary">Пошаговая инструкция</a><a href="/text2me/knowledge/">Трудовые нормы и источники</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
 <details><summary>Жильё и ЖКХ <span>управляющая компания, коммунальные услуги</span></summary><div class="mega-links"><a href="/text2me/situations/#housing">Порядок действий</a><a href="/text2me/documents/">Заявления и акты</a><a href="/text2me/knowledge/">Правила и справочные материалы</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
 <details><summary>Деньги и долги <span>перевод, спор с банком, возврат долга</span></summary><div class="mega-links"><a href="/text2me/situations/#bank">Проблема с банком</a><a href="/text2me/situations/#debt">Взыскание долга</a><a href="/text2me/documents/isk-v-sud/">Черновик искового заявления</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
 <details><summary>Государственные органы <span>заявление, жалоба, обращение</span></summary><div class="mega-links"><a href="/text2me/situations/#government">Как подать обращение</a><a href="/text2me/documents/">Каталог заявлений</a><a href="/text2me/knowledge/">Официальные нормы и инструкции</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
@@ -235,7 +204,7 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 <section class="workspace-aside-card workspace-space-card"><h2>Моё пространство</h2><p id="workspace-local-summary">Черновики хранятся в этом браузере.</p><a href="/text2me/space/">Открыть библиотеку →</a></section>
 </aside>
 </div>
-<footer class="dash-footer"><nav class="dash-footer-catalog" aria-label="Быстрая навигация и информация о сайте"><strong>Разделы сайта:</strong><a href="/text2me/">Главная</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/prompts/#personal-prompts">Личное</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/people/">Гражданам</a><a href="/text2me/business/">Организациям</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/privacy/">Конфиденциальность</a><a href="/text2me/security/">Безопасность данных</a><a href="/text2me/terms/">Условия использования</a><a href="/text2me/updates/">Обновления</a></nav><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
+<footer class="dash-footer"><nav class="dash-footer-catalog" aria-label="Разделы и информация о сайте"><strong>Разделы сайта:</strong><a href="/text2me/">Главная</a><a href="/text2me/situations/">Ситуации</a><a href="/text2me/documents/">Документы</a><a href="/text2me/prompts/">Тексты и редактура</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/updates/">Обновления</a><a href="/text2me/site-map/">Карта сайта</a><a href="/text2me/people/">Материалы для граждан</a><a href="/text2me/business/">Материалы для организаций</a><a href="/text2me/privacy/">Конфиденциальность</a><a href="/text2me/security/">Безопасность данных</a><a href="/text2me/terms/">Условия использования</a></nav><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
 </div>
 <button class="top-button" type="button" id="back-to-top" data-back-to-top aria-label="Наверх" title="Наверх">↑</button>
 <script>

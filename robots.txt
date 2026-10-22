@@ -1,4 +1,3 @@
-# Для публикации на корне домена перенести содержимое в /robots.txt.
 User-agent: *
 Allow: /
 Sitemap: https://rytikov0285.github.io/text2me/sitemap.xml
