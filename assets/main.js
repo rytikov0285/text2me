@@ -4,7 +4,7 @@
   var searchForm = document.getElementById("document-search");
   if (searchForm) {
     var input = document.getElementById("search-input");
-    var cards = Array.prototype.slice.call(document.querySelectorAll("#document-cards .choice-card"));
+    var cards = Array.prototype.slice.call(document.querySelectorAll("#quick-actions a"));
     var status = document.getElementById("search-status");
     var empty = document.getElementById("empty-state");
     function filterCards() {
@@ -16,7 +16,7 @@
         card.hidden = !match;
         if (match) visible++;
       });
-      if (status) status.textContent = query ? "Найдено разделов: " + visible : "";
+      if (status) status.textContent = query ? "Найдено задач: " + visible : "";
       if (empty) empty.hidden = visible !== 0;
     }
     searchForm.addEventListener("submit", function (event) {
