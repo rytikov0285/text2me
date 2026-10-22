@@ -187,6 +187,118 @@
     });
   }
 
+  var courtForm = document.getElementById("court-builder");
+  if (courtForm) {
+    var courtOutput = document.getElementById("court-output");
+    var courtResult = document.getElementById("court-result");
+    var courtStatus = document.getElementById("court-action-status");
+    function courtField(id) {
+      var node = document.getElementById(id);
+      return node ? node.value.trim() : "";
+    }
+    function makeCourtDraft() {
+      var court = courtField("court-name");
+      var plaintiff = courtField("plaintiff-name");
+      var plaintiffAddress = courtField("plaintiff-address");
+      var plaintiffContact = courtField("plaintiff-contact");
+      var defendant = courtField("defendant-name");
+      var defendantAddress = courtField("defendant-address");
+      var caseType = courtField("court-case-type");
+      var price = courtField("court-price");
+      var facts = courtField("court-facts");
+      var demands = courtField("court-demands");
+      var pretrial = courtField("court-pretrial");
+      var attachments = courtField("court-attachments");
+      var lines = [];
+      lines.push(court || "[Укажите наименование суда — проверьте подсудность]");
+      lines.push("");
+      lines.push("Истец: " + (plaintiff || "[ФИО или наименование истца]"));
+      lines.push("Адрес истца: " + (plaintiffAddress || "[укажите адрес, если он требуется для выбранного порядка]"));
+      if (plaintiffContact) lines.push("Контактные данные истца: " + plaintiffContact);
+      lines.push("Ответчик: " + (defendant || "[ФИО или наименование ответчика]"));
+      if (defendantAddress) lines.push("Адрес ответчика: " + defendantAddress);
+      lines.push("");
+      lines.push("ИСКОВОЕ ЗАЯВЛЕНИЕ");
+      lines.push("о " + (caseType || "[укажите предмет иска]"));
+      lines.push("");
+      if (price) lines.push("Цена иска: " + price + " руб. [проверьте состав расчёта и необходимость указания]");
+      lines.push("");
+      lines.push("1. Обстоятельства дела");
+      lines.push(facts || "[Последовательно изложите события, даты, участников и подтверждающие документы.]");
+      lines.push("");
+      lines.push("2. Требования истца");
+      lines.push(demands || "[Сформулируйте конкретные требования к ответчику.]");
+      lines.push("");
+      lines.push("3. Досудебный порядок");
+      lines.push(pretrial || "[Укажите, направлялась ли претензия или соблюдался ли обязательный досудебный порядок; проверьте, обязателен ли он для вашего спора.]");
+      lines.push("");
+      lines.push("4. Приложения");
+      if (attachments) {
+        attachments.split(/\n|;/).map(function (item) { return item.trim(); }).filter(Boolean).forEach(function (item, index) {
+          lines.push((index + 1) + ". " + item);
+        });
+      } else {
+        lines.push("[Перечислите документы, которые фактически приложите: доказательства обстоятельств, расчёт, подтверждение отправки копий другим участникам и иные требуемые документы.]");
+      }
+      lines.push("");
+      lines.push("На основании изложенного прошу суд удовлетворить заявленные требования.");
+      lines.push("");
+      lines.push("Дата: «____» ______________ 20___ г.");
+      lines.push("Подпись: __________________ / " + (plaintiff || "[ФИО]") + " /");
+      lines.push("");
+      lines.push("ПРОВЕРИТЬ ПЕРЕД ПОДАЧЕЙ");
+      lines.push("• Правильность вида судопроизводства, подсудности и наименования суда.");
+      lines.push("• Требования к форме и содержанию заявления для вашей категории дела.");
+      lines.push("• Расчёт цены иска и госпошлину либо основание льготы/освобождения, если применимо.");
+      lines.push("• Обязательный досудебный порядок и сроки обращения.");
+      lines.push("• Наличие подписей, копий для участников и всех обязательных приложений.");
+      lines.push("• Способ подачи и актуальные правила выбранного суда.");
+      lines.push("");
+      lines.push("Это универсальный черновик для дальнейшей проверки, а не готовая к подаче форма. Он не определяет подсудность, не рассчитывает госпошлину и не проверяет юридическую обоснованность требований. Требования к иску зависят от вида спора и процедуры.");
+      return lines.join("\n");
+    }
+    courtForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!courtForm.reportValidity()) return;
+      courtOutput.textContent = makeCourtDraft();
+      courtResult.hidden = false;
+      courtStatus.textContent = "Черновик сформирован в браузере. Проверьте текст и применимые требования перед подачей.";
+      courtResult.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+    courtForm.addEventListener("reset", function () {
+      courtResult.hidden = true;
+      courtOutput.textContent = "";
+      courtStatus.textContent = "";
+    });
+    var courtDownload = document.getElementById("download-court");
+    if (courtDownload) courtDownload.addEventListener("click", function () {
+      if (!courtOutput.textContent) return;
+      var blob = new Blob(["\\ufeff", courtOutput.textContent], {type:"text/plain;charset=utf-8"});
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement("a");
+      link.href = url;
+      link.download = "iskovoe-zayavlenie-chernovik.txt";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      courtStatus.textContent = "Файл с черновиком подготовлен для скачивания.";
+    });
+    var courtCopy = document.getElementById("copy-court");
+    if (courtCopy) courtCopy.addEventListener("click", function () {
+      if (!courtOutput.textContent) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(courtOutput.textContent).then(function () {
+          courtStatus.textContent = "Текст скопирован.";
+        }).catch(function () {
+          courtStatus.textContent = "Не удалось скопировать автоматически. Выделите текст черновика и скопируйте вручную.";
+        });
+      } else {
+        courtStatus.textContent = "Автоматическое копирование недоступно. Выделите текст черновика и скопируйте вручную.";
+      }
+    });
+  }
+
   var claimForm = document.getElementById("claim-builder");
   if (!claimForm) return;
 
