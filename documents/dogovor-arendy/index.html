@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Конструктор договора найма жилого помещения — text2me</title>
+<meta name="description" content="Заполните данные наймодателя, нанимателя и квартиры, проверьте текст договора найма жилого помещения, отредактируйте его и скачайте в DOCX или сохраните в PDF.">
+<link rel="canonical" href="https://rytikov0285.github.io/text2me/documents/dogovor-arendy/">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="/text2me/assets/style.css">
+<link rel="stylesheet" href="/text2me/assets/enhancements.css">
+<script defer src="/text2me/assets/enhancements.js"></script>
+<script defer src="/text2me/assets/rental-builder.js"></script>
+<style>
+.rental-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.85fr);gap:24px;align-items:start}.rental-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}.rental-card h2{margin-top:0}.rental-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.rental-form-grid .form-field{min-width:0}.rental-form-grid input,.rental-form-grid select,.rental-form-grid textarea{width:100%;min-width:0;border:1px solid #cbd6e5;border-radius:10px;padding:11px 12px;background:#fff}.rental-form-grid .form-field-full{grid-column:1/-1}.rental-card .builder-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.rental-preview{position:sticky;top:125px}.rental-preview .document-preview{min-height:240px;max-height:none;white-space:pre-wrap;overflow-wrap:anywhere;background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;font:14px/1.75 Georgia,"Times New Roman",serif;color:#17233b}.rental-preview .document-preview[contenteditable=true]:focus{outline:2px solid #8fb3ed;outline-offset:2px}.rental-status{font-size:13px;color:var(--muted);min-height:20px}.rental-act{margin-top:18px}.pdf-help{padding:12px 14px;border-radius:10px;background:#f0f6ff;border:1px solid #d8e5fa;font-size:13px;color:#29466e}.rental-checklist{padding-left:20px}.rental-checklist li{margin:6px 0}
+@media(max-width:900px){.rental-layout{grid-template-columns:1fr}.rental-preview{position:static}}@media(max-width:560px){.rental-card{padding:16px}.rental-form-grid{grid-template-columns:1fr}.rental-form-grid .form-field-full{grid-column:auto}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/text2me/" aria-label="text2me — главная"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a>
+<nav class="main-nav" aria-label="Основные разделы"><a href="/text2me/situations/">Жизненные ситуации</a><a href="/text2me/documents/">Каталог документов</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/space/">Моё пространство</a></nav>
+<a class="button button-small" href="/text2me/">Главная</a>
+</div></header>
+<nav class="room-breadcrumb container" aria-label="Навигационная цепочка"><a href="/text2me/">Главная</a><span aria-hidden="true">/</span><a href="/text2me/documents/">Документы</a><span aria-hidden="true">/</span><span aria-current="page">Договор найма жилья</span></nav>
+<main id="main">
+<section class="page-hero"><div class="container"><p class="eyebrow">Рабочий конструктор · 1 из 3</p><h1>Договор найма жилого помещения</h1><p class="hero-lead">Заполните основные условия, получите текст, отредактируйте его прямо в предпросмотре и сохраните в DOCX или PDF. Для жилого помещения, передаваемого гражданину для проживания, обычно используют термин «договор найма», а не «аренды».</p><div class="space-status"><strong>Как работает:</strong> данные обрабатываются в вашем браузере. Поддерживаемые поля формы автосохраняются на этом устройстве. Готовый текст не проверяется юристом; перед подписанием сверяйте условия и актуальные требования.</div></div></section>
+<section class="section"><div class="container rental-layout">
+<div class="rental-card">
+<p class="eyebrow">Шаг 1 · Заполнить условия</p><h2>Сведения о сторонах и жилье</h2>
+<form id="rental-builder">
+<div class="rental-form-grid">
+<div class="form-field"><label for="rental-landlord">Наймодатель — ФИО *</label><input id="rental-landlord" name="landlord" required maxlength="240" autocomplete="name" placeholder="Кто предоставляет жильё"></div>
+<div class="form-field"><label for="rental-tenant">Наниматель — ФИО *</label><input id="rental-tenant" name="tenant" required maxlength="240" placeholder="Кто будет проживать"></div>
+<div class="form-field form-field-full"><label for="rental-address">Адрес жилого помещения *</label><input id="rental-address" name="property-address" required maxlength="500" placeholder="Город, улица, дом, квартира"></div>
+<div class="form-field"><label for="rental-area">Площадь, кв. м (если известна)</label><input id="rental-area" name="area" type="number" min="1" max="10000" step="0.1" placeholder="Например, 42.5"></div>
+<div class="form-field"><label for="rental-rooms">Комнаты / описание</label><input id="rental-rooms" name="rooms" maxlength="240" placeholder="Например, 2 комнаты"></div>
+<div class="form-field"><label for="rental-start">Начало найма *</label><input id="rental-start" name="start-date" type="date" required></div>
+<div class="form-field"><label for="rental-end">Окончание найма *</label><input id="rental-end" name="end-date" type="date" required></div>
+<div class="form-field"><label for="rental-rent">Плата за месяц, ₽ *</label><input id="rental-rent" name="rent" type="number" min="1" max="100000000" step="1" required placeholder="Например, 35000"></div>
+<div class="form-field"><label for="rental-deposit">Обеспечительный платёж, ₽</label><input id="rental-deposit" name="deposit" type="number" min="0" max="100000000" step="1" placeholder="Если предусмотрен"></div>
+<div class="form-field"><label for="rental-due-day">День оплаты ежемесячно</label><select id="rental-due-day" name="due-day"><option value="1">До 1-го числа</option><option value="5" selected>До 5-го числа</option><option value="10">До 10-го числа</option><option value="15">До 15-го числа</option><option value="20">До 20-го числа</option><option value="25">До 25-го числа</option></select></div>
+<div class="form-field"><label for="rental-utilities">Коммунальные платежи оплачивает</label><select id="rental-utilities" name="utilities"><option value="Наниматель — по согласованным счетам и показаниям приборов учёта">Наниматель — по счетам / счётчикам</option><option value="Наймодатель">Наймодатель</option><option value="Стороны распределяют платежи по отдельному письменному соглашению">По отдельному соглашению</option></select></div>
+<div class="form-field form-field-full"><label for="rental-inventory">Мебель, техника и состояние жилья</label><textarea id="rental-inventory" name="inventory" rows="3" maxlength="2500" placeholder="Опишите состояние и имущество; повреждения лучше перечислить подробно."></textarea></div>
+<div class="form-field form-field-full"><label for="rental-extra">Дополнительные условия (необязательно)</label><textarea id="rental-extra" name="extra-terms" rows="3" maxlength="2500" placeholder="Например: проживание с животным, порядок передачи ключей, показания счётчиков."></textarea></div>
+<input type="hidden" id="rental-document-text" name="document-text" value="">
+</div>
+<div class="builder-actions"><button class="button" type="submit">Сформировать договор ↓</button><button class="button button-outline" type="reset">Очистить форму</button></div>
+<p class="field-help">Не вводите серии и номера паспортов в поля формы. При необходимости добавьте реквизиты сторон вручную в предпросмотре. Автосохранение действует только в этом браузере.</p>
+</form>
+<div id="rental-result" hidden>
+<div class="rental-act"><p class="eyebrow">Дополнительный документ</p><h2>Акт приёма-передачи</h2><p class="field-help">Сформируйте акт по тем же сведениям, зафиксируйте фактическое состояние, ключи и показания счётчиков.</p><button class="button button-outline" id="rental-create-act" type="button">Сформировать акт приёма-передачи</button></div>
+<div id="rental-act-result" class="rental-act" hidden><h3>Предпросмотр акта</h3><pre id="rental-act-output" class="document-preview" contenteditable="true" role="textbox" aria-label="Редактируемый текст акта приёма-передачи" spellcheck="true"></pre><p class="field-help">Нажмите в текст, чтобы исправить его. Кнопки экспорта появятся под предпросмотром.</p></div>
+</div>
+</div>
+<aside class="rental-card rental-preview">
+<p class="eyebrow">Шаг 2 · Проверить и отредактировать</p><h2>Предпросмотр договора</h2>
+<p class="small-copy">После формирования можно нажать на текст и изменить формулировки, добавить реквизиты или убрать лишнее. Экспортируется именно текст предпросмотра.</p>
+<div id="rental-empty" class="space-status">Заполните обязательные поля и нажмите «Сформировать договор» — здесь появится текст.</div>
+<div id="rental-result-placeholder" hidden></div>
+<pre id="rental-output" class="document-preview" contenteditable="true" role="textbox" aria-label="Редактируемый текст договора найма" spellcheck="true" hidden></pre>
+<p id="rental-status" class="rental-status" aria-live="polite"></p>
+<div class="pdf-help"><strong>Как сохранить в PDF:</strong> нажмите «Печать / PDF», в системном окне выберите принтер «Сохранить как PDF» (Windows: Microsoft Print to PDF или аналог), укажите папку и нажмите «Сохранить». Для редактирования документа используйте DOCX.</div>
+</aside>
+</div></section>
+<section class="section section-muted"><div class="container narrow prose"><h2>Перед подписанием</h2><ul class="rental-checklist"><li>Проверьте право наймодателя передавать помещение и согласие собственников, если оно необходимо.</li><li>Согласуйте, кто и за что платит, как передаются ключи и возвращается обеспечительный платёж.</li><li>Сделайте фотографии состояния помещения и приложите подробный акт приёма-передачи.</li><li>Укажите реквизиты сторон и подпишите каждый экземпляр договора.</li><li>Проверьте условия прекращения договора, сроки уведомления и действующие нормы права.</li></ul><p>Это базовый шаблон для подготовки черновика, а не юридическое заключение. Для спорной ситуации, коммерческого использования жилья или нестандартных условий требуется отдельная проверка.</p><div class="related-links"><a href="/text2me/documents/">Все документы →</a><a href="/text2me/guides/">Инструкции →</a><a href="/text2me/space/">Моё пространство →</a></div></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/">text2me<span class="brand-dot">.</span>ru</a><p>Понятные решения для граждан и организаций.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/">Главная</a><a href="/text2me/documents/">Документы</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/privacy/">Конфиденциальность</a></nav></div><div class="container footer-bottom"><span>Черновик документа</span><span>Проверьте данные и применимость условий перед подписанием.</span></div></footer>
+</body></html>
