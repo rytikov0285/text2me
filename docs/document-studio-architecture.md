@@ -88,3 +88,9 @@ Use Google-like interaction patterns first; add Google accounts/APIs only where 
 ### Integration principle
 
 Keep a provider-neutral adapter layer. Each service should be optional, use least-privilege scopes, state what data leaves the browser, and provide a manual path if unavailable. Google Workspace exposes APIs for Docs, Drive, Forms, Sheets, Gmail, Calendar, Slides and other services, but each API must be enabled and authorized separately; availability of an API does not itself grant access to a user's data.
+
+## OCR implementation status (2026-10-22)
+
+The repository now contains an opt-in OCR UI for image files and a Cloudflare Worker `/ocr` route that calls Google Cloud Vision using the server-side `GOOGLE_CLOUD_VISION_API_KEY` secret. Supported image formats in this first step: JPEG, PNG, WEBP and GIF, up to 5 MB. The user must click “Распознать текст”; results are editable, can be copied, or explicitly appended to the last focused textarea. OCR does not automatically submit or save the document.
+
+The public endpoint setting `window.TEXT2ME_OCR_ENDPOINT` is intentionally blank. The integration is not live until Google Cloud Vision is enabled, Worker secrets are configured, the endpoint is deployed, Cloudflare rate limits and billing alerts are in place, a real test passes, and the public endpoint is configured. PDF OCR and structured field extraction are future work. See `docs/ocr-integration.md`.
