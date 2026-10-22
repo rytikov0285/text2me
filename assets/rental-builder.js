@@ -100,7 +100,7 @@ document.getElementById("rental-create-act").addEventListener("click",function()
 actOutput.addEventListener("input",function(){var n=document.getElementById("rental-act-status");if(n)n.textContent="Текст акта изменён.";});
 form.addEventListener("reset",function(){setTimeout(function(){output.textContent="";output.hidden=true;actOutput.textContent="";actResult.hidden=true;result.hidden=true;empty.hidden=false;status.textContent="Форма очищена.";if(savedText)savedText.value=""},0)});
 document.addEventListener("DOMContentLoaded",function(){
- document.querySelectorAll(".document-export-actions").forEach(function(n){n.hidden=true});
+ document.querySelectorAll(".document-export-actions").forEach(function(n){n.hidden=true;n.style.display="none"});
  restore();
 });
 })();
