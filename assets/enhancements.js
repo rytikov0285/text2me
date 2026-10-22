@@ -76,6 +76,7 @@ if(!top){top=el("a",{href:"#main",class:"back-to-top","data-back-to-top":"true",
 var path=location.pathname.toLowerCase(),section="Материалы",audience="Гражданам и организациям";
 var routes=[
 ["/text2me/people/","Гражданам","Гражданам"],
+["/text2me/prompts/","Личное и тексты","Для разных задач"],
 ["/text2me/business/","Организациям","Организациям"],
 ["/text2me/guides/","Инструкции","Гражданам и организациям"],
 ["/text2me/documents/","Документы","Гражданам и организациям"],
