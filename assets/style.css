@@ -387,3 +387,66 @@ a:hover{color:#064b9e}
 .portal-hint,.micro-note{color:#526f8a}
 ::selection{background:#b9dcff;color:#102f4f}
 @media(max-width:700px){.portal-hero,.hero,.page-hero{background:#eaf4ff}.task-buttons a{min-height:52px}}
+
+
+/* Friendly playful redesign: less bureaucracy, more color and approachable shapes */
+:root{
+ --ink:#24324a;--muted:#53627a;--line:#dce4f1;--paper:#fffdf8;--soft:#fff4df;
+ --purple:#5b55e7;--purple-dark:#4038c7;--mint:#d9f7e9;--radius:22px;
+ --shadow:0 8px 24px rgba(48,58,115,.10)
+}
+body{background:#fffdf8;color:#24324a;font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;line-height:1.62}
+.site-header{background:rgba(255,253,248,.96);border-bottom:2px solid #eee5d6}
+.brand{font-size:22px;font-weight:900;color:#293454;letter-spacing:-.5px}
+.brand-mark{display:grid!important;background:#5b55e7;border-radius:14px;transform:rotate(-4deg);box-shadow:0 4px 0 #3933b5}
+.brand-dot{color:#ff765e}
+.main-nav{color:#53627a;font-weight:750}
+.main-nav a{padding:8px 11px;border-radius:999px}
+.main-nav a:hover,.main-nav a[aria-current=page]{background:#fff0cf;color:#4038c7}
+.button{border:2px solid #5b55e7;background:#5b55e7;border-radius:999px;box-shadow:0 4px 0 #3933b5;font-weight:850;transition:transform .15s,box-shadow .15s,background .15s}
+.button:hover{background:#4038c7;transform:translateY(2px);box-shadow:0 2px 0 #3933b5}
+.button-outline{background:#fff;color:#4038c7;border:2px solid #c9c6ff;box-shadow:none}
+.button-outline:hover{background:#f0efff;color:#3029a8}
+.portal-hero{background:#fff0cf;border-bottom:3px solid #f5dca2}
+.portal-heading h1{color:#273253;font-size:clamp(32px,4vw,47px);line-height:1.12;letter-spacing:-1.4px;font-weight:900}
+.portal-heading .eyebrow{display:inline-flex;padding:6px 12px;border-radius:999px;background:#d9f7e9;color:#166b52;font-size:12px;letter-spacing:.15px;font-weight:900}
+.eyebrow-dot{background:#ff765e;box-shadow:0 0 0 4px #ffe0d8}
+.portal-lead{color:#4a5870;font-size:17px}
+.portal-search{border:2px solid #d6d0ff;border-radius:18px;box-shadow:0 5px 0 #e4e0ff}
+.portal-search .button{border-radius:13px}
+.portal-quicklinks.task-buttons{gap:12px}
+.task-buttons a{position:relative;min-height:66px;padding:12px 14px;border:2px solid #e0e5f1;border-radius:17px;background:#fff;color:#293454;font-size:14px;font-weight:800;box-shadow:0 4px 0 #e6e9f2;transition:transform .15s,border-color .15s,box-shadow .15s}
+.task-buttons a:nth-child(4n+1)>span{background:#ffe0d8;color:#bd4437}
+.task-buttons a:nth-child(4n+2)>span{background:#d9f7e9;color:#177453}
+.task-buttons a:nth-child(4n+3)>span{background:#fff0c9;color:#936000}
+.task-buttons a:nth-child(4n)>span{background:#e4e1ff;color:#4e47c8}
+.task-buttons a>span{width:34px;height:34px;flex-basis:34px;border-radius:12px;font-size:19px}
+.task-buttons a b{color:#5b55e7;font-size:18px}
+.task-buttons a:hover{border-color:#a9a4ff;background:#fff;transform:translateY(-3px);box-shadow:0 7px 0 #e2dfff}
+.route-builder-section{background:#fffdf8}
+.route-builder-section .section-heading h2{color:#293454}
+.need-form{border:2px solid #e4e2f5;border-radius:22px;background:#fff;box-shadow:0 6px 0 #f0edf9;padding:22px}
+.form-field label{color:#293454;font-weight:800}
+.form-field input,.form-field select,.form-field textarea,.need-form .form-field select{border:2px solid #dfe4ef;border-radius:13px;background:#fff;color:#293454}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:#7770f0;box-shadow:0 0 0 4px #eceaff}
+.need-result{border:2px solid #a9e8ce;border-left:7px solid #27a879;border-radius:20px;background:#e9fbf2}
+.need-result h3{color:#17664e}
+.route-result-links a{border:2px solid #d6d1ff;border-radius:999px;color:#4038c7;font-weight:850}
+.portal-card,.choice-card,.knowledge-card,.info-card,.side-panel,.document-builder{border:2px solid #e0e5f1;border-radius:20px;background:#fff;box-shadow:0 5px 0 #edf0f6}
+.portal-card:hover,.choice-card:hover,.knowledge-card:hover{border-color:#c7c2ff;transform:translateY(-3px);box-shadow:0 8px 0 #e8e5ff}
+.card-icon,.quick-icon,.knowledge-icon,.info-icon,.route-number,.builder-step-number{border-radius:14px}
+.card-link,.knowledge-link,.text-link{color:#5149d5;font-weight:850}
+.section-muted{background:#f4f3ff}
+.notice{border-left:6px solid #ff9b57;border-radius:0 16px 16px 0;background:#fff2e4;color:#65462e}
+.site-footer{background:#293454;color:#fff}
+.site-footer .brand-mark{background:#ff765e;box-shadow:0 4px 0 #c84f40}
+.site-footer .brand-dot{color:#ffb79d}
+::selection{background:#d9f7e9;color:#24324a}
+@media(max-width:700px){
+ .portal-hero{padding:25px 0 23px}
+ .portal-heading h1{font-size:33px;letter-spacing:-.8px}
+ .portal-lead{font-size:15px}
+ .task-buttons a{min-height:58px;border-radius:15px}
+ .need-form{padding:16px;border-radius:17px}
+ .site-header .brand{font-size:19px}
+}
