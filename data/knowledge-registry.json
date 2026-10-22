@@ -1,0 +1,392 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Машиночитаемый реестр навигационных источников text2me. Не является правовым заключением или гарантией актуальности.",
+  "jurisdiction_default": "RU",
+  "verification_policy": {
+    "required_fields": [
+      "title",
+      "type",
+      "url",
+      "jurisdiction",
+      "applicability_note",
+      "verification_status",
+      "last_checked"
+    ],
+    "allowed_verification_status": [
+      "not_checked",
+      "link_checked",
+      "text_checked",
+      "expert_reviewed"
+    ],
+    "rule": "Не повышать статус проверки без фактической проверки источника. Не ставить дату проверки автоматически."
+  },
+  "sources": [
+    {
+      "id": "ru-official-publication",
+      "title": "Официальное опубликование правовых актов",
+      "type": "official_portal",
+      "url": "https://publication.pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "law",
+        "effective_date"
+      ],
+      "applicability_note": "Использовать для проверки официального опубликования и текста конкретного акта.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-legal-information",
+      "title": "Официальный интернет-портал правовой информации",
+      "type": "official_portal",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "law",
+        "codes"
+      ],
+      "applicability_note": "Искать конкретный документ, редакцию и связанные акты; отдельно проверять вступление норм в силу.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-consumer",
+      "title": "Закон РФ № 2300-1 «О защите прав потребителей»",
+      "type": "law",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "consumer",
+        "goods",
+        "services"
+      ],
+      "applicability_note": "Ссылка ведёт на портал, а не на гарантированно открытую карточку актуальной редакции; найти и подтвердить конкретный текст перед выводом.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-civil-code",
+      "title": "Гражданский кодекс Российской Федерации",
+      "type": "code",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "contracts",
+        "debt",
+        "civil_claims"
+      ],
+      "applicability_note": "Определять применимую часть и редакцию с учётом даты отношений.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-civil-procedure",
+      "title": "Гражданский процессуальный кодекс РФ",
+      "type": "code",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "court",
+        "civil_procedure"
+      ],
+      "applicability_note": "Применимость зависит от характера спора, сторон, подсудности и даты подачи.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-arbitration-procedure",
+      "title": "Арбитражный процессуальный кодекс РФ",
+      "type": "code",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "court",
+        "business_dispute"
+      ],
+      "applicability_note": "Не считать арбитражный суд подходящим автоматически: проверить компетенцию и статус сторон.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-labour-code",
+      "title": "Трудовой кодекс РФ",
+      "type": "code",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "employment",
+        "salary"
+      ],
+      "applicability_note": "Учитывать вид отношений, дату события и применимые специальные нормы.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-housing-code",
+      "title": "Жилищный кодекс РФ",
+      "type": "code",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "housing",
+        "utilities"
+      ],
+      "applicability_note": "Для ЖКХ могут дополнительно применяться правила предоставления коммунальных услуг, содержания общего имущества и региональные акты.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-enforcement-law",
+      "title": "Федеральный закон № 229-ФЗ «Об исполнительном производстве»",
+      "type": "law",
+      "url": "https://fssp.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "bailiffs",
+        "debt_collection"
+      ],
+      "applicability_note": "Сверить конкретную норму с актуальным официальным текстом; сайт ФССП также используется для проверки сведений о производстве.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-personal-data",
+      "title": "Федеральный закон № 152-ФЗ «О персональных данных»",
+      "type": "law",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "privacy",
+        "personal_data"
+      ],
+      "applicability_note": "Проверять роль оператора, цели и основания обработки, категории данных и актуальные требования.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-information-law",
+      "title": "Федеральный закон № 149-ФЗ «Об информации, информационных технологиях и о защите информации»",
+      "type": "law",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "information",
+        "IT"
+      ],
+      "applicability_note": "Нужна проверка конкретной нормы и применимости к сервису или ситуации.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-electronic-signature",
+      "title": "Федеральный закон № 63-ФЗ «Об электронной подписи»",
+      "type": "law",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "electronic_signature",
+        "documents"
+      ],
+      "applicability_note": "Проверить тип подписи, участников и требуемый законом или договором уровень.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-accounting-law",
+      "title": "Федеральный закон № 402-ФЗ «О бухгалтерском учёте»",
+      "type": "law",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "accounting",
+        "business"
+      ],
+      "applicability_note": "Учитывать субъект, тип операции и применимые правила бухгалтерского учёта.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-advertising-law",
+      "title": "Федеральный закон № 38-ФЗ «О рекламе»",
+      "type": "law",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "advertising",
+        "marketing"
+      ],
+      "applicability_note": "Проверить вид рекламы, канал, аудиторию и специальные ограничения.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-procurement-44",
+      "title": "Федеральный закон № 44-ФЗ о контрактной системе",
+      "type": "law",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "procurement",
+        "public_contracts"
+      ],
+      "applicability_note": "Применимость зависит от заказчика, предмета и конкретной закупочной процедуры.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "ru-procurement-223",
+      "title": "Федеральный закон № 223-ФЗ о закупках отдельными видами юридических лиц",
+      "type": "law",
+      "url": "https://pravo.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "procurement",
+        "corporate"
+      ],
+      "applicability_note": "Проверить статус заказчика и его положение о закупке.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "agency-rospotrebnadzor",
+      "title": "Роспотребнадзор",
+      "type": "official_agency",
+      "url": "https://www.rospotrebnadzor.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "consumer",
+        "sanitary"
+      ],
+      "applicability_note": "Проверить компетенцию ведомства для конкретного вопроса и региона.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "agency-rostrud",
+      "title": "Роструд",
+      "type": "official_agency",
+      "url": "https://rostrud.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "employment",
+        "labour"
+      ],
+      "applicability_note": "Для онлайн-обращений и разъяснений проверить актуальные официальные сервисы.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "agency-fssp",
+      "title": "ФССП России",
+      "type": "official_agency",
+      "url": "https://fssp.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "bailiffs",
+        "enforcement"
+      ],
+      "applicability_note": "Проверять сведения об исполнительном производстве через официальные сервисы и документы.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "agency-fns",
+      "title": "ФНС России",
+      "type": "official_agency",
+      "url": "https://www.nalog.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "tax",
+        "accounting"
+      ],
+      "applicability_note": "Проверять дату публикации разъяснения и норму закона, на которую оно опирается.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "agency-cbr",
+      "title": "Банк России",
+      "type": "official_agency",
+      "url": "https://www.cbr.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "finance",
+        "financial_services"
+      ],
+      "applicability_note": "Использовать для вопросов в пределах полномочий Банка России; для спора сохранять переписку с финансовой организацией.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "agency-courts",
+      "title": "Суды общей юрисдикции",
+      "type": "official_portal",
+      "url": "https://sudrf.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "court",
+        "case_search"
+      ],
+      "applicability_note": "Проверить официальный сайт конкретного суда, территориальную подсудность и актуальные реквизиты.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "agency-arbitration-cases",
+      "title": "Картотека арбитражных дел",
+      "type": "official_portal",
+      "url": "https://kad.arbitr.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "court",
+        "business_dispute"
+      ],
+      "applicability_note": "Использовать для поиска арбитражных дел; не переносить судебные выводы на другое дело без проверки обстоятельств.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "standards-rst",
+      "title": "Росстандарт",
+      "type": "standards_portal",
+      "url": "https://www.rst.gov.ru/",
+      "jurisdiction": "RU",
+      "topics": [
+        "GOST",
+        "standards"
+      ],
+      "applicability_note": "Проверять обозначение, статус, дату действия и обязательность стандарта в конкретном контексте.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "standards-eec",
+      "title": "Евразийская экономическая комиссия",
+      "type": "regional_standards_portal",
+      "url": "https://eec.eaeunion.org/",
+      "jurisdiction": "EAEU",
+      "topics": [
+        "technical_regulations",
+        "conformity"
+      ],
+      "applicability_note": "Проверять применимый технический регламент, перечни стандартов и редакцию документа.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    },
+    {
+      "id": "standards-iso",
+      "title": "Каталог стандартов ISO",
+      "type": "international_standards_catalog",
+      "url": "https://www.iso.org/standards.html",
+      "jurisdiction": "international",
+      "topics": [
+        "quality",
+        "security",
+        "software"
+      ],
+      "applicability_note": "Учитывать, что описание стандарта не равно полному тексту и упоминание стандарта не доказывает соответствие.",
+      "verification_status": "not_checked",
+      "last_checked": null
+    }
+  ]
+}
