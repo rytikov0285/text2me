@@ -9,6 +9,7 @@ import zipfile
 from pathlib import Path
 
 builder = Path(__file__).with_name("build-gar-index.py")
+searcher = Path(__file__).with_name("search-gar-index.py")
 with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
     root = Path(temp)
     archive = root / "fixture.zip"
@@ -33,4 +34,12 @@ with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
     assert report["table_counts"]["current_houses"] == 1, report
     assert report["checks"]["sqlite_integrity"] == "ok", report
     assert output.is_file() and output.stat().st_size > 0
-    print("PASS: synthetic GAR XML archive built and checked.")
+    search = subprocess.run([sys.executable, str(searcher), str(output), "Тестовая"],
+                            capture_output=True, text=True, encoding="utf-8", check=True)
+    search_result = json.loads(search.stdout)
+    assert search_result["count"] >= 1 and search_result["results"][0]["name"] == "Тестовая область", search_result
+    house_search = subprocess.run([sys.executable, str(searcher), str(output), "12", "--include-houses"],
+                                  capture_output=True, text=True, encoding="utf-8", check=True)
+    house_result = json.loads(house_search.stdout)
+    assert any(row["kind"] == "house" and row["house_number"] == "12А" for row in house_result["results"]), house_result
+    print("PASS: synthetic GAR XML archive built, checked, and searched.")
