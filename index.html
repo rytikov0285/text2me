@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>text2me — понятные шаги и документы</title>
-<meta name="description" content="Опишите ситуацию, найдите нужный документ и продолжите работу с сохранёнными материалами.">
+<meta name="description" content="Что вы хотите сделать?, найдите нужный документ и продолжите работу с сохранёнными материалами.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://rytikov0285.github.io/text2me/">
 <meta property="og:type" content="website">
@@ -34,6 +34,30 @@ body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:12
 .entry-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16px}.entry-card{padding:19px}.entry-card h2{font-size:18px}.dash-shell .section-nav{display:none}.dash-hero{padding:22px 0 14px}.dash-hero h1{font-size:clamp(32px,4.3vw,48px)}.dash-lead{font-size:15px}.universal-search-panel{margin:16px 0 14px;padding:17px}.search-chips{gap:6px}
 @media(max-width:760px){.universal-search-panel{grid-template-columns:1fr;gap:12px;padding:17px}.search-chips{grid-column:auto}.entry-grid{grid-template-columns:1fr}.entry-card:last-child{grid-column:auto}}
 @media(max-width:420px){.universal-search-controls{flex-direction:column}.universal-search-controls .dash-btn{width:100%}.search-chips{gap:6px}.search-chips button{font-size:10px}}
+
+
+/* Reference-matching pass: Acrobat-style Russian dashboard */
+.dash-header{display:flex;gap:24px;min-height:64px}
+.workspace-search{flex:1;max-width:520px}
+.dash-hero.office-home{margin-top:18px;padding:38px 28px 24px;border-radius:18px 18px 0 0}
+.dash-hero.office-home h1{font-size:clamp(30px,3.2vw,42px);font-weight:700}
+.home-situation-box{padding:16px 24px 22px;border-radius:0 0 18px 18px}
+.home-situation-box form{background:#fff;border-color:#e4e4e7;box-shadow:0 3px 12px #0000000a}
+#home-situation-title{font-size:15px}
+#home-situation{min-height:52px}
+.home-situation-chips{justify-content:flex-start}
+.home-situation-chips button{background:#fff;border:1px solid #dedee2;padding:9px 13px;font-size:12px;border-radius:9px}
+#my-space-preview,#tools{margin-top:22px;padding:22px;background:#fff;border:1px solid #e7e7e9;border-radius:16px;box-shadow:0 2px 6px #00000006}
+#my-space-preview .section-head h2,#tools .section-head h2{font-size:21px}
+.wishlist-panel{align-items:center}
+.wishlist-actions a{background:#f6f6f7;border:1px solid #e2e2e5;color:#28282b}
+#tools .tool-item{min-height:148px;background:#fafafa;border:1px solid #e8e8eb;padding:18px;justify-content:flex-start}
+#tools .tool-icon{background:#f4e7e9;color:#bd2632}
+#tools .tool-item strong{font-size:15px}
+.office-lower-grid{grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr)}
+.workspace-search input{border-radius:9px}
+.workspace-search-submit{border-radius:9px}
+@media(max-width:760px){.dash-header{gap:12px}.dash-hero.office-home{padding:27px 16px 20px}.home-situation-box{padding:12px 12px 16px}.home-situation-box form{padding:14px}.home-situation-chips{justify-content:flex-start}#my-space-preview,#tools{padding:15px}}
 
 /* October 2026 dashboard refresh based on supplied workspace reference */
 :root{--dash-ink:#202124;--dash-muted:#686b73;--dash-line:#e5e5e8;--dash-paper:#f5f5f6;--dash-blue:#c82932;--dash-soft:#f4e7e9}
@@ -84,7 +108,7 @@ body{background:#f2f2f3;color:var(--dash-ink);font-family:Arial,Helvetica,sans-s
 <button class="workspace-search-submit" type="submit">Найти</button>
 <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
 </form>
-<nav class="dash-nav workspace-top-links" aria-label="Быстрый доступ"><a href="/text2me/space/" title="Моё пространство"><span aria-hidden="true">▣</span><span>Мои документы</span></a><a href="/text2me/guides/" title="Помощь"><span aria-hidden="true">?</span><span>Помощь</span></a><a href="/text2me/request/" title="Отправить сложную задачу"><span aria-hidden="true">↗</span><span>Сложная задача</span></a></nav>
+<nav class="dash-nav workspace-top-links" aria-label="Быстрый доступ"><a href="/text2me/space/" title="Моё пространство"><span aria-hidden="true">▣</span><span>Мои файлы</span></a><a href="/text2me/guides/" title="Помощь"><span aria-hidden="true">?</span><span>Помощь</span></a><a href="/text2me/request/" title="Отправить сложную задачу"><span aria-hidden="true">↗</span><span>Сложная задача</span></a></nav>
 </header>
 
 <div class="workspace-layout">
@@ -103,7 +127,7 @@ body{background:#f2f2f3;color:var(--dash-ink);font-family:Arial,Helvetica,sans-s
 </div>
 <div class="workspace-nav-group"><p>Аудитория и инструменты</p>
 <a class="workspace-nav-link" href="#categories"><span aria-hidden="true">▦</span>Категории</a>
-<a class="workspace-nav-link" href="#tools"><span aria-hidden="true">⌁</span>Инструменты</a>
+<a class="workspace-nav-link" href="#tools"><span aria-hidden="true">⌁</span>Инструменты PDF</a>
 <a class="workspace-nav-link" href="/text2me/people/"><span aria-hidden="true">♙</span>Гражданам</a>
 <a class="workspace-nav-link" href="/text2me/business/"><span aria-hidden="true">▥</span>Организациям</a>
 <a class="workspace-nav-link" href="/text2me/prompts/"><span aria-hidden="true">✎</span>Тексты и редактура</a>
@@ -112,39 +136,39 @@ body{background:#f2f2f3;color:var(--dash-ink);font-family:Arial,Helvetica,sans-s
 <main id="main" class="workspace-main">
 <section class="dash-hero office-home" aria-labelledby="main-title">
 
-<h1 id="main-title">Что нужно решить?</h1>
-<p class="dash-lead">Напишите словами, что случилось — подскажем шаги и документы.</p>
+<h1 id="main-title">Всё для работы с PDF — в одном месте</h1>
+<p class="dash-lead">Создавайте, редактируйте, объединяйте и преобразуйте PDF-документы.</p>
 </section>
 
 <section class="home-situation-box" aria-labelledby="home-situation-title">
 <form id="home-situation-form" action="/text2me/start/" method="get">
 <label id="home-situation-title" for="home-situation">Опишите ситуацию</label>
 
-<textarea id="home-situation" name="task" rows="3" placeholder="Например: сдаю квартиру, нужен договор и акт" autocomplete="off"></textarea>
-<div class="home-situation-actions"><button class="dash-btn" type="submit">Подобрать документы</button><a class="dash-btn secondary" href="/text2me/documents/">Выбрать шаблон</a></div>
+<textarea id="home-situation" name="task" rows="3" placeholder="Например: объединить файлы или преобразовать PDF" autocomplete="off"></textarea>
+<div class="home-situation-actions"><button class="dash-btn" type="submit">Начать</button><a class="dash-btn secondary" href="/text2me/documents/">Все инструменты</a></div>
 </form>
 <div class="home-situation-chips" aria-label="Примеры ситуаций">
 
-<button type="button" data-situation-chip="Сдаю квартиру, нужен договор и акт">Сдаю квартиру</button>
-<button type="button" data-situation-chip="Увольняюсь, нужны документы">Увольняюсь</button>
-<button type="button" data-situation-chip="Продаю автомобиль, нужен договор">Продаю авто</button>
-<button type="button" data-situation-chip="Нужна доверенность">Нужна доверенность</button>
-<button type="button" data-situation-chip="Не возвращают деньги за покупку">Возврат денег</button>
-<button type="button" data-situation-chip="Нужно написать заявление">Нужно заявление</button>
+<button type="button" data-situation-chip="Редактировать PDF, нужен договор и акт">Сдаю квартиру</button>
+<button type="button" data-situation-chip="Преобразовать PDF, нужны документы">Увольняюсь</button>
+<button type="button" data-situation-chip="Объединить файлымобиль, нужен договор">Продаю авто</button>
+<button type="button" data-situation-chip="Сжать PDF">Нужна доверенность</button>
+<button type="button" data-situation-chip="Не возвращают деньги за покупку">Подписать PDF</button>
+<button type="button" data-situation-chip="Нужно написать заявление">Заполнить форму</button>
 </div>
 </section>
 
 <section class="section-block" id="my-space-preview">
-<div class="section-head"><div><h2>Мои документы</h2><p>Созданные документы и загруженные файлы сохраняются автоматически на этом устройстве.</p></div><a href="/text2me/space/">Открыть библиотеку →</a></div>
-<div class="wishlist-panel"><div><strong>Личная библиотека</strong><p id="home-space-summary">Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет.</p><div id="home-space-items" class="home-space-items" aria-live="polite"></div></div><div class="wishlist-actions"><a href="/text2me/space/">Мои документы</a><a href="/text2me/documents/pretenziya-prodavtsu/">Начать черновик</a><a href="/text2me/updates/">Обновления</a></div></div>
+<div class="section-head"><div><h2>Мои документы</h2><p>Недавно открытые файлы и документы, с которыми вы работали.</p></div><a href="/text2me/space/">Просмотреть все файлы →</a></div>
+<div class="wishlist-panel"><div><strong>Недавние файлы</strong><p id="home-space-summary">Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет.</p><div id="home-space-items" class="home-space-items" aria-live="polite"></div></div><div class="wishlist-actions"><a href="/text2me/space/">Мои документы</a><a href="/text2me/documents/pretenziya-prodavtsu/">Создать PDF</a><a href="/text2me/updates/">Обновления</a></div></div>
 </section>
 
 <section class="section-block" id="tools">
-<div class="section-head"><div><h2>Инструменты</h2><p>Отдельно от каталога документов — работа с готовым текстом.</p></div></div>
+<div class="section-head"><div><h2>Инструменты</h2><p>Выполняйте основные действия с PDF в несколько нажатий.</p></div></div>
 <div class="tool-row">
-<a class="tool-item" href="/text2me/documents/"><span class="tool-icon">PDF</span><span><strong>Сохранить черновик в PDF</strong><small>В доступном конструкторе выберите «Печать / PDF»</small><span class="status-badge" data-status="live">Работает</span></span></a>
-<a class="tool-item" href="/text2me/knowledge/"><span class="tool-icon">✓</span><span><strong>Подпись и проверка</strong><small>Инструкция; сервис подписи не подключён</small><span class="status-badge" data-status="demo">Инструкция</span></span></a>
-<a class="tool-item" href="/text2me/documents/"><span class="tool-icon">DOC</span><span><strong>Конструктор документа</strong><small>Черновик, предпросмотр и экспорт там, где поддерживаются</small><span class="status-badge" data-status="live">Работает</span></span></a>
+<a class="tool-item" href="/text2me/documents/"><span class="tool-icon">PDF</span><span><strong>Преобразовать файлы в PDF</strong><small>Преобразуйте документы и изображения в PDF</small><span class="status-badge" data-status="live">Работает</span></span></a>
+<a class="tool-item" href="/text2me/knowledge/"><span class="tool-icon">✓</span><span><strong>Редактировать PDF</strong><small>Изменяйте текст и изображения в PDF</small><span class="status-badge" data-status="demo">Инструкция</span></span></a>
+<a class="tool-item" href="/text2me/documents/"><span class="tool-icon">DOC</span><span><strong>Объединить PDF</strong><small>Объединяйте несколько файлов в один документ</small><span class="status-badge" data-status="live">Работает</span></span></a>
 </div>
 </section>
 
