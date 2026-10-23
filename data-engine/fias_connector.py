@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check the official FNS GAR/FIAS feed and validate changed ZIP releases."""
 from __future__ import annotations
-import argparse, hashlib, json, os, re, sys, tempfile, urllib.parse, urllib.request, zipfile
+import argparse, hashlib, json, os, re, subprocess, sys, tempfile, urllib.parse, urllib.request, zipfile
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
@@ -51,7 +51,7 @@ def validate_archive_file(path,size,sha256):
         corrupt=archive.testzip()
         if corrupt: raise ValueError("ZIP CRC validation failed for member: "+corrupt)
         return {"sha256":sha256,"archive_size_bytes":size,"archive_members":len(members),"xml_members":len(xml_members),"uncompressed_size_bytes":sum(item.file_size for item in members),"archive_crc_validation":"passed"}
-def download_and_validate(url):
+def download_and_validate(url, index_output=None):
     parsed=urllib.parse.urlparse(url)
     if parsed.scheme!="https" or (parsed.hostname or "").lower() not in ALLOWED_HOSTS: raise ValueError("Release URL failed HTTPS/official-host validation")
     request=urllib.request.Request(url,headers={"User-Agent":USER_AGENT}); digest=hashlib.sha256(); size=0; temp_path=None
@@ -67,11 +67,29 @@ def download_and_validate(url):
                     size+=len(chunk)
                     if size>MAX_ARCHIVE_BYTES: raise ValueError("Archive exceeded 10 GiB runner safety limit")
                     digest.update(chunk); tmp.write(chunk)
-        return validate_archive_file(temp_path,size,digest.hexdigest())
+        validation=validate_archive_file(temp_path,size,digest.hexdigest())
+        if index_output:
+            builder=Path(__file__).resolve().parents[1]/"scripts"/"build-gar-index.py"
+            process=subprocess.run([sys.executable,str(builder),temp_path,index_output,"--skip-zip-test"],
+                capture_output=True,text=True,encoding="utf-8")
+            if process.returncode!=0:
+                details=(process.stderr or process.stdout or "unknown index build error")[-2500:]
+                raise ValueError("GAR SQLite index build failed: "+details)
+            report=json.loads(process.stdout)
+            validation["index_build"]={
+                "result":report.get("result"),
+                "database_bytes":report.get("database_bytes"),
+                "database_sha256":report.get("database_sha256"),
+                "counts":report.get("counts"),
+                "table_counts":report.get("table_counts"),
+                "checks":report.get("checks"),
+                "warnings":report.get("warnings",[])
+            }
+        return validation
     finally:
         if temp_path and os.path.exists(temp_path): os.unlink(temp_path)
 def initial_status():
-    return {"schema_version":"1.0.0","connector_id":"gar_fias","connector_name":"ГАР/ФИАС — официальный набор открытых данных ФНС России","status":"not_run","source_page":SOURCE_PAGE,"latest_attempt":None,"last_successful_source_check":None,"last_archive_validation":None,"address_index":{"status":"not_implemented","note":"Архив пока только проверяется; он ещё не преобразуется в поисковую адресную базу."}}
+    return {"schema_version":"1.0.0","connector_id":"gar_fias","connector_name":"ГАР/ФИАС — официальный набор открытых данных ФНС России","status":"not_run","source_page":SOURCE_PAGE,"latest_attempt":None,"last_successful_source_check":None,"last_archive_validation":None,"address_index":{"status":"builder_implemented_not_deployed","note":"SQLite-сборщик и CLI-поиск реализованы; производственная база и веб-поиск ещё не опубликованы."}}
 def read_status(path):
     if not path.exists(): return initial_status()
     try:
@@ -92,19 +110,37 @@ def run_check(path):
         attempt["source_last_changed"]=extract_date_after_label(page_text,"Дата последнего внесения изменений")
         attempt["source_data_current_date"]=extract_date_after_label(page_text,"Дата актуальности")
         previous=status.get("last_archive_validation") or {}
-        if previous.get("release_url")==release_url and previous.get("archive_crc_validation")=="passed":
+        index_output=os.environ.get("GAR_INDEX_OUTPUT") or None
+        same_release=(previous.get("release_url")==release_url and previous.get("archive_crc_validation")=="passed")
+        prior_index=(previous.get("index_build") or {}).get("result")=="success"
+        if same_release and (not index_output or prior_index):
             attempt["archive_action"]="skipped_unchanged_release"
-            attempt["archive_validation"]={key:previous.get(key) for key in ("sha256","archive_size_bytes","archive_members","xml_members","uncompressed_size_bytes")}
+            attempt["archive_validation"]={key:previous.get(key) for key in ("sha256","archive_size_bytes","archive_members","xml_members","uncompressed_size_bytes","index_build")}
             attempt["archive_validation"]["archive_crc_validation"]="passed_previous_run"
         else:
-            attempt["archive_action"]="download_and_validate"; validated=download_and_validate(release_url); attempt["archive_validation"]=validated
+            attempt["archive_action"]="download_validate_and_build_index" if index_output else "download_and_validate"
+            validated=download_and_validate(release_url,index_output)
+            attempt["archive_validation"]=validated
             status["last_archive_validation"]={"validated_at":utc_now(),"release_url":release_url,**validated}
         attempt["status"]="success"; status["status"]="healthy"
         status["last_successful_source_check"]={"checked_at":utc_now(),"source_page":SOURCE_PAGE,"release_url":release_url,"source_last_changed":attempt["source_last_changed"],"source_data_current_date":attempt["source_data_current_date"]}
     except Exception as exc:
         attempt["error"]=type(exc).__name__+": "+str(exc); status["status"]="degraded"
     attempt["finished_at"]=utc_now(); status["latest_attempt"]=attempt
-    status["address_index"]={"status":"not_implemented","note":"Коннектор проверяет официальный источник и целостность ZIP. Построение адресного индекса и подключение к формам ещё не реализованы."}
+    status["address_index"]=status.get("address_index") or {"status":"builder_implemented_not_deployed","note":"SQLite-сборщик и CLI-поиск реализованы; производственная база и веб-поиск ещё не опубликованы."}
+    build=(attempt.get("archive_validation") or {}).get("index_build") or {}
+    if build.get("result")=="success":
+        status["address_index"]={
+            "status":"built_not_deployed",
+            "last_successful_build":attempt["finished_at"],
+            "database_bytes":build.get("database_bytes"),
+            "database_sha256":build.get("database_sha256"),
+            "table_counts":build.get("table_counts"),
+            "note":"SQLite-индекс собран и проверен; он загружается как временный артефакт GitHub Actions, но ещё не опубликован как поисковый API и не подключён к формам."
+        }
+    elif status["address_index"].get("status") not in ("built_not_deployed","deployed"):
+        status["address_index"]["status"]="builder_implemented_not_deployed"
+        status["address_index"]["note"]="SQLite-сборщик и CLI-поиск реализованы; производственная база и веб-поиск ещё не опубликованы."
     write_status(path,status); print(json.dumps({"status":status["status"],"attempt":attempt},ensure_ascii=False,indent=2)); return 0
 def assert_success(path):
     status=read_status(path); latest=status.get("latest_attempt") or {}
