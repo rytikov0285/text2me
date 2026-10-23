@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Машиночитаемый реестр кандидатов в источники для движка актуализации text2me; запись не означает, что источник подключён или условия уже проверены.",
+  "policy": {
+    "paid_apis_allowed_initially": false,
+    "require_terms_review_before_automation": true,
+    "preserve_last_successful_data_on_failure": true,
+    "unknown_access_status": "needs_verification"
+  },
+  "required_fields": [
+    "id",
+    "category",
+    "name",
+    "authority",
+    "url",
+    "data_types",
+    "access_type",
+    "free_bulk_download",
+    "requires_auth",
+    "format",
+    "update_frequency",
+    "terms_url",
+    "status",
+    "last_checked",
+    "notes"
+  ],
+  "sources": [
+    {
+      "id": "gar_fias",
+      "category": "addresses",
+      "name": "Государственный адресный реестр / ФИАС",
+      "authority": "ФНС России",
+      "url": "https://www.nalog.gov.ru/opendata/7707329152-fias/",
+      "data_types": [
+        "address_objects",
+        "address_ids",
+        "administrative_divisions",
+        "houses"
+      ],
+      "access_type": "official_public_download",
+      "free_bulk_download": "public_official_download_link_listed",
+      "requires_auth": false,
+      "format": [
+        "ZIP",
+        "XML"
+      ],
+      "update_frequency": "weekly_as_stated_in_dataset_metadata",
+      "terms_url": "https://www.nalog.gov.ru/opendata/7707329152-fias/",
+      "status": "first_connector_implemented_pending_live_run_and_terms_review",
+      "last_checked": null
+    },
+    {
+      "id": "postal_ops",
+      "category": "postal",
+      "name": "Справочник объектов почтовой связи и индексов",
+      "authority": "Почта России",
+      "url": "https://info.pochta.ru/support/database/ops",
+      "data_types": [
+        "postal_codes",
+        "post_offices"
+      ],
+      "access_type": "official_download_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://info.pochta.ru/support/database/ops",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "courts_sudrf",
+      "category": "courts",
+      "name": "ГАС «Правосудие»",
+      "authority": "Судебная система РФ",
+      "url": "https://sudrf.ru/",
+      "data_types": [
+        "courts",
+        "court_contacts",
+        "jurisdiction"
+      ],
+      "access_type": "official_website_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://sudrf.ru/",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "arbitration_courts",
+      "category": "courts",
+      "name": "Арбитражные суды РФ — доступ к данным",
+      "authority": "Система арбитражных судов РФ",
+      "url": "https://arbitr.ru/materials/infoaboutas",
+      "data_types": [
+        "arbitration_courts",
+        "court_contacts"
+      ],
+      "access_type": "official_information_page",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://arbitr.ru/materials/infoaboutas",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "government_open_data",
+      "category": "government",
+      "name": "Открытые данные Правительства России",
+      "authority": "Правительство РФ",
+      "url": "http://government.ru/open_data/",
+      "data_types": [
+        "government_agencies",
+        "public_data_catalogs"
+      ],
+      "access_type": "official_open_data_portal",
+      "free_bulk_download": "needs_verification_per_dataset",
+      "requires_auth": "needs_verification",
+      "format": [
+        "CSV",
+        "XML",
+        "JSON",
+        "other"
+      ],
+      "update_frequency": "per_dataset",
+      "terms_url": "http://government.ru/open_data/",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "mvd_contacts",
+      "category": "government",
+      "name": "Территориальные органы МВД",
+      "authority": "МВД России",
+      "url": "https://мвд.рф/contacts/sites",
+      "data_types": [
+        "government_agencies",
+        "contacts",
+        "addresses"
+      ],
+      "access_type": "official_website",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://мвд.рф/contacts/sites",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "mchs_units",
+      "category": "government",
+      "name": "Подразделения МЧС",
+      "authority": "МЧС России",
+      "url": "https://mchs.gov.ru/dokumenty/3165",
+      "data_types": [
+        "emergency_services",
+        "addresses",
+        "coordinates"
+      ],
+      "access_type": "official_publication_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://mchs.gov.ru/dokumenty/3165",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "minfin_contacts",
+      "category": "government",
+      "name": "Открытые данные Минфина — контакты",
+      "authority": "Минфин России",
+      "url": "https://minfin.gov.ru/ru/opendata/7710168360-contacts/",
+      "data_types": [
+        "government_contacts",
+        "addresses"
+      ],
+      "access_type": "official_open_data_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://minfin.gov.ru/ru/opendata/7710168360-contacts/",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "medical_registry",
+      "category": "healthcare",
+      "name": "Федеральный реестр медицинских организаций / ЕГИСЗ",
+      "authority": "Минздрав России",
+      "url": "https://minzdrav.gov.ru/ministry/web-site/informatsionnye-sistemy-minzdrava-rossii/katalog-podsistem-egisz/federalnyy-reestr-meditsinskikh-organizatsiy",
+      "data_types": [
+        "medical_organizations",
+        "addresses"
+      ],
+      "access_type": "official_registry_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://minzdrav.gov.ru/ministry/web-site/informatsionnye-sistemy-minzdrava-rossii/katalog-podsistem-egisz/federalnyy-reestr-meditsinskikh-organizatsiy",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "medical_licenses",
+      "category": "healthcare",
+      "name": "Реестр лицензий Росздравнадзора",
+      "authority": "Росздравнадзор",
+      "url": "https://roszdravnadzor.gov.ru/services/licenses/registry",
+      "data_types": [
+        "medical_licenses",
+        "licensed_organizations"
+      ],
+      "access_type": "official_registry_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://roszdravnadzor.gov.ru/services/licenses/registry",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "fns_open_data",
+      "category": "organizations",
+      "name": "Открытые данные ФНС / Прозрачный бизнес",
+      "authority": "ФНС России",
+      "url": "https://pb.nalog.ru/od.html",
+      "data_types": [
+        "legal_entities",
+        "individual_entrepreneurs",
+        "registration_status"
+      ],
+      "access_type": "official_open_data_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "per_dataset",
+      "terms_url": "https://pb.nalog.ru/od.html",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "rosstat_classifiers",
+      "category": "classifiers",
+      "name": "Общероссийские классификаторы",
+      "authority": "Росстат",
+      "url": "https://rosstat.gov.ru/metod/classifiers.html",
+      "data_types": [
+        "okved",
+        "okpd2",
+        "oktmo",
+        "okato",
+        "okpo",
+        "okogu",
+        "okfs",
+        "okopf"
+      ],
+      "access_type": "official_publication_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "per_classifier",
+      "terms_url": "https://rosstat.gov.ru/metod/classifiers.html",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "legal_publication",
+      "category": "legislation",
+      "name": "Официальный интернет-портал правовой информации",
+      "authority": "Официальный интернет-портал правовой информации",
+      "url": "https://publication.pravo.gov.ru/",
+      "data_types": [
+        "legal_acts",
+        "publication_dates",
+        "effective_dates"
+      ],
+      "access_type": "official_publication_and_rss_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": [
+        "HTML",
+        "RSS",
+        "other"
+      ],
+      "update_frequency": "publication_based",
+      "terms_url": "https://publication.pravo.gov.ru/help",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "education_licenses",
+      "category": "education",
+      "name": "Открытые данные и лицензии образовательных организаций",
+      "authority": "Рособрнадзор",
+      "url": "https://obrnadzor.gov.ru/otkrytoe-pravitelstvo/opendata/7701537808-bololgo/",
+      "data_types": [
+        "educational_organizations",
+        "education_licenses"
+      ],
+      "access_type": "official_open_data_candidate",
+      "free_bulk_download": "needs_verification",
+      "requires_auth": "needs_verification",
+      "format": "needs_verification",
+      "update_frequency": "needs_verification",
+      "terms_url": "https://obrnadzor.gov.ru/otkrytoe-pravitelstvo/opendata/7701537808-bololgo/",
+      "status": "needs_verification",
+      "last_checked": null
+    },
+    {
+      "id": "iana_time_zones",
+      "category": "international_reference",
+      "name": "IANA Time Zone Database",
+      "authority": "IANA",
+      "url": "https://www.iana.org/time-zones",
+      "data_types": [
+        "time_zones"
+      ],
+      "access_type": "official_download",
+      "free_bulk_download": "candidate",
+      "requires_auth": false,
+      "format": [
+        "text",
+        "tar.gz"
+      ],
+      "update_frequency": "release_based",
+      "terms_url": "https://www.iana.org/time-zones",
+      "status": "candidate_needs_terms_review",
+      "last_checked": null
+    },
+    {
+      "id": "unicode_cldr",
+      "category": "international_reference",
+      "name": "Unicode CLDR",
+      "authority": "Unicode Consortium",
+      "url": "https://cldr.unicode.org/",
+      "data_types": [
+        "locale_names",
+        "territory_names",
+        "formatting_data"
+      ],
+      "access_type": "official_download",
+      "free_bulk_download": "candidate",
+      "requires_auth": false,
+      "format": [
+        "XML",
+        "JSON"
+      ],
+      "update_frequency": "release_based",
+      "terms_url": "https://cldr.unicode.org/",
+      "status": "candidate_needs_terms_review",
+      "last_checked": null
+    }
+  ]
+}
