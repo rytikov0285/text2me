@@ -328,7 +328,7 @@ function railCard(title){var c=document.createElement("section");c.className="wo
 var left=document.createElement("aside");left.className="workspace-page-left";left.setAttribute("aria-label","Быстрый доступ");
 var quick=railCard("Быстрый старт");
 [["＋","Создать документ","/text2me/documents/"],["↗","Разобрать ситуацию","/text2me/situations/"],["✎","Подготовить текст","/text2me/prompts/"],["▦","Задача для бизнеса","/text2me/business/"]].forEach(function(item){var a=document.createElement("a");a.className="workspace-rail-link";a.href=item[2];var i=document.createElement("span");i.className="ws-rail-icon";i.setAttribute("aria-hidden","true");i.textContent=item[0];a.append(i,document.createTextNode(item[1]));quick.appendChild(a)});left.appendChild(quick);
-var nav=railCard("Разделы");sections.slice(1,10).forEach(function(s){var a=document.createElement("a");a.className="workspace-rail-link";a.href=s.url;if(current===s.url.replace(/\/+$/,""))a.setAttribute("aria-current","page");a.textContent=s.title;nav.appendChild(a)});left.appendChild(nav);
+var nav=railCard("Разделы сайта");sections.slice(1,10).forEach(function(s){var a=document.createElement("a");a.className="workspace-rail-link";a.href=s.url;if(current===s.url.replace(/\/+$/,""))a.setAttribute("aria-current","page");a.textContent=s.title;nav.appendChild(a)});left.appendChild(nav);
 var helpful=railCard("Перед отправкой");
 [["Проверить даты и реквизиты","/text2me/guides/"],["Сверить официальный порядок","/text2me/sources/"],["Сохранить копию","/text2me/space/"]].forEach(function(item){
  var a=document.createElement("a");a.className="workspace-rail-link";a.href=item[1];a.textContent=item[0];helpful.appendChild(a);
@@ -378,6 +378,7 @@ function installFullWidthSectionNav(){
  var strip=document.createElement("nav");
  strip.id="text2me-section-strip";
  strip.className="text2me-section-strip";
+ if(header.classList.contains("dash-header"))strip.classList.add("text2me-section-strip-home");
  strip.setAttribute("aria-label","Основные разделы сайта");
  var links=[
  ["Главная","/text2me/"],
