@@ -42,4 +42,12 @@ with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
                                   capture_output=True, text=True, encoding="utf-8", check=True)
     house_result = json.loads(house_search.stdout)
     assert any(row["kind"] == "house" and row["house_number"] == "12А" for row in house_result["results"]), house_result
-    print("PASS: synthetic GAR XML archive built, checked, and searched.")
+    before = output.read_bytes()
+    broken = root / "broken.zip"
+    with zipfile.ZipFile(broken, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr("GAR/UNRELATED.xml", "<ROOT/>")
+    failed = subprocess.run([sys.executable, str(builder), str(broken), str(output)],
+                            capture_output=True, text=True, encoding="utf-8")
+    assert failed.returncode != 0, "Builder must reject an archive missing required GAR tables."
+    assert output.read_bytes() == before, "Failed update must preserve the last successful database."
+    print("PASS: synthetic GAR build, search, and failed-update preservation.")
