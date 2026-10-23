@@ -528,7 +528,7 @@ var sections=[
 {title:"Официальные источники",url:"/text2me/sources/",keys:"государство официальный сайт орган"},
 {title:"Мои документы",url:"/text2me/space/",keys:"сохранить черновик библиотека файлы"},
 {title:"Сложная задача",url:"/text2me/request/",keys:"специалист сложная задача обращение"},
-{title:"Профессиональные услуги",url:"/text2me/services/",keys:"специалист услуга бухгалтер юридический"},
+{title:"Проверка и подготовка документов",url:"/text2me/services/",keys:"аудит проверка документов нестандартный документ комплект"},
 {title:"Что нового",url:"/text2me/updates/",keys:"обновления изменения"},
 {title:"Конфиденциальность",url:"/text2me/privacy/",keys:"данные приватность"},
 {title:"Безопасность данных",url:"/text2me/security/",keys:"безопасность хранение"}
@@ -635,7 +635,7 @@ function installNavigation(){
   tasks.setAttribute("aria-label","Быстрый выбор задачи по направлению");
   var groups=[
    {label:"Личные дела",links:[["Жизненная ситуация","/text2me/situations/"],["Заявление или претензия","/text2me/documents/"],["Проверить документ","/text2me/knowledge/document-standard/"]]},
-   {label:"Профессиональные услуги",links:[["Страхование","/text2me/services/#insurance"],["Юридические вопросы","/text2me/services/#legal"],["Бухгалтерия","/text2me/services/#accounting"],["Маркетинг","/text2me/services/#marketing"]]},
+   {label:"Дополнительная помощь",links:[["Аудит документов","/text2me/services/#audit"],["Нестандартный документ","/text2me/services/#custom-documents"],["Страхование — safe2me.ru","https://safe2me.ru/"]]},
    {label:"Рабочие инструменты",links:[["Задачи и сроки","/text2me/organizer/"],["Официальные сведения","/text2me/sources/"],["Сохранённые документы","/text2me/space/"]]}
   ];
   groups.forEach(function(group){
