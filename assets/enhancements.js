@@ -66,7 +66,9 @@ var footerLinks=[
 ["/text2me/privacy/","Конфиденциальность"],
 ["/text2me/security/","Безопасность данных"],
 ["/text2me/terms/","Условия использования"],
-["/text2me/updates/","Обновления"],\n["/text2me/dashboard/","Рабочий стол"],\n["/text2me/calendar/","Календарь"],
+["/text2me/updates/","Обновления"],
+["/text2me/dashboard/","Рабочий стол"],
+["/text2me/calendar/","Календарь"],
 ["/text2me/law/","Право и документы"],
 ["/text2me/standards/","Стандарты и лицензии"],
 ["/text2me/news/","Новости и изменения"]
