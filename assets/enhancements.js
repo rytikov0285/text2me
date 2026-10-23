@@ -66,7 +66,7 @@ var footerLinks=[
 ["/text2me/privacy/","Конфиденциальность"],
 ["/text2me/security/","Безопасность данных"],
 ["/text2me/terms/","Условия использования"],
-["/text2me/updates/","Обновления"],\n["/text2me/dashboard/","Рабочий стол"],
+["/text2me/updates/","Обновления"],\n["/text2me/dashboard/","Рабочий стол"],\n["/text2me/calendar/","Календарь"],
 ["/text2me/law/","Право и документы"],
 ["/text2me/standards/","Стандарты и лицензии"],
 ["/text2me/news/","Новости и изменения"]
@@ -77,7 +77,7 @@ nav.replaceChildren();
 footerLinks.forEach(function(pair){nav.appendChild(el("a",{href:pair[0]},pair[1]))});
 });
 }
-function initToolNav(){var header=document.querySelector(".site-header");if(!header||header.querySelector(".tool-nav"))return;var nav=el("nav",{class:"tool-nav","aria-label":"Инструменты"}),inner=el("div",{class:"container tool-nav-inner"});[["/text2me/dashboard/","Рабочий стол","demo"],["/text2me/prompts/","PDF и файлы","demo"],["/text2me/knowledge/","База знаний","demo"],["/text2me/documents/pretenziya-prodavtsu/","Конструктор","live"],["/text2me/law/","Право и документы","demo"],["/text2me/standards/","Стандарты","demo"],["/text2me/news/","Новости","demo"]].forEach(function(x){var a=el("a",{href:x[0]}),label=el("span",{},x[1]);a.appendChild(label);a.appendChild(statusBadge(x[2],x[2]==="live"?"Работает":"Демо"));inner.appendChild(a)});nav.appendChild(inner);header.appendChild(nav)}
+function initToolNav(){var header=document.querySelector(".site-header");if(!header||header.querySelector(".tool-nav"))return;var nav=el("nav",{class:"tool-nav","aria-label":"Инструменты"}),inner=el("div",{class:"container tool-nav-inner"});[["/text2me/dashboard/","Рабочий стол","demo"],["/text2me/calendar/","Календарь","demo"],["/text2me/prompts/","PDF и файлы","demo"],["/text2me/knowledge/","База знаний","demo"],["/text2me/documents/pretenziya-prodavtsu/","Конструктор","live"],["/text2me/law/","Право и документы","demo"],["/text2me/standards/","Стандарты","demo"],["/text2me/news/","Новости","demo"]].forEach(function(x){var a=el("a",{href:x[0]}),label=el("span",{},x[1]);a.appendChild(label);a.appendChild(statusBadge(x[2],x[2]==="live"?"Работает":"Демо"));inner.appendChild(a)});nav.appendChild(inner);header.appendChild(nav)}
 function initGlobalNavigation(){
 var main=document.querySelector("body > main")||document.querySelector(".dash-shell > main")||document.querySelector(".workspace-main");
 if(!main)return;
