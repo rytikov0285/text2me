@@ -23,11 +23,11 @@ class PageParser(HTMLParser):
         if cleaned:self.text.append(cleaned)
 def fetch_page(url):
     request=urllib.request.Request(url,headers={"User-Agent":USER_AGENT})
-    with urllib.request.urlopen(request,timeout=45) as response:
+    with urllib.request.urlopen(request,timeout=20) as response:
         final_url=response.geturl(); host=(urllib.parse.urlparse(final_url).hostname or "").lower()
         if host not in {"www.nalog.gov.ru","nalog.gov.ru"}: raise ValueError("Official source redirected to unexpected host: "+host)
-        raw=response.read(30*1024*1024+1)
-        if len(raw)>30*1024*1024: raise ValueError("Source metadata page exceeded 30 MiB safety limit")
+        raw=response.read(5*1024*1024+1)
+        if len(raw)>5*1024*1024: raise ValueError("Source metadata page exceeded 5 MiB safety limit")
         return raw.decode(response.headers.get_content_charset() or "utf-8",errors="replace"),final_url
 def extract_release_url(html,page_url=SOURCE_PAGE):
     parser=PageParser(); parser.feed(html); candidates=[]
