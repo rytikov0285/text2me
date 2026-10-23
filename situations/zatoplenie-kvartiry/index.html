@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Затопило квартиру: план действий и документы — text2me</title>
+<meta name="description" content="Пошаговый помощник при затоплении квартиры: заявление в управляющую компанию, фиксация ущерба, претензия, подготовка к суду и контроль сроков.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rytikov0285.github.io/text2me/situations/zatoplenie-kvartiry/">
+<link rel="stylesheet" href="/text2me/assets/style.css">
+<link rel="stylesheet" href="/text2me/assets/flood-workflow.css">
+<link rel="manifest" href="/text2me/manifest.webmanifest">
+<meta name="theme-color" content="#214f91">
+<script defer src="/text2me/assets/flood-workflow.js"></script>
+<script defer src="/text2me/assets/pwa.js"></script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/text2me/"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a>
+<nav class="main-nav" aria-label="Основная навигация"><a href="/text2me/">Главная</a><a href="/text2me/documents/">Документы</a><a href="/text2me/organizer/">Календарь</a><a href="/text2me/space/">Мои документы</a></nav>
+</div></header>
+<main class="container flood-page">
+<section class="flood-hero">
+<p class="flood-eyebrow">Пошаговый помощник · Жилищные ситуации</p>
+<h1>Затопило квартиру. Что делать дальше?</h1>
+<p>Ответьте на несколько вопросов. text2me подготовит первый документ, покажет следующие действия и поможет не забыть о сроках.</p>
+<div class="flood-disclaimer">Это рабочий черновик, а не юридическое заключение. Сервис не отправляет документы за вас и пока не рассылает автоматические сообщения по почте или в мессенджеры. Проверяйте данные и сохраняйте доказательства отправки.</div>
+</section>
+<section class="flood-layout">
+<div class="flood-main">
+<section class="flood-card" aria-labelledby="step1-title">
+<div class="flood-step-label">Шаг 1 из 3</div><h2 id="step1-title">Расскажите, что произошло</h2>
+<p class="flood-muted">Поля с тестовыми данными можно заменить. Неизвестные сведения не нужно придумывать.</p>
+<form id="flood-intake">
+<div class="flood-fields">
+<label>ФИО заявителя<input id="f-name" value="Иванов Алексей Петрович" autocomplete="name" required></label>
+<label>Адрес квартиры<input id="f-address" value="г. Анапа, ул. Ленина, д. 153" required></label>
+<label>Дата затопления<input id="f-date" type="date" required></label>
+<label>Кто вы?<select id="f-role"><option value="собственник">Собственник квартиры</option><option value="наниматель">Наниматель квартиры</option><option value="представитель">Представитель собственника</option><option value="иной пользователь">Другое</option></select></label>
+<label>Предполагаемая причина<select id="f-cause"><option value="не установлена">Пока не установлена</option><option value="протечка крыши">Протечка крыши</option><option value="общедомовые трубы или стояк">Общедомовые трубы или стояк</option><option value="квартира соседей">Квартира соседей</option><option value="другое">Другая причина</option></select></label>
+<label>Управляющая организация (если известна)<input id="f-company" placeholder="Не знаете — оставьте поле пустым"></label>
+<label class="flood-wide">Что повреждено?<textarea id="f-damage" rows="3" placeholder="Например: потолок в комнате, обои, шкаф, ноутбук. Укажите только то, что действительно повреждено."></textarea></label>
+<label class="flood-wide">Номер заявки в аварийную службу (если есть)<input id="f-ticket" placeholder="Номер и дата обращения — если известны"></label>
+</div>
+<div class="flood-checklist">
+<strong>Сделайте это как можно скорее:</strong>
+<label><input type="checkbox" id="c-emergency"> Сообщил(а) в аварийную службу / УК и записал(а) номер заявки</label>
+<label><input type="checkbox" id="c-photos"> Сфотографировал(а) и снял(а) на видео повреждения</label>
+<label><input type="checkbox" id="c-act"> Получил(а) акт о заливе или запросил(а) его составление</label>
+</div>
+<button class="flood-button" type="submit">Подготовить первое заявление →</button>
+</form>
+</section>
+<section class="flood-card" id="first-document" hidden aria-labelledby="first-doc-title">
+<div class="flood-step-label">Результат 1</div><h2 id="first-doc-title">Заявление в управляющую организацию</h2>
+<p class="flood-muted">Первый документ просит зарегистрировать происшествие, провести осмотр и составить акт. Он не подменяет денежную претензию: для неё обычно нужны сведения о причине и подтверждённый размер ущерба.</p>
+<label>Текст документа<textarea id="flood-draft" rows="18" spellcheck="true"></textarea></label>
+<div class="flood-actions"><button type="button" class="flood-button" id="download-first">Скачать заявление (.txt)</button><button type="button" class="flood-button secondary" id="copy-first">Копировать текст</button><button type="button" class="flood-button secondary" id="save-first">Сохранить в «Мои документы»</button></div>
+<p id="first-status" class="flood-status" role="status"></p>
+<div class="flood-next"><h3>Что делать после подготовки</h3><ol>
+<li>Проверьте ФИО, адрес, дату, название УК и описание повреждений.</li>
+<li>Передайте заявление способом, который оставляет подтверждение вручения или отправки.</li>
+<li>Получите акт о заливе; сохраните фото, видео, номер аварийной заявки и ответ УК.</li>
+<li>После определения ответственного лица и оценки ущерба подготовьте денежную претензию.</li>
+</ol></div>
+</section>
+<section class="flood-card" id="claim-stage" hidden aria-labelledby="claim-title">
+<div class="flood-step-label">Шаг 2 из 3</div><h2 id="claim-title">Подготовьте денежную претензию</h2>
+<p class="flood-muted">Переходите к этому этапу, когда известны адресат требования, основание ответственности и сумма ущерба. Если данных пока нет, сохраните первый документ и вернитесь позже.</p>
+<div class="flood-fields">
+<label>Кому направляется претензия<input id="claim-recipient" placeholder="УК, собственник соседней квартиры или другое лицо"></label>
+<label>Подтверждённый ущерб, ₽<input id="claim-amount" inputmode="decimal" placeholder="Сумма по оценке / смете"></label>
+<label>Дата акта о заливе<input id="claim-act-date" type="date"></label>
+<label>Дата отчёта об оценке<input id="claim-estimate-date" type="date"></label>
+<label class="flood-wide">Что подтверждает ущерб?<textarea id="claim-evidence" rows="3" placeholder="Например: акт, отчёт оценщика, смета, чеки, фотографии"></textarea></label>
+</div>
+<button type="button" class="flood-button" id="make-claim">Сформировать черновик претензии</button>
+<div id="claim-output" hidden>
+<label>Черновик денежной претензии<textarea id="claim-draft" rows="18"></textarea></label>
+<div class="flood-actions"><button type="button" class="flood-button" id="download-claim">Скачать претензию (.txt)</button><button type="button" class="flood-button secondary" id="save-claim">Сохранить в «Мои документы»</button></div>
+</div>
+</section>
+<section class="flood-card" id="reminder-stage" aria-labelledby="reminder-title">
+<div class="flood-step-label">Шаг 3 из 3</div><h2 id="reminder-title">Контроль ответа и сроков</h2>
+<p class="flood-muted">После отправки денежной претензии укажите дату. Сервис добавит задачи в локальный календарь text2me и позволит скачать файл для импорта в календарь устройства.</p>
+<div class="flood-fields">
+<label>Дата отправки денежной претензии<input id="claim-sent-date" type="date"></label>
+<label>Статус ответа<select id="claim-response"><option value="ожидается">Ответ ожидается</option><option value="отказ">Получен отказ</option><option value="частично">Предложено частичное возмещение</option><option value="выплачено">Ущерб возмещён</option></select></label>
+</div>
+<div class="flood-actions"><button type="button" class="flood-button" id="schedule-reminders">Добавить напоминания в календарь</button><button type="button" class="flood-button secondary" id="download-ics">Скачать календарные напоминания (.ics)</button></div>
+<p id="reminder-status" class="flood-status" role="status"></p>
+<div class="flood-next"><h3>Что напомнит календарь</h3><ul><li>Через 10 дней — проверить ответ и подтверждение вручения. Десятидневный срок применяется не к любой просьбе в УК и не заменяет проверку правового основания.</li><li>Через 30 дней — проверить комплектность доказательств и решить, нужен ли следующий шаг, включая подготовку иска.</li></ul><p><strong>Важно:</strong> сейчас это задачи в браузерном календаре и файл для импорта. Автоматическая доставка по email/Telegram и гарантированные push-уведомления ещё не подключены.</p></div>
+</section>
+</div>
+<aside class="flood-side">
+<section class="flood-card"><h2>Ваш маршрут</h2><ol class="flood-route"><li><strong>Зафиксировать залив</strong><span>Аварийная заявка, фото и видео, акт осмотра.</span></li><li><strong>Запросить акт и причину</strong><span>Первое заявление в УК — сформируем на основе ваших данных.</span></li><li><strong>Оценить ущерб</strong><span>Смета или независимый отчёт; сохранить подтверждающие документы.</span></li><li><strong>Предъявить требование</strong><span>Претензия ответственному лицу, подтверждение отправки.</span></li><li><strong>Решить вопрос о суде</strong><span>Проверить ответ, доказательства, подсудность и актуальные требования.</span></li></ol></section>
+<section class="flood-card"><h2>Полезные официальные источники</h2><ul class="flood-links"><li><a href="https://zpp.rospotrebnadzor.ru/handbook/zhku/memos/49536" target="_blank" rel="noopener">Роспотребнадзор: что делать при затоплении</a></li><li><a href="https://zpp.rospotrebnadzor.ru/handbook/zhku/answers/43380" target="_blank" rel="noopener">Если УК не составляет акт</a></li><li><a href="https://dom.gosuslugi.ru/" target="_blank" rel="noopener">ГИС ЖКХ — сведения о доме и управляющей организации</a></li></ul></section>
+<section class="flood-card"><h2>После урегулирования</h2><p>Можно бесплатно сохранить документы и контрольные даты в text2me. В перспективе отдельный сервис страхования имущества сможет помочь сравнить условия страхования квартиры и автомобиля.</p><p class="flood-muted">Предварительное название: <strong>Strah2me</strong>. Это идея, не работающий страховой продукт; домен и товарный знак не проверены. Продажа полисов возможна только через законно работающих страховщиков/партнёров.</p></section>
+</aside>
+</section>
+<footer class="flood-footer"><a href="/text2me/">← На главную text2me</a><span>Данные этого прототипа сохраняются в браузере устройства. Облачной синхронизации пока нет.</span></footer>
+</main>
+</body>
+</html>
