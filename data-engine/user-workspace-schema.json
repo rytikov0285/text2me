@@ -59,14 +59,17 @@
       }
     },
     "document_reference": {
-      "planned": true,
+      "planned": false,
       "fields": {
         "id": "string",
         "title": "string",
         "fileName": "string",
         "caseId": "string or empty",
         "createdAt": "ISO-8601",
-        "source": "local file reference"
+        "source": "local file reference",
+        "url": "optional HTTP(S) URL",
+        "description": "string",
+        "updatedAt": "ISO-8601"
       }
     }
   },
@@ -78,8 +81,8 @@
     },
     {
       "id": "documents-vault",
-      "status": "existing_partial",
-      "scope": "Browser-local file storage in IndexedDB where supported"
+      "status": "partial",
+      "scope": "IndexedDB file vault exists separately; dashboard supports local document references linked to cases"
     },
     {
       "id": "accounts-sync",
@@ -113,4 +116,4 @@
     "Exported JSON backups may contain personal data; store them securely.",
     "Never claim local reminders run when the page is closed."
   ]
-}\n
+}
