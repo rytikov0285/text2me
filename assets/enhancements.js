@@ -66,7 +66,10 @@ var footerLinks=[
 ["/text2me/privacy/","Конфиденциальность"],
 ["/text2me/security/","Безопасность данных"],
 ["/text2me/terms/","Условия использования"],
-["/text2me/updates/","Обновления"]
+["/text2me/updates/","Обновления"],
+["/text2me/law/","Право и документы"],
+["/text2me/standards/","Стандарты и лицензии"],
+["/text2me/news/","Новости и изменения"]
 ];
 document.querySelectorAll(".site-footer nav").forEach(function(nav){
 nav.setAttribute("aria-label","Быстрая навигация и информация о сайте");
@@ -94,7 +97,10 @@ var routes=[
 ["/text2me/sources/","Официальные источники","Гражданам и организациям"],
 ["/text2me/prompts/","Тексты и редактура","Для разных задач"],
 ["/text2me/space/","Моё пространство","Пользователям сервиса"],
-["/text2me/updates/","Обновления","Всем посетителям"]
+["/text2me/updates/","Обновления","Всем посетителям"],
+["/text2me/law/","Право и документы","Гражданам"],
+["/text2me/standards/","Стандарты и лицензии","Гражданам и организациям"],
+["/text2me/news/","Новости и изменения","Всем посетителям"]
 ];
 routes.forEach(function(r){if(path.indexOf(r[0])===0){section=r[1];audience=r[2]}});
 if(path.indexOf("/text2me/documents/dogovor-arendy/")===0){section="Договор найма жилья";audience="Гражданам"}
