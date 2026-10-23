@@ -1,4 +1,5 @@
 name: Text2me GAR-FIAS connector
+# A commit containing [run-gar-fias-preflight] checks source/size headers only; it does not download the archive.
 on:
   push:
     branches: [main]
