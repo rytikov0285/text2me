@@ -1,0 +1,48 @@
+name: Monitor official GAR-FIAS metadata
+
+on:
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/monitor-gar-fias.mjs"
+      - ".github/workflows/gar-fias-metadata-monitor.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gar-fias-metadata-monitor
+  cancel-in-progress: false
+
+jobs:
+  check-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check official metadata endpoint
+        id: monitor
+        continue-on-error: true
+        run: node scripts/monitor-gar-fias.mjs
+      - name: Publish latest check result
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data-engine/status.json
+          if git diff --cached --quiet; then
+            echo "No status changes to commit."
+          else
+            git commit -m "Update GAR-FIAS metadata check status"
+            git push
+          fi
+      - name: Mark failed source check
+        if: steps.monitor.outcome == 'failure'
+        run: exit 1
