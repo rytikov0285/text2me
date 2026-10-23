@@ -88,7 +88,8 @@ with zipfile.ZipFile(archive_path) as archive:
         "recognized_table_kinds": sorted(recognized),
         "missing_expected_table_kinds": missing_groups,
         "parse_errors": errors[:100],
-        "files": reports,
+        "files": reports[:50],
+        "files_truncated": max(0, len(reports) - 50),
         "note": "Это инвентаризация XML и проверка синтаксической корректности, а не полная валидация XSD, связей объектов или построение поискового индекса."
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
