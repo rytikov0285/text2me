@@ -489,7 +489,7 @@ body{background:var(--ws-paper);color:var(--ws-ink);font-family:Arial,Helvetica,
 .text2me-section-strip{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:7px;max-width:1540px;margin:0 auto;padding:8px 24px 10px;background:#f5f9fd;border-bottom:1px solid #d8e5f1}
 .text2me-section-strip a{display:flex;align-items:center;justify-content:center;min-height:38px;padding:7px 9px;border:1px solid #cbddec;border-radius:8px;background:#fff;color:#294e70;text-align:center;text-decoration:none;font-size:11px;font-weight:750;line-height:1.25}
 .text2me-section-strip a:hover,.text2me-section-strip a[aria-current=page]{background:#e5f1fc;border-color:#7eb0d8;color:#0d548f}
-.text2me-section-strip-home{max-width:1200px}
+.text2me-section-strip-home{max-width:1500px}
 @media(max-width:1050px){.text2me-section-strip{grid-template-columns:repeat(4,minmax(0,1fr));padding-inline:18px}}
 @media(max-width:620px){.text2me-section-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:7px 15px}.text2me-section-strip a{min-height:36px;font-size:11px}.site-header .brand,.dash-header .dash-logo{align-self:flex-end}.site-header .header-inner>.site-header-search,.site-header .header-inner>.main-nav,.dash-header .workspace-search,.dash-header .workspace-top-links{width:100%}}
 
