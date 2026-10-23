@@ -47,7 +47,8 @@
       "update_frequency": "weekly_as_stated_in_dataset_metadata",
       "terms_url": "https://www.nalog.gov.ru/opendata/7707329152-fias/",
       "status": "first_connector_implemented_pending_live_run_and_terms_review",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Приоритетный коннектор. Проверяет официальный URL и CRC нового ZIP. Построение адресного индекса ещё не реализовано."
     },
     {
       "id": "postal_ops",
@@ -66,7 +67,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://info.pochta.ru/support/database/ops",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить условия выгрузки и повторного использования; платный API не подключать."
     },
     {
       "id": "courts_sudrf",
@@ -86,7 +88,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://sudrf.ru/",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Найти разрешённый структурированный источник; наличие сайта не означает разрешение на массовый сбор."
     },
     {
       "id": "arbitration_courts",
@@ -105,7 +108,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://arbitr.ru/materials/infoaboutas",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить официальный способ получения структурированных данных."
     },
     {
       "id": "government_open_data",
@@ -129,7 +133,8 @@
       "update_frequency": "per_dataset",
       "terms_url": "http://government.ru/open_data/",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверять каждый набор отдельно; портал не гарантирует наличие стабильной машинной выгрузки."
     },
     {
       "id": "mvd_contacts",
@@ -149,7 +154,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://мвд.рф/contacts/sites",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить разрешённый машинный доступ и ограничения."
     },
     {
       "id": "mchs_units",
@@ -169,7 +175,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://mchs.gov.ru/dokumenty/3165",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить актуальность публикации и условия машинного использования."
     },
     {
       "id": "minfin_contacts",
@@ -188,7 +195,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://minfin.gov.ru/ru/opendata/7710168360-contacts/",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить наличие действующего набора и машинных файлов."
     },
     {
       "id": "medical_registry",
@@ -207,7 +215,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://minzdrav.gov.ru/ministry/web-site/informatsionnye-sistemy-minzdrava-rossii/katalog-podsistem-egisz/federalnyy-reestr-meditsinskikh-organizatsiy",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить публичную выгрузку и ограничения доступа."
     },
     {
       "id": "medical_licenses",
@@ -226,7 +235,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://roszdravnadzor.gov.ru/services/licenses/registry",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить возможность выгрузки и условия массового доступа."
     },
     {
       "id": "fns_open_data",
@@ -246,7 +256,8 @@
       "update_frequency": "per_dataset",
       "terms_url": "https://pb.nalog.ru/od.html",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить конкретные наборы и условия повторного использования."
     },
     {
       "id": "rosstat_classifiers",
@@ -271,7 +282,8 @@
       "update_frequency": "per_classifier",
       "terms_url": "https://rosstat.gov.ru/metod/classifiers.html",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Для каждого набора хранить версию и сроки действия, если опубликованы."
     },
     {
       "id": "legal_publication",
@@ -295,7 +307,8 @@
       "update_frequency": "publication_based",
       "terms_url": "https://publication.pravo.gov.ru/help",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить RSS, условия автоматического чтения и получение текстов/метаданных."
     },
     {
       "id": "education_licenses",
@@ -314,7 +327,8 @@
       "update_frequency": "needs_verification",
       "terms_url": "https://obrnadzor.gov.ru/otkrytoe-pravitelstvo/opendata/7701537808-bololgo/",
       "status": "needs_verification",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Проверить актуальность набора, формат и условия."
     },
     {
       "id": "iana_time_zones",
@@ -335,7 +349,8 @@
       "update_frequency": "release_based",
       "terms_url": "https://www.iana.org/time-zones",
       "status": "candidate_needs_terms_review",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Вспомогательный международный справочник; проверить лицензионные условия перед распространением."
     },
     {
       "id": "unicode_cldr",
@@ -358,7 +373,8 @@
       "update_frequency": "release_based",
       "terms_url": "https://cldr.unicode.org/",
       "status": "candidate_needs_terms_review",
-      "last_checked": null
+      "last_checked": null,
+      "notes": "Для локализации и форматов; не заменяет российские официальные реестры."
     }
   ]
 }
