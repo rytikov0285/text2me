@@ -8,6 +8,7 @@ on:
       - "scripts/build-gar-index.py"
       - "scripts/test-build-gar-index.py"
       - "scripts/search-gar-index.py"
+      - "api/**"
       - ".github/workflows/**"
   push:
     paths:
@@ -17,6 +18,7 @@ on:
       - "scripts/search-gar-index.py"
       - "scripts/test-build-gar-index.py"
       - "scripts/inspect-gar-xml.py"
+      - "api/**"
       - ".github/workflows/**"
   workflow_dispatch:
 
@@ -39,6 +41,6 @@ jobs:
       - name: Test official connector helpers
         run: python3 -m unittest discover -s data-engine -p 'test_*.py' -v
       - name: Compile Python data-engine scripts
-        run: python3 -m py_compile scripts/build-gar-index.py scripts/search-gar-index.py scripts/test-build-gar-index.py scripts/inspect-gar-xml.py
+        run: python3 -m py_compile scripts/build-gar-index.py scripts/search-gar-index.py scripts/test-build-gar-index.py scripts/inspect-gar-xml.py api/gar_api.py
       - name: Run synthetic GAR index regression test
         run: python3 scripts/test-build-gar-index.py
