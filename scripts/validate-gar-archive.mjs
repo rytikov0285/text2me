@@ -138,8 +138,8 @@ try {
     note: "Метаданные и выбранный архив проверены; это ещё не означает, что адресный индекс построен."
   };
   previous.address_index = {
-    status: "not_implemented",
-    note: "Архив проверен, но XML-разбор, нормализация адресов, индекс и подключение к формам ещё не реализованы."
+    status: "builder_implemented_not_deployed",
+    note: "XML-инспектор и SQLite-сборщик реализованы, но эта проверка не строит базу и не публикует поисковый API; адресный поиск в формах ещё не подключён."
   };
   console.log(JSON.stringify({ result: "success", bytes, sha256: result.sha256, entries: entries.length, xmlEntries: xmlEntries.length, unzipTest: test.stdout.split(/\r?\n/).slice(-2) }, null, 2));
 } catch (error) {
