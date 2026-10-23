@@ -94,6 +94,49 @@ body{background:#f2f2f3;color:var(--dash-ink);font-family:Arial,Helvetica,sans-s
 @media(min-width:900px){.workspace-main{width:100%}#my-space-preview{margin-top:20px}}
 @media(max-width:760px){.dash-shell{padding:0 12px 30px}.dash-header{margin:0 -12px;padding:10px 14px;position:relative;flex-wrap:wrap}.dash-nav{overflow-x:auto;flex-wrap:nowrap;max-width:100%;padding-bottom:4px}.dash-nav a{white-space:nowrap}.dash-hero.office-home{padding:26px 14px 16px}.home-situation-box{padding:12px}.home-situation-box form{padding:14px}.office-lower-grid{grid-template-columns:1fr}.tool-row{grid-template-columns:1fr}.section-head{align-items:flex-start}.workspace-search{max-width:100%;width:100%}}
 
+
+/* Faithful Russian Acrobat-home layout from the user's reference image */
+body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helvetica,sans-serif}
+.dash-shell{max-width:1340px!important;padding:0 12px 42px!important}
+.dash-header{position:relative!important;top:auto!important;z-index:30;display:flex;gap:20px!important;margin:0 -12px!important;padding:0 20px!important;min-height:44px!important;background:#fff!important;border-bottom:1px solid #e6e6e6!important;box-shadow:none!important}
+.dash-logo{white-space:nowrap;font-size:17px!important;letter-spacing:-.4px!important}
+.workspace-search{max-width:230px!important;margin-left:auto}
+.workspace-search input{padding:8px 10px!important;font-size:12px!important}
+.workspace-search-submit{padding:7px 10px!important;font-size:11px!important}
+.acrobat-nav{display:flex!important;align-items:center;gap:2px!important;flex-wrap:nowrap!important;overflow-x:auto}
+.acrobat-nav a{white-space:nowrap;padding:7px 9px!important;font-size:11px!important;color:#505057!important;border-radius:5px!important}
+.acrobat-nav a.active{background:#333!important;color:#fff!important}
+.acrobat-home{padding-bottom:20px}
+.acrobat-home>h1{text-align:center;font-size:clamp(24px,2.3vw,32px);font-weight:750;letter-spacing:-.7px;margin:0;padding:38px 12px 25px;color:#111}
+.acrobat-hero-grid{display:grid;grid-template-columns:1.28fr 1fr 1fr;gap:16px}
+.acrobat-feature{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;min-height:152px;overflow:hidden;border-radius:15px;background:#fff;text-decoration:none;color:#202124}
+.acrobat-upload{justify-content:center;background:linear-gradient(125deg,#f16f83 0%,#f6b4d3 49%,#f4b8cf 75%,#f7c5c6 100%);padding:17px}
+.acrobat-upload:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 18% 10%,#ffffff58,transparent 50%),radial-gradient(ellipse at 90% 30%,#ffffff55,transparent 38%);pointer-events:none}
+.feature-inner{position:relative;padding:18px 14px;border:1px dashed #ffffffad;border-radius:13px;min-height:112px;display:flex;flex-direction:column;justify-content:center}
+.feature-inner h2{font-size:18px;line-height:1.25;margin:0 0 7px;color:#171717}
+.feature-inner p{font-size:12px;color:#3d3035;margin:0 0 14px}
+.feature-actions{display:flex;gap:7px;flex-wrap:wrap}
+.ac-btn{display:inline-flex;align-items:center;justify-content:center;padding:7px 12px;border-radius:20px;font-size:11px;font-weight:700;text-decoration:none}
+.ac-btn.dark{background:#171717;color:#fff}.ac-btn.outline{border:1px solid #242124;color:#202124;background:#ffffff8a}
+.acrobat-express{background:linear-gradient(180deg,#f2b3f0 0%,#f8d9ed 46%,#fff 100%)}
+.acrobat-edit{background:linear-gradient(180deg,#f8d4ce 0%,#fff 100%)}
+.feature-art{height:94px;position:relative;display:flex;align-items:center;justify-content:center;gap:0;padding-top:6px}
+.template-art span{position:relative;display:grid;place-items:center;width:48px;height:58px;border-radius:6px;background:#fff;box-shadow:0 5px 12px #4d31551c;font-size:22px;color:#555}
+.template-art span:nth-child(1){transform:translate(14px,9px) rotate(-8deg);background:#4e5dba;color:#fff}.template-art span:nth-child(2){transform:translate(5px,-3px) rotate(-3deg);background:#d9e6ff;color:#344d9a}.template-art span:nth-child(3){transform:translate(-5px,2px) rotate(4deg);background:#1f5c4d;color:#fff}.template-art span:nth-child(4){transform:translate(-15px,9px) rotate(7deg);background:#d77850;color:#fff}
+.edit-art .paper{display:grid;place-items:center;width:80px;height:44px;border-radius:7px;background:#fff;box-shadow:0 4px 12px #7e53531b;font-size:30px;color:#9ca3aa;z-index:2}.edit-art .edit-badge{position:absolute;z-index:3;left:57%;top:14px;color:#2878ee;font-size:25px}.edit-art .avatar{display:grid;place-items:center;width:66px;height:66px;border-radius:9px;background:linear-gradient(140deg,#e7c0a3,#f6eee8);color:#a86b5d;font-size:36px;margin-left:-12px}
+.feature-caption{padding:0 18px 15px}.feature-caption strong{display:block;font-size:13px;margin-bottom:4px}.feature-caption small{display:block;font-size:11px;color:#666}
+.acrobat-workspace-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.5fr);gap:16px;margin-top:18px;align-items:start}.acrobat-left-column{display:grid;gap:16px;min-width:0}
+.acrobat-panel{min-width:0;padding:20px 22px;background:#fff;border:1px solid #e7e7e9;border-radius:15px;box-shadow:0 2px 4px #0000000b}
+.acrobat-panel-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.acrobat-panel-heading h2{margin:0;font-size:14px;font-weight:700;letter-spacing:-.1px}.acrobat-panel-heading>a,.file-actions a{font-size:11px;color:#555;text-decoration:none;white-space:nowrap}
+.acrobat-tools-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 8px}.acrobat-tools-grid>a{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:0;text-align:center;text-decoration:none;color:#4a4a4a;font-size:10px;line-height:1.45}.tool-illustration{display:grid;place-items:center;width:44px;height:44px;border-radius:8px;background:#e9e9eb;color:#6b6b72;font-size:17px;font-weight:700}.acrobat-tools-grid>a:hover .tool-illustration{background:#f5e4e7;color:#b52330}
+.template-panel{padding:18px 22px;min-height:105px}.template-panel p{font-size:11px;color:#666;margin:0 0 12px}.template-pills{display:flex;gap:7px;flex-wrap:wrap}.template-pills a{border:1px solid #e2e2e5;background:#fafafa;border-radius:7px;padding:7px 9px;font-size:11px;color:#444;text-decoration:none}
+.files-panel{padding:20px 18px 15px}.files-panel .acrobat-panel-heading{margin-bottom:13px}.file-actions{display:flex;gap:16px}.file-tabs{display:flex;align-items:center;gap:22px;border-bottom:1px solid #eee;margin-bottom:5px}.file-tabs button{position:relative;border:0;background:none;padding:8px 0 10px;color:#666;font-size:11px;cursor:pointer}.file-tabs button.selected{color:#222;font-weight:700}.file-tabs button.selected:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#3c3c3c}
+.file-table-wrap{overflow-x:auto}.acrobat-file-table{border-collapse:collapse;width:100%;font-size:11px;text-align:left}.acrobat-file-table th{font-size:9px;color:#777;font-weight:700;text-transform:uppercase;padding:11px 7px;white-space:nowrap}.acrobat-file-table td{padding:13px 7px;border-top:1px solid #e9e9e9;color:#56565a;vertical-align:middle}.acrobat-file-table th:nth-child(2){width:49%}.acrobat-file-table td:nth-child(2){color:#343438;font-weight:500}.acrobat-file-table td:nth-child(3),.acrobat-file-table td:nth-child(4){white-space:nowrap;font-size:10px}.acrobat-file-table .check-col{width:24px}.acrobat-file-table input{width:13px;height:13px}.file-type-icon{display:inline-grid;place-items:center;width:24px;height:29px;border:1px solid #ddd;border-radius:3px;color:#ba2935;font-size:8px;background:#fafafa}.empty-files{text-align:center!important;padding:30px 12px!important;font-weight:400!important;line-height:1.5}.all-files-link{display:inline-block;margin-top:10px;color:#555;font-size:11px;text-decoration:none}
+.acrobat-home~.dash-hero,.acrobat-home~.home-situation-box,.acrobat-home~#my-space-preview,.acrobat-home~#tools,.acrobat-home~.office-lower-grid,.acrobat-home~.workspace-search-shortcuts{display:none!important}
+#situations{margin-top:18px}.dash-footer{font-size:11px}
+@media(max-width:1000px){.dash-header{flex-wrap:wrap;padding:10px 16px!important}.workspace-search{max-width:260px!important}.acrobat-nav{order:3;width:100%}.acrobat-workspace-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}.acrobat-panel{padding:16px}.acrobat-hero-grid{gap:10px}}
+@media(max-width:700px){.dash-shell{padding:0 10px 30px!important}.acrobat-home>h1{padding:26px 4px 18px;font-size:25px}.acrobat-hero-grid{grid-template-columns:1fr}.acrobat-feature{min-height:150px}.acrobat-workspace-grid{grid-template-columns:1fr}.acrobat-tools-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px 4px}.acrobat-panel{padding:15px 13px}.file-tabs{gap:17px}.file-actions{gap:10px}.acrobat-file-table{min-width:480px}.feature-inner{min-height:100px}.acrobat-upload{padding:12px}.acrobat-nav{gap:0!important}.acrobat-nav a{padding:7px!important;font-size:10px!important}}
+
 </style>
 </head>
 <body>
@@ -108,7 +151,7 @@ body{background:#f2f2f3;color:var(--dash-ink);font-family:Arial,Helvetica,sans-s
 <button class="workspace-search-submit" type="submit">Найти</button>
 <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
 </form>
-<nav class="dash-nav workspace-top-links" aria-label="Быстрый доступ"><a href="/text2me/space/" title="Моё пространство"><span aria-hidden="true">▣</span><span>Мои файлы</span></a><a href="/text2me/guides/" title="Помощь"><span aria-hidden="true">?</span><span>Помощь</span></a><a href="/text2me/request/" title="Отправить сложную задачу"><span aria-hidden="true">↗</span><span>Сложная задача</span></a></nav>
+<nav class="dash-nav workspace-top-links acrobat-nav" aria-label="Основная навигация"><a class="active" href="/text2me/">Главная</a><a href="/text2me/space/">PDF-пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/documents/">Редактировать</a><a href="/text2me/documents/">Создать</a><a href="/text2me/documents/">Преобразовать</a><a href="/text2me/knowledge/">Электронная подпись</a><a href="/text2me/guides/">Все инструменты</a></nav>
 </header>
 
 <div class="workspace-layout">
@@ -134,6 +177,37 @@ body{background:#f2f2f3;color:var(--dash-ink);font-family:Arial,Helvetica,sans-s
 </div>
 </aside>
 <main id="main" class="workspace-main">
+<section class="acrobat-home" aria-label="Главная панель">
+  <h1>С чем вы хотите поработать сегодня?</h1>
+  <div class="acrobat-hero-grid">
+    <article class="acrobat-feature acrobat-upload"><div class="feature-inner"><h2>Экономьте время и получайте нужные сведения</h2><p>Добавьте файлы и ссылки для работы с документами.</p><div class="feature-actions"><a class="ac-btn dark" href="/text2me/space/">Выбрать файлы</a><a class="ac-btn outline" href="/text2me/guides/">Посмотреть примеры</a></div></div></article>
+    <a class="acrobat-feature acrobat-express" href="/text2me/documents/"><div class="feature-art template-art" aria-hidden="true"><span>▤</span><span>▧</span><span>▣</span><span>✦</span></div><div class="feature-caption"><strong>Создать по шаблону</strong><small>Документы, формы и готовые примеры</small></div></a>
+    <a class="acrobat-feature acrobat-edit" href="/text2me/documents/"><div class="feature-art edit-art" aria-hidden="true"><span class="paper">▤</span><span class="edit-badge">✎</span><span class="avatar">●</span></div><div class="feature-caption"><strong>Редактировать PDF</strong><small>Инструменты для быстрых изменений</small></div></a>
+  </div>
+  <div class="acrobat-workspace-grid">
+    <div class="acrobat-left-column">
+      <section class="acrobat-panel suggested-panel"><div class="acrobat-panel-heading"><h2>Рекомендуемые инструменты</h2><a href="/text2me/guides/">Посмотреть все</a></div>
+        <div class="acrobat-tools-grid">
+          <a href="/text2me/documents/"><span class="tool-illustration">T✎</span><span>Редактировать текст<br>и изображения</span></a>
+          <a href="/text2me/documents/"><span class="tool-illustration">▤↕</span><span>Упорядочить<br>страницы</span></a>
+          <a href="/text2me/start/"><span class="tool-illustration">✧</span><span>AI-помощник</span></a>
+          <a href="/text2me/space/"><span class="tool-illustration">▧+</span><span>Объединить<br>файлы</span></a>
+          <a href="/text2me/knowledge/"><span class="tool-illustration">▤✓</span><span>Запросить<br>подпись</span></a>
+          <a href="/text2me/documents/"><span class="tool-illustration">PDF↗</span><span>Экспортировать PDF</span></a>
+          <a href="/text2me/documents/"><span class="tool-illustration">✍</span><span>Заполнить и подписать</span></a>
+          <a href="/text2me/documents/"><span class="tool-illustration">PDF↓</span><span>Сжать PDF</span></a>
+        </div>
+      </section>
+      <section class="acrobat-panel template-panel"><div class="acrobat-panel-heading"><h2>Создать из шаблона</h2><a href="/text2me/documents/">↗ Посмотреть все</a></div><p>Выберите подходящую заготовку и настройте её под свою задачу.</p><div class="template-pills"><a href="/text2me/documents/dogovor-arendy/">Договор</a><a href="/text2me/documents/pretenziya-prodavtsu/">Претензия</a><a href="/text2me/documents/isk-v-sud/">Заявление в суд</a></div></section>
+    </div>
+    <section class="acrobat-panel files-panel"><div class="acrobat-panel-heading"><h2>Ваши файлы</h2><div class="file-actions"><a href="/text2me/space/">⇧ Загрузить файлы</a><a href="/text2me/space/">▣ Все файлы⌄</a></div></div>
+      <div class="file-tabs" role="tablist" aria-label="Фильтр файлов"><button class="selected" type="button" data-file-tab="recent">Недавние</button><button type="button" data-file-tab="starred">Избранное</button><button type="button" data-file-tab="shared">Общие</button><button type="button" data-file-tab="agreements">Соглашения</button></div>
+      <div class="file-table-wrap"><table class="acrobat-file-table"><thead><tr><th class="check-col"><input type="checkbox" aria-label="Выбрать все файлы"></th><th>Название</th><th>Общий доступ</th><th>Открыт</th><th></th></tr></thead><tbody id="acrobat-file-list"><tr><td colspan="5" class="empty-files">Здесь появятся сохранённые документы. Откройте библиотеку, чтобы продолжить работу.</td></tr></tbody></table></div>
+      <a class="all-files-link" href="/text2me/space/">Открыть библиотеку файлов →</a>
+    </section>
+  </div>
+</section>
+
 <section class="dash-hero office-home" aria-labelledby="main-title">
 
 <h1 id="main-title">Всё для работы с PDF — в одном месте</h1>
@@ -329,6 +403,15 @@ if(situationForm&&situationField){situationForm.addEventListener("submit",functi
 
 
 document.getElementById("back-to-top").addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
+(function(){
+var list=document.getElementById("acrobat-file-list");if(!list)return;
+var docs=[];try{docs=JSON.parse(localStorage.getItem("text2me.space.v1")||"[]");if(!Array.isArray(docs))docs=[];}catch(e){docs=[];}
+function render(tab){list.replaceChildren();var filtered=docs.filter(function(d){if(!d||d.archived)return false;if(tab==="starred")return !!(d.starred||d.favorite);if(tab==="shared")return !!d.shared;if(tab==="agreements")return /договор|соглашен|акт/i.test(d.title||"");return true;});
+if(!filtered.length){var tr=document.createElement("tr"),td=document.createElement("td");td.colSpan=5;td.className="empty-files";td.textContent=docs.length?"В этой вкладке пока нет файлов.":"Здесь появятся сохранённые документы. Откройте библиотеку, чтобы продолжить работу.";tr.appendChild(td);list.appendChild(tr);return;}
+filtered.slice(0,8).forEach(function(d){var tr=document.createElement("tr"),check=document.createElement("td"),name=document.createElement("td"),share=document.createElement("td"),opened=document.createElement("td"),more=document.createElement("td");var input=document.createElement("input");input.type="checkbox";input.setAttribute("aria-label","Выбрать файл");check.appendChild(input);var icon=document.createElement("span");icon.className="file-type-icon";icon.textContent=(d.type||"PDF").toString().slice(0,4).toUpperCase();var label=document.createElement("span");label.textContent=" "+(d.title||d.name||"Документ без названия");name.append(icon,label);share.textContent=d.shared?"Общий доступ":"Только вы";var date=d.updatedAt||d.modifiedAt||d.createdAt;opened.textContent=date?new Date(date).toLocaleDateString("ru-RU"):"—";more.textContent="···";tr.append(check,name,share,opened,more);list.appendChild(tr);});}
+render("recent");document.querySelectorAll("[data-file-tab]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("[data-file-tab]").forEach(function(x){x.classList.toggle("selected",x===b);});render(b.getAttribute("data-file-tab"));});});
+})();
+
 
 var catGrid=document.getElementById("dash-category-grid"),catCount=document.getElementById("dash-category-count");
 function filterDashCategories(){if(!catGrid)return;var type=(document.getElementById("dash-filter-type")||{}).value||"",sit=(document.getElementById("dash-filter-situation")||{}).value||"",nature=(document.getElementById("dash-filter-nature")||{}).value||"",cards=Array.from(catGrid.querySelectorAll(".category-card")),visible=0;cards.forEach(function(card){var ok=(!type||card.dataset.cat===type)&&(!sit||(card.dataset.situation||"").split(" ").includes(sit))&&(!nature||(card.dataset.nature||"").split(" ").includes(nature));card.hidden=!ok;if(ok)visible++});if(catCount)catCount.textContent="Показано категорий: "+visible+" из "+cards.length+". Доступных конструкторов: 3."}
