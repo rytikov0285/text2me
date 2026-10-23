@@ -10,7 +10,7 @@ permissions:
   contents: write
 concurrency:
   group: text2me-gar-fias-connector
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   check-official-release:
     if: github.event_name != 'push' || contains(github.event.head_commit.message, '[run-gar-fias]') || contains(github.event.head_commit.message, '[run-gar-fias-preflight]')
