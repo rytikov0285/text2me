@@ -22,6 +22,15 @@ class FiasConnectorTests(unittest.TestCase):
             with zipfile.ZipFile(path,"w",zipfile.ZIP_DEFLATED) as archive: archive.writestr("AS_ADDR_OBJ.XML","<root><item/></root>")
             payload=Path(path).read_bytes(); result=connector.validate_archive_file(path,len(payload),hashlib.sha256(payload).hexdigest())
             self.assertEqual(result["xml_members"],1); self.assertEqual(result["archive_crc_validation"],"passed")
+    def test_registry_has_required_fields_and_disables_paid_apis(self):
+        import json
+        registry_path = Path(__file__).resolve().parent / "sources.json"
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        self.assertFalse(registry["policy"]["paid_apis_allowed_initially"])
+        required = set(registry["required_fields"])
+        self.assertGreaterEqual(len(registry["sources"]), 10)
+        for source in registry["sources"]:
+            self.assertTrue(required.issubset(source.keys()), source.get("id"))
     def test_rejects_zip_without_xml(self):
         with tempfile.TemporaryDirectory() as directory:
             path=os.path.join(directory,"sample.zip")
