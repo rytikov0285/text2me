@@ -51,10 +51,6 @@ def search(query, limit=20, include_houses=False):
         rows = con.execute(
             "SELECT row_id,object_id,object_guid,name,type_name,level FROM current_address_objects WHERE name_folded>=? AND name_folded<? ORDER BY name_folded,name LIMIT ?",
             (query, query + chr(0x10ffff), limit)).fetchall()
-        if not rows:
-            rows = con.execute(
-                "SELECT row_id,object_id,object_guid,name,type_name,level FROM current_address_objects WHERE instr(name_folded,?)>0 ORDER BY name_folded,name LIMIT ?",
-                (query, limit)).fetchall()
         results = [{"kind":"address_object","object_id":r["object_id"],"object_guid":r["object_guid"],
                     "name":r["name"],"type":r["type_name"],"level":r["level"],
                     "full_address":address_path(con,r["object_id"]),"source":"ГАР/ФИАС"} for r in rows]
