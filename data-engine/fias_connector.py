@@ -141,6 +141,7 @@ def run_check(path):
             attempt["archive_action"]="size_preflight_only"
             attempt["archive_validation"]=inspect_release_size(release_url)
             attempt["archive_validation"]["index_built"]=False
+            attempt["status"]="preflight_only"
         else:
             same_release=(previous.get("release_url")==release_url and previous.get("archive_crc_validation")=="passed")
             prior_index=(previous.get("index_build") or {}).get("result")=="success"
