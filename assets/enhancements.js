@@ -289,29 +289,26 @@ var children=Array.from(form.children),firstGrid=children.find(function(n){retur
 var secondHeading=children.find(function(n){return n.classList&&n.classList.contains("builder-step-heading")});
 if(!firstGrid||!secondHeading)return;
 var secondGrid=secondHeading.nextElementSibling;if(!secondGrid||!secondGrid.classList.contains("form-grid"))return;
+var after=children.slice(children.indexOf(secondGrid)+1);
 var pane1=el("section",{class:"claim-wizard-pane","aria-label":"Этап 1: стороны обращения"});
 var pane2=el("section",{class:"claim-wizard-pane","aria-label":"Этап 2: сведения о покупке и требование"});
-var heading1=el("div",{class:"builder-step-heading"});heading1.append(el("span",{class:"builder-step-number"},"1"),(function(){var d=el("div",{});d.append(el("h2",{},"Стороны обращения"),el("p",{},"Кто подаёт претензию и кому она адресована."));return d})());
-form.insertBefore(heading1,firstGrid);pane1.append(firstGrid);
-form.insertBefore(pane1,secondHeading);pane1.appendChild(heading1);pane1.insertBefore(heading1,firstGrid);
-pane2.append(secondHeading,secondGrid);
-var trailing=Array.from(form.children);var after=trailing.slice(trailing.indexOf(secondGrid)+1);
+var heading1=el("div",{class:"builder-step-heading"}),headingText=el("div",{});
+heading1.append(el("span",{class:"builder-step-number"},"1"));
+headingText.append(el("h2",{},"Стороны обращения"),el("p",{},"Кто подаёт претензию и кому она адресована."));
+heading1.appendChild(headingText);pane1.append(heading1,firstGrid);pane2.append(secondHeading,secondGrid);
 after.forEach(function(n){pane2.appendChild(n)});
-form.append(pane1,pane2);
 var progress=el("div",{class:"claim-wizard-progress","aria-live":"polite"}),progressText=el("strong",{},"Шаг 1 из 2"),progressHint=el("span",{},"Стороны обращения");
-progress.append(progressText,progressHint);form.insertBefore(progress,pane1);
-var nav=el("div",{class:"claim-wizard-nav"}),back=button("Назад","button button-outline",function(){show(0)}),next=button("Продолжить","button",function(){
+progress.append(progressText,progressHint);
+var nav1=el("div",{class:"claim-wizard-nav"}),next=button("Продолжить","button",function(){
 var fields=Array.from(pane1.querySelectorAll("input,select,textarea")).filter(function(x){return !x.disabled});
 for(var i=0;i<fields.length;i++){if(!fields[i].checkValidity()){fields[i].reportValidity();return}}
 show(1)
 });
-nav.append(back,next);pane1.appendChild(nav);
-var submit=form.querySelector('button[type="submit"]');if(submit){submit.textContent="Сформировать черновик";pane2.appendChild(nav);nav.removeChild(next);nav.appendChild(submit);nav.insertBefore(back,submit)}
-function show(step){
-pane1.hidden=step!==0;pane2.hidden=step!==1;back.hidden=step===0;
-progressText.textContent="Шаг "+(step+1)+" из 2";progressHint.textContent=step===0?"Стороны обращения":"Покупка, недостаток и требование";
-if(step===1){var first=pane2.querySelector("input,select,textarea");if(first)first.focus({preventScroll:true})}
-}
+nav1.appendChild(next);pane1.appendChild(nav1);
+var nav2=el("div",{class:"claim-wizard-nav"}),back=button("Назад","button button-outline",function(){show(0)}),submit=form.querySelector('button[type="submit"]');
+nav2.appendChild(back);if(submit)nav2.appendChild(submit);pane2.appendChild(nav2);
+form.replaceChildren(progress,pane1,pane2);
+function show(step){pane1.hidden=step!==0;pane2.hidden=step!==1;progressText.textContent="Шаг "+(step+1)+" из 2";progressHint.textContent=step===0?"Стороны обращения":"Покупка, недостаток и требование";if(step===1){var first=pane2.querySelector("input,select,textarea");if(first)first.focus({preventScroll:true})}}
 form.dataset.wizardReady="true";show(0);
 }
 function initPriorityWorkspace(){
