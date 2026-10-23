@@ -80,7 +80,7 @@
 </div></section>
 <section class="section"><div class="container narrow prose"><h2>Критерии готовности</h2><ol>
 <li>Источник и условия использования подтверждены.</li><li>Автоматическая проверка выполняется по расписанию и может безопасно повторяться.</li><li>Последняя успешная версия сохраняется при сбое или повреждении новой выгрузки.</li><li>Есть журнал запусков, ошибок, контрольных сумм и версий.</li><li>Адресный индекс используется в формах и возвращает источник и дату актуальности.</li><li>Тестируются новая версия, отсутствие изменений, недоступный источник, повреждённый архив и восстановление.</li></ol>
-<p><strong>Техническая граница:</strong> GitHub Pages обслуживает статические файлы. GitHub Actions может проверять и готовить данные по расписанию, но сам по себе не является постоянно работающим API-сервером или базой данных. Перед созданием полноценного поискового сервиса потребуется выбрать способ публикации и хранения адресного индекса.</p>
+<p><strong>Техническая граница:</strong> GitHub Pages обслуживает статические файлы. GitHub Actions может проверять и готовить данные по расписанию, но сам по себе не является постоянно работающим API-сервером или базой данных. Код read-only API добавлен, но не развёрнут: для полноценного поиска нужны реальная база, постоянный сервер и подключение API к формам.</p>
 <p><a class="text-link" href="/text2me/sources/">Перейти к официальным источникам <span>→</span></a></p></div></section>
 </main>
 <footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/">text<span class="brand-dot">2</span>me</a><p>Справочники и статус автоматической актуализации данных.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/">Главная</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/knowledge/">База знаний</a></nav></div><div class="container footer-bottom"><span>Проект в разработке</span><span>Не подключённые источники не считаются проверенными.</span></div></footer>
@@ -92,12 +92,15 @@
   fetch("/text2me/data-engine/status.json",{cache:"no-store"})
     .then(function(response){if(!response.ok)throw new Error("status unavailable");return response.json();})
     .then(function(data){
-      var attempt=data.latest_attempt||{},success=data.last_successful_source_check||{},archive=data.last_archive_validation||{},index=data.address_index||{};
-      label.textContent=data.status==="healthy"?"проверка источника успешна":data.status==="degraded"?"последняя проверка завершилась ошибкой":"ожидает первого запуска";
+      var attempt=data.latest_attempt||{},success=data.last_successful_source_check||{},archive=data.last_archive_validation||{},index=data.address_index||{},preflight=attempt.archive_validation||{};
+      label.textContent=data.status==="healthy"?"последняя проверка архива успешна":data.status==="degraded"?"последняя проверка завершилась ошибкой":attempt.status==="preflight_only"?"источник проверен; размер архива не подтверждён":"ожидает первой успешной проверки";
       var parts=[];
       if(attempt.finished_at)parts.push("Последняя попытка: "+attempt.finished_at+".");
-      if(success.checked_at)parts.push("Последняя успешная проверка: "+success.checked_at+".");
+      if(success.checked_at)parts.push("Последняя успешная проверка архива: "+success.checked_at+".");
       if(archive.validated_at)parts.push("Последняя проверка ZIP: "+archive.validated_at+".");
+      if(attempt.archive_action==="size_preflight_only")parts.push("Выполнена только безопасная проверка заголовков; архив не скачивался.");
+      if(preflight.declared_size_bytes!==undefined&&preflight.declared_size_bytes!==null)parts.push("Размер архива по заголовку: "+preflight.declared_size_bytes+" байт.");
+      if(preflight.error)parts.push("Размер не подтверждён: "+preflight.error+". Скачивание не запускалось.");
       if(attempt.error)parts.push("Ошибка: "+attempt.error);
       parts.push("Состояние индекса: "+(index.status||"неизвестно")+". "+(index.note||"Поиск адресов ещё не подтверждён."));
       detail.textContent=parts.join(" ");
