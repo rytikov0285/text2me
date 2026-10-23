@@ -551,3 +551,6 @@ body{background:var(--ws-paper);color:var(--ws-ink);font-family:Arial,Helvetica,
 .text2me-task-links a:hover,.text2me-task-links a[aria-current=location]{background:#e7f2ff;border-color:#91bce3;color:#0d548f}
 @media(max-width:1050px){.text2me-section-strip{grid-template-columns:repeat(4,minmax(0,1fr));padding-inline:18px}.text2me-task-strip{grid-template-columns:1fr 1fr;padding-inline:18px}.text2me-task-group:nth-child(2){grid-row:span 2}}
 @media(max-width:620px){.text2me-section-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:7px 15px}.text2me-section-strip a{min-height:36px;font-size:11px}.text2me-task-strip{grid-template-columns:1fr;padding:8px 15px;gap:7px}.text2me-task-group{padding:8px}.text2me-task-group:nth-child(2){grid-row:auto}.text2me-task-links a{font-size:11px}.site-header .brand,.dash-header .dash-logo{align-self:flex-end}.site-header .header-inner>.site-header-search,.site-header .header-inner>.main-nav,.dash-header .workspace-search,.dash-header .workspace-top-links{width:100%}}
+
+/* Keep anchored professional service cards visible below sticky navigation. */
+.services-grid .service-card[id]{scroll-margin-top:150px}
