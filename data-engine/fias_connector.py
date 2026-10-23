@@ -153,7 +153,7 @@ def run_check(path):
         attempt["status"]="success"; status["status"]="healthy"
         status["last_successful_source_check"]={"checked_at":utc_now(),"source_page":SOURCE_PAGE,"release_url":release_url,"source_last_changed":attempt["source_last_changed"],"source_data_current_date":attempt["source_data_current_date"]}
     except Exception as exc:
-        attempt["error"]=type(exc).__name__+": "+str(exc); status["status"]="degraded"
+        attempt["error"]=type(exc).__name__+": "+str(exc); status["status"]="degraded" if status.get("last_successful_source_check") else "not_run"
     attempt["finished_at"]=utc_now(); status["latest_attempt"]=attempt
     status["address_index"]=status.get("address_index") or {"status":"builder_implemented_not_deployed","note":"SQLite-сборщик и CLI-поиск реализованы; производственная база и веб-поиск ещё не опубликованы."}
     build=(attempt.get("archive_validation") or {}).get("index_build") or {}
