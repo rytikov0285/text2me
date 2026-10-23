@@ -58,7 +58,7 @@ for (const [index, source] of (registry.sources || []).entries()) {
 if (status.status === "healthy") {
   assert(status.last_successful_source_check && status.last_successful_source_check.checked_at,
     "status.json: healthy требует last_successful_source_check.checked_at.");
-  assert(status.latest_attempt && status.latest_attempt.result === "success",
+  assert(status.latest_attempt && (status.latest_attempt.result === "success" || status.latest_attempt.status === "success"),
     "status.json: healthy требует успешную latest_attempt.");
 }
 if (status.status === "degraded") {
