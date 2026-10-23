@@ -4,11 +4,29 @@
   "connector_name": "ГАР/ФИАС — официальный набор открытых данных ФНС России",
   "status": "not_run",
   "source_page": "https://www.nalog.gov.ru/opendata/7707329152-fias/",
-  "latest_attempt": null,
+  "latest_attempt": {
+    "started_at": "2026-10-23T23:04:39Z",
+    "finished_at": "2026-10-23T23:04:57Z",
+    "status": "preflight_only",
+    "source_page": "https://www.nalog.gov.ru/opendata/7707329152-fias/",
+    "release_url": "https://fias.nalog.ru/opendata/7707329152-fias/data-20102026-structure-20191024.zip",
+    "source_last_changed": "20.10.2026",
+    "source_data_current_date": "25.10.2026",
+    "archive_action": "size_preflight_only",
+    "archive_validation": {
+      "result": "unavailable",
+      "error": "URLError: <urlopen error timed out>",
+      "declared_size_bytes": null,
+      "fits_configured_archive_limit": null,
+      "note": "HEAD request failed; no GET fallback was attempted and no archive was downloaded.",
+      "index_built": false
+    },
+    "error": null
+  },
   "last_successful_source_check": null,
   "last_archive_validation": null,
   "address_index": {
     "status": "builder_implemented_not_deployed",
-    "note": "Созданы SQLite-сборщик и CLI-поиск по ГАР/ФИАС, а также синтетический регрессионный тест. Реальная выгрузка не импортирована; база данных не опубликована и не подключена к веб-формам. Для полной выгрузки текущая среда GitHub-hosted runner ограничена по диску и размеру архива."
+    "note": "SQLite-сборщик и CLI-поиск реализованы; производственная база и веб-поиск ещё не опубликованы."
   }
 }
