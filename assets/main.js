@@ -464,6 +464,7 @@
     var purchaseDate = dateText(field("purchase-date"));
     var price = field("product-price");
     var defect = field("defect-description");
+    var situationContext = field("situation-context");
     var demand = demandLabels[field("claim-demand")];
     var attachments = field("attachments");
     var lines = [];
@@ -484,6 +485,8 @@
     if (price) lines.push("Цена товара: " + price + " руб.");
     lines.push("");
     lines.push("Описание ситуации");
+    if (situationContext) { lines.push("Дополнительный контекст со слов заявителя:"); lines.push(situationContext); lines.push(""); }
+    lines.push("Описание недостатка товара:");
     lines.push(defect);
     lines.push("");
     lines.push("На основании изложенного прошу: " + demand + ".");
