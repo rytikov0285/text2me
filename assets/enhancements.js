@@ -239,7 +239,7 @@ write(DRAFT_KEY,{id:selectedId,title:title.value,text:area.value,updated:now});
 refreshChooser();status.textContent="Документ сохранён в «Моём пространстве» · "+new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
 window.dispatchEvent(new Event("text2me:space-changed"));
 }
-chooser.addEventListener("change",function(){if(!chooser.value)return;if(isDirty()&&!confirm("Открыть другой документ? Несохранённые изменения останутся в локальном черновике.")){chooser.value=selectedId;return}saveLocalDraft();loadDoc(chooser.value)});
+chooser.addEventListener("change",function(){if(!chooser.value)return;if(isDirty()&&!confirm("Открыть другой документ? Несохранённые изменения будут заменены. Сохраните текущий документ, если хотите их оставить.")){chooser.value=selectedId;return}loadDoc(chooser.value)});
 [title,area].forEach(function(node){node.addEventListener("input",function(){updateCount();status.textContent="Есть изменения. Черновик будет сохранён автоматически.";clearTimeout(timer);timer=setTimeout(saveLocalDraft,350)})});
 refreshChooser();loadDraftOrBlank(false);
 }
