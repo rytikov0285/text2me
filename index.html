@@ -132,7 +132,7 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 .template-panel{padding:18px 22px;min-height:105px}.template-panel p{font-size:11px;color:#666;margin:0 0 12px}.template-pills{display:flex;gap:7px;flex-wrap:wrap}.template-pills a{border:1px solid #e2e2e5;background:#fafafa;border-radius:7px;padding:7px 9px;font-size:11px;color:#444;text-decoration:none}
 .files-panel{padding:20px 18px 15px}.files-panel .acrobat-panel-heading{margin-bottom:13px}.file-actions{display:flex;gap:16px}.file-tabs{display:flex;align-items:center;gap:22px;border-bottom:1px solid #eee;margin-bottom:5px}.file-tabs button{position:relative;border:0;background:none;padding:8px 0 10px;color:#666;font-size:11px;cursor:pointer}.file-tabs button.selected{color:#222;font-weight:700}.file-tabs button.selected:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#3c3c3c}
 .file-table-wrap{overflow-x:auto}.acrobat-file-table{border-collapse:collapse;width:100%;font-size:11px;text-align:left}.acrobat-file-table th{font-size:9px;color:#777;font-weight:700;text-transform:uppercase;padding:11px 7px;white-space:nowrap}.acrobat-file-table td{padding:13px 7px;border-top:1px solid #e9e9e9;color:#56565a;vertical-align:middle}.acrobat-file-table th:nth-child(2){width:49%}.acrobat-file-table td:nth-child(2){color:#343438;font-weight:500}.acrobat-file-table td:nth-child(3),.acrobat-file-table td:nth-child(4){white-space:nowrap;font-size:10px}.acrobat-file-table .check-col{width:24px}.acrobat-file-table input{width:13px;height:13px}.file-type-icon{display:inline-grid;place-items:center;width:24px;height:29px;border:1px solid #ddd;border-radius:3px;color:#ba2935;font-size:8px;background:#fafafa}.empty-files{text-align:center!important;padding:30px 12px!important;font-weight:400!important;line-height:1.5}.all-files-link{display:inline-block;margin-top:10px;color:#555;font-size:11px;text-decoration:none}
-.acrobat-home~.dash-hero,.acrobat-home~.home-situation-box,.acrobat-home~#my-space-preview,.acrobat-home~#tools,.acrobat-home~.office-lower-grid,.acrobat-home~.workspace-search-shortcuts{display:none!important}
+
 #situations{margin-top:18px}.dash-footer{font-size:11px}
 @media(max-width:1000px){.dash-header{flex-wrap:wrap;padding:10px 16px!important}.workspace-search{max-width:260px!important}.acrobat-nav{order:3;width:100%}.acrobat-workspace-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}.acrobat-panel{padding:16px}.acrobat-hero-grid{gap:10px}}
 @media(max-width:700px){.dash-shell{padding:0 10px 30px!important}.acrobat-home>h1{padding:26px 4px 18px;font-size:25px}.acrobat-hero-grid{grid-template-columns:1fr}.acrobat-feature{min-height:150px}.acrobat-workspace-grid{grid-template-columns:1fr}.acrobat-tools-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px 4px}.acrobat-panel{padding:15px 13px}.file-tabs{gap:17px}.file-actions{gap:10px}.acrobat-file-table{min-width:480px}.feature-inner{min-height:100px}.acrobat-upload{padding:12px}.acrobat-nav{gap:0!important}.acrobat-nav a{padding:7px!important;font-size:10px!important}}
@@ -168,7 +168,7 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <button class="workspace-search-submit" type="submit">Найти</button>
 <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
 </form>
-<nav class="dash-nav workspace-top-links acrobat-nav" aria-label="Основная навигация"><a class="active" href="/text2me/">Главная</a><a href="/text2me/space/">PDF-пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/documents/">Редактировать</a><a href="/text2me/documents/">Создать</a><a href="/text2me/documents/">Преобразовать</a><a href="/text2me/knowledge/">Электронная подпись</a><a href="/text2me/guides/">Все инструменты</a></nav>
+<nav class="dash-nav workspace-top-links acrobat-nav" aria-label="Основная навигация"><a class="active" href="/text2me/">Главная</a><a href="/text2me/situations/">Ситуации</a><a href="/text2me/documents/">Документы</a><a href="/text2me/guides/">Инструменты</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/business/">Для бизнеса</a><a href="/text2me/services/">Услуги</a><a href="/text2me/space/">Мои материалы</a></nav>
 </header>
 
 <div class="workspace-layout">
@@ -194,69 +194,6 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 </div>
 </aside>
 <main id="main" class="workspace-main">
-<section class="acrobat-home" aria-label="Главная панель">
-  <h1>С чем вы хотите поработать сегодня?</h1>
-  <div class="acrobat-hero-grid">
-    <article class="acrobat-feature acrobat-upload"><div class="feature-inner"><h2>Экономьте время и получайте нужные сведения</h2><p>Добавьте файлы и ссылки для работы с документами.</p><div class="feature-actions"><a class="ac-btn dark" href="/text2me/space/">Выбрать файлы</a><a class="ac-btn outline" href="/text2me/guides/">Посмотреть примеры</a></div></div></article>
-    <a class="acrobat-feature acrobat-express" href="/text2me/documents/"><div class="feature-art template-art" aria-hidden="true"><span>▤</span><span>▧</span><span>▣</span><span>✦</span></div><div class="feature-caption"><strong>Создать по шаблону</strong><small>Документы, формы и готовые примеры</small></div></a>
-    <a class="acrobat-feature acrobat-edit" href="/text2me/documents/"><div class="feature-art edit-art" aria-hidden="true"><span class="paper">▤</span><span class="edit-badge">✎</span><span class="avatar">●</span></div><div class="feature-caption"><strong>Редактировать PDF</strong><small>Инструменты для быстрых изменений</small></div></a>
-  </div>
-  <div class="acrobat-workspace-grid">
-    <div class="acrobat-left-column">
-      <section class="acrobat-panel suggested-panel"><div class="acrobat-panel-heading"><h2>Рекомендуемые инструменты</h2><a href="/text2me/guides/">Посмотреть все</a></div>
-        <div class="acrobat-tools-grid">
-          <a href="/text2me/documents/"><span class="tool-illustration">T✎</span><span>Редактировать текст<br>и изображения</span></a>
-          <a href="/text2me/documents/"><span class="tool-illustration">▤↕</span><span>Упорядочить<br>страницы</span></a>
-          <a href="/text2me/start/"><span class="tool-illustration">✧</span><span>Навигатор по задаче</span></a>
-          <a href="/text2me/space/"><span class="tool-illustration">▧+</span><span>Объединить<br>файлы</span></a>
-          <a href="/text2me/knowledge/"><span class="tool-illustration">▤✓</span><span>Запросить<br>подпись</span></a>
-          <a href="/text2me/documents/"><span class="tool-illustration">PDF↗</span><span>Экспортировать PDF</span></a>
-          <a href="/text2me/documents/"><span class="tool-illustration">✍</span><span>Заполнить и подписать</span></a>
-          <a href="/text2me/documents/"><span class="tool-illustration">PDF↓</span><span>Сжать PDF</span></a>
-        </div>
-      </section>
-      <section class="acrobat-panel template-panel"><div class="acrobat-panel-heading"><h2>Создать из шаблона</h2><a href="/text2me/documents/">↗ Посмотреть все</a></div><p>Выберите подходящую заготовку и настройте её под свою задачу.</p><div class="template-pills"><a href="/text2me/documents/dogovor-arendy/">Договор</a><a href="/text2me/documents/pretenziya-prodavtsu/">Претензия</a><a href="/text2me/documents/isk-v-sud/">Заявление в суд</a></div></section>
-    </div>
-    <section class="acrobat-panel files-panel"><div class="acrobat-panel-heading"><h2>Ваши файлы</h2><div class="file-actions"><a href="/text2me/space/">⇧ Загрузить файлы</a><a href="/text2me/space/">▣ Все файлы⌄</a></div></div>
-      <div class="file-tabs" role="tablist" aria-label="Фильтр файлов"><button class="selected" type="button" data-file-tab="recent">Недавние</button><button type="button" data-file-tab="starred">Избранное</button><button type="button" data-file-tab="shared">Общие</button><button type="button" data-file-tab="agreements">Соглашения</button></div>
-      <div class="file-table-wrap"><table class="acrobat-file-table"><thead><tr><th class="check-col"><input type="checkbox" aria-label="Выбрать все файлы"></th><th>Название</th><th>Общий доступ</th><th>Открыт</th><th></th></tr></thead><tbody id="acrobat-file-list"><tr><td colspan="5" class="empty-files">Здесь появятся сохранённые документы. Откройте библиотеку, чтобы продолжить работу.</td></tr></tbody></table></div>
-      <a class="all-files-link" href="/text2me/space/">Открыть библиотеку файлов →</a>
-    </section>
-  </div>
-
-</section>
-
-<section class="service-bridge" aria-labelledby="service-bridge-title">
-  <div class="service-bridge-heading">
-    <div>
-      <p class="service-bridge-eyebrow">Профессиональная поддержка</p>
-      <h2 id="service-bridge-title">Если нужна помощь специалиста</h2>
-      <p>Можно продолжить самостоятельно или описать задачу для команды нашей компании.</p>
-    </div>
-    <div class="service-bridge-links"><a href="/text2me/services/">Все направления услуг →</a><a href="/text2me/request/">Описать задачу →</a></div>
-  </div>
-  <div class="service-bridge-grid">
-    <a class="service-bridge-card" href="/text2me/request/?task=Бухгалтерская%20задача">
-      <span class="service-bridge-icon" aria-hidden="true">▦</span>
-      <h3>Бухгалтерия</h3>
-      <p>Учёт, отчётность и документы для бизнеса.</p>
-      <span class="service-bridge-action">Описать задачу →</span>
-    </a>
-    <a class="service-bridge-card" href="/text2me/request/?task=Юридическая%20задача">
-      <span class="service-bridge-icon" aria-hidden="true">§</span>
-      <h3>Юридическая помощь</h3>
-      <p>Договоры, претензии и разбор документов.</p>
-      <span class="service-bridge-action">Описать задачу →</span>
-    </a>
-    <a class="service-bridge-card" href="/text2me/request/?task=Маркетинговая%20задача">
-      <span class="service-bridge-icon" aria-hidden="true">↗</span>
-      <h3>Маркетинг</h3>
-      <p>Исследование, планирование и продвижение бизнеса.</p>
-      <span class="service-bridge-action">Описать задачу →</span>
-    </a>
-  </div>
-</section>
-
 <section class="dash-hero office-home" aria-labelledby="main-title">
 
 <h1 id="main-title">Решайте задачи и готовьте документы в одном месте</h1>
@@ -270,18 +207,28 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <textarea id="home-situation" name="task" rows="3" placeholder="Например: составить договор, разобраться с требованием или подготовить отчёт" autocomplete="off"></textarea>
 <div class="home-situation-actions"><button class="dash-btn" type="submit">Подобрать решение</button><a class="dash-btn secondary" href="/text2me/documents/">Все инструменты</a></div>
 </form>
-<div class="home-situation-chips" aria-label="Примеры ситуаций">
-
-<button type="button" data-situation-chip="Подготовить договор найма жилья и акт передачи">Сдаю квартиру</button>
-<button type="button" data-situation-chip="Разобраться с увольнением и подготовить заявление">Увольняюсь</button>
-<button type="button" data-situation-chip="Подготовить документы для продажи автомобиля">Продаю авто</button>
-<button type="button" data-situation-chip="Подготовить доверенность">Нужна доверенность</button>
-<button type="button" data-situation-chip="Подготовить претензию продавцу для возврата денег">Не возвращают деньги</button>
-<button type="button" data-situation-chip="Подготовить заявление по моей ситуации">Нужно заявление</button>
+<div class="home-situation-chips" aria-label="Примеры задач">
+<button type="button" data-situation-chip="Разобраться в ситуации и определить дальнейшие действия">Не знаю, с чего начать</button>
+<button type="button" data-situation-chip="Подготовить документ по моей ситуации">Нужно составить документ</button>
+<button type="button" data-situation-chip="Подготовить деловое письмо или обращение">Написать письмо</button>
+<button type="button" data-situation-chip="Найти официальную информацию и источники по вопросу">Найти информацию</button>
+<button type="button" data-situation-chip="Подготовить документы и определить шаги для бизнеса">Задача для бизнеса</button>
+<button type="button" data-situation-chip="Подготовить претензию продавцу для возврата денег">Вернуть деньги за покупку</button>
 </div>
 </section>
 
-<section class="section-block" id="my-space-preview">
+<section class="primary-actions" aria-labelledby="primary-actions-title">
+<div class="section-head"><div><h2 id="primary-actions-title">Быстрый доступ</h2><p>Выберите направление — или опишите задачу выше, если не знаете, с чего начать.</p></div></div>
+<div class="primary-actions-grid">
+<a class="primary-action-card primary-action-main" href="/text2me/start/"><span class="primary-action-icon" aria-hidden="true">⌘</span><span><strong>Подобрать решение</strong><small>Разобраться в ситуации и определить следующие шаги</small></span><b aria-hidden="true">→</b></a>
+<a class="primary-action-card" href="/text2me/documents/"><span class="primary-action-icon" aria-hidden="true">▤</span><span><strong>Создать документ</strong><small>Найти подходящий шаблон или конструктор</small></span><b aria-hidden="true">→</b></a>
+<a class="primary-action-card" href="/text2me/space/"><span class="primary-action-icon" aria-hidden="true">▣</span><span><strong>Работа с файлами</strong><small>Открыть библиотеку и сохранённые материалы</small></span><b aria-hidden="true">→</b></a>
+<a class="primary-action-card" href="/text2me/knowledge/"><span class="primary-action-icon" aria-hidden="true">⌕</span><span><strong>Найти информацию</strong><small>Справочные материалы и официальные источники</small></span><b aria-hidden="true">→</b></a>
+<a class="primary-action-card" href="/text2me/prompts/"><span class="primary-action-icon" aria-hidden="true">✎</span><span><strong>Тексты и редактура</strong><small>Подготовить письмо, описание или другой текст</small></span><b aria-hidden="true">→</b></a>
+<a class="primary-action-card" href="/text2me/business/"><span class="primary-action-icon" aria-hidden="true">▥</span><span><strong>Задачи для бизнеса</strong><small>Документы и рабочие вопросы организации</small></span><b aria-hidden="true">→</b></a>
+<a class="primary-action-card" href="/text2me/services/"><span class="primary-action-icon" aria-hidden="true">＋</span><span><strong>Профессиональная поддержка</strong><small>Посмотреть направления услуг компании</small></span><b aria-hidden="true">→</b></a>
+</div>
+</section><section class="section-block" id="my-space-preview">
 <div class="section-head"><div><h2>Мои документы</h2><p>Недавно открытые файлы и документы, с которыми вы работали.</p></div><a href="/text2me/space/">Просмотреть все файлы →</a></div>
 <div class="wishlist-panel"><div><strong>Недавние файлы</strong><p id="home-space-summary">Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет.</p><div id="home-space-items" class="home-space-items" aria-live="polite"></div></div><div class="wishlist-actions"><a href="/text2me/space/">Мои документы</a><a href="/text2me/documents/pretenziya-prodavtsu/">Создать PDF</a><a href="/text2me/updates/">Обновления</a></div></div>
 </section>
@@ -365,6 +312,37 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 
 
 
+
+<section class="service-bridge" aria-labelledby="service-bridge-title">
+  <div class="service-bridge-heading">
+    <div>
+      <p class="service-bridge-eyebrow">Профессиональная поддержка</p>
+      <h2 id="service-bridge-title">Если нужна помощь специалиста</h2>
+      <p>Можно продолжить самостоятельно или описать задачу для команды нашей компании.</p>
+    </div>
+    <div class="service-bridge-links"><a href="/text2me/services/">Все направления услуг →</a><a href="/text2me/request/">Описать задачу →</a></div>
+  </div>
+  <div class="service-bridge-grid">
+    <a class="service-bridge-card" href="/text2me/request/?task=Бухгалтерская%20задача">
+      <span class="service-bridge-icon" aria-hidden="true">▦</span>
+      <h3>Бухгалтерия</h3>
+      <p>Учёт, отчётность и документы для бизнеса.</p>
+      <span class="service-bridge-action">Описать задачу →</span>
+    </a>
+    <a class="service-bridge-card" href="/text2me/request/?task=Юридическая%20задача">
+      <span class="service-bridge-icon" aria-hidden="true">§</span>
+      <h3>Юридическая помощь</h3>
+      <p>Договоры, претензии и разбор документов.</p>
+      <span class="service-bridge-action">Описать задачу →</span>
+    </a>
+    <a class="service-bridge-card" href="/text2me/request/?task=Маркетинговая%20задача">
+      <span class="service-bridge-icon" aria-hidden="true">↗</span>
+      <h3>Маркетинг</h3>
+      <p>Исследование, планирование и продвижение бизнеса.</p>
+      <span class="service-bridge-action">Описать задачу →</span>
+    </a>
+  </div>
+</section>
 
 <section class="section-block" id="trust">
 <div class="section-head"><div><h2>Прозрачно о возможностях</h2><p>Не показываем неподтверждённые цифры пользователей, рейтингов и документов.</p></div></div>
