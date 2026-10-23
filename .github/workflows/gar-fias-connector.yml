@@ -21,6 +21,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Test connector helpers
+        run: python -m unittest discover -s data-engine -p 'test_*.py' -v
       - name: Check official FNS feed and validate a changed archive
         run: python data-engine/fias_connector.py
       - name: Commit connector status for the public site
