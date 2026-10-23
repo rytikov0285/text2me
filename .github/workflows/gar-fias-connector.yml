@@ -26,7 +26,11 @@ jobs:
           python-version: "3.12"
       - name: Test connector helpers
         run: python -m unittest discover -s data-engine -p 'test_*.py' -v
-      - name: Check official FNS feed and validate a changed archive
+      - name: Test GAR SQLite builder and search
+        run: python scripts/test-build-gar-index.py
+      - name: Check official FNS feed and build index when a new archive fits runner limits
+        env:
+          GAR_INDEX_OUTPUT: ${{ runner.temp }}/gar-address-index.sqlite
         run: python data-engine/fias_connector.py
       - name: Commit connector status for the public site
         run: |
@@ -40,6 +44,25 @@ jobs:
       - name: Fail the run if the source check failed
         if: always()
         run: python data-engine/fias_connector.py --assert-success
+      - name: Detect built index artifact
+        id: index-artifact
+        if: always()
+        env:
+          GAR_INDEX_OUTPUT: ${{ runner.temp }}/gar-address-index.sqlite
+        run: |
+          if [ -f "$GAR_INDEX_OUTPUT" ]; then
+            echo "built=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "built=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Upload built SQLite address index
+        if: steps.index-artifact.outputs.built == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: text2me-gar-address-index-${{ github.run_id }}
+          path: ${{ runner.temp }}/gar-address-index.sqlite
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload public status snapshot
         if: always()
         uses: actions/upload-artifact@v4
