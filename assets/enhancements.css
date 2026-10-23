@@ -465,3 +465,10 @@ body{background:var(--ws-paper);color:var(--ws-ink);font-family:Arial,Helvetica,
 @media(max-width:440px){
  .workspace-page-left,.workspace-page-right,.home-quick-left,.home-quick-right{grid-template-columns:1fr!important}
 }
+
+/* Shared, pinned product description across homepage and internal pages. */
+.text2me-site-description{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #dfe5ed;box-shadow:0 3px 12px rgba(20,38,68,.045)}
+.text2me-site-description-inner{max-width:1540px;margin:0 auto;padding:10px 22px 11px}
+.text2me-site-description strong{display:block;color:#17375e;font-size:clamp(15px,1.6vw,21px);font-weight:800;line-height:1.25;letter-spacing:-.02em}
+.text2me-site-description p{margin:4px 0 0;color:#596679;font-size:12px;line-height:1.45;max-width:1250px}
+@media(max-width:760px){.text2me-site-description-inner{padding:9px 15px}.text2me-site-description strong{font-size:15px}.text2me-site-description p{font-size:11px;line-height:1.4}}

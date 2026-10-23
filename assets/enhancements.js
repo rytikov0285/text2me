@@ -343,3 +343,22 @@ function runSearch(){var q=input.value.trim().toLocaleLowerCase("ru");results.re
 input.addEventListener("input",runSearch);
 document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();input.focus();input.select()}if(e.key==="Escape"&&document.activeElement===input){input.value="";results.replaceChildren();status.textContent="Поиск очищен.";input.blur()}});
 })();
+/* Persistent service description shared by every page. */
+(function(){
+"use strict";
+function installSiteDescription(){
+ if(document.getElementById("text2me-site-description"))return;
+ var header=document.querySelector(".site-header");
+ if(!header)return;
+ var band=document.createElement("section");
+ band.id="text2me-site-description";
+ band.className="text2me-site-description";
+ band.setAttribute("aria-label","О text2me");
+ var inner=document.createElement("div");inner.className="text2me-site-description-inner";
+ var title=document.createElement("strong");title.textContent="Разберитесь в ситуации. Подготовьте нужный документ. Сэкономьте время.";
+ var description=document.createElement("p");description.textContent="text2me помогает понять, с чего начать, найти подходящий документ или инструкцию и подготовить рабочий черновик — для личных дел, общения с организациями и бизнеса.";
+ inner.append(title,description);band.appendChild(inner);
+ header.insertAdjacentElement("afterend",band);
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installSiteDescription);else installSiteDescription();
+})();
