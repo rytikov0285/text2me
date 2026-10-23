@@ -381,8 +381,8 @@ function installSiteDescription(){
  band.className="text2me-site-description";
  band.setAttribute("aria-label","О text2me");
  var inner=document.createElement("div");inner.className="text2me-site-description-inner";
- var title=document.createElement("strong");title.textContent="Разберитесь в ситуации. Подготовьте нужный документ.";
- var description=document.createElement("p");description.textContent="text2me помогает понять, с чего начать, найти подходящий документ или инструкцию и подготовить рабочий черновик — для личных дел, общения с организациями и бизнеса.";
+ var title=document.createElement("strong");title.textContent="От задачи — к документу и следующему шагу.";
+ var description=document.createElement("p");description.textContent="text2me помогает разобраться в ситуации, найти подходящие документы, шаблоны, инструкции и официальные источники, а также подготовить рабочий текст для личных и деловых задач.";
  inner.append(title,description);band.appendChild(inner);
  header.insertAdjacentElement("afterend",band);
 }
