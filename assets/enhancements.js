@@ -333,9 +333,27 @@ var quick=railCard("Быстрый старт");
 [["＋","Создать документ","/text2me/documents/"],["↗","Разобрать ситуацию","/text2me/situations/"],["✎","Подготовить текст","/text2me/prompts/"],["▦","Задача для бизнеса","/text2me/business/"]].forEach(function(item){var a=document.createElement("a");a.className="workspace-rail-link";a.href=item[2];var i=document.createElement("span");i.className="ws-rail-icon";i.setAttribute("aria-hidden","true");i.textContent=item[0];a.append(i,document.createTextNode(item[1]));quick.appendChild(a)});left.appendChild(quick);
 var nav=railCard("Разделы сайта");sections.slice(1,10).forEach(function(s){var a=document.createElement("a");a.className="workspace-rail-link";a.href=s.url;if(current===s.url.replace(/\/+$/,""))a.setAttribute("aria-current","page");a.textContent=s.title;nav.appendChild(a)});left.appendChild(nav);
 var helpful=railCard("Перед отправкой");
-[["Проверить даты и реквизиты","/text2me/guides/"],["Сверить официальный порядок","/text2me/sources/"],["Сохранить копию","/text2me/space/"]].forEach(function(item){
- var a=document.createElement("a");a.className="workspace-rail-link";a.href=item[1];a.textContent=item[0];helpful.appendChild(a);
+var checklist=document.createElement("div");checklist.className="workspace-checklist";
+var checks=[
+ ["dates","Проверил даты и реквизиты"],
+ ["rules","Сверил порядок на официальном сайте"],
+ ["copy","Сохранил копию документа"]
+];
+var checklistState={};
+try{checklistState=JSON.parse(localStorage.getItem("text2me.preflight.v1")||"{}")||{}}catch(e){checklistState={}}
+var checklistStatus=document.createElement("p");checklistStatus.className="workspace-rail-status";
+function updateChecklistStatus(){var count=checks.filter(function(item){return !!checklistState[item[0]]}).length;checklistStatus.textContent="Проверено: "+count+" из "+checks.length}
+checks.forEach(function(item){
+ var label=document.createElement("label");label.className="workspace-check-item";
+ var input=document.createElement("input");input.type="checkbox";input.checked=!!checklistState[item[0]];
+ var text=document.createElement("span");text.textContent=item[1];
+ input.addEventListener("change",function(){checklistState[item[0]]=input.checked;try{localStorage.setItem("text2me.preflight.v1",JSON.stringify(checklistState))}catch(e){}updateChecklistStatus()});
+ label.append(input,text);checklist.appendChild(label);
 });
+helpful.append(checklist,checklistStatus);
+var sourceLink=document.createElement("a");sourceLink.className="workspace-rail-link";sourceLink.href="/text2me/sources/";sourceLink.textContent="Открыть официальные источники →";helpful.appendChild(sourceLink);
+var docsLink=document.createElement("a");docsLink.className="workspace-rail-link";docsLink.href="/text2me/space/";docsLink.textContent="Перейти к сохранённым документам →";helpful.appendChild(docsLink);
+updateChecklistStatus();
 left.appendChild(helpful);
 var right=document.createElement("aside");right.className="workspace-page-right";right.setAttribute("aria-label","Мои документы и инструменты");
 var search=document.createElement("section");search.className="workspace-rail-search";var label=document.createElement("label");label.htmlFor="workspace-rail-search-input";label.textContent="Быстрый поиск";var input=document.createElement("input");input.id="workspace-rail-search-input";input.type="search";input.placeholder="Документ, тема, действие…";input.autocomplete="off";var status=document.createElement("div");status.className="workspace-rail-status";status.setAttribute("aria-live","polite");status.textContent="Поиск по разделам сайта · Ctrl+K";var results=document.createElement("div");results.className="workspace-rail-results";search.append(label,input,status,results);right.appendChild(search);
