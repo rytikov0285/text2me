@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "automation_status": "not_connected",
+  "purpose": "Sources and topics for future legal and standards news monitoring.",
+  "sections": [
+    {"id":"law","title":"Changes in legislation","sources":["https://pravo.gov.ru/"],"topics":["new acts","effective dates","procedural changes"]},
+    {"id":"standards","title":"Standards","sources":["https://protect.gost.ru/","https://new.gostinfo.ru/catalog/"],"topics":["new standards","amendments","withdrawals","technical regulations"]},
+    {"id":"consumer","title":"Consumer rights","sources":["https://rospotrebnadzor.ru/"],"topics":["returns","warranty","services","claims"]},
+    {"id":"tax","title":"Citizen taxes","sources":["https://www.nalog.gov.ru/"],"topics":["deductions","declarations","tax forms"]},
+    {"id":"labor","title":"Employment","sources":["https://mintrud.gov.ru/"],"topics":["labor law","employee documents"]},
+    {"id":"ip","title":"Copyright","sources":["https://rospatent.gov.ru/"],"topics":["intellectual property","licenses"]},
+    {"id":"courts","title":"Court practice","sources":["https://vsrf.ru/","https://www.ksrf.ru/"],"topics":["reviews","legal positions"]}
+  ],
+  "rules": ["Include publication date and effective date separately.", "Link to the primary source.", "Separate source text from editorial explanation.", "Do not publish unverified changes.", "Do not update templates automatically without review."]
+}
