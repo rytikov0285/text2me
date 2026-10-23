@@ -5,6 +5,7 @@ import os
 import subprocess
 import threading
 import urllib.request
+import urllib.parse
 from http.server import ThreadingHTTPServer
 import sys
 import tempfile
@@ -64,7 +65,7 @@ with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
         with urllib.request.urlopen(base_url + "/health", timeout=5) as response:
             health_payload = json.loads(response.read().decode("utf-8"))
             assert response.status == 200 and health_payload["status"] == "ready", health_payload
-        with urllib.request.urlopen(base_url + "/api/addresses?q=Тестовая", timeout=5) as response:
+        with urllib.request.urlopen(base_url + "/api/addresses?" + urllib.parse.urlencode({"q": "Тестовая"}), timeout=5) as response:
             http_payload = json.loads(response.read().decode("utf-8"))
             assert response.status == 200 and http_payload["count"] >= 1, http_payload
     finally:
