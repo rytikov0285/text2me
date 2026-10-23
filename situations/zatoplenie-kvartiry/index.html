@@ -33,8 +33,8 @@
 <p class="flood-muted">Поля с тестовыми данными можно заменить. Неизвестные сведения не нужно придумывать.</p>
 <form id="flood-intake">
 <div class="flood-fields">
-<label>ФИО заявителя<input id="f-name" value="Иванов Алексей Петрович" autocomplete="name" required></label>
-<label>Адрес квартиры<input id="f-address" value="г. Анапа, ул. Ленина, д. 153" required></label>
+<label>ФИО заявителя<input id="f-name" autocomplete="name" placeholder="Введите ФИО заявителя" required></label>
+<label>Адрес квартиры<input id="f-address" placeholder="Город, улица, дом, квартира" required></label>
 <label>Дата затопления<input id="f-date" type="date" required></label>
 <label>Кто вы?<select id="f-role"><option value="собственник">Собственник квартиры</option><option value="наниматель">Наниматель квартиры</option><option value="представитель">Представитель собственника</option><option value="иной пользователь">Другое</option></select></label>
 <label>Предполагаемая причина<select id="f-cause"><option value="не установлена">Пока не установлена</option><option value="протечка крыши">Протечка крыши</option><option value="общедомовые трубы или стояк">Общедомовые трубы или стояк</option><option value="квартира соседей">Квартира соседей</option><option value="другое">Другая причина</option></select></label>
