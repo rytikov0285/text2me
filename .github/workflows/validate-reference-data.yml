@@ -5,6 +5,7 @@ on:
     paths:
       - "data-engine/**"
       - "scripts/monitor-gar-fias.mjs"
+      - "scripts/validate-gar-archive.mjs"
       - "scripts/validate-reference-data.mjs"
       - "scripts/build-gar-index.py"
       - "scripts/test-build-gar-index.py"
@@ -38,6 +39,8 @@ jobs:
         run: node scripts/validate-reference-data.mjs
       - name: Syntax-check monitoring script
         run: node --check scripts/monitor-gar-fias.mjs
+      - name: Syntax-check archive validation and optional index build
+        run: node --check scripts/validate-gar-archive.mjs
       - name: Compile Python data-engine scripts
         run: python3 -m py_compile scripts/build-gar-index.py scripts/search-gar-index.py scripts/test-build-gar-index.py scripts/inspect-gar-xml.py
       - name: Run synthetic GAR index regression test
