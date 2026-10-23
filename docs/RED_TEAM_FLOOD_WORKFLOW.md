@@ -36,3 +36,51 @@
 - Роспотребнадзор, «Что делать, если Вас затопили?»: https://zpp.rospotrebnadzor.ru/handbook/zhku/memos/49536
 - Роспотребнадзор, отказ УК составить акт: https://zpp.rospotrebnadzor.ru/handbook/zhku/answers/43380
 - Роспотребнадзор, разъяснение от 02.09.2026 о протечке крыши и претензии: https://zpp.rospotrebnadzor.ru/news/federal/576692
+
+
+## Red Team findings by severity
+
+### P1 — Reminders are not a reliable notification service
+**Attack/test:** user assumes the site will alert them in 10 days, closes the tab, clears browser data or switches device.
+**Observed:** static-site prototype only stores tasks locally and can export an .ics file. There is no deployed server scheduler, verified email channel or messenger bot.
+**Impact:** missed response date and lost trust.
+**Mitigation:** before advertising automatic reminders, implement authenticated case storage, server-side scheduled jobs, opt-in email/bot delivery, delivery status, retries, timezone handling and a way to change/cancel reminders.
+
+### P1 — Wrong addressee or unproven cause can invalidate the route
+**Attack/test:** the wizard assumes the managing company caused the flood when the source may be a neighbour's apartment, roof, common riser, private pipe or weather.
+**Observed:** no verified property/management-company lookup is configured; the DaData endpoint is empty.
+**Impact:** user sends a claim to the wrong party and loses time.
+**Mitigation:** first document requests an inspection and act without asserting a proven cause. Before a compensation claim, require user confirmation of the responsible party and supporting evidence; offer a “cause unknown” branch.
+
+### P1 — The 10-day countdown can be legally misleading
+**Attack/test:** the site starts the same deadline from any first request, or automatically tells everyone to sue on day 10.
+**Impact:** incorrect legal expectations.
+**Mitigation:** calculate reminders only from the actual sent date of the compensation demand; label day 10 as a review checkpoint, not an automatic court deadline. Determine whether a specific statutory deadline applies to the selected demand and respondent.
+
+### P2 — Local-only storage is fragile for a high-stakes case
+**Attack/test:** user opens the workflow on a phone, later uses a laptop, or clears site data.
+**Observed:** document library and organizer are browser-local.
+**Impact:** photos, drafts and dates may not follow the user to another device.
+**Mitigation:** cloud sync with authentication, export/backup, restore testing and explicit retention/deletion controls. Until then, show the local-storage warning before saving.
+
+### P2 — No verified end-to-end acceptance test
+**Attack/test:** mobile viewport, unavailable IndexedDB/localStorage, malformed date, empty fields, failed download, duplicate reminders, imported calendar event.
+**Observed:** code and links were inspected, but browser/E2E execution was not available in this pass.
+**Impact:** runtime defects may remain.
+**Mitigation:** add automated smoke tests and run manual desktop/mobile checks before promoting the workflow publicly.
+
+### P2 — Sensitive data and document contents
+**Attack/test:** analytics or third-party lookup receives names, addresses, photos, claim text or other case details.
+**Mitigation:** keep document contents and identifying fields out of analytics; send only minimised event identifiers. Do not enable external integrations until privacy notice, consent, data location, access controls and retention are reviewed.
+
+### P3 — Insurance cross-sell can damage trust if shown too early
+**Attack/test:** an upset user sees a sales pitch before receiving emergency steps and the first document.
+**Mitigation:** show prevention/insurance options only after the immediate workflow is complete, mark commercial links clearly, keep the legal workflow usable for free, and never imply a new policy covers an already-known event.
+
+## Monetisation and retention hypotheses to validate
+
+- **Free:** first request to the management company, evidence checklist, editable draft, local calendar tasks and .ics export.
+- **Paid per case:** a reviewed document pack for the confirmed responsible party, claim, attachment list and court-preparation checklist; clearly distinguish document preparation from legal representation.
+- **Optional expert service:** independent property damage assessment or lawyer review through verified providers, with transparent price and referral disclosure.
+- **Retention:** a “Case” page with timeline, outgoing documents, delivery proofs, evidence, repair estimates, expenses, tasks and outcome status. Users should be able to export the entire case.
+- **Insurance brand:** “Strah2me” is a workable naming concept only pending domain, trademark and market checks. Position it as a comparison/partner marketplace, not as an insurer unless the business obtains the necessary legal status. Start with apartment coverage (finishing, furniture/electronics, civil liability to neighbours), then separate OSAGO/CASCO flows. Existing comparison services show these are established categories, so differentiation should be the link to a user's documents, property risks and reminders—not merely another list of policies.
