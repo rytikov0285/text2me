@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Реестр источников правовой и нормативной информации. Запись в реестре не означает автоматического подключения или права копировать полный текст.",
+  "sources": [
+    {"id":"official-law","title":"Официальный интернет-портал правовой информации","url":"https://pravo.gov.ru/","kind":"official","covers":["официальные правовые акты","публикация","редакции"],"status":"link_only"},
+    {"id":"rosstandart","title":"Официальный портал Росстандарта","url":"https://protect.gost.ru/","kind":"official","covers":["ГОСТ","ГОСТ Р","ПНСТ","изменения","классификаторы","своды правил"],"status":"link_only"},
+    {"id":"gost-catalog","title":"Каталоги Российского института стандартизации","url":"https://new.gostinfo.ru/catalog/","kind":"catalog","covers":["российские и международные стандарты","СТО и ТУ","терминологические словари"],"status":"link_only"},
+    {"id":"rospatent","title":"Роспатент","url":"https://rospatent.gov.ru/","kind":"official","covers":["интеллектуальная собственность","патенты","товарные знаки"],"status":"link_only"},
+    {"id":"consumer","title":"Роспотребнадзор","url":"https://rospotrebnadzor.ru/","kind":"official","covers":["права потребителей","обращения","разъяснения"],"status":"link_only"},
+    {"id":"tax","title":"ФНС России","url":"https://www.nalog.gov.ru/","kind":"official","covers":["налоги","налоговые формы","сервисы"],"status":"link_only"},
+    {"id":"labor","title":"Минтруд России","url":"https://mintrud.gov.ru/","kind":"official","covers":["трудовые отношения","занятость"],"status":"link_only"},
+    {"id":"labor-inspectorate","title":"Онлайнинспекция.рф","url":"https://онлайнинспекция.рф/","kind":"official","covers":["трудовые права","обращения работников"],"status":"link_only"},
+    {"id":"eec","title":"Евразийская экономическая комиссия","url":"https://eec.eaeunion.org/","kind":"official","covers":["технические регламенты ЕАЭС"],"status":"link_only"},
+    {"id":"consultant","title":"КонсультантПлюс","url":"https://www.consultant.ru/","kind":"secondary","covers":["кодексы","законы","комментарии","обзоры"],"status":"link_only","rights_note":"Не копировать редакционные материалы без проверки лицензии."},
+    {"id":"garant","title":"ГАРАНТ","url":"https://base.garant.ru/","kind":"secondary","covers":["кодексы","законы","правовые материалы"],"status":"link_only","rights_note":"Проверять условия использования комментариев и редакционных материалов."}
+  ],
+  "policy": {"official_texts_first":true,"track_revision_and_effective_date":true,"commentary_copyright_check_required":true,"standards_full_text_rights_check_required":true,"automatic_import_connected":false}
+}
