@@ -186,7 +186,7 @@ var DRAFT_KEY="text2me.editor.draft.v1",selectedId="",timer=0;
 var panel=el("section",{class:"text2me-editor-panel","aria-label":"Редактор документа"});
 var bar=el("div",{class:"text2me-editor-toolbar"});
 var title=el("input",{type:"text",class:"text2me-editor-title",placeholder:"Название документа","aria-label":"Название документа",maxlength:"180"});
-var chooser=el("select",{"aria-label":"Открыть сохранённый документ"});var newBtn=button("Новый документ","button button-outline",function(){if(isDirty()&&!confirm("Есть несохранённые изменения. Начать новый документ? Черновик останется в этом браузере."))return;loadDraftOrBlank(true)});
+var chooser=el("select",{"aria-label":"Открыть сохранённый документ"});var newBtn=button("Новый документ","button button-outline",function(){if(isDirty()&&!confirm("Есть несохранённые изменения. Начать новый документ? Текущий текст будет заменён новым черновиком."))return;loadDraftOrBlank(true)});
 bar.append(title,chooser,newBtn);
 var area=el("textarea",{class:"text2me-editor-body",placeholder:"Введите текст документа или вставьте подготовленный черновик…","aria-label":"Текст документа",spellcheck:"true"});
 var status=el("p",{class:"text2me-editor-status","aria-live":"polite"},"Черновик сохраняется только в этом браузере.");
@@ -198,10 +198,10 @@ var txtBtn=button("Скачать TXT","button button-outline",function(){downlo
 var printBtn=button("Печать / PDF","button button-outline",function(){if(!area.value.trim()){status.textContent="Введите текст перед печатью.";return}var w=window.open("","_blank");if(!w){status.textContent="Разрешите всплывающие окна для печати.";return}w.document.write("<!doctype html><html lang='ru'><head><meta charset='utf-8'><title>"+xmlEscape(title.value||"Документ")+"</title><style>body{font:12pt/1.6 Arial,sans-serif;max-width:800px;margin:40px auto;color:#111}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}h1{font-size:18pt}@media print{body{margin:15mm auto}}</style></head><body><h1>"+xmlEscape(title.value||"Документ")+"</h1><pre>"+xmlEscape(area.value)+"</pre><script>window.onload=function(){setTimeout(function(){window.print()},200)}<\/script></body></html>");w.document.close()});
 actions.append(saveBtn,docxBtn,txtBtn,printBtn);
 panel.append(bar,area,actions,count,status);host.appendChild(panel);
-function safeName(s){return String(s||"document").replace(/[^\\p{L}\\p{N}-]+/gu,"-").replace(/^-+|-+$/g,"").slice(0,100)||"document"}
+function safeName(s){return String(s||"document").replace(/[^\p{L}\p{N}-]+/gu,"-").replace(/^-+|-+$/g,"").slice(0,100)||"document"}
 function currentDoc(){return getSaved().find(function(d){return d&&d.id===selectedId})||null}
 function isDirty(){var d=currentDoc();return d?d.title!==title.value||d.text!==area.value:!!(title.value.trim()||area.value.trim())}
-function updateCount(){count.textContent=area.value.length.toLocaleString("ru-RU")+" знаков · "+area.value.trim().split(/\\s+/).filter(Boolean).length.toLocaleString("ru-RU")+" слов"}
+function updateCount(){count.textContent=area.value.length.toLocaleString("ru-RU")+" знаков · "+area.value.trim().split(/\s+/).filter(Boolean).length.toLocaleString("ru-RU")+" слов"}
 function refreshChooser(){
 var docs=getSaved().filter(function(d){return d&&!d.archived});
 chooser.replaceChildren(el("option",{value:""},"— Открыть сохранённый документ —"));
