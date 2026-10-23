@@ -123,7 +123,7 @@ def download_and_validate(url, index_output=None):
     finally:
         if temp_path and os.path.exists(temp_path): os.unlink(temp_path)
 def initial_status():
-    return {"schema_version":"1.0.0","connector_id":"gar_fias","connector_name":"ГАР/ФИАС — официальный набор открытых данных ФНС России","status":"not_run","source_page":SOURCE_PAGE,"latest_attempt":None,"last_successful_source_check":None,"last_archive_validation":None,"address_index":{"status":"builder_implemented_not_deployed","note":"SQLite-сборщик и CLI-поиск реализованы; производственная база и веб-поиск ещё не опубликованы."}}
+    return {"schema_version":"1.0.0","connector_id":"gar_fias","connector_name":"ГАР/ФИАС — официальный набор открытых данных ФНС России","status":"not_run","source_page":SOURCE_PAGE,"latest_attempt":None,"last_successful_source_check":None,"last_archive_validation":None,"address_index":{"status":"builder_implemented_not_deployed","note":"SQLite-сборщик, CLI-поиск и read-only HTTP API реализованы; реальная база, постоянный API-сервер и подключение форм ещё не развёрнуты."}}
 def read_status(path):
     if not path.exists(): return initial_status()
     try:
@@ -169,7 +169,7 @@ def run_check(path):
     except Exception as exc:
         attempt["error"]=type(exc).__name__+": "+str(exc); status["status"]="degraded" if status.get("last_successful_source_check") else "not_run"
     attempt["finished_at"]=utc_now(); status["latest_attempt"]=attempt
-    status["address_index"]=status.get("address_index") or {"status":"builder_implemented_not_deployed","note":"SQLite-сборщик и CLI-поиск реализованы; производственная база и веб-поиск ещё не опубликованы."}
+    status["address_index"]=status.get("address_index") or {"status":"builder_implemented_not_deployed","note":"SQLite-сборщик, CLI-поиск и read-only HTTP API реализованы; реальная база, постоянный API-сервер и подключение форм ещё не развёрнуты."}
     build=(attempt.get("archive_validation") or {}).get("index_build") or {}
     if build.get("result")=="success":
         status["address_index"]={
@@ -182,7 +182,7 @@ def run_check(path):
         }
     elif status["address_index"].get("status") not in ("built_not_deployed","deployed"):
         status["address_index"]["status"]="builder_implemented_not_deployed"
-        status["address_index"]["note"]="SQLite-сборщик и CLI-поиск реализованы; производственная база и веб-поиск ещё не опубликованы."
+        status["address_index"]["note"]="SQLite-сборщик, CLI-поиск и read-only HTTP API реализованы; реальная база, постоянный API-сервер и подключение форм ещё не развёрнуты."
     write_status(path,status); print(json.dumps({"status":status["status"],"attempt":attempt},ensure_ascii=False,indent=2)); return 0
 def assert_success(path):
     status=read_status(path); latest=status.get("latest_attempt") or {}
