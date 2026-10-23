@@ -3,6 +3,9 @@
 import json
 import os
 import subprocess
+import threading
+import urllib.request
+from http.server import ThreadingHTTPServer
 import sys
 import tempfile
 import zipfile
@@ -53,6 +56,21 @@ with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
     api_house_result = api.search("12А", 10, True)
     assert any(row["kind"] == "house" and row["house_number"] == "12А" for row in api_house_result["results"]), api_house_result
     assert api.DB_PATH == output, "API must use the configured SQLite database path"
+    http_server = ThreadingHTTPServer(("127.0.0.1", 0), api.Handler)
+    http_thread = threading.Thread(target=http_server.serve_forever, daemon=True)
+    http_thread.start()
+    try:
+        base_url = "http://127.0.0.1:" + str(http_server.server_address[1])
+        with urllib.request.urlopen(base_url + "/health", timeout=5) as response:
+            health_payload = json.loads(response.read().decode("utf-8"))
+            assert response.status == 200 and health_payload["status"] == "ready", health_payload
+        with urllib.request.urlopen(base_url + "/api/addresses?q=Тестовая", timeout=5) as response:
+            http_payload = json.loads(response.read().decode("utf-8"))
+            assert response.status == 200 and http_payload["count"] >= 1, http_payload
+    finally:
+        http_server.shutdown()
+        http_server.server_close()
+        http_thread.join(timeout=5)
     before = output.read_bytes()
     broken = root / "broken.zip"
     with zipfile.ZipFile(broken, "w", compression=zipfile.ZIP_DEFLATED) as zf:
@@ -61,4 +79,4 @@ with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
                             capture_output=True, text=True, encoding="utf-8")
     assert failed.returncode != 0, "Builder must reject an archive missing required GAR tables."
     assert output.read_bytes() == before, "Failed update must preserve the last successful database."
-    print("PASS: synthetic GAR build, CLI/API address search, and failed-update preservation.")
+    print("PASS: synthetic GAR build, CLI search, HTTP API health/search, and failed-update preservation.")
