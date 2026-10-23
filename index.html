@@ -185,6 +185,13 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 @media(max-width:700px){.dash-hero.office-home{padding:24px 14px 14px!important}.home-situation-box{padding:8px 12px 14px!important}.primary-actions{padding:14px}.primary-actions-grid{grid-template-columns:1fr}.primary-action-card{padding:12px}.primary-actions .section-head h2{font-size:18px}}
 @media(prefers-reduced-motion:reduce){.primary-action-card{transition:none}}
 </style>
+
+<style id="homepage-directory-refresh">
+.home-directory-layout{display:block!important}.home-directory{max-width:1040px!important;margin:0 auto!important;padding:18px 0 12px}.directory-hero{padding:22px 0 20px}.directory-eyebrow{margin:0 0 5px;color:#bd2632;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.directory-hero h1{margin:0 0 7px;font-size:clamp(30px,4vw,42px);line-height:1.1;letter-spacing:-.04em;color:#202124}.directory-hero>p:not(.directory-eyebrow){margin:0;color:#686b73;font-size:15px;max-width:680px}.directory-shortcuts{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}.directory-shortcuts a{display:inline-flex;gap:12px;align-items:center;padding:10px 13px;border:1px solid #dedee3;border-radius:9px;background:#fff;color:#292929;text-decoration:none;font-size:13px;font-weight:700}.directory-shortcuts a:hover,.directory-subsections a:hover{border-color:#c82932;background:#fffafa}.directory-shortcuts span,.directory-open span{color:#c82932}.directory-block{margin:14px 0 0;padding:20px 22px;background:#fff;border:1px solid #e5e5e8;border-radius:13px;box-shadow:0 2px 7px #00000005;scroll-margin-top:80px}.directory-block-head{display:grid;grid-template-columns:35px minmax(0,1fr) auto;gap:12px;align-items:start}.directory-number{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#f8e9eb;color:#bd2632;font-size:11px;font-weight:900}.directory-block-head h2{margin:0;font-size:20px;line-height:1.25;letter-spacing:-.025em}.directory-block-head p{margin:5px 0 0;color:#686b73;font-size:13px;line-height:1.5;max-width:670px}.directory-open{display:inline-flex;gap:8px;align-items:center;white-space:nowrap;padding:8px 10px;border:1px solid #e4e4e7;border-radius:8px;color:#333;text-decoration:none;font-size:12px;font-weight:800}.directory-subsections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:16px 0 0 47px}.directory-subsections a{display:flex;flex-direction:column;gap:4px;min-width:0;padding:12px 13px;border:1px solid #ededf0;border-radius:9px;background:#fdfdfd;text-decoration:none;color:#292929}.directory-subsections strong{font-size:13px}.directory-subsections span{font-size:12px;line-height:1.45;color:#686b73}.directory-subsections em{font-style:normal;font-size:10px;color:#287047;font-weight:800;margin-top:2px}.directory-subsections-compact{grid-template-columns:repeat(3,minmax(0,1fr))}.directory-note{margin:12px 0 0 47px;color:#686b73;font-size:11px;line-height:1.5}.directory-about{margin:18px 0 4px;color:#686b73;font-size:12px;line-height:1.6}.home-directory-layout+.dash-footer{margin-top:22px}
+@media(max-width:760px){.home-directory{padding-top:8px}.directory-hero{padding:20px 0 12px}.directory-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.directory-shortcuts a{justify-content:space-between}.directory-block{padding:16px 14px}.directory-block-head{grid-template-columns:30px minmax(0,1fr);gap:10px}.directory-number{width:28px;height:28px}.directory-block-head h2{font-size:18px}.directory-open{grid-column:2;justify-self:start;margin-top:2px}.directory-subsections,.directory-subsections-compact{grid-template-columns:1fr;margin-left:38px}.directory-note{margin-left:38px}}
+@media(max-width:420px){.directory-shortcuts{grid-template-columns:1fr}.directory-hero h1{font-size:32px}.directory-block-head p{font-size:12px}.directory-subsections{margin-top:12px}.directory-subsections a{padding:11px}}
+</style>
+
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -198,218 +205,81 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <button class="workspace-search-submit" type="submit">Найти</button>
 <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
 </form>
-<nav class="dash-nav workspace-top-links acrobat-nav" aria-label="Основная навигация"><a class="active" href="/text2me/">Главная</a><a href="/text2me/situations/">Ситуации</a><a href="/text2me/documents/">Документы</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/business/">Для бизнеса</a><a href="/text2me/services/">Услуги</a><a href="/text2me/space/">Мои материалы</a></nav>
+<nav class="dash-nav workspace-top-links acrobat-nav" aria-label="Основная навигация"><a class="active" href="/text2me/">Главная</a><a href="/text2me/situations/">Ситуации</a><a href="/text2me/documents/">Документы</a><a href="/text2me/guides/">Инструкции</a></nav>
 </header>
 
-<div class="workspace-layout">
-<aside class="workspace-sidebar" aria-label="Навигация по сайту">
-<div class="workspace-nav-group"><p>Навигация</p>
-<a class="workspace-nav-link active" href="#main"><span aria-hidden="true">⌂</span>Главная</a>
-<a class="workspace-nav-link" href="#my-space-preview"><span aria-hidden="true">▣</span>Мои документы</a>
-<a class="workspace-nav-link" href="#updates-feed"><span aria-hidden="true">◷</span>Обновления</a>
-</div>
-<div class="workspace-nav-group"><p>Каталоги</p>
-<a class="workspace-nav-link" href="#situations"><span aria-hidden="true">⌘</span>Ситуации</a>
-<a class="workspace-nav-link" href="/text2me/documents/"><span aria-hidden="true">▤</span>Все документы</a>
-<a class="workspace-nav-link" href="/text2me/guides/"><span aria-hidden="true">☷</span>Инструкции</a>
-<a class="workspace-nav-link" href="/text2me/knowledge/"><span aria-hidden="true">◈</span>База знаний</a>
-<a class="workspace-nav-link" href="/text2me/sources/"><span aria-hidden="true">↗</span>Источники</a>
-</div>
-<div class="workspace-nav-group"><p>Аудитория и инструменты</p>
-<a class="workspace-nav-link" href="#categories"><span aria-hidden="true">▦</span>Категории</a>
-<a class="workspace-nav-link" href="#tools"><span aria-hidden="true">⌁</span>Инструменты PDF</a>
-<a class="workspace-nav-link" href="/text2me/people/"><span aria-hidden="true">♙</span>Гражданам</a>
-<a class="workspace-nav-link" href="/text2me/business/"><span aria-hidden="true">▥</span>Организациям</a>
-<a class="workspace-nav-link" href="/text2me/prompts/"><span aria-hidden="true">✎</span>Тексты и редактура</a>
-</div>
-</aside>
-<main id="main" class="workspace-main">
-<section class="dash-hero office-home" aria-labelledby="main-title">
-
-<h1 id="main-title">Что вам нужно сделать?</h1>
-<p class="dash-lead">Опишите задачу своими словами. Подберём подходящий раздел, документ, инструмент или инструкцию.</p>
-</section>
-
-<section class="home-situation-box" aria-labelledby="home-situation-title">
-<form id="home-situation-form" action="/text2me/start/" method="get">
-<label id="home-situation-title" for="home-situation">Опишите задачу или ситуацию</label>
-
-<textarea id="home-situation" name="task" rows="3" placeholder="Например: подготовить документ, найти официальные сведения или организовать рабочий процесс" autocomplete="off"></textarea>
-<div class="home-situation-actions"><button class="dash-btn" type="submit">Подобрать решение</button><a class="dash-btn secondary" href="/text2me/documents/">Все инструменты</a></div>
-</form>
-<div class="home-situation-chips" aria-label="Примеры задач">
-<button type="button" data-situation-chip="Разобраться в ситуации и определить дальнейшие действия">Не знаю, с чего начать</button>
-<button type="button" data-situation-chip="Подготовить документ по моей ситуации">Нужно составить документ</button>
-<button type="button" data-situation-chip="Подготовить деловое письмо или обращение">Написать письмо</button>
-<button type="button" data-situation-chip="Найти официальную информацию и источники по вопросу">Найти информацию</button>
-<button type="button" data-situation-chip="Подготовить документы и определить шаги для бизнеса">Задача для бизнеса</button>
-<button type="button" data-situation-chip="Подготовить претензию продавцу для возврата денег">Вернуть деньги за покупку</button>
-</div>
-</section>
-
-<section class="primary-actions" aria-labelledby="primary-actions-title">
-<div class="section-head"><div><h2 id="primary-actions-title">Быстрый доступ</h2><p>Выберите направление — или опишите задачу выше, если не знаете, с чего начать.</p></div></div>
-<div class="primary-actions-grid">
-<a class="primary-action-card primary-action-main" href="/text2me/start/"><span class="primary-action-icon" aria-hidden="true">⌘</span><span><strong>Подобрать решение</strong><small>Разобраться в ситуации и определить следующие шаги</small></span><b aria-hidden="true">→</b></a>
-<a class="primary-action-card" href="/text2me/documents/"><span class="primary-action-icon" aria-hidden="true">▤</span><span><strong>Создать документ</strong><small>Найти подходящий шаблон или конструктор</small></span><b aria-hidden="true">→</b></a>
-<a class="primary-action-card" href="/text2me/space/"><span class="primary-action-icon" aria-hidden="true">▣</span><span><strong>Работа с файлами</strong><small>Открыть библиотеку и сохранённые материалы</small></span><b aria-hidden="true">→</b></a>
-<a class="primary-action-card" href="/text2me/knowledge/"><span class="primary-action-icon" aria-hidden="true">⌕</span><span><strong>Найти информацию</strong><small>Справочные материалы и официальные источники</small></span><b aria-hidden="true">→</b></a>
-<a class="primary-action-card" href="/text2me/prompts/"><span class="primary-action-icon" aria-hidden="true">✎</span><span><strong>Тексты и редактура</strong><small>Подготовить письмо, описание или другой текст</small></span><b aria-hidden="true">→</b></a>
-<a class="primary-action-card" href="/text2me/business/"><span class="primary-action-icon" aria-hidden="true">▥</span><span><strong>Задачи для бизнеса</strong><small>Документы и рабочие вопросы организации</small></span><b aria-hidden="true">→</b></a>
-<a class="primary-action-card" href="/text2me/services/"><span class="primary-action-icon" aria-hidden="true">＋</span><span><strong>Профессиональная поддержка</strong><small>Посмотреть направления услуг компании</small></span><b aria-hidden="true">→</b></a>
-</div>
-</section><section class="homepage-about" aria-labelledby="homepage-about-title"><h2 id="homepage-about-title">О платформе text2me</h2><p>text2me — рабочая платформа для граждан, предпринимателей, специалистов и организаций. Она объединяет навигацию по жизненным и рабочим ситуациям, каталог документов, пошаговые инструкции, справочные материалы и ссылки на официальные источники. Можно подобрать подходящий раздел, подготовить черновик и сохранить материалы в браузере. Доступность каждой функции и её ограничения должны быть указаны на соответствующей странице.</p><p><a href="/text2me/situations/">Ситуации</a> · <a href="/text2me/documents/">Документы</a> · <a href="/text2me/guides/">Инструкции</a> · <a href="/text2me/knowledge/">База знаний</a> · <a href="/text2me/sources/">Официальные источники</a></p></section>
-<section class="section-block" id="my-space-preview">
-<div class="section-head"><div><h2>Мои документы</h2><p>Недавно открытые файлы и документы, с которыми вы работали.</p></div><a href="/text2me/space/">Просмотреть все файлы →</a></div>
-<div class="wishlist-panel"><div><strong>Недавние файлы</strong><p id="home-space-summary">Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет.</p><div id="home-space-items" class="home-space-items" aria-live="polite"></div></div><div class="wishlist-actions"><a href="/text2me/space/">Мои документы</a><a href="/text2me/documents/pretenziya-prodavtsu/">Создать PDF</a><a href="/text2me/updates/">Обновления</a></div></div>
-</section>
-
-<section class="section-block" id="tools">
-<div class="section-head"><div><h2>Полезные разделы</h2><p>Перейдите к нужному типу работы, если не хотите описывать задачу в поле выше.</p></div></div>
-<div class="tool-row">
-<a class="tool-item" href="/text2me/start/"><span class="tool-icon">⌘</span><span><strong>Навигатор по задаче</strong><small>Подобрать раздел по описанию ситуации и цели</small><span class="status-badge" data-status="demo">Подбор по правилам</span></span></a>
-<a class="tool-item" href="/text2me/knowledge/"><span class="tool-icon">▤</span><span><strong>База знаний</strong><small>Справочные материалы и ссылки на официальные источники</small><span class="status-badge" data-status="live">Материалы</span></span></a>
-<a class="tool-item" href="/text2me/sources/"><span class="tool-icon">↗</span><span><strong>Официальные источники</strong><small>Государственные органы, официальные сервисы и организации</small><span class="status-badge" data-status="live">Каталог</span></span></a>
-</div>
-</section>
-
-<div class="office-lower-grid">
-<section class="office-recent-panel" aria-labelledby="office-recent-title">
-<div class="office-section-title"><div><h2 id="office-recent-title">Продолжить работу</h2><p>Сохранённые документы и черновики в этом браузере.</p></div></div>
-<div class="office-recent-actions">
-<a href="/text2me/space/"><span aria-hidden="true">▣</span><span><strong>Моё пространство</strong><small>Открыть библиотеку и черновики</small></span><b aria-hidden="true">→</b></a>
-<a href="/text2me/space/"><span aria-hidden="true">◷</span><span><strong>Последние документы</strong><small>Перейти к сохранённым материалам</small></span><b aria-hidden="true">→</b></a>
-<a href="/text2me/guides/"><span aria-hidden="true">☷</span><span><strong>Как работать с документом</strong><small>Заполнение, проверка и экспорт</small></span><b aria-hidden="true">→</b></a>
-</div>
-</section>
-<aside class="office-status-panel" aria-label="Возможности приложения">
-<h2>Инструменты</h2>
-<div class="office-status-row"><span>Редактирование черновика</span><b>Доступно в конструкторах</b></div>
-<div class="office-status-row"><span>Сохранение</span><b>В этом браузере</b></div>
-<div class="office-status-row"><span>Экспорт</span><b>DOCX / PDF — в поддерживаемых конструкторах</b></div>
-<p>Облачная синхронизация и полноценный редактор Word пока не подключены.</p>
-</aside>
-</div>
-
-<div class="workspace-search-shortcuts" aria-label="Быстрый доступ"><span>Быстрый доступ:</span><button type="button" data-search-chip="договор найма жилья">Договор найма жилья</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button><button type="button" data-search-chip="исковое заявление">Исковое заявление</button></div>
-
-<section class="section-block" id="situations">
-<div class="section-head"><div><h2>Что делать в конкретной ситуации</h2><p>Пошаговые объяснения простым языком: с чего начать, какие документы собрать и куда обращаться.</p></div><a href="/text2me/situations/">Все инструкции →</a></div>
-<div class="situation-mega" id="situation-mega">
-<details><summary>Покупки и услуги <span>брак, возврат денег, отказ в услуге</span></summary><div class="mega-links"><a href="/text2me/situations/#bad-goods">Что делать по шагам</a><a href="/text2me/documents/pretenziya-prodavtsu/">Черновик претензии</a><a href="/text2me/knowledge/">Нормы и материалы базы знаний</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
-<details><summary>Работа и зарплата <span>задержка выплаты, документы, увольнение</span></summary><div class="mega-links"><a href="/text2me/situations/#salary">Пошаговая инструкция</a><a href="/text2me/situations/#salary">Пошаговая инструкция по работе</a><a href="/text2me/knowledge/">Трудовые нормы и источники</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
-<details><summary>Жильё и ЖКХ <span>управляющая компания, коммунальные услуги</span></summary><div class="mega-links"><a href="/text2me/situations/#housing">Порядок действий</a><a href="/text2me/documents/">Заявления и акты</a><a href="/text2me/knowledge/">Правила и справочные материалы</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
-<details><summary>Деньги и долги <span>перевод, спор с банком, возврат долга</span></summary><div class="mega-links"><a href="/text2me/situations/#bank">Проблема с банком</a><a href="/text2me/situations/#debt">Взыскание долга</a><a href="/text2me/documents/isk-v-sud/">Черновик искового заявления</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
-<details><summary>Государственные органы <span>заявление, жалоба, обращение</span></summary><div class="mega-links"><a href="/text2me/situations/#government">Как подать обращение</a><a href="/text2me/documents/">Каталог заявлений</a><a href="/text2me/knowledge/">Официальные нормы и инструкции</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
-<details><summary>Суд и спор <span>иск, доказательства, подготовка</span></summary><div class="mega-links"><a href="/text2me/documents/isk-v-sud/">Черновик искового заявления</a><a href="/text2me/situations/#debt">Что собрать перед спором</a><a href="/text2me/knowledge/">Процессуальные источники</a><a href="/text2me/sources/">Официальные источники по теме ↗</a></div></details>
-</div>
-<div class="resource-grid" style="margin-top:12px"><a class="resource-card" href="/text2me/situations/"><strong>Открыть все пошаговые инструкции →</strong><span>6 типовых ситуаций, связанные документы нашей базы знаний и официальные источники.</span></a><a class="resource-card" href="/text2me/knowledge/"><strong>Перейти в базу знаний →</strong><span>Законы, кодексы, ведомства и справочные материалы по темам.</span></a><a class="resource-card" href="/text2me/sources/"><strong>Открыть каталог источников →</strong><span>Государственные органы, официальные сервисы и организации.</span></a></div>
-</section>
-
-
-<section class="section-block" id="categories">
-<div class="section-head"><div><h2>Каталог документов</h2><p>Крупные разделы → виды документов. Числа показывают только доступные конструкторы.</p></div><a href="/text2me/documents/">Открыть каталог →</a></div>
-<div class="catalog-filters dashboard-filters" aria-label="Фильтры каталога">
-<label>Тип документа<select id="dash-filter-type"><option value="">Все типы</option><option value="Договоры">Договоры</option><option value="Доверенности">Доверенности</option><option value="Заявления">Заявления</option><option value="Акты">Акты</option><option value="Приказы">Приказы</option><option value="Протоколы">Протоколы</option><option value="Письма">Письма</option><option value="Соглашения">Соглашения</option><option value="Личное">Личное</option><option value="Дипломы">Дипломы</option><option value="Инструкции">Инструкции</option><option value="Расписки">Расписки</option></select></label>
-<label>Ситуация<select id="dash-filter-situation"><option value="">Все ситуации</option><option value="Работа">Работа</option><option value="Покупки">Покупки и услуги</option><option value="Жильё">Жильё и аренда</option><option value="Деньги">Деньги и долги</option><option value="Суд">Суд</option><option value="Бизнес">Бизнес</option></select></label>
-<label>Правовая природа<select id="dash-filter-nature"><option value="">Любая</option><option value="ГПХ">ГПХ</option><option value="Трудовые">Трудовые</option><option value="Аренда">Аренда</option><option value="Купля-продажа">Купля-продажа</option><option value="Дарение">Дарение</option><option value="Займы">Займы</option><option value="Информационные">Информационные</option></select></label>
-</div>
-<p class="catalog-count" id="dash-category-count" aria-live="polite">Показаны категории каталога. Доступных конструкторов: 3.</p>
-<div class="category-grid dashboard-category-grid" id="dash-category-grid">
-<a class="category-card" data-cat="Договоры" data-situation="Жильё" data-nature="Аренда" href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span class="category-count">1 рабочий конструктор</span><span class="category-sub">Заполнение · редактирование · DOCX / PDF · акт передачи</span><span class="status-badge" data-status="live">Работает</span></a>
-<a class="category-card" data-cat="Доверенности" data-situation="Бизнес Работа" data-nature="Правовые" href="/text2me/prompts/"><strong>Доверенности</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Представительство · автомобиль · получение документов</span><span class="status-badge" data-status="soon">Скоро</span></a>
-<a class="category-card" data-cat="Заявления" data-situation="Работа Деньги Покупки Жильё" data-nature="Трудовые Правовые" href="/text2me/people/"><strong>Заявления</strong><span class="category-count">0 отдельных конструкторов</span><span class="category-sub">Работа · услуги · обращения в организации</span><span class="status-badge" data-status="soon">Скоро</span></a>
-<a class="category-card" data-cat="Акты" data-situation="Бизнес Жильё" data-nature="ГПХ Аренда Купля-продажа" href="/text2me/business/"><strong>Акты</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Приём-передача · выполненные работы · сверка</span><span class="status-badge" data-status="soon">Скоро</span></a>
-<a class="category-card" data-cat="Приказы" data-situation="Работа Бизнес" data-nature="Трудовые" href="/text2me/business/"><strong>Приказы</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Кадровые и организационные</span><span class="status-badge" data-status="soon">Скоро</span></a>
-<a class="category-card" data-cat="Протоколы" data-situation="Бизнес" data-nature="Корпоративные" href="/text2me/business/"><strong>Протоколы</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Совещания · решения · собрания</span><span class="status-badge" data-status="soon">Скоро</span></a>
-<a class="category-card" data-cat="Письма" data-situation="Работа Покупки Бизнес" data-nature="Информационные Правовые" href="/text2me/prompts/"><strong>Письма</strong><span class="category-count">0 отдельных конструкторов</span><span class="category-sub">Деловые · сопроводительные · обращения</span><span class="status-badge" data-status="demo">Материалы</span></a>
-<a class="category-card" data-cat="Соглашения" data-situation="Бизнес Работа Деньги" data-nature="ГПХ Аренда Займы" href="/text2me/business/"><strong>Соглашения</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Изменения условий · расторжение · расчёты</span><span class="status-badge" data-status="soon">Скоро</span></a>
-<a class="category-card" data-cat="Дипломы" data-situation="Работа" data-nature="Информационные" href="/text2me/knowledge/"><strong>Дипломы и сертификаты</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Справочные материалы и макеты</span><span class="status-badge" data-status="soon">Скоро</span></a>
-<a class="category-card" data-cat="Личное" data-situation="Личное" data-nature="Тексты" href="/text2me/prompts/#personal-prompts"><strong>Личное</strong><span class="category-count">Поздравления, рецепты, дипломы</span><span class="category-sub">Тексты для семьи, друзей, учёбы и повседневной жизни</span><span class="status-badge" data-status="demo">Готовые примеры</span></a>
-<a class="category-card" data-cat="Инструкции" data-situation="Покупки Жильё Работа Бизнес" data-nature="Информационные" href="/text2me/knowledge/"><strong>Инструкции</strong><span class="category-count">Каталог материалов</span><span class="category-sub">Порядок действий · контрольные списки</span><span class="status-badge" data-status="live">Материалы</span></a>
-<a class="category-card" data-cat="Расписки" data-situation="Деньги Бизнес" data-nature="Займы" href="/text2me/business/"><strong>Расписки</strong><span class="category-count">0 готовых конструкторов</span><span class="category-sub">Получение денег · передача имущества</span><span class="status-badge" data-status="soon">Скоро</span></a>
-<a class="category-card" data-cat="Претензии" data-situation="Покупки Деньги" data-nature="Купля-продажа Правовые" href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензии</strong><span class="category-count">1 конструктор</span><span class="category-sub">Продавцу · возврат денег · товар</span><span class="status-badge" data-status="live">Работает</span></a>
-<a class="category-card" data-cat="Судебные документы" data-situation="Суд Деньги" data-nature="Правовые" href="/text2me/documents/isk-v-sud/"><strong>Судебные документы</strong><span class="category-count">1 конструктор черновика</span><span class="category-sub">Исковое заявление и структура требований</span><span class="status-badge" data-status="live">Работает</span></a>
-</div><p class="microcopy">Каталог постепенно расширяется. Нулевое число означает, что отдельный конструктор этой категории ещё не опубликован.</p>
-</section>
-
-
-
-
-
-
-<section class="service-bridge" aria-labelledby="service-bridge-title">
-  <div class="service-bridge-heading">
-    <div>
-      <p class="service-bridge-eyebrow">Профессиональная поддержка</p>
-      <h2 id="service-bridge-title">Если нужна помощь специалиста</h2>
-      <p>Можно продолжить самостоятельно или описать задачу для команды нашей компании.</p>
-    </div>
-    <div class="service-bridge-links"><a href="/text2me/services/">Все направления услуг →</a><a href="/text2me/request/">Описать задачу →</a></div>
-  </div>
-  <div class="service-bridge-grid">
-    <a class="service-bridge-card" href="/text2me/request/?task=Бухгалтерская%20задача">
-      <span class="service-bridge-icon" aria-hidden="true">▦</span>
-      <h3>Бухгалтерия</h3>
-      <p>Учёт, отчётность и документы для бизнеса.</p>
-      <span class="service-bridge-action">Описать задачу →</span>
-    </a>
-    <a class="service-bridge-card" href="/text2me/request/?task=Юридическая%20задача">
-      <span class="service-bridge-icon" aria-hidden="true">§</span>
-      <h3>Юридическая помощь</h3>
-      <p>Договоры, претензии и разбор документов.</p>
-      <span class="service-bridge-action">Описать задачу →</span>
-    </a>
-    <a class="service-bridge-card" href="/text2me/request/?task=Маркетинговая%20задача">
-      <span class="service-bridge-icon" aria-hidden="true">↗</span>
-      <h3>Маркетинг</h3>
-      <p>Исследование, планирование и продвижение бизнеса.</p>
-      <span class="service-bridge-action">Описать задачу →</span>
-    </a>
+<div class="workspace-layout home-directory-layout">
+<main id="main" class="workspace-main home-directory">
+<section class="directory-hero" aria-labelledby="main-title">
+  <p class="directory-eyebrow">text2me</p>
+  <h1 id="main-title">Что вам нужно?</h1>
+  <p>Выберите раздел по своей задаче. Внутри — краткие пояснения, материалы и доступные инструменты.</p>
+  <div class="directory-shortcuts" aria-label="Популярные разделы">
+    <a href="/text2me/situations/">Разобраться в ситуации <span aria-hidden="true">→</span></a>
+    <a href="/text2me/documents/">Найти документ <span aria-hidden="true">→</span></a>
+    <a href="/text2me/guides/">Открыть инструкцию <span aria-hidden="true">→</span></a>
+    <a href="/text2me/business/">Задача для бизнеса <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
-<section class="section-block" id="trust">
-<div class="section-head"><div><h2>Прозрачно о возможностях</h2><p>Не показываем неподтверждённые цифры пользователей, рейтингов и документов.</p></div></div>
-<div class="trust-strip">
-<div class="trust-item"><strong>Локальное хранение</strong><p>Поддерживаемые черновики сохраняются в браузере; облачной синхронизации нет.</p></div>
-<div class="trust-item"><strong>Проверяйте результат</strong><p>Генераторы создают черновики и не заменяют проверку данных, сроков и требований.</p></div>
-<div class="trust-item"><strong>Состояние функций видно</strong><p>«Работает», «Демо» и «Скоро» отделяют доступные инструменты от планов.</p></div>
-</div>
-<div class="dash-note"><strong>Важно:</strong> Навигатор помогает выбрать подходящий раздел по заранее заданным правилам. Для сложной задачи можно подготовить обращение специалисту. Автозаполнение реквизитов по ИНН станет доступно после подключения и проверки интеграции.</div>
-</section>
-<section class="section-block" id="guides">
-<div class="section-head"><div><h2>Инструкции</h2><p>Коротко и по шагам: как выбрать документ и что проверить перед подписанием.</p></div></div>
-<div class="resource-grid">
-<a class="resource-card" href="/text2me/guides/#choose-document"><strong>Как понять, какой документ нужен</strong><span>Сначала цель и адресат, затем форма документа.</span></a>
-<a class="resource-card" href="/text2me/guides/#before-signing"><strong>Что проверить перед подписанием</strong><span>Стороны, предмет, сумма, сроки, ответственность и приложения.</span></a>
-<a class="resource-card" href="/text2me/guides/#personal-data"><strong>Какие данные не стоит вводить</strong><span>Не передавайте лишние персональные и финансовые данные.</span></a>
-</div>
+<section class="directory-block" id="situations" aria-labelledby="directory-situations">
+  <div class="directory-block-head"><span class="directory-number">01</span><div><h2 id="directory-situations">Ситуации и дальнейшие действия</h2><p>Когда непонятно, с чего начать: разберите вопрос по шагам и определите, что делать дальше.</p></div><a class="directory-open" href="/text2me/situations/">Все ситуации <span aria-hidden="true">→</span></a></div>
+  <div class="directory-subsections">
+    <a href="/text2me/situations/#bad-goods"><strong>Покупки и услуги</strong><span>Возврат денег, брак товара, спор с исполнителем.</span></a>
+    <a href="/text2me/situations/#salary"><strong>Работа и зарплата</strong><span>Выплаты, рабочие документы и увольнение.</span></a>
+    <a href="/text2me/situations/#housing"><strong>Жильё и ЖКХ</strong><span>Аренда, управляющая компания, коммунальные вопросы.</span></a>
+    <a href="/text2me/situations/#bank"><strong>Деньги и споры</strong><span>Банковские вопросы, долги и подготовка к спору.</span></a>
+  </div>
 </section>
 
-
-
-<section class="section-block" id="updates-feed">
-<div class="section-head"><div><h2>Обновления</h2><p>История изменений сайта и доступности инструментов.</p></div><a href="/text2me/updates/">Весь журнал →</a></div>
-<div class="updates-feed"><article><time datetime="2026-10-22">22 октября 2026</time><strong>Перестроена главная навигация</strong><p>Три пути входа, расширенный каталог категорий и быстрые ссылки по ситуациям.</p></article><article><time datetime="2026-10-22">22 октября 2026</time><strong>Уточнены статусы функций</strong><p>Неподключённые интеграции отмечены как демонстрационные или запланированные.</p></article><p class="microcopy">Изменения законодательства публикуются только после отдельной проверки источника и даты; автоматического мониторинга законов пока нет.</p></div>
+<section class="directory-block" id="documents" aria-labelledby="directory-documents">
+  <div class="directory-block-head"><span class="directory-number">02</span><div><h2 id="directory-documents">Документы и шаблоны</h2><p>Откройте готовый конструктор или просмотрите каталог. Доступные инструменты отмечены внутри раздела.</p></div><a class="directory-open" href="/text2me/documents/">Каталог документов <span aria-hidden="true">→</span></a></div>
+  <div class="directory-subsections">
+    <a href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span>Заполнение договора и акт передачи.</span><em>Конструктор доступен</em></a>
+    <a href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензия продавцу</strong><span>Черновик требования по покупке и возврату денег.</span><em>Конструктор доступен</em></a>
+    <a href="/text2me/documents/isk-v-sud/"><strong>Исковое заявление</strong><span>Подготовка структуры черновика для дальнейшей проверки.</span><em>Конструктор доступен</em></a>
+    <a href="/text2me/documents/"><strong>Другие виды документов</strong><span>Заявления, письма, акты и другие категории каталога.</span></a>
+  </div>
 </section>
 
+<section class="directory-block" id="guides" aria-labelledby="directory-guides">
+  <div class="directory-block-head"><span class="directory-number">03</span><div><h2 id="directory-guides">Инструкции, знания и источники</h2><p>Чтобы разобраться в теме, проверить требования и найти первоисточник.</p></div><a class="directory-open" href="/text2me/knowledge/">База знаний <span aria-hidden="true">→</span></a></div>
+  <div class="directory-subsections">
+    <a href="/text2me/guides/"><strong>Пошаговые инструкции</strong><span>Как выбрать документ, что проверить и как действовать.</span></a>
+    <a href="/text2me/knowledge/"><strong>Справочные материалы</strong><span>Материалы по темам и понятные объяснения.</span></a>
+    <a href="/text2me/sources/"><strong>Официальные источники</strong><span>Государственные органы, официальные сервисы и организации.</span></a>
+  </div>
+</section>
+
+<section class="directory-block" id="texts" aria-labelledby="directory-texts">
+  <div class="directory-block-head"><span class="directory-number">04</span><div><h2 id="directory-texts">Тексты и повседневные задачи</h2><p>Подготовка и улучшение текста для личных дел, учёбы и общения.</p></div><a class="directory-open" href="/text2me/prompts/">Тексты и редактура <span aria-hidden="true">→</span></a></div>
+  <div class="directory-subsections">
+    <a href="/text2me/prompts/#personal-prompts"><strong>Личные тексты</strong><span>Поздравления, обращения и повседневные сообщения.</span></a>
+    <a href="/text2me/prompts/"><strong>Редактура и деловая переписка</strong><span>Уточнить формулировки, подготовить письмо или описание.</span></a>
+  </div>
+</section>
+
+<section class="directory-block" id="business" aria-labelledby="directory-business">
+  <div class="directory-block-head"><span class="directory-number">05</span><div><h2 id="directory-business">Для предпринимателей и организаций</h2><p>Рабочие документы, деловые процессы и справочные материалы для задач бизнеса.</p></div><a class="directory-open" href="/text2me/business/">Раздел для бизнеса <span aria-hidden="true">→</span></a></div>
+  <div class="directory-subsections">
+    <a href="/text2me/business/"><strong>Документы и организационные вопросы</strong><span>Категории документов и материалы для рабочих задач.</span></a>
+    <a href="/text2me/services/"><strong>Профессиональные услуги</strong><span>Посмотреть направления поддержки и условия обращения.</span></a>
+    <a href="/text2me/request/"><strong>Описать задачу специалисту</strong><span>Перейти к форме обращения; доступность ответа уточняется на странице.</span></a>
+  </div>
+</section>
+
+<section class="directory-block" id="my-materials" aria-labelledby="directory-materials">
+  <div class="directory-block-head"><span class="directory-number">06</span><div><h2 id="directory-materials">Мои материалы</h2><p>Сохранённые документы и черновики, доступные в текущем браузере.</p></div><a class="directory-open" href="/text2me/space/">Открыть материалы <span aria-hidden="true">→</span></a></div>
+  <div class="directory-subsections directory-subsections-compact">
+    <a href="/text2me/space/"><strong>Библиотека документов</strong><span>Просмотр сохранённых материалов, архив и резервная копия.</span></a>
+    <a href="/text2me/updates/"><strong>Обновления сайта</strong><span>История изменений и статусы функций.</span></a>
+    <a href="/text2me/privacy/"><strong>Конфиденциальность и безопасность</strong><span>Как обращаться с данными и что не следует передавать.</span></a>
+  </div>
+  <p class="directory-note">Важно: сохранение выполняется локально в браузере. Облачная синхронизация между устройствами и аккаунты пока не подключены.</p>
+</section>
+
+<p class="directory-about">text2me объединяет навигацию по ситуациям, каталог документов, инструкции, справочные материалы и ссылки на официальные источники. Конструкторы помогают подготовить черновик; перед использованием проверьте данные и применимость документа.</p>
 </main>
-<aside class="workspace-aside" aria-label="Быстрый доступ и подсказки">
-<section class="workspace-aside-card"><h2><span aria-hidden="true">●</span> Состояние сервиса</h2>
-<div class="workspace-status-row"><span>Конструкторы документов</span><strong class="workspace-status good">3 работают</strong></div>
-<div class="workspace-status-row"><span>Навигатор по задаче</span><strong class="workspace-status demo">Демо</strong></div>
-<div class="workspace-status-row"><span>Синхронизация</span><strong class="workspace-status planned">Не подключена</strong></div>
-</section>
-<section class="workspace-aside-card"><h2><span aria-hidden="true">⌁</span> Частые задачи</h2>
-<a class="workspace-quick-link" href="/text2me/documents/dogovor-arendy/"><span aria-hidden="true">⌂</span><span><strong>Сдать или снять жильё</strong><small>Договор и акт передачи</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/documents/pretenziya-prodavtsu/"><span aria-hidden="true">↩</span><span><strong>Вернуть деньги за товар</strong><small>Подготовить претензию</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/documents/isk-v-sud/"><span aria-hidden="true">⚖</span><span><strong>Подготовиться к суду</strong><small>Черновик искового заявления</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/situations/"><span aria-hidden="true">☷</span><span><strong>Не знаю, с чего начать</strong><small>Пошаговые инструкции</small></span><span aria-hidden="true">›</span></a>
-</section>
-<section class="workspace-tip"><strong><span aria-hidden="true">✦</span> Подсказка</strong><p>Не знаете название документа? Опишите задачу в блоке «Описать задачу» или воспользуйтесь поиском сверху.</p><a href="/text2me/guides/">Как выбрать документ →</a></section>
-<section class="workspace-aside-card workspace-space-card"><h2>Мои документы</h2><p id="workspace-local-summary">Черновики хранятся в этом браузере.</p><a href="/text2me/space/">Открыть библиотеку →</a></section>
-</aside>
 </div>
 <footer class="dash-footer"><nav class="dash-footer-catalog" aria-label="Быстрая навигация и информация о сайте"><strong>Разделы сайта:</strong><a href="/text2me/">Главная</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/prompts/#personal-prompts">Личное</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/people/">Гражданам</a><a href="/text2me/business/">Организациям</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/privacy/">Конфиденциальность</a><a href="/text2me/security/">Безопасность данных</a><a href="/text2me/terms/">Условия использования</a><a href="/text2me/updates/">Обновления</a></nav><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
 </div>
