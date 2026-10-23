@@ -62,6 +62,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("archive")
     parser.add_argument("output")
+    parser.add_argument("--skip-zip-test", action="store_true", help="Use only when the caller has already run a full ZIP CRC test.")
     args = parser.parse_args()
     started = time.time()
     archive = Path(args.archive)
@@ -76,9 +77,10 @@ def main():
     warnings = []
     try:
         with zipfile.ZipFile(archive) as zf:
-            bad = zf.testzip()
-            if bad:
-                raise RuntimeError("ZIP CRC error: " + bad)
+            if not args.skip_zip_test:
+                bad = zf.testzip()
+                if bad:
+                    raise RuntimeError("ZIP CRC error: " + bad)
             for name in zf.namelist():
                 if name.endswith("/") or not name.lower().endswith(".xml"):
                     continue
