@@ -79,9 +79,15 @@ try {
 previous.status = healthy ? "healthy" : (previous.last_successful_source_check ? "degraded" : "not_run");
 previous.latest_attempt = attempt;
 previous.monitor_kind = "official_metadata_endpoint_availability_and_json_shape";
-previous.address_index = previous.address_index || { status: "not_implemented" };
-previous.address_index.status = "not_implemented";
-previous.address_index.note = "Поиск адресов и интеграция адресного индекса в формы ещё не реализованы. Проверка метаданных не означает, что адресная база скачана или проиндексирована.";
+previous.address_index = previous.address_index || {
+  status: "builder_implemented_not_deployed",
+  note: "Сборщик и CLI-поиск добавлены, но производственная база не построена и веб-формы не подключены."
+};
+// A metadata-only monitor must never downgrade a previously built or deployed index.
+if (!["builder_implemented_not_deployed", "built_not_deployed", "deployed"].includes(previous.address_index.status)) {
+  previous.address_index.status = "builder_implemented_not_deployed";
+  previous.address_index.note = "Сборщик и CLI-поиск добавлены, но производственная база не построена и веб-формы не подключены.";
+}
 await writeFile(statusPath, JSON.stringify(previous, null, 2) + "\n", "utf8");
 console.log(JSON.stringify({ status: previous.status, result: attempt.result, source_url: metadataUrl }, null, 2));
 if (!healthy) process.exitCode = 1;
