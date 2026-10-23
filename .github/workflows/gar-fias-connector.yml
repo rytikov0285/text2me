@@ -31,6 +31,7 @@ jobs:
       - name: Check official FNS feed and build index when a new archive fits runner limits
         env:
           GAR_INDEX_OUTPUT: ${{ runner.temp }}/gar-address-index.sqlite
+          GAR_PREFLIGHT_ONLY: ${{ contains(github.event.head_commit.message, '[run-gar-fias-preflight]') }}
         run: python data-engine/fias_connector.py
       - name: Commit connector status for the public site
         run: |
