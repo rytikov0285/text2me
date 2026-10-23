@@ -25,7 +25,10 @@ function addExports(outputId,baseName,title){var output=document.getElementById(
 function initAutoSaveGeneratedDocuments(){var defs=[["claim-output","Претензия продавцу"],["court-output","Исковое заявление"],["rental-output","Договор найма жилого помещения"],["rental-act-output","Акт приёма-передачи"]];defs.forEach(function(def){var output=document.getElementById(def[0]);if(!output||output.dataset.autoSaveInstalled)return;output.dataset.autoSaveInstalled="1";var note=el("p",{class:"save-draft-status","aria-live":"polite"},"Готовый текст будет автоматически сохранён в «Мои документы».");output.insertAdjacentElement("afterend",note);var timer=0,last="";function persist(){var text=String(output.textContent||"").trim();if(!text||text===last)return;last=text;if(saveDocument(def[1],text,location.pathname)){note.textContent="Сохранено автоматически в «Мои документы» · "+new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"})}else{note.textContent="Не удалось сохранить автоматически. Проверьте свободное место в браузере."}}if(window.MutationObserver){new MutationObserver(function(){clearTimeout(timer);timer=setTimeout(persist,450)}).observe(output,{childList:true,subtree:true,characterData:true})}if(output.textContent.trim())persist()})}
 function initExports(){addExports("claim-output","pretenziya-prodavtsu","Претензия продавцу");addExports("court-output","iskovoe-zayavlenie","Исковое заявление");addExports("rental-output","dogovor-nayma-zhilya","Договор найма жилого помещения");addExports("rental-act-output","akt-priema-peredachi","Акт приёма-передачи") }
 function initBrandAndFooter(){
-document.querySelectorAll(".brand").forEach(function(b){if(!b.querySelector(".brand-mark"))b.innerHTML='<span>text2me</span>'});
+document.querySelectorAll(".brand,.dash-logo").forEach(function(b){
+ b.replaceChildren(document.createTextNode("text2me"));
+ b.setAttribute("aria-label","text2me — главная");
+});
 var primaryLinks=[
 ["/text2me/space/","Моё пространство"],
 ["/text2me/documents/","Документы"],
