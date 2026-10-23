@@ -197,6 +197,18 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 @media(max-width:700px){.home-directory{padding-top:6px}.directory-hero{padding:17px 0 12px}.directory-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.directory-shortcuts a{justify-content:space-between;padding:11px 12px;font-size:12px}.directory-block{padding:15px 13px}.directory-block-head{grid-template-columns:27px minmax(0,1fr);gap:9px}.directory-number{width:26px;height:26px}.directory-block-head h2{font-size:17px}.directory-open{grid-column:2;justify-self:start;margin-top:2px}.directory-subsections,.directory-subsections-compact{grid-template-columns:1fr;margin-left:35px}.directory-note{margin-left:35px}}
 @media(max-width:420px){.directory-shortcuts{grid-template-columns:1fr}.directory-hero h1{font-size:29px}.directory-block-head p{font-size:12px}.directory-subsections{margin-top:10px}.directory-subsections a{padding:10px}.dash-nav{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
+<style id="homepage-usability-tweaks">
+.directory-hero{padding-top:20px;padding-bottom:14px}
+.directory-hero>p:not(.directory-eyebrow){max-width:760px}
+.directory-shortcuts a{min-height:44px}
+.directory-open{min-height:40px}
+.directory-subsections a{min-height:64px}
+.directory-subsections a:focus-visible,.directory-open:focus-visible,.directory-shortcuts a:focus-visible{outline:3px solid #185abc;outline-offset:3px}
+.directory-block-head h2{line-height:1.3}
+.directory-subsections span{overflow-wrap:anywhere}
+@media(max-width:760px){.directory-shortcuts a{min-height:46px}.directory-open{min-height:44px}.directory-subsections a{min-height:66px}}
+@media(prefers-reduced-motion:reduce){.directory-subsections a,.directory-shortcuts a{scroll-behavior:auto;transition:none}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -216,62 +228,62 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <div class="workspace-layout home-directory-layout">
 <main id="main" class="workspace-main home-directory">
 <section class="directory-hero" aria-labelledby="main-title">
-  <h1 id="main-title">Какой результат вам нужен?</h1>
-  <p>Выберите задачу — перейдите к конструктору документа или к шагам, которые помогут его подготовить.</p>
+  <h1 id="main-title">Что нужно сделать?</h1>
+  <p>Выберите задачу. Откроется нужный раздел с доступными документами и инструментами.</p>
   <div class="directory-shortcuts" aria-label="Основные задачи">
-    <a href="/text2me/documents/">Создать документ <span aria-hidden="true">→</span></a>
-    <a href="/text2me/documents/pretenziya-prodavtsu/">Вернуть деньги за покупку <span aria-hidden="true">→</span></a>
-    <a href="/text2me/documents/dogovor-arendy/">Подготовить договор жилья <span aria-hidden="true">→</span></a>
-    <a href="/text2me/documents/isk-v-sud/">Подготовить иск <span aria-hidden="true">→</span></a>
+    <a href="/text2me/documents/">Подготовить документ <span aria-hidden="true">→</span></a>
+    <a href="/text2me/situations/">Решить ситуацию <span aria-hidden="true">→</span></a>
+    <a href="/text2me/prompts/">Подготовить текст <span aria-hidden="true">→</span></a>
+    <a href="/text2me/business/">Задача для бизнеса <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
-<section class="directory-block" id="ready-documents" aria-labelledby="directory-ready-documents">
-  <div class="directory-block-head"><span class="directory-number">01</span><div><h2 id="directory-ready-documents">Создать документ</h2><p>Откройте конструктор, заполните поля и проверьте полученный черновик.</p></div><a class="directory-open" href="/text2me/documents/">Все документы <span aria-hidden="true">→</span></a></div>
+<section class="directory-block" id="documents" aria-labelledby="directory-documents">
+  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">01</span><div><h2 id="directory-documents">Подготовить документ</h2><p>Выберите готовый конструктор или найдите другой тип документа.</p></div><a class="directory-open" href="/text2me/documents/">Все документы <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span>Договор и акт передачи жилья.</span><em>Конструктор доступен</em></a>
-    <a href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензия продавцу</strong><span>Черновик требования по товару и возврату денег.</span><em>Конструктор доступен</em></a>
-    <a href="/text2me/documents/isk-v-sud/"><strong>Исковое заявление</strong><span>Подготовить черновик и структуру требований.</span><em>Конструктор доступен</em></a>
-    <a href="/text2me/documents/"><strong>Другие документы</strong><span>Посмотреть категории и доступные конструкторы.</span></a>
+    <a href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span>Заполнить договор и акт передачи.</span><em>Конструктор доступен</em></a>
+    <a href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензия продавцу</strong><span>Подготовить требование по покупке или возврату денег.</span><em>Конструктор доступен</em></a>
+    <a href="/text2me/documents/isk-v-sud/"><strong>Исковое заявление</strong><span>Составить черновик и проверить структуру требований.</span><em>Конструктор доступен</em></a>
+    <a href="/text2me/documents/"><strong>Другой документ</strong><span>Открыть каталог договоров, заявлений, писем и актов.</span></a>
   </div>
 </section>
 
-<section class="directory-block" id="by-situation" aria-labelledby="directory-by-situation">
-  <div class="directory-block-head"><span class="directory-number">02</span><div><h2 id="directory-by-situation">Подобрать документ по ситуации</h2><p>Если вы не знаете название документа, выберите проблему и пройдите по шагам к подходящему действию.</p></div><a class="directory-open" href="/text2me/situations/">Все ситуации <span aria-hidden="true">→</span></a></div>
+<section class="directory-block" id="situations" aria-labelledby="directory-situations">
+  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">02</span><div><h2 id="directory-situations">Разобраться в ситуации</h2><p>Если не знаете, какой документ нужен: выберите проблему и пройдите по шагам.</p></div><a class="directory-open" href="/text2me/situations/">Все ситуации <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/documents/pretenziya-prodavtsu/"><strong>Некачественный товар или возврат денег</strong><span>Перейти к черновику претензии продавцу.</span></a>
-    <a href="/text2me/documents/dogovor-arendy/"><strong>Снять или сдать жильё</strong><span>Подготовить договор найма и акт передачи.</span></a>
-    <a href="/text2me/situations/#salary"><strong>Работа и зарплата</strong><span>Разобраться с порядком действий и нужными документами.</span></a>
-    <a href="/text2me/situations/#housing"><strong>ЖКХ и управляющая компания</strong><span>Определить следующий шаг и вид обращения.</span></a>
-    <a href="/text2me/documents/isk-v-sud/"><strong>Подготовка к судебному спору</strong><span>Открыть конструктор черновика искового заявления.</span></a>
-    <a href="/text2me/situations/#government"><strong>Обращение в организацию или госорган</strong><span>Определить, что написать и куда направить обращение.</span></a>
+    <a href="/text2me/situations/#bad-goods"><strong>Возврат денег и покупки</strong><span>Брак товара, возврат, спор с продавцом или исполнителем.</span></a>
+    <a href="/text2me/situations/#salary"><strong>Работа и зарплата</strong><span>Задержка выплат, увольнение, рабочие документы.</span></a>
+    <a href="/text2me/situations/#housing"><strong>Жильё и ЖКХ</strong><span>Аренда, коммунальные услуги, управляющая компания.</span></a>
+    <a href="/text2me/situations/#bank"><strong>Деньги, долги и споры</strong><span>Банковские вопросы, задолженность и дальнейшие действия.</span></a>
+    <a href="/text2me/guides/"><strong>Как действовать и что проверить</strong><span>Короткие инструкции перед подачей или подписанием.</span></a>
+    <a href="/text2me/sources/"><strong>Найти официальный источник</strong><span>Государственные органы и официальные сервисы.</span></a>
   </div>
 </section>
 
-<section class="directory-block" id="texts-and-letters" aria-labelledby="directory-texts">
-  <div class="directory-block-head"><span class="directory-number">03</span><div><h2 id="directory-texts">Подготовить письмо или текст</h2><p>Для задач, где нужен не типовой документ, а подходящая формулировка.</p></div><a class="directory-open" href="/text2me/prompts/">Открыть инструменты текста <span aria-hidden="true">→</span></a></div>
+<section class="directory-block" id="texts" aria-labelledby="directory-texts">
+  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">03</span><div><h2 id="directory-texts">Подготовить или исправить текст</h2><p>Для писем, обращений, описаний и личных сообщений.</p></div><a class="directory-open" href="/text2me/prompts/">Все инструменты для текста <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/prompts/"><strong>Деловое письмо или обращение</strong><span>Подобрать формулировки для делового общения.</span></a>
-    <a href="/text2me/prompts/#personal-prompts"><strong>Личный текст</strong><span>Подготовить поздравление или повседневное сообщение.</span></a>
+    <a href="/text2me/prompts/"><strong>Деловое письмо или обращение</strong><span>Подготовить текст под цель и адресата.</span></a>
+    <a href="/text2me/prompts/#personal-prompts"><strong>Личный текст</strong><span>Поздравление, сообщение или текст для повседневной задачи.</span></a>
   </div>
 </section>
 
-<section class="directory-block" id="business-tasks" aria-labelledby="directory-business">
-  <div class="directory-block-head"><span class="directory-number">04</span><div><h2 id="directory-business">Документы и задачи бизнеса</h2><p>Перейдите к материалам для организации или выберите направление профессиональной помощи.</p></div><a class="directory-open" href="/text2me/business/">Раздел для бизнеса <span aria-hidden="true">→</span></a></div>
+<section class="directory-block" id="business" aria-labelledby="directory-business">
+  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">04</span><div><h2 id="directory-business">Решить задачу для бизнеса</h2><p>Документы и рабочие вопросы предпринимателя или организации.</p></div><a class="directory-open" href="/text2me/business/">Раздел для бизнеса <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/business/"><strong>Документы организации</strong><span>Рабочие документы и материалы по деловым процессам.</span></a>
-    <a href="/text2me/services/"><strong>Бухгалтерия, право и маркетинг</strong><span>Посмотреть направления профессиональных услуг.</span></a>
-    <a href="/text2me/request/"><strong>Описать задачу специалисту</strong><span>Перейти к форме обращения.</span></a>
+    <a href="/text2me/business/"><strong>Документы и рабочие процессы</strong><span>Открыть материалы для организационных задач.</span></a>
+    <a href="/text2me/services/"><strong>Бухгалтерские, юридические и маркетинговые услуги</strong><span>Посмотреть направления профессиональной поддержки.</span></a>
+    <a href="/text2me/request/"><strong>Передать задачу специалисту</strong><span>Описать запрос в форме обращения.</span></a>
   </div>
 </section>
 
-<section class="directory-block" id="saved-work" aria-labelledby="directory-saved">
-  <div class="directory-block-head"><span class="directory-number">05</span><div><h2 id="directory-saved">Продолжить работу</h2><p>Вернитесь к ранее сохранённым документам и черновикам.</p></div><a class="directory-open" href="/text2me/space/">Мои документы <span aria-hidden="true">→</span></a></div>
+<section class="directory-block" id="my-materials" aria-labelledby="directory-materials">
+  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">05</span><div><h2 id="directory-materials">Мои документы</h2><p>Вернитесь к сохранённым материалам или продолжите работу.</p></div><a class="directory-open" href="/text2me/space/">Открыть материалы <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections directory-subsections-compact">
-    <a href="/text2me/space/"><strong>Сохранённые документы</strong><span>Открыть библиотеку и продолжить работу.</span></a>
-    <a href="/text2me/updates/"><strong>Статусы и обновления</strong><span>Проверить, какие инструменты доступны.</span></a>
+    <a href="/text2me/space/"><strong>Сохранённые документы</strong><span>Открыть черновики и библиотеку в этом браузере.</span></a>
+    <a href="/text2me/updates/"><strong>Обновления инструментов</strong><span>Посмотреть, что изменилось и какие функции доступны.</span></a>
   </div>
-  <p class="directory-note">Сохранённые материалы доступны в этом браузере; облачная синхронизация пока не подключена.</p>
+  <p class="directory-note">Документы сохраняются в текущем браузере. Синхронизация между устройствами не подключена.</p>
 </section>
 </main>
 </div>
