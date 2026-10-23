@@ -137,6 +137,23 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 @media(max-width:1000px){.dash-header{flex-wrap:wrap;padding:10px 16px!important}.workspace-search{max-width:260px!important}.acrobat-nav{order:3;width:100%}.acrobat-workspace-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}.acrobat-panel{padding:16px}.acrobat-hero-grid{gap:10px}}
 @media(max-width:700px){.dash-shell{padding:0 10px 30px!important}.acrobat-home>h1{padding:26px 4px 18px;font-size:25px}.acrobat-hero-grid{grid-template-columns:1fr}.acrobat-feature{min-height:150px}.acrobat-workspace-grid{grid-template-columns:1fr}.acrobat-tools-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px 4px}.acrobat-panel{padding:15px 13px}.file-tabs{gap:17px}.file-actions{gap:10px}.acrobat-file-table{min-width:480px}.feature-inner{min-height:100px}.acrobat-upload{padding:12px}.acrobat-nav{gap:0!important}.acrobat-nav a{padding:7px!important;font-size:10px!important}}
 
+
+/* Native entry points to the company's professional services */
+.service-bridge{margin:18px 0 22px;padding:22px;background:#fff;border:1px solid #e5e5e8;border-radius:14px;box-shadow:0 2px 5px #00000006}
+.service-bridge-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:14px}
+.service-bridge-heading h2{margin:3px 0 6px;font-size:clamp(19px,2vw,24px);letter-spacing:-.03em}
+.service-bridge-heading p:not(.service-bridge-eyebrow){margin:0;color:#686b73;font-size:13px;line-height:1.5}
+.service-bridge-eyebrow{margin:0;color:#a32330;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.service-bridge-heading>a{flex:0 0 auto;color:#262629;font-size:12px;font-weight:750;text-decoration:none;border:1px solid #e0e0e4;border-radius:18px;padding:9px 12px}
+.service-bridge-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.service-bridge-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:16px;background:#f8f8f9;border:1px solid #e9e9ec;border-radius:11px;color:#202124;text-decoration:none;transition:border-color .15s,transform .15s}
+.service-bridge-card:hover,.service-bridge-card:focus-visible{border-color:#c5a2a6;transform:translateY(-1px)}
+.service-bridge-icon{display:grid;place-items:center;width:35px;height:35px;margin-bottom:9px;border-radius:9px;background:#f4e7e9;color:#a32330;font-size:19px;font-weight:800}
+.service-bridge-card h3{margin:0 0 5px;font-size:15px}
+.service-bridge-card p{margin:0 0 13px;color:#686b73;font-size:12px;line-height:1.5}
+.service-bridge-action{margin-top:auto;font-size:12px;font-weight:800;color:#8e202a}
+@media(max-width:760px){.service-bridge{padding:16px}.service-bridge-heading{align-items:flex-start;flex-direction:column}.service-bridge-grid{grid-template-columns:1fr}.service-bridge-card{display:grid;grid-template-columns:38px minmax(0,1fr);column-gap:10px;padding:13px}.service-bridge-icon{grid-row:1/4;margin:0}.service-bridge-card h3{align-self:end}.service-bridge-card p{margin:2px 0 6px}.service-bridge-action{grid-column:2}}
+
 </style>
 </head>
 <body>
@@ -190,7 +207,7 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
         <div class="acrobat-tools-grid">
           <a href="/text2me/documents/"><span class="tool-illustration">T✎</span><span>Редактировать текст<br>и изображения</span></a>
           <a href="/text2me/documents/"><span class="tool-illustration">▤↕</span><span>Упорядочить<br>страницы</span></a>
-          <a href="/text2me/start/"><span class="tool-illustration">✧</span><span>AI-помощник</span></a>
+          <a href="/text2me/start/"><span class="tool-illustration">✧</span><span>Навигатор по задаче</span></a>
           <a href="/text2me/space/"><span class="tool-illustration">▧+</span><span>Объединить<br>файлы</span></a>
           <a href="/text2me/knowledge/"><span class="tool-illustration">▤✓</span><span>Запросить<br>подпись</span></a>
           <a href="/text2me/documents/"><span class="tool-illustration">PDF↗</span><span>Экспортировать PDF</span></a>
@@ -206,29 +223,61 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
       <a class="all-files-link" href="/text2me/space/">Открыть библиотеку файлов →</a>
     </section>
   </div>
+
+</section>
+
+<section class="service-bridge" aria-labelledby="service-bridge-title">
+  <div class="service-bridge-heading">
+    <div>
+      <p class="service-bridge-eyebrow">Профессиональная поддержка</p>
+      <h2 id="service-bridge-title">Если нужна помощь специалиста</h2>
+      <p>Можно продолжить самостоятельно или описать задачу для команды нашей компании.</p>
+    </div>
+    <a href="/text2me/request/">Описать задачу →</a>
+  </div>
+  <div class="service-bridge-grid">
+    <a class="service-bridge-card" href="/text2me/request/?task=Бухгалтерская%20задача">
+      <span class="service-bridge-icon" aria-hidden="true">▦</span>
+      <h3>Бухгалтерия</h3>
+      <p>Учёт, отчётность и документы для бизнеса.</p>
+      <span class="service-bridge-action">Описать задачу →</span>
+    </a>
+    <a class="service-bridge-card" href="/text2me/request/?task=Юридическая%20задача">
+      <span class="service-bridge-icon" aria-hidden="true">§</span>
+      <h3>Юридическая помощь</h3>
+      <p>Договоры, претензии и разбор документов.</p>
+      <span class="service-bridge-action">Описать задачу →</span>
+    </a>
+    <a class="service-bridge-card" href="/text2me/request/?task=Маркетинговая%20задача">
+      <span class="service-bridge-icon" aria-hidden="true">↗</span>
+      <h3>Маркетинг</h3>
+      <p>Исследование, планирование и продвижение бизнеса.</p>
+      <span class="service-bridge-action">Описать задачу →</span>
+    </a>
+  </div>
 </section>
 
 <section class="dash-hero office-home" aria-labelledby="main-title">
 
-<h1 id="main-title">Всё для работы с PDF — в одном месте</h1>
-<p class="dash-lead">Создавайте, редактируйте, объединяйте и преобразуйте PDF-документы.</p>
+<h1 id="main-title">Решайте задачи и готовьте документы в одном месте</h1>
+<p class="dash-lead">Разберитесь в ситуации, подготовьте документы и при необходимости обратитесь к специалистам.</p>
 </section>
 
 <section class="home-situation-box" aria-labelledby="home-situation-title">
 <form id="home-situation-form" action="/text2me/start/" method="get">
 <label id="home-situation-title" for="home-situation">Опишите ситуацию</label>
 
-<textarea id="home-situation" name="task" rows="3" placeholder="Например: объединить файлы или преобразовать PDF" autocomplete="off"></textarea>
-<div class="home-situation-actions"><button class="dash-btn" type="submit">Начать</button><a class="dash-btn secondary" href="/text2me/documents/">Все инструменты</a></div>
+<textarea id="home-situation" name="task" rows="3" placeholder="Например: составить договор, разобраться с требованием или подготовить отчёт" autocomplete="off"></textarea>
+<div class="home-situation-actions"><button class="dash-btn" type="submit">Подобрать решение</button><a class="dash-btn secondary" href="/text2me/documents/">Все инструменты</a></div>
 </form>
 <div class="home-situation-chips" aria-label="Примеры ситуаций">
 
-<button type="button" data-situation-chip="Редактировать PDF, нужен договор и акт">Сдаю квартиру</button>
-<button type="button" data-situation-chip="Преобразовать PDF, нужны документы">Увольняюсь</button>
-<button type="button" data-situation-chip="Объединить файлымобиль, нужен договор">Продаю авто</button>
-<button type="button" data-situation-chip="Сжать PDF">Нужна доверенность</button>
-<button type="button" data-situation-chip="Не возвращают деньги за покупку">Подписать PDF</button>
-<button type="button" data-situation-chip="Нужно написать заявление">Заполнить форму</button>
+<button type="button" data-situation-chip="Подготовить договор найма жилья и акт передачи">Сдаю квартиру</button>
+<button type="button" data-situation-chip="Разобраться с увольнением и подготовить заявление">Увольняюсь</button>
+<button type="button" data-situation-chip="Подготовить документы для продажи автомобиля">Продаю авто</button>
+<button type="button" data-situation-chip="Подготовить доверенность">Нужна доверенность</button>
+<button type="button" data-situation-chip="Подготовить претензию продавцу для возврата денег">Не возвращают деньги</button>
+<button type="button" data-situation-chip="Подготовить заявление по моей ситуации">Нужно заявление</button>
 </div>
 </section>
 
@@ -324,7 +373,7 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <div class="trust-item"><strong>Проверяйте результат</strong><p>Генераторы создают черновики и не заменяют проверку данных, сроков и требований.</p></div>
 <div class="trust-item"><strong>Состояние функций видно</strong><p>«Работает», «Демо» и «Скоро» отделяют доступные инструменты от планов.</p></div>
 </div>
-<div class="dash-note"><strong>Важно:</strong> AI-диалог на текущем сайте — демонстрационный сценарий с заранее заданными правилами, а не подключённая генеративная модель. Для настоящего AI-сервиса нужна безопасная серверная интеграция. Автозаполнение по ИНН также не включено: его следует добавлять в мастер после выбора задачи, с проверкой источника данных.</div>
+<div class="dash-note"><strong>Важно:</strong> Навигатор помогает выбрать подходящий раздел по заранее заданным правилам. Для сложной задачи можно подготовить обращение специалисту. Автозаполнение реквизитов по ИНН станет доступно после подключения и проверки интеграции.</div>
 </section>
 <section class="section-block" id="guides">
 <div class="section-head"><div><h2>Инструкции</h2><p>Коротко и по шагам: как выбрать документ и что проверить перед подписанием.</p></div></div>
@@ -346,7 +395,7 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <aside class="workspace-aside" aria-label="Быстрый доступ и подсказки">
 <section class="workspace-aside-card"><h2><span aria-hidden="true">●</span> Состояние сервиса</h2>
 <div class="workspace-status-row"><span>Конструкторы документов</span><strong class="workspace-status good">3 работают</strong></div>
-<div class="workspace-status-row"><span>AI-помощник</span><strong class="workspace-status demo">Демо</strong></div>
+<div class="workspace-status-row"><span>Навигатор по задаче</span><strong class="workspace-status demo">Демо</strong></div>
 <div class="workspace-status-row"><span>Синхронизация</span><strong class="workspace-status planned">Не подключена</strong></div>
 </section>
 <section class="workspace-aside-card"><h2><span aria-hidden="true">⌁</span> Частые задачи</h2>
