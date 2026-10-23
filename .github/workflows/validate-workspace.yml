@@ -4,6 +4,9 @@ on:
     paths:
       - "dashboard/**"
       - "calendar/**"
+      - "assets/enhancements.js"
+      - "index.html"
+      - "sitemap.xml"
       - "data-engine/user-workspace-schema.json"
       - "scripts/validate-workspace.mjs"
       - ".github/workflows/validate-workspace.yml"
