@@ -472,3 +472,23 @@ body{background:var(--ws-paper);color:var(--ws-ink);font-family:Arial,Helvetica,
 .text2me-site-description strong{display:block;color:#17375e;font-size:clamp(15px,1.6vw,21px);font-weight:800;line-height:1.25;letter-spacing:-.02em}
 .text2me-site-description p{margin:4px 0 0;color:#596679;font-size:12px;line-height:1.45;max-width:1250px}
 @media(max-width:760px){.text2me-site-description-inner{padding:9px 15px}.text2me-site-description strong{font-size:15px}.text2me-site-description p{font-size:11px;line-height:1.4}}
+
+/* Navigation and branding refinements requested for the shared workspace. */
+.site-header .brand{order:3;margin-left:auto}
+.site-header .header-inner>.site-header-search{order:1}
+.site-header .header-inner>.main-nav{order:2}
+.dash-header .dash-logo{order:3;margin-left:auto}
+.dash-header .workspace-search{order:1}
+.dash-header .workspace-top-links{order:2}
+.brand-mark{background:#1769aa!important;color:#fff!important;font-size:18px!important;letter-spacing:0!important}
+.workspace-rail-card h2{color:#173f68!important;font-size:12px!important}
+.workspace-rail-link:hover,.workspace-rail-link[aria-current=page]{background:#eaf3fc!important;color:#0d548f!important}
+.workspace-rail-link .ws-rail-icon{background:#e5f1fc!important;color:#1769aa!important}
+.text2me-site-description{top:0;z-index:1002}
+.text2me-site-description strong{color:#124f83}
+.text2me-section-strip{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:7px;max-width:1540px;margin:0 auto;padding:8px 24px 10px;background:#f5f9fd;border-bottom:1px solid #d8e5f1}
+.text2me-section-strip a{display:flex;align-items:center;justify-content:center;min-height:38px;padding:7px 9px;border:1px solid #cbddec;border-radius:8px;background:#fff;color:#294e70;text-align:center;text-decoration:none;font-size:11px;font-weight:750;line-height:1.25}
+.text2me-section-strip a:hover,.text2me-section-strip a[aria-current=page]{background:#e5f1fc;border-color:#7eb0d8;color:#0d548f}
+.text2me-section-strip-home{max-width:1200px}
+@media(max-width:1050px){.text2me-section-strip{grid-template-columns:repeat(4,minmax(0,1fr));padding-inline:18px}}
+@media(max-width:620px){.text2me-section-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:7px 15px}.text2me-section-strip a{min-height:36px;font-size:11px}.site-header .brand,.dash-header .dash-logo{align-self:flex-end}.site-header .header-inner>.site-header-search,.site-header .header-inner>.main-nav,.dash-header .workspace-search,.dash-header .workspace-top-links{width:100%}}
