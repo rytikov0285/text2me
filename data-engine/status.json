@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "connector_id": "gar_fias",
+  "connector_name": "ГАР/ФИАС — официальный набор открытых данных ФНС России",
+  "status": "not_run",
+  "source_page": "https://www.nalog.gov.ru/opendata/7707329152-fias/",
+  "latest_attempt": null,
+  "last_successful_source_check": null,
+  "last_archive_validation": null,
+  "address_index": {
+    "status": "not_implemented",
+    "note": "Коннектор ещё не запускался. После первого запуска проверит официальный источник и целостность нового ZIP. Построение адресного индекса и подключение к формам — следующий этап."
+  }
+}
