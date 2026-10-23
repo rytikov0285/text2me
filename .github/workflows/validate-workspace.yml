@@ -1,0 +1,26 @@
+name: Validate personal workspace
+on:
+  push:
+    paths:
+      - "dashboard/**"
+      - "data-engine/user-workspace-schema.json"
+      - "scripts/validate-workspace.mjs"
+      - ".github/workflows/validate-workspace.yml"
+  pull_request:
+    paths:
+      - "dashboard/**"
+      - "data-engine/user-workspace-schema.json"
+      - "scripts/validate-workspace.mjs"
+      - ".github/workflows/validate-workspace.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/validate-workspace.mjs
