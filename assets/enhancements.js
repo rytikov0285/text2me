@@ -190,6 +190,16 @@ var chooser=el("select",{"aria-label":"Открыть сохранённый д�
 bar.append(title,chooser,newBtn);
 var area=el("textarea",{class:"text2me-editor-body",placeholder:"Введите текст документа или вставьте подготовленный черновик…","aria-label":"Текст документа",spellcheck:"true"});
 var status=el("p",{class:"text2me-editor-status","aria-live":"polite"},"Черновик сохраняется только в этом браузере.");
+var helper=el("section",{class:"text2me-editor-assistant","aria-label":"Инструменты работы с текущим текстом"});
+var helperHeading=el("h3",{},"Инструменты для текущего текста");
+var helperIntro=el("p",{},"Инструменты работают с текстом в редакторе. Проверка носит технический характер и не заменяет юридическую или профессиональную оценку.");
+var helperActions=el("div",{class:"text2me-editor-actions"});
+var reviewBtn=button("Проверить текст","button button-outline",reviewCurrentText);
+var structureBtn=button("Вставить структуру обращения","button button-outline",insertLetterStructure);
+var copyBtn=button("Копировать текст","button button-outline",copyCurrentText);
+var helperResults=el("div",{class:"text2me-editor-results","aria-live":"polite"});
+helperActions.append(reviewBtn,structureBtn,copyBtn);helper.append(helperHeading,helperIntro,helperActions,helperResults);
+
 var count=el("span",{class:"text2me-editor-count"},"0 знаков");
 var actions=el("div",{class:"text2me-editor-actions"});
 var saveBtn=button("Сохранить документ","button",saveCurrent);
@@ -197,7 +207,34 @@ var docxBtn=button("Скачать DOCX","button button-outline",function(){if(!
 var txtBtn=button("Скачать TXT","button button-outline",function(){downloadBlob(new Blob(["\ufeff",area.value],{type:"text/plain;charset=utf-8"}),(safeName(title.value||"document"))+".txt")});
 var printBtn=button("Печать / PDF","button button-outline",function(){if(!area.value.trim()){status.textContent="Введите текст перед печатью.";return}var w=window.open("","_blank");if(!w){status.textContent="Разрешите всплывающие окна для печати.";return}w.document.write("<!doctype html><html lang='ru'><head><meta charset='utf-8'><title>"+xmlEscape(title.value||"Документ")+"</title><style>body{font:12pt/1.6 Arial,sans-serif;max-width:800px;margin:40px auto;color:#111}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}h1{font-size:18pt}@media print{body{margin:15mm auto}}</style></head><body><h1>"+xmlEscape(title.value||"Документ")+"</h1><pre>"+xmlEscape(area.value)+"</pre><script>window.onload=function(){setTimeout(function(){window.print()},200)}<\/script></body></html>");w.document.close()});
 actions.append(saveBtn,docxBtn,txtBtn,printBtn);
-panel.append(bar,area,actions,count,status);host.appendChild(panel);
+panel.append(bar,area,actions,count,status,helper);host.appendChild(panel);
+
+function reviewCurrentText(){
+helperResults.replaceChildren();var text=area.value,items=[];
+if(!text.trim())items.push(["warning","Текст пуст. Добавьте текст перед проверкой."]);
+else{
+if(text.length<120)items.push(["warning","Короткий текст: проверьте, достаточно ли сведений для адресата."]);
+if(!/\\n\\s*\\n/.test(text))items.push(["info","Нет разделения на абзацы. Если текст длинный, разбейте его на смысловые части."]);
+if(/\\[(?:ФИО|дата|адрес|номер|сумма|указать|вставить)[^\\]]*\\]/i.test(text)||/\\b(?:ФИО|указать дату|вставить номер|наименование организации)\\b/i.test(text))items.push(["warning","Найдены возможные незаполненные поля или подсказки в квадратных скобках."]);
+if(/\\b(?:\d{1,2}[./]\d{1,2}[./]\d{2,4}|\d{4}-\d{2}-\d{2})\\b/.test(text))items.push(["info","В тексте есть даты. Проверьте их точность и последовательность."]);
+if(/\\b(?:руб(?:лей|ля)?|₽|евро|EUR|USD|доллар(?:ов|а)?)\\b/i.test(text))items.push(["info","В тексте есть денежные суммы или обозначения валют. Проверьте цифры, валюту и итоговые расчёты."]);
+if(!/\\b(?:прошу|требую|необходимо|предлагаю|прошу считать)\\b/i.test(text))items.push(["info","Не найдено явно сформулированное требование или ожидаемое действие. Если оно необходимо, добавьте его отдельным пунктом."]);
+if(!items.length)items.push(["success","Автоматические проверки не обнаружили перечисленных типовых проблем. Это не подтверждает полноту, точность или юридическую силу документа."]);
+}
+items.forEach(function(item){helperResults.appendChild(el("p",{class:"text2me-editor-result text2me-editor-result-"+item[0]},item[1]))});
+}
+function insertLetterStructure(){
+var template="Адресат: [наименование организации / ФИО]\\nОт: [ФИО, контактные данные]\\n\\nТема: [кратко о вопросе]\\n\\nОбстоятельства\\n[Укажите даты, факты и последовательность событий.]\\n\\nСуть вопроса\\n[Опишите, что произошло и какие документы это подтверждают.]\\n\\nПрошу\\n[Чётко укажите ожидаемое действие или решение.]\\n\\nПриложения\\n[Перечислите прилагаемые документы, если есть.]\\n\\nДата: [дата]\\nПодпись: [ФИО]";
+if(area.value.trim()&&!confirm("Добавить структуру в конец текущего текста? Существующий текст останется без изменений."))return;
+area.value=area.value.trim()?area.value.replace(/\\s+$/,"")+"\\n\\n"+template:template;
+if(!title.value.trim())title.value="Обращение";
+updateCount();saveLocalDraft();status.textContent="Структура добавлена. Замените подсказки в квадратных скобках своими данными.";area.focus();
+}
+function copyCurrentText(){
+if(!area.value){status.textContent="Нет текста для копирования.";return}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(area.value).then(function(){status.textContent="Текст скопирован."}).catch(function(){status.textContent="Не удалось скопировать автоматически. Выделите текст и скопируйте вручную."})}
+else{area.focus();area.select();status.textContent="Текст выделен. Нажмите Ctrl+C для копирования."}
+}
 function safeName(s){return String(s||"document").replace(/[^\p{L}\p{N}-]+/gu,"-").replace(/^-+|-+$/g,"").slice(0,100)||"document"}
 function currentDoc(){return getSaved().find(function(d){return d&&d.id===selectedId})||null}
 function isDirty(){var d=currentDoc();return d?d.title!==title.value||d.text!==area.value:!!(title.value.trim()||area.value.trim())}
