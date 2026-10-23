@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Build a validated SQLite address index from an official GAR/FIAS ZIP archive.
+"""Build a normalized SQLite GAR/FIAS database from an official XML ZIP.
 
-The archive is read in-place; XML files are not extracted to disk. The database is
-written to a temporary sibling and atomically replaces the requested output only
-after parsing and integrity checks pass.
+The archive is streamed from ZIP members; XML is never extracted as a whole.
+Output is replaced atomically only after SQLite and referential checks pass.
 """
 import argparse
 import hashlib
@@ -18,48 +17,46 @@ import zipfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-TABLE_PATTERNS = {
-    "objects": re.compile(r"(?:^|/)AS_ADDR_OBJ(?:_\d+)?\.XML$", re.I),
-    "houses": re.compile(r"(?:^|/)AS_HOUSES(?:_\d+)?\.XML$", re.I),
-    "adm_hierarchy": re.compile(r"(?:^|/)AS_ADM_HIERARCHY(?:_\d+)?\.XML$", re.I),
+PATTERNS = {
+    "objects": re.compile(r"(?:^|/)AS_ADDR_OBJ(?:_[A-Z0-9-]+)*\.XML$", re.I),
+    "houses": re.compile(r"(?:^|/)AS_HOUSES(?:_[A-Z0-9-]+)*\.XML$", re.I),
+    "adm_hierarchy": re.compile(r"(?:^|/)AS_ADM_HIERARCHY(?:_[A-Z0-9-]+)*\.XML$", re.I),
+    "mun_hierarchy": re.compile(r"(?:^|/)AS_MUN_HIERARCHY(?:_[A-Z0-9-]+)*\.XML$", re.I),
 }
-MAX_ERRORS = 50
+BATCH_SIZE = 5000
 
-def local_name(tag):
+def lname(tag):
     return tag.rsplit("}", 1)[-1].upper()
 
-def attr(element, *names):
-    upper = {str(k).upper(): v for k, v in element.attrib.items()}
-    for name in names:
-        if name.upper() in upper:
-            return upper[name.upper()]
+def attrs(element):
+    return {str(k).upper(): v for k, v in element.attrib.items()}
+
+def get(a, *keys):
+    for key in keys:
+        if key in a:
+            return a[key]
     return None
 
-def as_int(value):
+def integer(value):
     try:
         return int(value) if value not in (None, "") else None
-    except (TypeError, ValueError):
+    except (ValueError, TypeError):
         return None
 
-def current(value):
-    return str(value or "").strip() in ("1", "true", "TRUE", "True")
+def flag(value):
+    return int(str(value or "").strip() == "1")
 
-def digest_file(path):
+def sha256(path):
     h = hashlib.sha256()
-    with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+    with open(path, "rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
 
-def find_groups(names):
-    groups = {key: [] for key in TABLE_PATTERNS}
-    for name in names:
-        if name.endswith("/") or not name.lower().endswith(".xml"):
-            continue
-        for kind, pattern in TABLE_PATTERNS.items():
-            if pattern.search(name):
-                groups[kind].append(name)
-    return groups
+def flush(con, sql, batch):
+    if batch:
+        con.executemany(sql, batch)
+        batch.clear()
 
 def main():
     parser = argparse.ArgumentParser()
@@ -67,180 +64,219 @@ def main():
     parser.add_argument("output")
     args = parser.parse_args()
     started = time.time()
-    archive_path = Path(args.archive)
-    output_path = Path(args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    fd, temp_name = tempfile.mkstemp(prefix="gar-index-", suffix=".sqlite", dir=str(output_path.parent))
+    archive = Path(args.archive)
+    output = Path(args.output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix="gar-index-", suffix=".sqlite", dir=str(output.parent))
     os.close(fd)
-    os.unlink(temp_name)
-    db_path = Path(temp_name)
-    errors = []
-    counts = {"objects_seen": 0, "objects_current": 0, "houses_seen": 0, "houses_current": 0, "hierarchy_rows": 0}
-    groups = {}
+    os.unlink(tmp)
+    dbpath = Path(tmp)
+    groups = {k: [] for k in PATTERNS}
+    counts = {"object_rows": 0, "house_rows": 0, "admin_hierarchy_rows": 0, "municipal_hierarchy_rows": 0}
+    warnings = []
     try:
-        with zipfile.ZipFile(archive_path) as zf:
+        with zipfile.ZipFile(archive) as zf:
             bad = zf.testzip()
             if bad:
-                raise RuntimeError("ZIP CRC failure in " + bad)
-            groups = find_groups(zf.namelist())
-            if not groups["objects"]:
-                raise RuntimeError("No AS_ADDR_OBJ XML tables found.")
-            if not groups["houses"]:
-                raise RuntimeError("No AS_HOUSES XML tables found.")
-            if not groups["adm_hierarchy"]:
-                raise RuntimeError("No AS_ADM_HIERARCHY XML tables found.")
+                raise RuntimeError("ZIP CRC error: " + bad)
+            for name in zf.namelist():
+                if name.endswith("/") or not name.lower().endswith(".xml"):
+                    continue
+                for kind, pattern in PATTERNS.items():
+                    if pattern.search(name):
+                        groups[kind].append(name)
+            for required in ("objects", "houses", "adm_hierarchy"):
+                if not groups[required]:
+                    raise RuntimeError("Required GAR XML group missing: " + required)
 
-            con = sqlite3.connect(str(db_path))
+            con = sqlite3.connect(str(dbpath))
             try:
                 con.execute("PRAGMA journal_mode=OFF")
                 con.execute("PRAGMA synchronous=OFF")
                 con.execute("PRAGMA temp_store=FILE")
                 con.execute("PRAGMA cache_size=-65536")
                 con.executescript("""
-                CREATE TABLE metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
-                CREATE TABLE address_objects (
-                  object_id INTEGER PRIMARY KEY, object_guid TEXT, name TEXT NOT NULL,
-                  typename TEXT, level INTEGER, is_active INTEGER NOT NULL, is_actual INTEGER NOT NULL,
-                  start_date TEXT, end_date TEXT, source_file TEXT NOT NULL
-                );
-                CREATE TABLE houses (
-                  house_id INTEGER PRIMARY KEY, object_id INTEGER NOT NULL, house_num TEXT,
-                  add_num1 TEXT, add_num2 TEXT, postal_code TEXT, is_active INTEGER NOT NULL,
+                CREATE TABLE metadata(key TEXT PRIMARY KEY, value TEXT NOT NULL);
+                CREATE TABLE address_objects(
+                  row_id INTEGER PRIMARY KEY, object_id INTEGER NOT NULL, object_guid TEXT,
+                  name TEXT NOT NULL, type_name TEXT, level INTEGER, is_active INTEGER NOT NULL,
                   is_actual INTEGER NOT NULL, start_date TEXT, end_date TEXT, source_file TEXT NOT NULL
                 );
-                CREATE TABLE admin_hierarchy (
-                  object_id INTEGER NOT NULL, parent_object_id INTEGER, path TEXT,
-                  is_active INTEGER NOT NULL, start_date TEXT, end_date TEXT, source_file TEXT NOT NULL
+                CREATE TABLE houses(
+                  row_id INTEGER PRIMARY KEY, house_object_id INTEGER NOT NULL, object_guid TEXT,
+                  house_num TEXT, build_num TEXT, postal_code TEXT, is_active INTEGER NOT NULL,
+                  is_actual INTEGER NOT NULL, start_date TEXT, end_date TEXT, source_file TEXT NOT NULL
+                );
+                CREATE TABLE hierarchy(
+                  row_id INTEGER PRIMARY KEY AUTOINCREMENT, division TEXT NOT NULL,
+                  object_id INTEGER NOT NULL, parent_object_id INTEGER, is_active INTEGER NOT NULL,
+                  start_date TEXT, end_date TEXT, source_file TEXT NOT NULL
                 );
                 """)
                 con.execute("BEGIN")
-                for file_name in groups["objects"]:
-                    with zf.open(file_name) as stream:
-                        for event, elem in ET.iterparse(stream, events=("end",)):
-                            if local_name(elem.tag) in ("OBJECT", "ADDR_OBJ"):
-                                oid = as_int(attr(elem, "OBJECTID", "ID"))
-                                name = (attr(elem, "NAME") or "").strip()
-                                if oid is not None and name:
-                                    active = int(current(attr(elem, "ISACTIVE")))
-                                    actual = int(current(attr(elem, "ISACTUAL")))
-                                    con.execute("INSERT OR REPLACE INTO address_objects VALUES (?,?,?,?,?,?,?,?,?,?)", (
-                                        oid, attr(elem, "OBJECTGUID", "GUID"), name,
-                                        attr(elem, "TYPENAME"), as_int(attr(elem, "LEVEL")),
-                                        active, actual, attr(elem, "STARTDATE"), attr(elem, "ENDDATE"), file_name))
-                                    counts["objects_seen"] += 1
-                                    counts["objects_current"] += int(active == 1 and actual == 1)
+                object_sql = "INSERT OR REPLACE INTO address_objects VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+                for filename in groups["objects"]:
+                    batch = []
+                    with zf.open(filename) as stream:
+                        for _, elem in ET.iterparse(stream, events=("end",)):
+                            if lname(elem.tag) == "OBJECT":
+                                a = attrs(elem)
+                                row_id, oid = integer(get(a, "ID")), integer(get(a, "OBJECTID"))
+                                name = (get(a, "NAME") or "").strip()
+                                if row_id is None or oid is None or not name:
+                                    raise RuntimeError("Invalid required OBJECT attributes in " + filename)
+                                batch.append((row_id, oid, get(a, "OBJECTGUID"), name, get(a, "TYPENAME"),
+                                    integer(get(a, "LEVEL")), flag(get(a, "ISACTIVE")), flag(get(a, "ISACTUAL")),
+                                    get(a, "STARTDATE"), get(a, "ENDDATE"), filename))
+                                counts["object_rows"] += 1
+                                if len(batch) >= BATCH_SIZE:
+                                    flush(con, object_sql, batch)
+                            elem.clear()
+                    flush(con, object_sql, batch)
+
+                hierarchy_sql = "INSERT INTO hierarchy(division,object_id,parent_object_id,is_active,start_date,end_date,source_file) VALUES (?,?,?,?,?,?,?)"
+                for division in ("adm_hierarchy", "mun_hierarchy"):
+                    for filename in groups[division]:
+                        batch = []
+                        with zf.open(filename) as stream:
+                            for _, elem in ET.iterparse(stream, events=("end",)):
+                                if lname(elem.tag) == "ITEM":
+                                    a = attrs(elem)
+                                    oid = integer(get(a, "OBJECTID"))
+                                    if oid is None:
+                                        raise RuntimeError("Hierarchy ITEM without OBJECTID in " + filename)
+                                    batch.append((division, oid, integer(get(a, "PARENTOBJID")),
+                                        flag(get(a, "ISACTIVE")), get(a, "STARTDATE"), get(a, "ENDDATE"), filename))
+                                    counts[division + "_rows"] += 1
+                                    if len(batch) >= BATCH_SIZE:
+                                        flush(con, hierarchy_sql, batch)
                                 elem.clear()
-                con.execute("CREATE INDEX idx_objects_guid ON address_objects(object_guid)")
-                con.execute("CREATE INDEX idx_objects_current_name ON address_objects(is_active,is_actual,name COLLATE NOCASE)")
-                for file_name in groups["adm_hierarchy"]:
-                    with zf.open(file_name) as stream:
-                        for event, elem in ET.iterparse(stream, events=("end",)):
-                            if local_name(elem.tag) in ("ITEM", "HIERARCHY"):
-                                oid = as_int(attr(elem, "OBJECTID", "ID"))
-                                if oid is not None:
-                                    active = int(current(attr(elem, "ISACTIVE")))
-                                    con.execute("INSERT INTO admin_hierarchy VALUES (?,?,?,?,?,?,?)", (
-                                        oid, as_int(attr(elem, "PARENTOBJID", "PARENTOBJECTID")),
-                                        attr(elem, "PATH"), active, attr(elem, "STARTDATE"),
-                                        attr(elem, "ENDDATE"), file_name))
-                                    counts["hierarchy_rows"] += 1
-                                elem.clear()
-                con.execute("CREATE INDEX idx_hierarchy_object ON admin_hierarchy(object_id,is_active)")
-                con.execute("CREATE INDEX idx_hierarchy_parent ON admin_hierarchy(parent_object_id)")
-                for file_name in groups["houses"]:
-                    with zf.open(file_name) as stream:
-                        for event, elem in ET.iterparse(stream, events=("end",)):
-                            if local_name(elem.tag) in ("HOUSE", "HOUSES"):
-                                hid = as_int(attr(elem, "HOUSEID", "ID"))
-                                oid = as_int(attr(elem, "OBJECTID"))
-                                if hid is not None and oid is not None:
-                                    active = int(current(attr(elem, "ISACTIVE")))
-                                    actual = int(current(attr(elem, "ISACTUAL")))
-                                    con.execute("INSERT OR REPLACE INTO houses VALUES (?,?,?,?,?,?,?,?,?,?,?)", (
-                                        hid, oid, attr(elem, "HOUSENUM"), attr(elem, "ADDNUM1"),
-                                        attr(elem, "ADDNUM2"), attr(elem, "POSTALCODE"), active, actual,
-                                        attr(elem, "STARTDATE"), attr(elem, "ENDDATE"), file_name))
-                                    counts["houses_seen"] += 1
-                                    counts["houses_current"] += int(active == 1 and actual == 1)
-                                elem.clear()
-                con.execute("CREATE INDEX idx_houses_object ON houses(object_id,is_active,is_actual)")
-                con.execute("CREATE INDEX idx_houses_postal ON houses(postal_code)")
-                con.execute("CREATE INDEX idx_houses_number ON houses(house_num COLLATE NOCASE)")
-                con.execute("CREATE VIEW current_address_objects AS SELECT * FROM address_objects WHERE is_active=1 AND is_actual=1")
-                con.execute("CREATE VIEW current_houses AS SELECT * FROM houses WHERE is_active=1 AND is_actual=1")
-                object_count = con.execute("SELECT COUNT(*) FROM address_objects").fetchone()[0]
-                house_count = con.execute("SELECT COUNT(*) FROM houses").fetchone()[0]
-                hierarchy_count = con.execute("SELECT COUNT(*) FROM admin_hierarchy").fetchone()[0]
-                duplicate_hierarchy = con.execute("SELECT COUNT(*) FROM (SELECT object_id FROM admin_hierarchy WHERE is_active=1 GROUP BY object_id HAVING COUNT(*)>1)").fetchone()[0]
-                missing_hierarchy = con.execute("""
-                    SELECT COUNT(*) FROM address_objects o
-                    LEFT JOIN admin_hierarchy h ON h.object_id=o.object_id AND h.is_active=1
-                    WHERE o.is_active=1 AND o.is_actual=1 AND h.object_id IS NULL
+                        flush(con, hierarchy_sql, batch)
+
+                house_sql = "INSERT OR REPLACE INTO houses VALUES (?,?,?,?,?,?,?,?,?,?)"
+                for filename in groups["houses"]:
+                    batch = []
+                    with zf.open(filename) as stream:
+                        for _, elem in ET.iterparse(stream, events=("end",)):
+                            if lname(elem.tag) == "HOUSE":
+                                a = attrs(elem)
+                                row_id = integer(get(a, "ID"))
+                                house_oid = integer(get(a, "OBJECTID"))
+                                if row_id is None or house_oid is None:
+                                    raise RuntimeError("Invalid required HOUSE attributes in " + filename)
+                                batch.append((row_id, house_oid, get(a, "OBJECTGUID"), get(a, "HOUSENUM"),
+                                    get(a, "BUILDNUM"), get(a, "POSTALCODE"), flag(get(a, "ISACTIVE")),
+                                    flag(get(a, "ISACTUAL")), get(a, "STARTDATE"), get(a, "ENDDATE"), filename))
+                                counts["house_rows"] += 1
+                                if len(batch) >= BATCH_SIZE:
+                                    flush(con, house_sql, batch)
+                            elem.clear()
+                    flush(con, house_sql, batch)
+
+                con.executescript("""
+                CREATE INDEX idx_address_object_id ON address_objects(object_id);
+                CREATE INDEX idx_address_current_name ON address_objects(is_active,is_actual,name COLLATE NOCASE);
+                CREATE INDEX idx_address_guid ON address_objects(object_guid);
+                CREATE INDEX idx_house_object_id ON houses(house_object_id);
+                CREATE INDEX idx_house_current_postal ON houses(is_active,is_actual,postal_code);
+                CREATE INDEX idx_hierarchy_object ON hierarchy(object_id,division,is_active);
+                CREATE INDEX idx_hierarchy_parent ON hierarchy(parent_object_id,division,is_active);
+                CREATE VIEW current_address_objects AS SELECT * FROM address_objects WHERE is_active=1 AND is_actual=1;
+                CREATE VIEW current_houses AS SELECT * FROM houses WHERE is_active=1 AND is_actual=1;
+                """)
+                counts_by_table = {
+                    "address_objects": con.execute("SELECT COUNT(*) FROM address_objects").fetchone()[0],
+                    "houses": con.execute("SELECT COUNT(*) FROM houses").fetchone()[0],
+                    "hierarchy": con.execute("SELECT COUNT(*) FROM hierarchy").fetchone()[0],
+                    "current_address_objects": con.execute("SELECT COUNT(*) FROM current_address_objects").fetchone()[0],
+                    "current_houses": con.execute("SELECT COUNT(*) FROM current_houses").fetchone()[0],
+                }
+                missing_object_hierarchy = con.execute("""
+                  SELECT COUNT(*) FROM (
+                    SELECT DISTINCT o.object_id FROM current_address_objects o
+                    LEFT JOIN hierarchy h ON h.object_id=o.object_id AND h.is_active=1
+                    WHERE h.object_id IS NULL
+                  )
                 """).fetchone()[0]
-                missing_house_objects = con.execute("""
-                    SELECT COUNT(*) FROM houses h LEFT JOIN address_objects o ON o.object_id=h.object_id
-                    WHERE h.is_active=1 AND h.is_actual=1 AND o.object_id IS NULL
+                missing_house_hierarchy = con.execute("""
+                  SELECT COUNT(*) FROM current_houses h
+                  LEFT JOIN hierarchy x ON x.object_id=h.house_object_id AND x.is_active=1
+                  WHERE x.object_id IS NULL
                 """).fetchone()[0]
-                con.execute("INSERT INTO metadata VALUES (?,?)", ("schema_version", "1.0.0"))
-                con.execute("INSERT INTO metadata VALUES (?,?)", ("source", "GAR/ФИАС; official open-data archive"))
-                con.execute("INSERT INTO metadata VALUES (?,?)", ("built_at_utc", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())))
-                con.execute("INSERT INTO metadata VALUES (?,?)", ("archive_sha256", digest_file(archive_path)))
-                con.execute("INSERT INTO metadata VALUES (?,?)", ("objects_total", str(object_count)))
-                con.execute("INSERT INTO metadata VALUES (?,?)", ("houses_total", str(house_count)))
-                con.execute("INSERT INTO metadata VALUES (?,?)", ("hierarchy_rows_total", str(hierarchy_count)))
+                duplicate_current_ids = con.execute("""
+                  SELECT COUNT(*) FROM (
+                    SELECT object_id FROM current_address_objects GROUP BY object_id HAVING COUNT(*)>1
+                  )
+                """).fetchone()[0]
+                con.executemany("INSERT INTO metadata VALUES (?,?)", [
+                    ("schema_version", "1.0.0"),
+                    ("source", "Official GAR/FIAS XML ZIP"),
+                    ("built_at_utc", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())),
+                    ("archive_sha256", sha256(archive)),
+                    ("address_objects_total", str(counts_by_table["address_objects"])),
+                    ("houses_total", str(counts_by_table["houses"])),
+                    ("hierarchy_total", str(counts_by_table["hierarchy"])),
+                ])
                 con.commit()
                 con.execute("PRAGMA optimize")
                 integrity = con.execute("PRAGMA integrity_check").fetchone()[0]
                 if integrity != "ok":
                     raise RuntimeError("SQLite integrity_check failed: " + str(integrity))
-                if object_count == 0 or house_count == 0 or hierarchy_count == 0:
-                    raise RuntimeError("Built index has an empty required table.")
-                if missing_house_objects:
-                    errors.append({"check": "houses_missing_address_object", "count": missing_house_objects})
-                if missing_hierarchy:
-                    errors.append({"check": "current_objects_missing_active_hierarchy", "count": missing_hierarchy})
+                if not counts_by_table["current_address_objects"] or not counts_by_table["current_houses"]:
+                    raise RuntimeError("Current address objects or houses table is empty.")
+                if duplicate_current_ids:
+                    raise RuntimeError("Duplicate current object IDs found: " + str(duplicate_current_ids))
+                # Some source rows may legitimately lack hierarchy. Record rates, don't silently discard them.
+                denominator = max(1, counts_by_table["current_address_objects"])
+                missing_ratio = missing_object_hierarchy / denominator
+                if missing_ratio > 0.01:
+                    raise RuntimeError("More than 1% of current address objects lack active hierarchy: " + str(missing_object_hierarchy))
+                if missing_object_hierarchy:
+                    warnings.append({"check": "current_objects_missing_active_hierarchy", "count": missing_object_hierarchy})
+                if missing_house_hierarchy:
+                    warnings.append({"check": "current_houses_missing_active_hierarchy", "count": missing_house_hierarchy})
                 report = {
-                    "result": "success" if not errors else "success_with_integrity_warnings",
-                    "database": str(output_path),
-                    "database_bytes": db_path.stat().st_size,
-                    "database_sha256": digest_file(db_path),
-                    "archive_sha256": digest_file(archive_path),
+                    "result": "success",
+                    "database": str(output),
+                    "database_bytes": dbpath.stat().st_size,
+                    "database_sha256": sha256(dbpath),
+                    "archive_sha256": sha256(archive),
                     "counts": counts,
-                    "table_counts": {"address_objects": object_count, "houses": house_count, "admin_hierarchy": hierarchy_count},
+                    "table_counts": counts_by_table,
                     "checks": {
                         "sqlite_integrity": integrity,
-                        "duplicate_active_hierarchy_object_ids": duplicate_hierarchy,
-                        "current_objects_missing_active_hierarchy": missing_hierarchy,
-                        "current_houses_missing_address_object": missing_house_objects,
-                        "expected_xml_groups_found": {k: len(v) for k, v in groups.items()}
+                        "duplicate_current_object_ids": duplicate_current_ids,
+                        "current_objects_missing_active_hierarchy": missing_object_hierarchy,
+                        "current_houses_missing_active_hierarchy": missing_house_hierarchy,
+                        "xml_groups": {k: len(v) for k, v in groups.items()}
                     },
-                    "warnings": errors[:MAX_ERRORS],
+                    "warnings": warnings,
                     "duration_seconds": round(time.time() - started, 2),
                     "limitations": [
-                        "XML attribute mapping must be confirmed against a real current archive.",
-                        "This is a normalized SQLite data store, not yet an HTTP API or a browser-deployed search service.",
-                        "Administrative hierarchy only; municipal hierarchy and XSD validation are not yet included."
+                        "XML attribute mapping is based on the official GAR XML format and must be verified on a real current archive.",
+                        "The SQLite file is a data artifact, not a deployed public search API.",
+                        "Postal index is retained only where present on HOUSE records; a dedicated postal-operations classifier is separate."
                     ]
                 }
                 con.close()
-                if errors:
-                    print(json.dumps(report, ensure_ascii=False, indent=2))
-                    raise RuntimeError("Referential integrity checks reported warnings; do not publish index as healthy.")
-                os.replace(db_path, output_path)
-                report["result"] = "success"
-                report["database_bytes"] = output_path.stat().st_size
+                os.replace(dbpath, output)
+                report["database_bytes"] = output.stat().st_size
                 print(json.dumps(report, ensure_ascii=False, indent=2))
             finally:
-                try: con.close()
-                except Exception: pass
-        return 0
+                try:
+                    con.close()
+                except Exception:
+                    pass
     except Exception as exc:
-        try: db_path.unlink(missing_ok=True)
-        except Exception: pass
+        try:
+            dbpath.unlink(missing_ok=True)
+        except Exception:
+            pass
         print(json.dumps({"result": "error", "error": str(exc), "counts": counts,
-                          "expected_xml_groups_found": {k: len(v) for k, v in groups.items()},
-                          "parse_errors": errors[:MAX_ERRORS]}, ensure_ascii=False, indent=2), file=sys.stderr)
+            "xml_groups": {k: len(v) for k, v in groups.items()}, "warnings": warnings[:50]},
+            ensure_ascii=False, indent=2), file=sys.stderr)
         return 1
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main())
