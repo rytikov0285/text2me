@@ -288,3 +288,46 @@ function initSocialProof(){var grid=document.getElementById("catalog-cards");if(
 document.addEventListener("click",function(e){var b=e.target.closest("#copy-claim,#copy-court,[data-copy-target]");if(!b)return;var target=b.id==="copy-claim"?document.getElementById("claim-output"):b.id==="copy-court"?document.getElementById("court-output"):document.getElementById(b.getAttribute("data-copy-target"));if(target){target.classList.add("copied-highlight");target.setAttribute("tabindex","0");setTimeout(function(){target.classList.remove("copied-highlight")},3500)}});
 document.addEventListener("DOMContentLoaded",function(){initBrandAndFooter();initDocumentCapture();initDaDataPartyLookup();initPriorityWorkspace();installDraftAutosave();initFormImport();initExports();initAutoSaveGeneratedDocuments();initAI();initCatalogFilters();initPromptCatalog();initSuggestions();initFeedback();initSpace();initFAQAndLegal();initGlobalNavigation();initSocialProof();document.querySelectorAll("[data-template-updated]").forEach(function(x){x.textContent="Обновлено: 22.10.2026 · изменён интерфейс; правовая актуальность отдельно не подтверждена."})});
 }());
+/* Shared page rails, local document count, quick search and Ctrl/Cmd+K shortcut. */
+(function(){
+"use strict";
+if(document.querySelector(".dash-shell")) return;
+var main=document.querySelector("main#main"),header=document.querySelector(".site-header");
+if(!main||!header) return;
+var current=(location.pathname||"/").replace(/\/index\.html$/,"").replace(/\/+$/,"")||"/text2me";
+var sections=[
+{title:"Главная",url:"/text2me/",keys:"домой начало старт"},
+{title:"Документы",url:"/text2me/documents/",keys:"договор претензия иск заявление шаблон"},
+{title:"По ситуации",url:"/text2me/situations/",keys:"возврат зарплата жкх жилье банк долг проблема"},
+{title:"Для бизнеса",url:"/text2me/business/",keys:"организация компания договор контрагент"},
+{title:"Тексты и инструменты",url:"/text2me/prompts/",keys:"письмо инструкция текст подготовить"},
+{title:"Жизненные ситуации",url:"/text2me/people/",keys:"жалоба заявление гражданин"},
+{title:"Инструкции",url:"/text2me/guides/",keys:"пошагово руководство"},
+{title:"База знаний",url:"/text2me/knowledge/",keys:"справка материалы объяснение"},
+{title:"Официальные источники",url:"/text2me/sources/",keys:"государство официальный сайт орган"},
+{title:"Мои документы",url:"/text2me/space/",keys:"сохранить черновик библиотека файлы"},
+{title:"Сложная задача",url:"/text2me/request/",keys:"специалист сложная задача обращение"},
+{title:"Профессиональные услуги",url:"/text2me/services/",keys:"специалист услуга бухгалтер юридический"},
+{title:"Что нового",url:"/text2me/updates/",keys:"обновления изменения"},
+{title:"Конфиденциальность",url:"/text2me/privacy/",keys:"данные приватность"},
+{title:"Безопасность данных",url:"/text2me/security/",keys:"безопасность хранение"}
+];
+function railCard(title){var c=document.createElement("section");c.className="workspace-rail-card";var h=document.createElement("h2");h.textContent=title;c.appendChild(h);return c}
+var left=document.createElement("aside");left.className="workspace-page-left";left.setAttribute("aria-label","Быстрый доступ");
+var quick=railCard("Быстрый старт");
+[["＋","Создать документ","/text2me/documents/"],["↗","Разобрать ситуацию","/text2me/situations/"],["✎","Подготовить текст","/text2me/prompts/"],["▦","Задача для бизнеса","/text2me/business/"]].forEach(function(item){var a=document.createElement("a");a.className="workspace-rail-link";a.href=item[2];var i=document.createElement("span");i.className="ws-rail-icon";i.setAttribute("aria-hidden","true");i.textContent=item[0];a.append(i,document.createTextNode(item[1]));quick.appendChild(a)});left.appendChild(quick);
+var nav=railCard("Разделы");sections.slice(1,10).forEach(function(s){var a=document.createElement("a");a.className="workspace-rail-link";a.href=s.url;if(current===s.url.replace(/\/+$/,""))a.setAttribute("aria-current","page");a.textContent=s.title;nav.appendChild(a)});left.appendChild(nav);
+var right=document.createElement("aside");right.className="workspace-page-right";right.setAttribute("aria-label","Мои документы и инструменты");
+var search=document.createElement("section");search.className="workspace-rail-search";var label=document.createElement("label");label.htmlFor="workspace-rail-search-input";label.textContent="Быстрый поиск";var input=document.createElement("input");input.id="workspace-rail-search-input";input.type="search";input.placeholder="Документ, тема, действие…";input.autocomplete="off";var status=document.createElement("div");status.className="workspace-rail-status";status.setAttribute("aria-live","polite");status.textContent="Поиск по разделам сайта · Ctrl+K";var results=document.createElement("div");results.className="workspace-rail-results";search.append(label,input,status,results);right.appendChild(search);
+var saved=railCard("Мои документы"),savedStatus=document.createElement("p"),savedLink=document.createElement("a");savedStatus.className="workspace-rail-status";savedLink.className="workspace-rail-primary";savedLink.href="/text2me/space/";savedLink.textContent="Открыть библиотеку →";
+try{var docs=JSON.parse(localStorage.getItem("text2me.space.v1")||"[]"),drafts=JSON.parse(localStorage.getItem("text2me.drafts.v1")||"{}");var active=Array.isArray(docs)?docs.filter(function(x){return x&&!x.archived}).length:0;savedStatus.textContent=active+" сохранённых документов · "+Object.keys(drafts||{}).length+" черновиков. Только в этом браузере."}catch(e){savedStatus.textContent="Черновики и файлы сохраняются локально в браузере."}
+saved.append(savedStatus,savedLink);right.appendChild(saved);
+var tools=railCard("Полезные инструменты");
+[["Каталог документов","/text2me/documents/"],["Пошаговые инструкции","/text2me/guides/"],["База знаний","/text2me/knowledge/"],["Официальные источники","/text2me/sources/"],["Помощь и обновления","/text2me/updates/"]].forEach(function(item){var a=document.createElement("a");a.className="workspace-rail-link";a.href=item[1];a.textContent=item[0];tools.appendChild(a)});
+var note=document.createElement("p");note.className="workspace-rail-note";note.textContent="Доступны 3 конструктора документов. Аккаунты и облачная синхронизация пока не подключены.";tools.appendChild(note);right.appendChild(tools);
+var layout=document.createElement("div");layout.className="workspace-page-layout";main.classList.add("workspace-page-main");main.parentNode.insertBefore(layout,main);layout.append(left,main,right);
+var footer=document.querySelector("footer");if(footer)footer.classList.add("workspace-page-footer");
+function runSearch(){var q=input.value.trim().toLocaleLowerCase("ru");results.replaceChildren();if(q.length<2){status.textContent=q?"Введите ещё хотя бы один символ.":"Поиск по разделам сайта · Ctrl+K";return}var terms=q.split(/\s+/).filter(Boolean);var found=sections.map(function(s){var hay=(s.title+" "+s.keys).toLocaleLowerCase("ru");return{s:s,score:terms.reduce(function(n,t){return n+(hay.indexOf(t)!==-1?1:0)},0)}}).filter(function(x){return x.score>0}).sort(function(a,b){return b.score-a.score}).slice(0,5);if(!found.length){status.textContent="Совпадений нет. Попробуйте: договор, возврат, зарплата, письмо.";return}status.textContent="Подходящие разделы: "+found.length;found.forEach(function(x){var a=document.createElement("a");a.href=x.s.url;a.textContent=x.s.title;results.appendChild(a)})}
+input.addEventListener("input",runSearch);
+document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();input.focus();input.select()}if(e.key==="Escape"&&document.activeElement===input){input.value="";results.replaceChildren();status.textContent="Поиск очищен.";input.blur()}});
+})();
