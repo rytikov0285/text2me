@@ -63,3 +63,7 @@
 @media(max-width:920px){.organizer-layout{grid-template-columns:1fr}.organizer-side{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.organizer-hero{grid-template-columns:1fr}}
 @media(max-width:620px){.organizer-page{padding:14px 12px 30px}.organizer-hero{padding:20px 15px;gap:14px}.organizer-hero h1{font-size:28px}.organizer-layout{gap:12px}.organizer-side{grid-template-columns:1fr}.organizer-panel{padding:15px}.organizer-panel-head h2{font-size:17px}.calendar-controls button{padding:6px 8px}.calendar-day{font-size:11px}.organizer-footer{display:grid}}
 @media(prefers-reduced-motion:reduce){.calendar-day,.organizer-upload{transition:none}}
+
+.text2me-install-app{display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin:7px 0;padding:9px 13px;border:1px solid #214f91;border-radius:8px;background:#214f91;color:#fff;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.text2me-install-app:hover{background:#183e73}
+.text2me-install-app[hidden]{display:none}
