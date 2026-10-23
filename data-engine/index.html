@@ -92,14 +92,14 @@
   fetch("/text2me/data-engine/status.json",{cache:"no-store"})
     .then(function(response){if(!response.ok)throw new Error("status unavailable");return response.json();})
     .then(function(data){
-      var attempt=data.latest_attempt||{},success=data.last_successful_source_check||{},archive=data.last_archive_validation||{};
+      var attempt=data.latest_attempt||{},success=data.last_successful_source_check||{},archive=data.last_archive_validation||{},index=data.address_index||{};
       label.textContent=data.status==="healthy"?"проверка источника успешна":data.status==="degraded"?"последняя проверка завершилась ошибкой":"ожидает первого запуска";
       var parts=[];
       if(attempt.finished_at)parts.push("Последняя попытка: "+attempt.finished_at+".");
       if(success.checked_at)parts.push("Последняя успешная проверка: "+success.checked_at+".");
       if(archive.validated_at)parts.push("Последняя проверка ZIP: "+archive.validated_at+".");
       if(attempt.error)parts.push("Ошибка: "+attempt.error);
-      parts.push("Адресный индекс: не реализован; проверка источника не означает, что поиск адресов уже работает.");
+      parts.push("Состояние индекса: "+(index.status||"неизвестно")+". "+(index.note||"Поиск адресов ещё не подтверждён."));
       detail.textContent=parts.join(" ");
     })
     .catch(function(){label.textContent="статус пока недоступен";detail.textContent="Дождитесь первого запуска проверки или откройте status.json напрямую.";});
