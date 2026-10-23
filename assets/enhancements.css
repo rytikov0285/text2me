@@ -492,3 +492,9 @@ body{background:var(--ws-paper);color:var(--ws-ink);font-family:Arial,Helvetica,
 .text2me-section-strip-home{max-width:1200px}
 @media(max-width:1050px){.text2me-section-strip{grid-template-columns:repeat(4,minmax(0,1fr));padding-inline:18px}}
 @media(max-width:620px){.text2me-section-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:7px 15px}.text2me-section-strip a{min-height:36px;font-size:11px}.site-header .brand,.dash-header .dash-logo{align-self:flex-end}.site-header .header-inner>.site-header-search,.site-header .header-inner>.main-nav,.dash-header .workspace-search,.dash-header .workspace-top-links{width:100%}}
+
+.workspace-checklist{display:grid;gap:9px;margin:5px 0 10px}
+.workspace-check-item{display:flex;align-items:flex-start;gap:8px;color:#294e70;font-size:11px;line-height:1.4;cursor:pointer}
+.workspace-check-item input{flex:0 0 auto;width:14px;height:14px;margin:1px 0 0;accent-color:#1769aa}
+.workspace-check-item input:checked+span{color:#6b7785;text-decoration:line-through}
+.workspace-checklist+.workspace-rail-status{margin:3px 0 8px;padding:7px 8px;border-radius:7px;background:#eef5fb;color:#174f7e}
