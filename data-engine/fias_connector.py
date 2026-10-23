@@ -76,6 +76,15 @@ def validate_archive_file(path,size,sha256):
 def download_and_validate(url, index_output=None):
     parsed=urllib.parse.urlparse(url)
     if parsed.scheme!="https" or (parsed.hostname or "").lower() not in ALLOWED_HOSTS: raise ValueError("Release URL failed HTTPS/official-host validation")
+    # Full GAR exports are tens of gigabytes. Never start a large download unless a HEAD check
+    # proves the declared size fits the runner limit, or an operator explicitly overrides it.
+    preflight=inspect_release_size(url)
+    allow_unsized=os.environ.get("GAR_ALLOW_UNSIZED_ARCHIVE","").lower() in ("1","true","yes")
+    declared=preflight.get("declared_size_bytes")
+    if declared is not None and declared>MAX_ARCHIVE_BYTES:
+        raise ValueError("Archive preflight reports "+str(declared)+" bytes, above configured limit "+str(MAX_ARCHIVE_BYTES)+"; download refused.")
+    if declared is None and not allow_unsized:
+        raise ValueError("Cannot safely download archive because its size could not be verified by HEAD ("+str(preflight.get("error") or "Content-Length missing")+"). No archive body was downloaded.")
     request=urllib.request.Request(url,headers={"User-Agent":USER_AGENT}); digest=hashlib.sha256(); size=0; temp_path=None
     try:
         with tempfile.NamedTemporaryFile(prefix="text2me-fias-",suffix=".zip",delete=False) as tmp:
