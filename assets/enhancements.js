@@ -25,7 +25,7 @@ function addExports(outputId,baseName,title){var output=document.getElementById(
 function initAutoSaveGeneratedDocuments(){var defs=[["claim-output","Претензия продавцу"],["court-output","Исковое заявление"],["rental-output","Договор найма жилого помещения"],["rental-act-output","Акт приёма-передачи"]];defs.forEach(function(def){var output=document.getElementById(def[0]);if(!output||output.dataset.autoSaveInstalled)return;output.dataset.autoSaveInstalled="1";var note=el("p",{class:"save-draft-status","aria-live":"polite"},"Готовый текст будет автоматически сохранён в «Мои документы».");output.insertAdjacentElement("afterend",note);var timer=0,last="";function persist(){var text=String(output.textContent||"").trim();if(!text||text===last)return;last=text;if(saveDocument(def[1],text,location.pathname)){note.textContent="Сохранено автоматически в «Мои документы» · "+new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"})}else{note.textContent="Не удалось сохранить автоматически. Проверьте свободное место в браузере."}}if(window.MutationObserver){new MutationObserver(function(){clearTimeout(timer);timer=setTimeout(persist,450)}).observe(output,{childList:true,subtree:true,characterData:true})}if(output.textContent.trim())persist()})}
 function initExports(){addExports("claim-output","pretenziya-prodavtsu","Претензия продавцу");addExports("court-output","iskovoe-zayavlenie","Исковое заявление");addExports("rental-output","dogovor-nayma-zhilya","Договор найма жилого помещения");addExports("rental-act-output","akt-priema-peredachi","Акт приёма-передачи") }
 function initBrandAndFooter(){
-document.querySelectorAll(".brand").forEach(function(b){if(!b.querySelector(".brand-mark"))b.innerHTML='<span class="brand-mark" aria-hidden="true">t2</span><span>text2me<span class="brand-dot">.</span>ru</span>'});
+document.querySelectorAll(".brand").forEach(function(b){if(!b.querySelector(".brand-mark"))b.innerHTML='<span class="brand-mark" aria-hidden="true">✳</span><span>text2me<span class="brand-dot">.</span>ru</span>'});
 var primaryLinks=[
 ["/text2me/space/","Моё пространство"],
 ["/text2me/documents/","Документы"],
@@ -348,17 +348,51 @@ document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key
 "use strict";
 function installSiteDescription(){
  if(document.getElementById("text2me-site-description"))return;
- var header=document.querySelector(".site-header");
+ var header=document.querySelector(".site-header, .dash-header");
  if(!header)return;
  var band=document.createElement("section");
  band.id="text2me-site-description";
  band.className="text2me-site-description";
  band.setAttribute("aria-label","О text2me");
  var inner=document.createElement("div");inner.className="text2me-site-description-inner";
- var title=document.createElement("strong");title.textContent="Разберитесь в ситуации. Подготовьте нужный документ. Сэкономьте время.";
+ var title=document.createElement("strong");title.textContent="Разберитесь в ситуации. Подготовьте нужный документ.";
  var description=document.createElement("p");description.textContent="text2me помогает понять, с чего начать, найти подходящий документ или инструкцию и подготовить рабочий черновик — для личных дел, общения с организациями и бизнеса.";
  inner.append(title,description);band.appendChild(inner);
  header.insertAdjacentElement("afterend",band);
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installSiteDescription);else installSiteDescription();
+})();
+
+/* Full-width section navigation: the links span the entire workspace, including both rails. */
+(function(){
+"use strict";
+function installFullWidthSectionNav(){
+ if(document.getElementById("text2me-section-strip"))return;
+ var header=document.querySelector(".site-header, .dash-header");
+ if(!header)return;
+ var strip=document.createElement("nav");
+ strip.id="text2me-section-strip";
+ strip.className="text2me-section-strip";
+ strip.setAttribute("aria-label","Основные разделы сайта");
+ var links=[
+ ["Главная","/text2me/"],
+ ["Жизненные ситуации","/text2me/situations/"],
+ ["Документы и шаблоны","/text2me/documents/"],
+ ["Тексты и инструменты","/text2me/prompts/"],
+ ["Инструкции","/text2me/guides/"],
+ ["Для бизнеса","/text2me/business/"],
+ ["Официальные источники","/text2me/sources/"],
+ ["Мои документы","/text2me/space/"]
+ ];
+ var current=(location.pathname||"/").replace(/index\.html$/,"").replace(/\/+$/,"")||"/text2me";
+ links.forEach(function(item){
+  var a=document.createElement("a");a.href=item[1];a.textContent=item[0];
+  var target=item[1].replace(/\/+$/,"")||"/text2me";
+  if(current===target||(target==="/text2me"&&current==="/text2me"))a.setAttribute("aria-current","page");
+  strip.appendChild(a);
+ });
+ var description=document.getElementById("text2me-site-description");
+ (description||header).insertAdjacentElement("afterend",strip);
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installFullWidthSectionNav);else installFullWidthSectionNav();
 })();
