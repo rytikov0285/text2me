@@ -30,6 +30,8 @@ assert.ok(calendar.includes("text2me.dashboard.v1"), "Calendar must share worksp
 assert.ok(calendar.includes("state.tasks.forEach(function(t){if(t.date)counts[t.date]"), "Calendar must count dated tasks");
 assert.ok(calendar.includes("data-task-done"), "Calendar must allow marking tasks complete");
 assert.ok(calendar.includes("События и задачи на "), "Calendar must display dated tasks alongside events");
+assert.ok(calendar.includes('id="taskForm"') && calendar.includes('id="taskCase"'), "Calendar must create case-linked tasks");
+assert.ok(calendar.includes('$("addTask").addEventListener'), "Calendar task creation button is not connected");
 
 const start = html.indexOf("<script>");
 const end = html.lastIndexOf("</script>");
