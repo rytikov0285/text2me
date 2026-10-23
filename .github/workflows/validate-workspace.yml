@@ -3,12 +3,14 @@ on:
   push:
     paths:
       - "dashboard/**"
+      - "calendar/**"
       - "data-engine/user-workspace-schema.json"
       - "scripts/validate-workspace.mjs"
       - ".github/workflows/validate-workspace.yml"
   pull_request:
     paths:
       - "dashboard/**"
+      - "calendar/**"
       - "data-engine/user-workspace-schema.json"
       - "scripts/validate-workspace.mjs"
       - ".github/workflows/validate-workspace.yml"
