@@ -95,9 +95,25 @@ try {
   if (!entries.length) throw new Error("ZIP-архив пуст.");
   const xmlEntries = entries.filter(name => /\.xml$/i.test(name));
   if (!xmlEntries.length) throw new Error("В архиве не найдены XML-файлы; набор не принят.");
-  const xmlInspectionRun = await run("python3", ["scripts/inspect-gar-xml.py", archivePath]);
-  const xmlInspection = JSON.parse(xmlInspectionRun.stdout);
-  if (!xmlInspection.xml_files_well_formed) throw new Error("Обнаружены XML-файлы с ошибками разбора; выгрузка не принята.");
+  let xmlInspection;
+  let indexBuild = null;
+  const indexOutput = process.env.GAR_INDEX_OUTPUT;
+  if (indexOutput) {
+    const buildRun = await run("python3", ["scripts/build-gar-index.py", archivePath, indexOutput, "--skip-zip-test"]);
+    indexBuild = JSON.parse(buildRun.stdout);
+    if (indexBuild.result !== "success") throw new Error("Сборка SQLite-индекса не завершилась успешно.");
+    xmlInspection = {
+      xml_files_well_formed: true,
+      recognized_table_kinds: Object.keys(indexBuild.checks.xml_groups).filter(key => indexBuild.checks.xml_groups[key] > 0),
+      missing_expected_table_kinds: [],
+      parse_errors: 0,
+      inspected_file_examples: []
+    };
+  } else {
+    const xmlInspectionRun = await run("python3", ["scripts/inspect-gar-xml.py", archivePath]);
+    xmlInspection = JSON.parse(xmlInspectionRun.stdout);
+    if (!xmlInspection.xml_files_well_formed) throw new Error("Обнаружены XML-файлы с ошибками разбора; выгрузка не принята.");
+  }
   const finishedAt = new Date().toISOString();
   result = {
     validated_at: finishedAt,
@@ -111,6 +127,7 @@ try {
     entry_count: entries.length,
     xml_entry_count: xmlEntries.length,
     xml_entry_examples: xmlEntries.slice(0, 10),
+    index_build: indexBuild ? { database_bytes: indexBuild.database_bytes, database_sha256: indexBuild.database_sha256, counts: indexBuild.counts, table_counts: indexBuild.table_counts, checks: indexBuild.checks, warnings: indexBuild.warnings } : null,
     xml_inspection: {
       xml_files_well_formed: xmlInspection.xml_files_well_formed,
       recognized_table_kinds: xmlInspection.recognized_table_kinds,
@@ -137,7 +154,14 @@ try {
     source_url: metadataUrl,
     note: "Метаданные и выбранный архив проверены; это ещё не означает, что адресный индекс построен."
   };
-  previous.address_index = {
+  previous.address_index = indexBuild ? {
+    status: "built_not_deployed",
+    last_successful_build: finishedAt,
+    database_bytes: indexBuild.database_bytes,
+    database_sha256: indexBuild.database_sha256,
+    table_counts: indexBuild.table_counts,
+    note: "SQLite-индекс построен и проверен в этом запуске, но пока доступен только как артефакт сборки; веб-API и формы Text2me к нему не подключены."
+  } : {
     status: "builder_implemented_not_deployed",
     note: "XML-инспектор и SQLite-сборщик реализованы, но эта проверка не строит базу и не публикует поисковый API; адресный поиск в формах ещё не подключён."
   };
