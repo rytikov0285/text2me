@@ -7,6 +7,9 @@ class FiasConnectorTests(unittest.TestCase):
     def test_extracts_only_official_release_link(self):
         html='<a href="https://evil.example/7707329152-fias/data.zip">bad</a><a href="https://fias.nalog.ru/opendata/7707329152-fias/data-23102026-structure.zip">good</a>'
         self.assertEqual(connector.extract_release_url(html),"https://fias.nalog.ru/opendata/7707329152-fias/data-23102026-structure.zip")
+    def test_rejects_non_dataset_path_on_official_host(self):
+        html='<a href="https://fias.nalog.ru/unrelated/7707329152-fias.zip">bad</a>'
+        with self.assertRaises(ValueError): connector.extract_release_url(html)
     def test_rejects_page_without_release(self):
         with self.assertRaises(ValueError): connector.extract_release_url('<a href="https://example.com/file.zip">file</a>')
     def test_extracts_date_metadata(self):
