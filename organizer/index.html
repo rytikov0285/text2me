@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Органайзер — документы, задачи и сроки | text2me</title>
+<meta name="description" content="Личное пространство text2me: документы, задачи и календарь сроков в одном месте.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://rytikov0285.github.io/text2me/organizer/">
+<link rel="stylesheet" href="/text2me/assets/style.css">
+<link rel="stylesheet" href="/text2me/assets/enhancements.css">
+<script defer src="/text2me/assets/enhancements.js"></script>
+<script defer src="/text2me/assets/organizer.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/text2me/" aria-label="text2me — главная"><span>text2me</span></a>
+<nav class="main-nav" aria-label="Основная навигация"><a href="/text2me/">Главная</a><a href="/text2me/documents/">Документы</a><a href="/text2me/business/">Бизнесу</a><a href="/text2me/space/">Мои документы</a><a href="/text2me/organizer/" aria-current="page">Органайзер</a></nav>
+<a class="button button-small button-outline" href="/text2me/documents/">Создать документ</a>
+</div></header>
+<main id="main" class="organizer-page">
+<section class="organizer-hero">
+<div><p class="organizer-eyebrow">Личное пространство text2me</p><h1>Документы, задачи и сроки — вместе</h1><p>Собирайте рабочие и личные файлы, связывайте документы с задачами и держите важные даты перед глазами.</p></div>
+<div class="organizer-status"><strong>Локальный прототип</strong><span>Файлы и задачи сохраняются в этом браузере. Они пока не загружаются в облако и не синхронизируются с мобильным приложением. Не используйте прототип как единственное хранилище важных документов.</span></div>
+</section>
+<div class="organizer-layout">
+<section class="organizer-panel organizer-calendar-panel" aria-labelledby="calendar-heading">
+<div class="organizer-panel-head"><div><p class="organizer-eyebrow">Планирование</p><h2 id="calendar-heading">Ваш календарь</h2></div><div class="calendar-controls"><button type="button" id="calendar-prev" aria-label="Предыдущий месяц">‹</button><button type="button" id="calendar-today">Сегодня</button><button type="button" id="calendar-next" aria-label="Следующий месяц">›</button></div></div>
+<div class="calendar-month-label" id="calendar-month-label"></div>
+<div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Календарь задач"></div>
+<div class="organizer-agenda"><div class="organizer-panel-head"><div><h3 id="agenda-heading">Ближайшие задачи</h3><p>Выберите день в календаре или добавьте задачу.</p></div></div><div id="agenda-list" class="agenda-list"></div></div>
+</section>
+<aside class="organizer-side">
+<section class="organizer-panel">
+<div class="organizer-panel-head"><div><p class="organizer-eyebrow">Не потерять срок</p><h2>Новая задача</h2></div></div>
+<form id="organizer-task-form" class="organizer-task-form">
+<label for="task-title">Что нужно сделать?</label><input id="task-title" name="title" required maxlength="180" placeholder="Например, отправить ответ на претензию">
+<div class="organizer-form-row"><div><label for="task-date">Дата</label><input id="task-date" name="date" type="date" required></div><div><label for="task-kind">Тип</label><select id="task-kind" name="kind"><option value="document">Документ</option><option value="payment">Платёж</option><option value="meeting">Встреча</option><option value="personal">Личное</option><option value="other">Другое</option></select></div></div>
+<label for="task-file">Связанный документ</label><select id="task-file" name="fileId"><option value="">Без привязки</option></select>
+<button class="button" type="submit">＋ Добавить задачу</button><p id="task-form-status" class="organizer-muted" aria-live="polite"></p>
+</form>
+</section>
+<section class="organizer-panel organizer-docs-panel">
+<div class="organizer-panel-head"><div><p class="organizer-eyebrow">Ваша библиотека</p><h2>Документы и файлы</h2></div><span class="organizer-count" id="file-count">0</span></div>
+<label class="organizer-upload" for="organizer-file-input"><span class="organizer-upload-icon">＋</span><strong>Добавить файлы</strong><small>Выберите один или несколько файлов любого распространённого типа</small></label>
+<input id="organizer-file-input" type="file" multiple hidden>
+<div id="upload-status" class="organizer-muted" aria-live="polite"></div>
+<label class="organizer-search-label" for="file-search">Найти в документах</label><input id="file-search" class="organizer-file-search" type="search" placeholder="По названию файла">
+<div id="organizer-file-list" class="organizer-file-list"></div>
+</section>
+</aside>
+</div>
+<footer class="organizer-footer"><a href="/text2me/space/">Открыть редактор документов →</a><span>Облачное хранение, общий доступ и мобильная синхронизация ещё не подключены.</span></footer>
+</main>
+</body>
+</html>
