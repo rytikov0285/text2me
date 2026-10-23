@@ -84,3 +84,12 @@
 - **Optional expert service:** independent property damage assessment or lawyer review through verified providers, with transparent price and referral disclosure.
 - **Retention:** a “Case” page with timeline, outgoing documents, delivery proofs, evidence, repair estimates, expenses, tasks and outcome status. Users should be able to export the entire case.
 - **Insurance brand:** “Strah2me” is a workable naming concept only pending domain, trademark and market checks. Position it as a comparison/partner marketplace, not as an insurer unless the business obtains the necessary legal status. Start with apartment coverage (finishing, furniture/electronics, civil liability to neighbours), then separate OSAGO/CASCO flows. Existing comparison services show these are established categories, so differentiation should be the link to a user's documents, property risks and reminders—not merely another list of policies.
+
+
+## Follow-up integration audit — 23.10.2026
+
+- Исправлена структура сохраняемого документа: теперь сценарий использует те же поля `text2me.space.v1`, что и общая библиотека («Мои документы»), включая дату создания, версию, историю версий, коллекцию, теги и архивный статус.
+- Черновик сценария теперь сохраняет также поля претензии, текст сгенерированных документов, отметки чек-листа и состояние открытых этапов; после перезагрузки страница пытается восстановить их из localStorage.
+- Дата по умолчанию берётся в локальном часовом поясе устройства, а не через UTC-срез ISO-строки.
+- Подтверждено чтением исходников: ключ задач совпадает с органайзером (`text2me.organizer.tasks.v1`), а CSS `assets/style.css` существует. Схема задачи содержит используемые органайзером поля `id`, `title`, `date`, `kind`, `fileId`, `done`, `created`.
+- Ограничение проверки: браузерный запуск и E2E-тесты по-прежнему не выполнены; CI не вернул настроенных проверок. Не считать изменения доказанно работающими в опубликованной версии до ручного прогона.
