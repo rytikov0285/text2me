@@ -1,0 +1,22 @@
+{
+  "id": "/text2me/",
+  "name": "text2me — документы и органайзер",
+  "short_name": "text2me",
+  "description": "Создание документов для личных и деловых задач, файлы, календарь и сроки.",
+  "lang": "ru",
+  "start_url": "/text2me/",
+  "scope": "/text2me/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f5f7fb",
+  "theme_color": "#214f91",
+  "categories": ["productivity", "business", "utilities"],
+  "icons": [
+    {
+      "src": "/text2me/assets/text2me-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
