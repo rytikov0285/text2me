@@ -20,6 +20,7 @@ assert.equal(schema.entities.document_reference.planned, false, "Document refere
 assert.ok(html.includes("function renderDocuments()"), "Document reference rendering is missing");
 assert.ok(html.includes('bindOpen("addDocument","document")'), "Document reference form is not connected");
 assert.ok(html.includes('caseId:type==="case"?"":node("entryCase").value'), "Case relationship field is not saved");
+assert.ok(html.includes('data-related="task:') && html.includes('data-related="event:') && html.includes('data-related="document:'), "Case quick actions are missing");
 assert.equal(schema.storage.cloud_sync, false, "Cloud sync must not be claimed as implemented");
 assert.ok(calendar.includes('id="calendar"') && calendar.includes('id="events"'), "Calendar controls are missing");
 assert.ok(calendar.includes("text2me.dashboard.v1"), "Calendar must share workspace storage");
