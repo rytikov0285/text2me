@@ -42,6 +42,18 @@ with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
                                   capture_output=True, text=True, encoding="utf-8", check=True)
     house_result = json.loads(house_search.stdout)
     assert any(row["kind"] == "house" and row["house_number"] == "12А" for row in house_result["results"]), house_result
+    os.environ["GAR_DATABASE_PATH"] = str(output)
+    import importlib.util
+    api_file = Path(__file__).resolve().parents[1] / "api" / "gar_api.py"
+    spec = importlib.util.spec_from_file_location("text2me_gar_api_test", api_file)
+    api = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(api)
+    api_result = api.search("Тестовая", 10, False)
+    assert api_result["count"] >= 1 and api_result["results"][0]["name"] == "Тестовая область", api_result
+    api_house_result = api.search("12А", 10, True)
+    assert any(row["kind"] == "house" and row["house_number"] == "12А" for row in api_house_result["results"]), api_house_result
+    ready, health = (True, None)
+    assert api.DB_PATH == output, "API must use the configured SQLite database path"
     before = output.read_bytes()
     broken = root / "broken.zip"
     with zipfile.ZipFile(broken, "w", compression=zipfile.ZIP_DEFLATED) as zf:
@@ -50,4 +62,4 @@ with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
                             capture_output=True, text=True, encoding="utf-8")
     assert failed.returncode != 0, "Builder must reject an archive missing required GAR tables."
     assert output.read_bytes() == before, "Failed update must preserve the last successful database."
-    print("PASS: synthetic GAR build, search, and failed-update preservation.")
+    print("PASS: synthetic GAR build, CLI/API address search, and failed-update preservation.")
