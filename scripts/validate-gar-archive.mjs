@@ -95,6 +95,9 @@ try {
   if (!entries.length) throw new Error("ZIP-архив пуст.");
   const xmlEntries = entries.filter(name => /\.xml$/i.test(name));
   if (!xmlEntries.length) throw new Error("В архиве не найдены XML-файлы; набор не принят.");
+  const xmlInspectionRun = await run("python3", ["scripts/inspect-gar-xml.py", archivePath]);
+  const xmlInspection = JSON.parse(xmlInspectionRun.stdout);
+  if (!xmlInspection.xml_files_well_formed) throw new Error("Обнаружены XML-файлы с ошибками разбора; выгрузка не принята.");
   const finishedAt = new Date().toISOString();
   result = {
     validated_at: finishedAt,
