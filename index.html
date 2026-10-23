@@ -209,6 +209,42 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 @media(max-width:760px){.directory-shortcuts a{min-height:46px}.directory-open{min-height:44px}.directory-subsections a{min-height:66px}}
 @media(prefers-reduced-motion:reduce){.directory-subsections a,.directory-shortcuts a{scroll-behavior:auto;transition:none}}
 </style>
+<style id="homepage-dashboard-layout">
+.home-directory-layout{display:grid!important;grid-template-columns:205px minmax(0,1fr) 205px;grid-template-areas:"left main right";gap:16px;align-items:start;max-width:1480px;margin:0 auto;padding:14px 0 18px}
+.home-quick-left{grid-area:left}.home-directory{grid-area:main;min-width:0;max-width:none!important;margin:0!important;padding:0!important}.home-quick-right{grid-area:right}
+.home-quick-panel{display:flex;flex-direction:column;gap:12px;min-width:0}
+.quick-panel-card{padding:13px 12px;border:1px solid #e1e5eb;border-radius:11px;background:#fff;box-shadow:0 1px 3px #172b4d08}
+.quick-panel-card h2{margin:0 0 10px;font-size:13px;line-height:1.3;font-weight:800;color:#252a31}
+.quick-panel-card>a:not(.quick-primary){display:block;padding:8px 7px;border-radius:6px;color:#35445a;text-decoration:none;font-size:12px;line-height:1.35;border-bottom:1px solid #f0f1f4}
+.quick-panel-card>a:not(.quick-primary):last-child{border-bottom:0}
+.quick-panel-card>a:not(.quick-primary):hover{background:#f3f6fb;color:#174ea6}
+.quick-panel-card .quick-primary{display:block;padding:10px 9px;margin-bottom:5px;border-radius:7px;background:#1a73e8;color:#fff;text-align:center;text-decoration:none;font-size:12px;font-weight:800;line-height:1.4}
+.quick-panel-card .quick-primary:hover{background:#1558b0}
+.quick-panel-all{font-weight:800!important;color:#174ea6!important}
+.quick-panel-feature p{margin:0 0 11px;color:#5f6672;font-size:12px;line-height:1.45}
+.quick-panel-feature small{display:block;margin-top:9px;color:#777e88;font-size:10px;line-height:1.45}
+.directory-hero{padding:5px 0 9px}
+.directory-hero h1{font-size:clamp(26px,2.4vw,34px);letter-spacing:-.035em}
+.directory-hero>p:not(.directory-eyebrow){font-size:13px;line-height:1.45}
+.directory-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:12px}
+.directory-shortcuts a{justify-content:space-between;gap:5px;padding:10px 9px;min-height:42px;font-size:12px;border-radius:8px}
+.directory-block{margin-top:10px;padding:13px 14px;border-radius:10px;box-shadow:none}
+.directory-block-head{grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+.directory-block-head h2{font-size:16px;letter-spacing:-.01em}
+.directory-block-head p{margin-top:3px;font-size:11px;line-height:1.4}
+.directory-open{padding:7px 8px;min-height:34px;font-size:11px}
+.directory-subsections{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:10px 0 0}
+.directory-subsections a{padding:9px 10px;min-height:56px;border-radius:7px;gap:3px}
+.directory-subsections strong{font-size:12px;line-height:1.35}
+.directory-subsections span{font-size:10.5px;line-height:1.35}
+.directory-subsections em{font-size:9px}
+.home-directory-layout+.dash-footer{margin-top:10px}
+@media(max-width:1180px){.home-directory-layout{grid-template-columns:180px minmax(0,1fr);grid-template-areas:"left main" "right main";gap:12px}.home-quick-right{grid-area:right}.home-quick-left{grid-area:left}.directory-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.home-directory-layout{grid-template-columns:165px minmax(0,1fr);grid-template-areas:"left main" "right main";gap:10px}.quick-panel-card{padding:10px 8px}.quick-panel-card h2{font-size:12px}.quick-panel-card>a:not(.quick-primary){font-size:11px;padding:7px 5px}.directory-block-head{grid-template-columns:1fr}.directory-open{justify-self:start}.directory-subsections{grid-template-columns:1fr}}
+@media(max-width:680px){.home-directory-layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "left" "right";gap:12px;padding-top:8px}.home-quick-panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:8px}.home-quick-left,.home-quick-right{display:grid}.quick-panel-card{padding:12px}.quick-panel-feature{grid-column:1/-1}.directory-hero{padding:3px 0 5px}.directory-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}.directory-block{padding:12px}.directory-block-head{grid-template-columns:minmax(0,1fr) auto}.directory-subsections{grid-template-columns:repeat(2,minmax(0,1fr))}.directory-open{justify-self:end}}
+@media(max-width:420px){.home-quick-panel{grid-template-columns:1fr}.directory-hero h1{font-size:29px}.directory-block-head{grid-template-columns:1fr}.directory-open{justify-self:start}.directory-subsections{grid-template-columns:1fr}.directory-shortcuts a{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.quick-panel-card a,.directory-subsections a,.directory-shortcuts a{transition:none}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -226,66 +262,103 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 </header>
 
 <div class="workspace-layout home-directory-layout">
+<aside class="home-quick-panel home-quick-left" aria-label="Быстрый доступ к задачам">
+  <section class="quick-panel-card">
+    <h2>Быстрый старт</h2>
+    <a class="quick-primary" href="/text2me/documents/">＋ Создать документ</a>
+    <a href="/text2me/situations/">Разобрать ситуацию</a>
+    <a href="/text2me/prompts/">Подготовить текст</a>
+    <a href="/text2me/business/">Задача для бизнеса</a>
+  </section>
+  <section class="quick-panel-card">
+    <h2>Популярные документы</h2>
+    <a href="/text2me/documents/pretenziya-prodavtsu/">Претензия продавцу</a>
+    <a href="/text2me/documents/dogovor-arendy/">Договор найма жилья</a>
+    <a href="/text2me/documents/isk-v-sud/">Исковое заявление</a>
+    <a class="quick-panel-all" href="/text2me/documents/">Весь каталог →</a>
+  </section>
+  <section class="quick-panel-card">
+    <h2>По ситуации</h2>
+    <a href="/text2me/situations/#bad-goods">Возврат денег</a>
+    <a href="/text2me/situations/#salary">Работа и зарплата</a>
+    <a href="/text2me/situations/#housing">Жильё и ЖКХ</a>
+    <a href="/text2me/situations/#bank">Деньги и долги</a>
+  </section>
+</aside>
+
 <main id="main" class="workspace-main home-directory">
 <section class="directory-hero" aria-labelledby="main-title">
   <h1 id="main-title">Что нужно сделать?</h1>
-  <p>Выберите задачу. Откроется нужный раздел с доступными документами и инструментами.</p>
+  <p>Выберите действие или найдите нужный документ через поиск выше.</p>
   <div class="directory-shortcuts" aria-label="Основные задачи">
-    <a href="/text2me/documents/">Подготовить документ <span aria-hidden="true">→</span></a>
-    <a href="/text2me/situations/">Решить ситуацию <span aria-hidden="true">→</span></a>
-    <a href="/text2me/prompts/">Подготовить текст <span aria-hidden="true">→</span></a>
-    <a href="/text2me/business/">Задача для бизнеса <span aria-hidden="true">→</span></a>
+    <a href="/text2me/documents/">Документ <span aria-hidden="true">→</span></a>
+    <a href="/text2me/situations/">Ситуация <span aria-hidden="true">→</span></a>
+    <a href="/text2me/prompts/">Текст <span aria-hidden="true">→</span></a>
+    <a href="/text2me/business/">Для бизнеса <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
 <section class="directory-block" id="documents" aria-labelledby="directory-documents">
-  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">01</span><div><h2 id="directory-documents">Подготовить документ</h2><p>Выберите готовый конструктор или найдите другой тип документа.</p></div><a class="directory-open" href="/text2me/documents/">Все документы <span aria-hidden="true">→</span></a></div>
+  <div class="directory-block-head"><div><h2 id="directory-documents">Документы</h2><p>Подготовьте черновик или откройте каталог.</p></div><a class="directory-open" href="/text2me/documents/">Все документы <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span>Заполнить договор и акт передачи.</span><em>Конструктор доступен</em></a>
-    <a href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензия продавцу</strong><span>Подготовить требование по покупке или возврату денег.</span><em>Конструктор доступен</em></a>
-    <a href="/text2me/documents/isk-v-sud/"><strong>Исковое заявление</strong><span>Составить черновик и проверить структуру требований.</span><em>Конструктор доступен</em></a>
-    <a href="/text2me/documents/"><strong>Другой документ</strong><span>Открыть каталог договоров, заявлений, писем и актов.</span></a>
+    <a href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span>Договор и акт передачи.</span></a>
+    <a href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензия продавцу</strong><span>Требование по покупке или возврату денег.</span></a>
+    <a href="/text2me/documents/isk-v-sud/"><strong>Исковое заявление</strong><span>Черновик заявления в суд.</span></a>
+    <a href="/text2me/documents/"><strong>Другой документ</strong><span>Договоры, заявления, письма и акты.</span></a>
   </div>
 </section>
 
 <section class="directory-block" id="situations" aria-labelledby="directory-situations">
-  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">02</span><div><h2 id="directory-situations">Разобраться в ситуации</h2><p>Если не знаете, какой документ нужен: выберите проблему и пройдите по шагам.</p></div><a class="directory-open" href="/text2me/situations/">Все ситуации <span aria-hidden="true">→</span></a></div>
+  <div class="directory-block-head"><div><h2 id="directory-situations">Решить ситуацию</h2><p>Выберите проблему, чтобы понять следующие шаги и нужные документы.</p></div><a class="directory-open" href="/text2me/situations/">Все ситуации <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/situations/#bad-goods"><strong>Возврат денег и покупки</strong><span>Брак товара, возврат, спор с продавцом или исполнителем.</span></a>
-    <a href="/text2me/situations/#salary"><strong>Работа и зарплата</strong><span>Задержка выплат, увольнение, рабочие документы.</span></a>
-    <a href="/text2me/situations/#housing"><strong>Жильё и ЖКХ</strong><span>Аренда, коммунальные услуги, управляющая компания.</span></a>
-    <a href="/text2me/situations/#bank"><strong>Деньги, долги и споры</strong><span>Банковские вопросы, задолженность и дальнейшие действия.</span></a>
-    <a href="/text2me/guides/"><strong>Как действовать и что проверить</strong><span>Короткие инструкции перед подачей или подписанием.</span></a>
-    <a href="/text2me/sources/"><strong>Найти официальный источник</strong><span>Государственные органы и официальные сервисы.</span></a>
+    <a href="/text2me/situations/#bad-goods"><strong>Покупки и возврат денег</strong><span>Брак, возврат, спор с продавцом.</span></a>
+    <a href="/text2me/situations/#salary"><strong>Работа и зарплата</strong><span>Выплаты, увольнение, рабочие документы.</span></a>
+    <a href="/text2me/situations/#housing"><strong>Жильё и ЖКХ</strong><span>Аренда, коммунальные вопросы.</span></a>
+    <a href="/text2me/situations/#bank"><strong>Деньги и долги</strong><span>Банки, задолженность, спор.</span></a>
   </div>
 </section>
 
 <section class="directory-block" id="texts" aria-labelledby="directory-texts">
-  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">03</span><div><h2 id="directory-texts">Подготовить или исправить текст</h2><p>Для писем, обращений, описаний и личных сообщений.</p></div><a class="directory-open" href="/text2me/prompts/">Все инструменты для текста <span aria-hidden="true">→</span></a></div>
+  <div class="directory-block-head"><div><h2 id="directory-texts">Тексты и инструкции</h2><p>Подготовьте письмо или обращение либо найдите порядок действий.</p></div></div>
   <div class="directory-subsections">
-    <a href="/text2me/prompts/"><strong>Деловое письмо или обращение</strong><span>Подготовить текст под цель и адресата.</span></a>
-    <a href="/text2me/prompts/#personal-prompts"><strong>Личный текст</strong><span>Поздравление, сообщение или текст для повседневной задачи.</span></a>
+    <a href="/text2me/prompts/"><strong>Письмо или обращение</strong><span>Деловой текст под вашу задачу.</span></a>
+    <a href="/text2me/guides/"><strong>Пошаговая инструкция</strong><span>Что проверить и как действовать.</span></a>
+    <a href="/text2me/sources/"><strong>Официальные источники</strong><span>Государственные органы и сервисы.</span></a>
+    <a href="/text2me/knowledge/"><strong>Справочные материалы</strong><span>Объяснения по темам.</span></a>
   </div>
 </section>
 
 <section class="directory-block" id="business" aria-labelledby="directory-business">
-  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">04</span><div><h2 id="directory-business">Решить задачу для бизнеса</h2><p>Документы и рабочие вопросы предпринимателя или организации.</p></div><a class="directory-open" href="/text2me/business/">Раздел для бизнеса <span aria-hidden="true">→</span></a></div>
+  <div class="directory-block-head"><div><h2 id="directory-business">Для бизнеса</h2><p>Рабочие документы и профессиональная поддержка.</p></div><a class="directory-open" href="/text2me/business/">Раздел для бизнеса <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/business/"><strong>Документы и рабочие процессы</strong><span>Открыть материалы для организационных задач.</span></a>
-    <a href="/text2me/services/"><strong>Бухгалтерские, юридические и маркетинговые услуги</strong><span>Посмотреть направления профессиональной поддержки.</span></a>
+    <a href="/text2me/business/"><strong>Документы и рабочие процессы</strong><span>Материалы для предпринимателей и организаций.</span></a>
+    <a href="/text2me/services/"><strong>Профессиональные услуги</strong><span>Юридические, бухгалтерские и другие направления.</span></a>
     <a href="/text2me/request/"><strong>Передать задачу специалисту</strong><span>Описать запрос в форме обращения.</span></a>
   </div>
 </section>
-
-<section class="directory-block" id="my-materials" aria-labelledby="directory-materials">
-  <div class="directory-block-head"><span class="directory-number" aria-hidden="true">05</span><div><h2 id="directory-materials">Мои документы</h2><p>Вернитесь к сохранённым материалам или продолжите работу.</p></div><a class="directory-open" href="/text2me/space/">Открыть материалы <span aria-hidden="true">→</span></a></div>
-  <div class="directory-subsections directory-subsections-compact">
-    <a href="/text2me/space/"><strong>Сохранённые документы</strong><span>Открыть черновики и библиотеку в этом браузере.</span></a>
-    <a href="/text2me/updates/"><strong>Обновления инструментов</strong><span>Посмотреть, что изменилось и какие функции доступны.</span></a>
-  </div>
-  <p class="directory-note">Документы сохраняются в текущем браузере. Синхронизация между устройствами не подключена.</p>
-</section>
 </main>
+
+<aside class="home-quick-panel home-quick-right" aria-label="Мои материалы и дополнительные действия">
+  <section class="quick-panel-card quick-panel-feature">
+    <h2>Мои документы</h2>
+    <p>Вернитесь к сохранённым материалам на этом устройстве.</p>
+    <a class="quick-primary" href="/text2me/space/">Открыть библиотеку →</a>
+    <small>Сохранение работает в текущем браузере; синхронизации между устройствами нет.</small>
+  </section>
+  <section class="quick-panel-card">
+    <h2>Полезные инструменты</h2>
+    <a href="/text2me/documents/">Каталог документов</a>
+    <a href="/text2me/guides/">Инструкции</a>
+    <a href="/text2me/knowledge/">База знаний</a>
+    <a href="/text2me/sources/">Официальные источники</a>
+  </section>
+  <section class="quick-panel-card">
+    <h2>Помощь по сайту</h2>
+    <a href="/text2me/updates/">Что нового</a>
+    <a href="/text2me/privacy/">Конфиденциальность</a>
+    <a href="/text2me/security/">Безопасность данных</a>
+  </section>
+</aside>
 </div>
 <footer class="dash-footer"><nav class="dash-footer-catalog" aria-label="Быстрая навигация и информация о сайте"><strong>Разделы сайта:</strong><a href="/text2me/">Главная</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/prompts/#personal-prompts">Личное</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/people/">Гражданам</a><a href="/text2me/business/">Организациям</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/privacy/">Конфиденциальность</a><a href="/text2me/security/">Безопасность данных</a><a href="/text2me/terms/">Условия использования</a><a href="/text2me/updates/">Обновления</a></nav><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
 </div>
