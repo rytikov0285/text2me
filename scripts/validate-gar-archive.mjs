@@ -135,7 +135,7 @@ try {
       parse_errors: xmlInspection.parse_errors.length,
       inspected_file_examples: xmlInspection.files.slice(0, 20)
     },
-    note: "Архив скачан во временное хранилище Actions, ZIP-тест и потоковый синтаксический разбор XML пройдены. Это не подтверждает XSD, целостность ссылок между объектами или готовность адресного индекса."
+    note: indexBuild ? "ZIP CRC, разбор XML, структура SQLite и контрольные связи проверены. API не развёрнут и формы не подключены." : "Архив скачан во временное хранилище Actions, ZIP-тест и потоковый синтаксический разбор XML пройдены. Это не подтверждает XSD, целостность ссылок между объектами или готовность адресного индекса."
   };
   previous.last_archive_validation = result;
   previous.last_successful_source_check = {
@@ -152,7 +152,7 @@ try {
     finished_at: finishedAt,
     result: "success",
     source_url: metadataUrl,
-    note: "Метаданные и выбранный архив проверены; это ещё не означает, что адресный индекс построен."
+    note: indexBuild ? "Метаданные, архив и SQLite-индекс проверены; поисковый API ещё не развёрнут." : "Метаданные и выбранный архив проверены; это ещё не означает, что адресный индекс построен."
   };
   previous.address_index = indexBuild ? {
     status: "built_not_deployed",
