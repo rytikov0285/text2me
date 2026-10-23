@@ -40,6 +40,25 @@ def extract_release_url(html,page_url=SOURCE_PAGE):
 def extract_date_after_label(text,label):
     match=re.search(re.escape(label)+r"\s*[:：]?\s*(\d{2}\.\d{2}\.\d{4})",text,re.IGNORECASE)
     return match.group(1) if match else None
+def inspect_release_size(url):
+    """HEAD-only preflight; never downloads the archive body."""
+    headers={"User-Agent":USER_AGENT,"Range":"bytes=0-0"}
+    request=urllib.request.Request(url,headers=headers,method="HEAD")
+    try:
+        response=urllib.request.urlopen(request,timeout=45)
+    except Exception:
+        request=urllib.request.Request(url,headers=headers)
+        response=urllib.request.urlopen(request,timeout=45)
+    with response:
+        final_host=(urllib.parse.urlparse(response.geturl()).hostname or "").lower()
+        if final_host not in ALLOWED_HOSTS: raise ValueError("Archive preflight redirected to unexpected host: "+final_host)
+        declared=response.headers.get("Content-Length")
+        size=int(declared) if declared and declared.isdigit() else None
+        return {"http_status":getattr(response,"status",None),"declared_size_bytes":size,
+                "accept_ranges":response.headers.get("Accept-Ranges"),
+                "content_range":response.headers.get("Content-Range"),
+                "fits_configured_archive_limit":(size is not None and size<=MAX_ARCHIVE_BYTES)}
+
 def validate_archive_file(path,size,sha256):
     if size<4: raise ValueError("Downloaded archive is empty or too small to be a ZIP")
     with open(path,"rb") as stream:
@@ -114,17 +133,23 @@ def run_check(path):
         attempt["source_data_current_date"]=extract_date_after_label(page_text,"Дата актуальности")
         previous=status.get("last_archive_validation") or {}
         index_output=os.environ.get("GAR_INDEX_OUTPUT") or None
-        same_release=(previous.get("release_url")==release_url and previous.get("archive_crc_validation")=="passed")
-        prior_index=(previous.get("index_build") or {}).get("result")=="success"
-        if same_release and (not index_output or prior_index):
-            attempt["archive_action"]="skipped_unchanged_release"
-            attempt["archive_validation"]={key:previous.get(key) for key in ("sha256","archive_size_bytes","archive_members","xml_members","uncompressed_size_bytes","index_build")}
-            attempt["archive_validation"]["archive_crc_validation"]="passed_previous_run"
+        preflight=os.environ.get("GAR_PREFLIGHT_ONLY","").lower() in ("1","true","yes")
+        if preflight:
+            attempt["archive_action"]="size_preflight_only"
+            attempt["archive_validation"]=inspect_release_size(release_url)
+            attempt["archive_validation"]["note"]="Only HTTP headers were checked; archive body was not downloaded and no index was built."
         else:
-            attempt["archive_action"]="download_validate_and_build_index" if index_output else "download_and_validate"
-            validated=download_and_validate(release_url,index_output)
-            attempt["archive_validation"]=validated
-            status["last_archive_validation"]={"validated_at":utc_now(),"release_url":release_url,**validated}
+            same_release=(previous.get("release_url")==release_url and previous.get("archive_crc_validation")=="passed")
+            prior_index=(previous.get("index_build") or {}).get("result")=="success"
+            if same_release and (not index_output or prior_index):
+                attempt["archive_action"]="skipped_unchanged_release"
+                attempt["archive_validation"]={key:previous.get(key) for key in ("sha256","archive_size_bytes","archive_members","xml_members","uncompressed_size_bytes","index_build")}
+                attempt["archive_validation"]["archive_crc_validation"]="passed_previous_run"
+            else:
+                attempt["archive_action"]="download_validate_and_build_index" if index_output else "download_and_validate"
+                validated=download_and_validate(release_url,index_output)
+                attempt["archive_validation"]=validated
+                status["last_archive_validation"]={"validated_at":utc_now(),"release_url":release_url,**validated}
         attempt["status"]="success"; status["status"]="healthy"
         status["last_successful_source_check"]={"checked_at":utc_now(),"source_page":SOURCE_PAGE,"release_url":release_url,"source_last_changed":attempt["source_last_changed"],"source_data_current_date":attempt["source_data_current_date"]}
     except Exception as exc:
