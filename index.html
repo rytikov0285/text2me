@@ -18,6 +18,10 @@
 <script defer src="/text2me/assets/enhancements.js"></script>
 <script defer src="/text2me/assets/analytics-config.js"></script>
 <style>
+.directory-hero{position:sticky;top:0;z-index:30;background:var(--dash-paper);border-bottom:1px solid var(--dash-line);padding:12px 24px!important;margin:0 -24px!important}
+.directory-hero .directory-eyebrow{margin:0 0 5px!important;font-size:10px!important}
+.directory-hero h1{font-size:clamp(21px,2vw,28px)!important;line-height:1.15!important;margin:0 0 5px!important}
+.directory-hero .directory-lead{max-width:1200px;font-size:12px!important;line-height:1.45!important;margin:0!important}
 .home-category-overview .directory-subsections{grid-template-columns:repeat(2,minmax(0,1fr))}
 .home-category-overview .directory-subsections>a{min-height:90px}
 @media(max-width:440px){.home-category-overview .directory-subsections{grid-template-columns:1fr}}
@@ -296,6 +300,11 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <nav class="dash-nav workspace-top-links acrobat-nav" aria-label="Основная навигация"><a class="active" href="/text2me/">Главная</a><a href="/text2me/documents/">Документы</a><a href="/text2me/situations/">По ситуации</a><a href="/text2me/business/">Для бизнеса</a><a href="/text2me/space/">Мои документы</a></nav>
 </header>
 
+<section class="directory-hero" aria-labelledby="main-title">
+  <p class="directory-eyebrow">text2me · практические задачи и документы</p>
+  <h1 id="main-title">Разберитесь в ситуации. Подготовьте нужный документ. Сэкономьте время.</h1>
+  <p class="directory-lead">text2me помогает понять, с чего начать, найти подходящий документ или инструкцию и подготовить рабочий черновик — для личных дел, общения с организациями и бизнеса.</p>
+</section>
 <div class="workspace-layout home-directory-layout">
 <aside class="home-quick-panel home-quick-left" aria-label="Быстрый старт">
   <section class="quick-panel-card">
@@ -307,11 +316,7 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
   </section>
 </aside>
 <main id="main" class="workspace-main home-directory">
-<section class="directory-hero" aria-labelledby="main-title">
-  <p class="directory-eyebrow">text2me · практические задачи и документы</p>
-  <h1 id="main-title">Разберитесь в ситуации. Подготовьте нужный документ. Сэкономьте время.</h1>
-  <p class="directory-lead">text2me помогает понять, с чего начать, найти подходящий документ или инструкцию и подготовить рабочий черновик — для личных дел, общения с организациями и бизнеса.</p>
-</section>
+
 <section class="directory-block home-category-overview" id="categories" aria-labelledby="category-overview-title">
   <div class="directory-block-head"><div><h2 id="category-overview-title">Разделы text2me</h2><p>Выберите направление — внутри находятся материалы и инструменты для работы.</p></div></div>
   <div class="directory-subsections">
@@ -322,7 +327,6 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
     <a data-task-id="business_contracts_processes" href="/text2me/business/"><strong>Для бизнеса и специалистов</strong><span>Рабочие документы, деловые задачи и профессиональные направления.</span></a>
     <a data-task-id="find_official_source" href="/text2me/sources/"><strong>Официальные источники</strong><span>Перейти к государственным органам и другим официальным ресурсам.</span></a>
   </div>
-</section>
 </section>
 </main>
 
