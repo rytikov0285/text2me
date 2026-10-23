@@ -344,6 +344,7 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
   <p class="text2me-home-detail">Опишите, что вам нужно, ответьте на понятные вопросы, проверьте результат и скачайте документ для дальнейшего использования.</p>
   <div class="text2me-home-actions">
     <a class="text2me-home-primary" href="/text2me/documents/">＋ Создать документ</a>
+    <a href="/text2me/situations/zatoplenie-kvartiry/" data-task-id="situation_apartment_flood">Затопило квартиру — пройти по шагам</a>
     <a href="/text2me/people/">Личные задачи</a>
     <a href="/text2me/business/">Документы для бизнеса</a>
     <a href="/text2me/space/">Мои документы</a>
@@ -419,7 +420,8 @@ var index=[
 {title:"Официальные источники",desc:"Справочник государственных органов, нотариата и финансовых источников.",url:"/text2me/sources/",keys:"источник официальные органы нотариат банк фнс закон"},
 {title:"Гайды по документам",desc:"Как выбрать документ и что проверить перед подписанием.",url:"/text2me/guides/",keys:"гайд гайды подписанием договор проверить документ"},
 {title:"Обновления сайта",desc:"Журнал изменений и доступности функций.",url:"/text2me/updates/",keys:"обновления что изменилось шаблоны изменения законов"},
-{title:"Органайзер и календарь",desc:"Локальный прототип: загрузка файлов, задачи по датам и привязка документов.",url:"/text2me/organizer/",keys:"органайзер календарь задача срок напоминание файлы загрузить документы личное пространство"}];
+{title:"Органайзер и календарь",desc:"Локальный прототип: загрузка файлов, задачи по датам и привязка документов.",url:"/text2me/organizer/",keys:"органайзер календарь задача срок напоминание файлы загрузить документы личное пространство"},
+{title:"Затопило квартиру",desc:"Пошаговый сценарий: заявление в УК, фиксация ущерба, претензия и контрольные даты.",url:"/text2me/situations/zatoplenie-kvartiry/",keys:"залив затопление квартира вода потолок соседи управляющая компания УК акт ущерб претензия иск суд"}];
 var searchForm=document.getElementById("title-search-form"),searchInput=document.getElementById("title-search"),results=document.getElementById("title-search-results"),status=document.getElementById("title-search-status");
 function search(){var q=(searchInput.value||"").trim().toLocaleLowerCase("ru");results.replaceChildren();if(!q){status.textContent="Введите название или несколько ключевых слов.";searchInput.focus();return}var terms=q.split(/\s+/).filter(Boolean);var found=index.map(function(item){var hay=(item.title+" "+item.desc+" "+item.keys).toLocaleLowerCase("ru");var score=terms.reduce(function(n,t){return n+(hay.includes(t)?1:0)},0);return {item:item,score:score}}).filter(function(x){return x.score>0}).sort(function(a,b){return b.score-a.score}).slice(0,5);if(!found.length){status.textContent="Совпадений в текущем каталоге нет. Попробуйте другое название.";return}status.textContent="Найдено направлений: "+found.length+". Проверяйте статус перед переходом.";found.forEach(function(x){var a=document.createElement("a");a.className="search-result";a.href=x.item.url;var s=document.createElement("strong");s.textContent=x.item.title;var sm=document.createElement("small");sm.textContent=x.item.desc;a.append(s,sm);results.appendChild(a)})}
 searchForm.addEventListener("submit",function(e){e.preventDefault();search()});
