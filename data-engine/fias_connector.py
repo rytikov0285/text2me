@@ -34,7 +34,7 @@ def extract_release_url(html,page_url=SOURCE_PAGE):
     for href in parser.links:
         absolute=urllib.parse.urljoin(page_url,href); parsed=urllib.parse.urlparse(absolute)
         host,path=(parsed.hostname or "").lower(),parsed.path.lower()
-        if parsed.scheme=="https" and host in ALLOWED_HOSTS and "7707329152-fias" in path and path.endswith(".zip"): candidates.append(absolute)
+        if parsed.scheme=="https" and host in ALLOWED_HOSTS and path.startswith("/opendata/7707329152-fias/") and path.endswith(".zip"): candidates.append(absolute)
     if not candidates: raise ValueError("No official GAR/FIAS ZIP link found on FNS open-data page")
     return candidates[0]
 def extract_date_after_label(text,label):
