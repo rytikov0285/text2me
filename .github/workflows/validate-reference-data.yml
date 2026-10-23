@@ -6,6 +6,8 @@ on:
       - "data-engine/**"
       - "scripts/monitor-gar-fias.mjs"
       - "scripts/validate-reference-data.mjs"
+      - "scripts/build-gar-index.py"
+      - "scripts/test-build-gar-index.py"
       - ".github/workflows/**"
   push:
     paths:
@@ -31,3 +33,7 @@ jobs:
         run: node scripts/validate-reference-data.mjs
       - name: Syntax-check monitoring script
         run: node --check scripts/monitor-gar-fias.mjs
+      - name: Compile Python data-engine scripts
+        run: python3 -m py_compile scripts/build-gar-index.py scripts/test-build-gar-index.py scripts/inspect-gar-xml.py
+      - name: Run synthetic GAR index regression test
+        run: python3 scripts/test-build-gar-index.py
