@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Движок справочников и актуализации данных — text2me</title>
+<meta name="description" content="Планируемый движок text2me для автоматической актуализации адресов ГАР/ФИАС, почтовых индексов, судов, органов власти и других справочников из официальных источников.">
+<link rel="canonical" href="https://rytikov0285.github.io/text2me/data-engine/">
+<meta property="og:title" content="Движок справочников — text2me">
+<meta property="og:description" content="Источники, статус проверки и план автоматического обновления справочников.">
+<meta property="og:url" content="https://rytikov0285.github.io/text2me/data-engine/">
+<link rel="stylesheet" href="/text2me/assets/style.css">
+<link rel="stylesheet" href="/text2me/assets/enhancements.css">
+<meta name="robots" content="index,follow">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/text2me/" aria-label="text2me — главная">text<span class="brand-dot">2</span>me</a>
+<nav class="main-nav" aria-label="Основная навигация">
+<a href="/text2me/">Главная</a><a href="/text2me/documents/">Документы</a><a href="/text2me/situations/">По ситуации</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/data-engine/" aria-current="page">Справочники</a>
+</nav><a class="button button-small button-outline" href="/text2me/">Главная</a>
+</div></header>
+<nav class="room-breadcrumb container" aria-label="Навигационная цепочка"><a href="/text2me/">Главная</a><span aria-hidden="true">/</span><a href="/text2me/sources/">Официальные источники</a><span aria-hidden="true">/</span><span aria-current="page">Движок справочников</span></nav>
+<main id="main">
+<section class="page-hero"><div class="container">
+<p class="eyebrow">Инфраструктура сервиса</p>
+<h1>Справочники, которые обновляются автоматически</h1>
+<p class="hero-lead">Цель Text2me — самостоятельно получать данные из официальных источников, проверять обновления и использовать подтверждённые сведения в формах документов. Пользователь не должен вручную искать индекс, адрес учреждения или актуальные реквизиты.</p>
+<div class="notice"><strong>Текущий этап:</strong> создан первый коннектор для контроля источника ГАР/ФИАС. Он проверяет официальный адрес выгрузки и целостность нового ZIP-архива. Полная адресная база, поиск по ней и автоматическое заполнение документов ещё не реализованы.</div>
+<div class="notice" id="fias-connector-status" aria-live="polite">
+<strong>Статус ГАР/ФИАС:</strong> <span id="fias-status-label">ожидает первого запуска</span>
+<p id="fias-status-detail">После запуска GitHub Actions здесь появятся дата проверки и результат. Пока нельзя утверждать, что автоматическое обновление уже прошло успешно.</p>
+<p><a href="/text2me/data-engine/status.json">Открыть машиночитаемый статус коннектора</a></p>
+</div>
+</div></section>
+<section class="section"><div class="container">
+<div class="section-heading"><div><p class="eyebrow">Принцип работы</p><h2>Один движок — много справочников</h2></div><p>Все источники подключаются через единый реестр. Каждый набор данных проходит проверку до публикации новой версии.</p></div>
+<div class="info-grid">
+<article class="info-card"><span class="info-icon">01</span><h3>Получение</h3><p>Планировщик обращается к официальному источнику и получает открытый файл или разрешённые данные.</p></article>
+<article class="info-card"><span class="info-icon">02</span><h3>Проверка</h3><p>Проверяются источник, формат, целостность архива, обязательные поля и согласованность записей.</p></article>
+<article class="info-card"><span class="info-icon">03</span><h3>Безопасное обновление</h3><p>Повреждённая или неполная выгрузка не заменяет последнюю успешную версию. Ошибка остаётся видимой в журнале.</p></article>
+<article class="info-card"><span class="info-icon">04</span><h3>Нормализация</h3><p>Данные приводятся к общей модели, связываются по устойчивым идентификаторам и готовятся для поиска.</p></article>
+<article class="info-card"><span class="info-icon">05</span><h3>Использование</h3><p>Формы получают нормализованные значения и сведения об источнике и дате последней проверки.</p></article>
+<article class="info-card"><span class="info-icon">06</span><h3>Контроль актуальности</h3><p>Отдельно отслеживаются дата источника, дата загрузки, версия данных и ошибки автоматического обновления.</p></article>
+</div>
+</div></section>
+<section class="section section-muted"><div class="container narrow prose">
+<p class="eyebrow">Ограничение первого этапа</p><h2>Без платных API</h2>
+<ul><li>Используем бесплатные официальные выгрузки и бесплатные официальные интерфейсы, когда их условия подтверждены.</li>
+<li>Платные API, в том числе коммерческие нормализаторы адресов, не подключаются.</li>
+<li>Наличие публичной страницы не считается разрешением на массовый сбор. До автоматизации проверяются условия повторного использования, лицензия и ограничения.</li>
+<li>Секреты и ключи не хранятся в HTML, JavaScript или публичном репозитории.</li>
+<li>Если источник недоступен, сохраняются последние успешно проверенные данные; ошибка не маскируется как успех.</li></ul>
+</div></section>
+<section class="section"><div class="container">
+<div class="section-heading"><div><p class="eyebrow">Очередь разработки</p><h2>План подключения данных</h2></div><p>Очередность учитывает повторное использование общей инфраструктуры и практическую пользу для заполнения документов.</p></div>
+<div class="timeline">
+<article class="timeline-item"><span>Этап 1 · начат</span><div><h3>ГАР/ФИАС — адресная основа</h3><p>Мониторинг официального набора ФНС, проверка ссылки на ZIP, загрузка нового релиза и проверка целостности. Следующая часть — разбор XML и построение адресного индекса.</p></div></article>
+<article class="timeline-item"><span>Этап 2</span><div><h3>Поиск и нормализация адреса</h3><p>Построить индекс адресных объектов и домов, связать уровни адреса по идентификаторам и дать формам единый интерфейс поиска.</p></div></article>
+<article class="timeline-item"><span>Этап 3</span><div><h3>Почтовые индексы</h3><p>Подключить официальный источник объектов почтовой связи и проверить условия массового использования.</p></div></article>
+<article class="timeline-item"><span>Этап 4</span><div><h3>Суды и подсудность</h3><p>Суды общей юрисдикции, мировые судьи, арбитражные суды, территориальная подсудность и официальные контакты.</p></div></article>
+<article class="timeline-item"><span>Этап 5</span><div><h3>Государственные органы и учреждения</h3><p>Федеральные и региональные органы, МФЦ, медицинские и социальные учреждения, лицензии и официальные контакты.</p></div></article>
+<article class="timeline-item"><span>Этап 6</span><div><h3>Организации, классификаторы и право</h3><p>Реестры организаций, ОКВЭД, ОКТМО, ОКАТО, ОКОГУ, ОКФС, ОКОПФ и официально опубликованные нормативные акты.</p></div></article>
+</div></div></section>
+<section class="section section-muted"><div class="container narrow prose"><h2>Категории справочников</h2>
+<ul>
+<li><strong>Адреса:</strong> ГАР/ФИАС, субъекты, муниципалитеты, населённые пункты, улицы, дома и адресные идентификаторы.</li>
+<li><strong>Почта:</strong> индексы и объекты почтовой связи.</li>
+<li><strong>Суды:</strong> суды общей юрисдикции, мировые судьи, арбитражные суды и подсудность.</li>
+<li><strong>Государственные органы:</strong> федеральные, региональные и муниципальные ведомства и подразделения.</li>
+<li><strong>Здравоохранение и образование:</strong> учреждения и лицензии из официальных реестров, если доступ разрешён.</li>
+<li><strong>Организации:</strong> регистрационные сведения и статусы из официальных источников ФНС и других уполномоченных органов.</li>
+<li><strong>Классификаторы:</strong> ОКВЭД, ОКПД2, ОКТМО, ОКАТО, ОКПО, ОКОГУ, ОКФС, ОКОПФ и налоговые коды.</li>
+<li><strong>Нормативные акты:</strong> официальные публикации, версии и даты вступления в силу.</li>
+<li><strong>Социальные и правовые службы:</strong> МФЦ, соцзащита, опека, ЗАГС, прокуратура, приставы, нотариальные и адвокатские палаты, жилищные инспекции и защита прав потребителей.</li>
+</ul>
+<p>Кандидаты в источники, тип доступа и состояние проверки перечислены в <a href="/text2me/data-engine/sources.json">машиночитаемом реестре</a>. Источник со статусом «требует проверки» не считается подключённым.</p>
+</div></section>
+<section class="section"><div class="container narrow prose"><h2>Критерии готовности</h2><ol>
+<li>Источник и условия использования подтверждены.</li><li>Автоматическая проверка выполняется по расписанию и может безопасно повторяться.</li><li>Последняя успешная версия сохраняется при сбое или повреждении новой выгрузки.</li><li>Есть журнал запусков, ошибок, контрольных сумм и версий.</li><li>Адресный индекс используется в формах и возвращает источник и дату актуальности.</li><li>Тестируются новая версия, отсутствие изменений, недоступный источник, повреждённый архив и восстановление.</li></ol>
+<p><strong>Техническая граница:</strong> GitHub Pages обслуживает статические файлы. GitHub Actions может проверять и готовить данные по расписанию, но сам по себе не является постоянно работающим API-сервером или базой данных. Перед созданием полноценного поискового сервиса потребуется выбрать способ публикации и хранения адресного индекса.</p>
+<p><a class="text-link" href="/text2me/sources/">Перейти к официальным источникам <span>→</span></a></p></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-top"><a class="brand brand-footer" href="/text2me/">text<span class="brand-dot">2</span>me</a><p>Справочники и статус автоматической актуализации данных.</p><nav aria-label="Дополнительная навигация"><a href="/text2me/">Главная</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/knowledge/">База знаний</a></nav></div><div class="container footer-bottom"><span>Проект в разработке</span><span>Не подключённые источники не считаются проверенными.</span></div></footer>
+<script>
+(function(){
+  var label=document.getElementById("fias-status-label");
+  var detail=document.getElementById("fias-status-detail");
+  if(!label||!detail)return;
+  fetch("/text2me/data-engine/status.json",{cache:"no-store"})
+    .then(function(response){if(!response.ok)throw new Error("status unavailable");return response.json();})
+    .then(function(data){
+      var attempt=data.latest_attempt||{},success=data.last_successful_source_check||{},archive=data.last_archive_validation||{};
+      label.textContent=data.status==="healthy"?"проверка источника успешна":data.status==="degraded"?"последняя проверка завершилась ошибкой":"ожидает первого запуска";
+      var parts=[];
+      if(attempt.finished_at)parts.push("Последняя попытка: "+attempt.finished_at+".");
+      if(success.checked_at)parts.push("Последняя успешная проверка: "+success.checked_at+".");
+      if(archive.validated_at)parts.push("Последняя проверка ZIP: "+archive.validated_at+".");
+      if(attempt.error)parts.push("Ошибка: "+attempt.error);
+      parts.push("Адресный индекс: не реализован; проверка источника не означает, что поиск адресов уже работает.");
+      detail.textContent=parts.join(" ");
+    })
+    .catch(function(){label.textContent="статус пока недоступен";detail.textContent="Дождитесь первого запуска проверки или откройте status.json напрямую.";});
+}());
+</script>
+</body></html>
