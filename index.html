@@ -18,6 +18,10 @@
 <script defer src="/text2me/assets/enhancements.js"></script>
 <script defer src="/text2me/assets/analytics-config.js"></script>
 <style>
+.home-category-overview .directory-subsections{grid-template-columns:repeat(2,minmax(0,1fr))}
+.home-category-overview .directory-subsections>a{min-height:90px}
+@media(max-width:440px){.home-category-overview .directory-subsections{grid-template-columns:1fr}}
+
 :root{--dash-ink:#17243a;--dash-muted:#63728a;--dash-line:#dce4ee;--dash-paper:#f5f8fc;--dash-blue:#2259c7;--dash-soft:#eaf1ff}
 body{background:var(--dash-paper);color:var(--dash-ink)}.dash-shell{max-width:1200px;margin:auto;padding:0 24px 64px}.dash-header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid var(--dash-line)}.dash-logo{font-size:23px;font-weight:850;letter-spacing:-1px;text-decoration:none}.dash-logo span{color:var(--dash-blue)}.dash-nav{display:flex;gap:15px;flex-wrap:wrap}.dash-nav a{font-size:13px;color:var(--dash-muted);text-decoration:none}.dash-nav a:hover{text-decoration:underline}.dash-hero{padding:38px 0 22px}.dash-eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:850;color:var(--dash-blue)}.dash-hero h1{font-size:clamp(34px,5vw,56px);letter-spacing:-.055em;line-height:1.02;margin:10px 0 12px}.dash-lead{max-width:760px;color:var(--dash-muted);font-size:17px;margin:0}.entry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0 14px}.entry-card{display:flex;flex-direction:column;align-items:stretch;min-width:0;background:#fff;border:1px solid var(--dash-line);border-radius:18px;padding:20px;box-shadow:0 10px 32px #1b34520b}.entry-card h2{font-size:19px;letter-spacing:-.02em;margin:0 0 7px}.entry-card p{color:var(--dash-muted);font-size:13px;line-height:1.5;margin:0 0 14px}.entry-no{font-size:11px;font-weight:850;color:var(--dash-blue);margin-bottom:12px}.entry-card input,.entry-card select,.entry-card textarea{width:100%;min-width:0;border:1px solid #cbd6e4;border-radius:11px;padding:12px;background:white;color:var(--dash-ink);font:inherit;font-size:14px;margin-bottom:10px}.entry-card textarea{resize:vertical;min-height:84px}.dash-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:11px;background:var(--dash-blue);color:white;padding:12px 15px;font-weight:800;font-size:14px;text-decoration:none;cursor:pointer}.dash-btn.secondary{background:#edf3ff;color:#214b9b;border:1px solid #d7e3fb}.dash-btn:hover{filter:brightness(.96)}.microcopy{font-size:11px!important;margin:9px 0 0!important}.section-block{margin-top:34px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:15px}.section-head h2{margin:0;font-size:25px;letter-spacing:-.035em}.section-head p{margin:5px 0 0;color:var(--dash-muted);font-size:13px}.category-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.category-card{display:flex;flex-direction:column;gap:8px;padding:17px;background:#fff;border:1px solid var(--dash-line);border-radius:14px;text-decoration:none;min-width:0}.category-card:hover{border-color:#9cb6e8;transform:translateY(-1px)}.category-card strong{font-size:15px}.category-count{font-size:12px;color:var(--dash-muted)}.category-card .status-badge{align-self:flex-start;margin-top:3px}.tool-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.tool-item{display:flex;align-items:center;gap:13px;padding:16px;background:#fff;border:1px solid var(--dash-line);border-radius:14px;text-decoration:none}.tool-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 auto;border-radius:12px;background:var(--dash-soft);color:var(--dash-blue);font-size:12px;font-weight:900}.tool-item strong{display:block;font-size:14px}.tool-item small{display:block;color:var(--dash-muted);font-size:12px;margin-top:3px}.tool-item .status-badge{margin-top:6px}.trust-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.trust-item{padding:16px;border-radius:13px;border:1px solid var(--dash-line);background:#fff}.trust-item strong{display:block;font-size:14px}.trust-item p{margin:5px 0 0;color:var(--dash-muted);font-size:12px}.dash-note{padding:15px 17px;background:#fff9e8;border:1px solid #f0dfaa;border-radius:12px;color:#5d4b1c;font-size:13px;margin-top:22px}.dash-footer{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;border-top:1px solid var(--dash-line);margin-top:36px;padding-top:20px;color:var(--dash-muted);font-size:12px}.dash-footer a{color:inherit}.dash-footer-catalog{display:flex;flex-wrap:wrap;gap:8px 14px;width:100%;padding-bottom:14px;border-bottom:1px solid var(--dash-line)}.dash-footer-catalog strong{color:var(--dash-ink)}.dash-footer-catalog a{color:var(--dash-blue);text-decoration:underline;text-underline-offset:3px}.search-results{display:grid;gap:8px;margin-top:10px}.search-result{display:block;padding:12px 13px;border:1px solid var(--dash-line);border-radius:10px;background:#f8fbff;text-decoration:none}.search-result strong{display:block;font-size:13px}.search-result small{display:block;color:var(--dash-muted);margin-top:3px;font-size:12px}.no-results{font-size:13px;color:#8a3d28}.inline-status{font-size:12px;color:var(--dash-muted);min-height:16px;margin:0 0 5px}.top-button{position:fixed;right:20px;bottom:20px;border:0;border-radius:50%;width:44px;height:44px;background:#123f7c;color:white;font-size:21px;box-shadow:0 8px 22px #102a4c30;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .18s}.top-button.is-visible{opacity:1;pointer-events:auto}
 @media(max-width:900px){.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.entry-card:last-child{grid-column:1/-1}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-nav{gap:10px}}
@@ -307,64 +311,18 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
   <p class="directory-eyebrow">text2me · практические задачи и документы</p>
   <h1 id="main-title">Разберитесь в ситуации. Подготовьте нужный документ. Сэкономьте время.</h1>
   <p class="directory-lead">text2me помогает понять, с чего начать, найти подходящий документ или инструкцию и подготовить рабочий черновик — для личных дел, общения с организациями и бизнеса.</p>
-  <div class="directory-benefits" aria-label="Польза сервиса">
-    <span><strong>Понятный следующий шаг</strong><small>от описания проблемы к возможным действиям</small></span>
-    <span><strong>Нужные материалы в одном месте</strong><small>документы, шаблоны и инструкции</small></span>
-    <span><strong>Меньше рутины</strong><small>подготовка и сохранение черновиков там, где функция доступна</small></span>
-  </div>
 </section>
-<section class="directory-block task-directory" id="popular-tasks" aria-labelledby="popular-tasks-title">
-  <div class="directory-block-head"><div><h2 id="popular-tasks-title">Что вы хотите сделать?</h2><p>Выберите задачу — каждая карточка ведёт к соответствующему разделу.</p></div></div>
-  <div class="task-object-grid">
-    <a data-task-id="return_purchase_money" href="/text2me/situations/#bad-goods"><strong>Вернуть деньги за товар</strong><span>Брак, отказ продавца, возврат покупки</span></a>
-    <a data-task-id="complain_housing_utility" href="/text2me/situations/#housing"><strong>Решить проблему с ЖКХ</strong><span>Ремонт, начисления, обращение в управляющую компанию</span></a>
-    <a data-task-id="claim_unpaid_salary" href="/text2me/situations/#salary"><strong>Добиться выплаты зарплаты</strong><span>Задержка выплат и обращение к работодателю</span></a>
-    <a data-task-id="write_official_complaint" href="/text2me/prompts/"><strong>Составить жалобу или обращение</strong><span>Подготовить текст для организации или ведомства</span></a>
-    <a data-task-id="prepare_rental_agreement" href="/text2me/documents/dogovor-arendy/"><strong>Оформить аренду жилья</strong><span>Договор найма и передача помещения</span></a>
-    <a data-task-id="write_claim_to_seller" href="/text2me/documents/pretenziya-prodavtsu/"><strong>Написать претензию продавцу</strong><span>Сформулировать требования по покупке</span></a>
-    <a data-task-id="prepare_court_claim" href="/text2me/documents/isk-v-sud/"><strong>Подготовить исковое заявление</strong><span>Начать черновик документа для суда</span></a>
-    <a data-task-id="record_money_transfer" href="/text2me/documents/"><strong>Оформить расписку о деньгах</strong><span>Найти подходящий шаблон или материалы</span></a>
-    <a data-task-id="cancel_service_or_subscription" href="/text2me/situations/"><strong>Отказаться от услуги или подписки</strong><span>Разобраться с условиями и подготовить обращение</span></a>
-    <a data-task-id="prepare_car_power_of_attorney" href="/text2me/documents/"><strong>Оформить документ на автомобиль</strong><span>Найти материалы по доверенности и передаче</span></a>
-    <a data-task-id="draft_business_letter" href="/text2me/business/"><strong>Подготовить деловое письмо</strong><span>Ответ клиенту, партнёру или подрядчику</span></a>
-    <a data-task-id="create_business_document" href="/text2me/business/"><strong>Подготовить документ для бизнеса</strong><span>Договор, акт или рабочий шаблон</span></a>
-  </div>
-  <p class="task-directory-note">Наличие отдельного конструктора зависит от типа документа. Если конструктора нет, ссылка ведёт к каталогу или справочным материалам.</p>
-</section>
-<section class="directory-block" id="documents" aria-labelledby="directory-documents">
-  <div class="directory-block-head"><div><h2 id="directory-documents">Документы и шаблоны</h2><p>Переходите сразу к названию документа, если уже знаете, что нужно.</p></div><a class="directory-open" href="/text2me/documents/">Весь каталог <span aria-hidden="true">→</span></a></div>
+<section class="directory-block home-category-overview" id="categories" aria-labelledby="category-overview-title">
+  <div class="directory-block-head"><div><h2 id="category-overview-title">Разделы text2me</h2><p>Выберите направление — внутри находятся материалы и инструменты для работы.</p></div></div>
   <div class="directory-subsections">
-    <a data-task-id="document_rental_agreement" href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span>Условия найма и передача помещения.</span></a>
-    <a data-task-id="document_seller_claim" href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензия продавцу</strong><span>Требование по покупке или возврату денег.</span></a>
-    <a data-task-id="document_court_claim" href="/text2me/documents/isk-v-sud/"><strong>Исковое заявление</strong><span>Черновик заявления в суд.</span></a>
-    <a data-task-id="document_other" href="/text2me/documents/"><strong>Другой документ</strong><span>Договоры, заявления, письма и акты.</span></a>
+    <a data-task-id="quick_solve_situation" href="/text2me/situations/"><strong>Жизненные ситуации</strong><span>Разобраться в проблеме, узнать возможные действия и подобрать следующий шаг.</span></a>
+    <a data-task-id="document_other" href="/text2me/documents/"><strong>Документы и шаблоны</strong><span>Найти доступный конструктор, шаблон или справочные материалы по документу.</span></a>
+    <a data-task-id="prepare_letter" href="/text2me/prompts/"><strong>Тексты и инструменты</strong><span>Подготовить письмо, обращение или другой рабочий текст.</span></a>
+    <a data-task-id="find_instructions" href="/text2me/guides/"><strong>Инструкции и знания</strong><span>Проверить порядок действий и разобраться в теме до оформления документа.</span></a>
+    <a data-task-id="business_contracts_processes" href="/text2me/business/"><strong>Для бизнеса и специалистов</strong><span>Рабочие документы, деловые задачи и профессиональные направления.</span></a>
+    <a data-task-id="find_official_source" href="/text2me/sources/"><strong>Официальные источники</strong><span>Перейти к государственным органам и другим официальным ресурсам.</span></a>
   </div>
 </section>
-<section class="directory-block" id="situations" aria-labelledby="directory-situations">
-  <div class="directory-block-head"><div><h2 id="directory-situations">Другие жизненные ситуации</h2><p>Когда сначала нужно понять проблему, а уже потом выбирать документ.</p></div><a class="directory-open" href="/text2me/situations/">Все ситуации <span aria-hidden="true">→</span></a></div>
-  <div class="directory-subsections">
-    <a data-task-id="situation_bank_debt" href="/text2me/situations/#bank"><strong>Банк, кредит или долг</strong><span>Разобраться с задолженностью или спором.</span></a>
-    <a data-task-id="situation_service_dispute" href="/text2me/situations/"><strong>Некачественная услуга</strong><span>Определить возможные действия и подготовить обращение.</span></a>
-    <a data-task-id="situation_contract_dispute" href="/text2me/situations/"><strong>Нарушение договора</strong><span>Понять, какие документы и доказательства собрать.</span></a>
-    <a data-task-id="situation_public_authority" href="/text2me/situations/"><strong>Обращение в госорган</strong><span>Найти официальный канал и сформулировать запрос.</span></a>
-  </div>
-</section>
-<section class="directory-block" id="texts" aria-labelledby="directory-texts">
-  <div class="directory-block-head"><div><h2 id="directory-texts">Тексты, инструкции и инструменты</h2><p>Для задач, где важны формулировки, порядок действий или поиск информации.</p></div></div>
-  <div class="directory-subsections">
-    <a data-task-id="prepare_letter" href="/text2me/prompts/"><strong>Письмо или официальное обращение</strong><span>Подготовить текст под конкретную задачу.</span></a>
-    <a data-task-id="find_instructions" href="/text2me/guides/"><strong>Пошаговая инструкция</strong><span>Понять, что проверить и как действовать.</span></a>
-    <a data-task-id="find_official_source" href="/text2me/sources/"><strong>Официальные источники</strong><span>Государственные органы и сервисы.</span></a>
-    <a data-task-id="find_reference_material" href="/text2me/knowledge/"><strong>Справочные материалы</strong><span>Разобраться в теме до подготовки документа.</span></a>
-  </div>
-</section>
-<section class="directory-block" id="business" aria-labelledby="directory-business">
-  <div class="directory-block-head"><div><h2 id="directory-business">Для специалистов и бизнеса</h2><p>Рабочие документы и повторяющиеся деловые задачи.</p></div><a class="directory-open" href="/text2me/business/">Раздел для бизнеса <span aria-hidden="true">→</span></a></div>
-  <div class="directory-subsections">
-    <a data-task-id="business_contracts_processes" href="/text2me/business/"><strong>Договоры и рабочие процессы</strong><span>Материалы для предпринимателей и организаций.</span></a>
-    <a data-task-id="business_professional_services" href="/text2me/services/"><strong>Профессиональные услуги</strong><span>Юридические, бухгалтерские и другие направления.</span></a>
-    <a data-task-id="business_send_specialist_request" href="/text2me/request/"><strong>Передать задачу специалисту</strong><span>Описать запрос в форме обращения.</span></a>
-  </div>
 </section>
 </main>
 
@@ -376,18 +334,18 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
     <small>Данные не синхронизируются между устройствами.</small>
   </section>
   <section class="quick-panel-card">
-    <h2>Полезные инструменты</h2>
-    <a href="#title-search-form">Найти по названию</a>
-    <a href="/text2me/documents/pretenziya-prodavtsu/">Подготовить документ и сохранить в PDF</a>
+    <h2>Инструменты</h2>
+    <a href="#title-search-form" data-task-id="find_reference_material">Найти документ или материал</a>
+    <a href="/text2me/documents/" data-task-id="quick_create_document">Подобрать документ</a>
+    <a href="/text2me/prompts/" data-task-id="quick_prepare_text">Подготовить текст</a>
+    <a href="/text2me/guides/" data-task-id="find_instructions">Найти инструкцию</a>
   </section>
   <section class="quick-panel-card">
-    <h2>Виды задач и документов</h2>
-    <a href="/text2me/prompts/">Доверенность на автомобиль</a>
-    <a href="/text2me/business/">Акт приёма-передачи</a>
-    <a href="/text2me/documents/">Расписка</a>
-    <a href="/text2me/business/">Деловое письмо</a>
-    <a href="/text2me/documents/">Соглашение</a>
-    <small>Для части видов документов доступен подбор материалов, а не отдельный конструктор.</small>
+    <h2>Быстрая навигация</h2>
+    <a href="/text2me/situations/" data-task-id="quick_solve_situation">Жизненные ситуации</a>
+    <a href="/text2me/documents/" data-task-id="document_other">Документы и шаблоны</a>
+    <a href="/text2me/business/" data-task-id="business_contracts_processes">Для бизнеса</a>
+    <a href="/text2me/sources/" data-task-id="find_official_source">Официальные источники</a>
   </section>
 </aside>
 </div>
