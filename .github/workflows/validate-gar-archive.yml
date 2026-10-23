@@ -32,7 +32,16 @@ jobs:
         env:
           GAR_ARCHIVE_URL: ${{ inputs.archive_url }}
           GAR_MAX_ARCHIVE_BYTES: "12884901888"
+          GAR_INDEX_OUTPUT: ${{ runner.temp }}/gar-address-index.sqlite
         run: node scripts/validate-gar-archive.mjs
+      - name: Upload validated SQLite index artifact
+        if: steps.validate.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: gar-address-index-${{ github.run_id }}
+          path: ${{ runner.temp }}/gar-address-index.sqlite
+          if-no-files-found: error
+          retention-days: 7
       - name: Publish validation result
         if: always()
         run: |
