@@ -300,7 +300,7 @@ function updateCount(){count.textContent=area.value.length.toLocaleString("ru-RU
 function refreshChooser(){
 var docs=getSaved().filter(function(d){return d&&!d.archived});
 chooser.replaceChildren(el("option",{value:""},"— Открыть сохранённый документ —"));
-docs.forEach(function(d){chooser.appendChild(el("option",{value:d.id},(d.title||"Без названия")+" · "+(d.updated?new Date(d.updated).toLocaleDateString("ru-RU"):""))});
+docs.forEach(function(d){chooser.appendChild(el("option",{value:d.id},(d.title||"Без названия")+" · "+(d.updated?new Date(d.updated).toLocaleDateString("ru-RU"):"")));});
 chooser.value=selectedId;
 }
 function saveLocalDraft(){
