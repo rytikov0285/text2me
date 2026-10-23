@@ -52,7 +52,6 @@ with tempfile.TemporaryDirectory(prefix="gar-builder-test-") as temp:
     assert api_result["count"] >= 1 and api_result["results"][0]["name"] == "Тестовая область", api_result
     api_house_result = api.search("12А", 10, True)
     assert any(row["kind"] == "house" and row["house_number"] == "12А" for row in api_house_result["results"]), api_house_result
-    ready, health = (True, None)
     assert api.DB_PATH == output, "API must use the configured SQLite database path"
     before = output.read_bytes()
     broken = root / "broken.zip"
