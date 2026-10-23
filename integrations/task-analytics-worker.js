@@ -33,8 +33,12 @@ export default {
       "Vary":"Origin"
     };
     if(request.method==="OPTIONS") return new Response(null,{status:204,headers:cors});
-    if(!allowedOrigin || origin!==allowedOrigin) return json({error:"origin_not_allowed"},403,cors);
     const url=new URL(request.url);
+    // Browser event ingestion must come from the configured site. Authenticated stats
+    // requests may be made from a terminal without an Origin header.
+    if(!allowedOrigin || (origin && origin!==allowedOrigin) || (url.pathname==="/event" && origin!==allowedOrigin)) {
+      return json({error:"origin_not_allowed"},403,cors);
+    }
     if(url.pathname==="/event"){
       if(request.method!=="POST") return json({error:"method_not_allowed"},405,cors);
       const length=Number(request.headers.get("Content-Length")||0);
