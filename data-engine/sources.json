@@ -45,10 +45,10 @@
         "XML"
       ],
       "update_frequency": "weekly_as_stated_in_dataset_metadata",
-      "terms_url": "https://www.nalog.gov.ru/opendata/7707329152-fias/",
+      "terms_url": "https://www.nalog.gov.ru/files/tipovye_usloviya_od.pdf",
       "status": "first_connector_implemented_pending_live_run_and_terms_review",
       "last_checked": null,
-      "notes": "Приоритетный коннектор. Проверяет официальный URL и CRC нового ZIP. Построение адресного индекса ещё не реализовано."
+      "notes": "Официальная открытая выгрузка ФНС. Условия повторного использования: типовые условия открытых данных ФНС; перед публикацией нужно сохранять ссылку на источник. Автоматический импорт зависит от размера архива и доступной среды выполнения."
     },
     {
       "id": "postal_ops",
