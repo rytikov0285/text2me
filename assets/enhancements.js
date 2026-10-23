@@ -623,7 +623,7 @@ function installNavigation(){
   links.forEach(function(item){
    var a=document.createElement("a");a.href=item[1];a.textContent=item[0];
    var target=normalize(item[1]);
-   if(current===target||(target==="/text2me"&&current==="/text2me"))a.setAttribute("aria-current","page");
+   if(current===target||(target!=="/text2me"&&current.indexOf(target+"/")===0)||(target==="/text2me"&&current==="/text2me"))a.setAttribute("aria-current","page");
    strip.appendChild(a);
   });
   var description=document.getElementById("text2me-site-description");
