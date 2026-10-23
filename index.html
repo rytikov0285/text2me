@@ -244,6 +244,36 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 @media(max-width:680px){.home-directory-layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "left" "right";gap:12px;padding-top:8px}.home-quick-panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:8px}.home-quick-left,.home-quick-right{display:grid}.quick-panel-card{padding:12px}.quick-panel-feature{grid-column:1/-1}.directory-hero{padding:3px 0 5px}.directory-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}.directory-block{padding:12px}.directory-block-head{grid-template-columns:minmax(0,1fr) auto}.directory-subsections{grid-template-columns:repeat(2,minmax(0,1fr))}.directory-open{justify-self:end}}
 @media(max-width:420px){.home-quick-panel{grid-template-columns:1fr}.directory-hero h1{font-size:29px}.directory-block-head{grid-template-columns:1fr}.directory-open{justify-self:start}.directory-subsections{grid-template-columns:1fr}.directory-shortcuts a{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.quick-panel-card a,.directory-subsections a,.directory-shortcuts a{transition:none}}
+
+/* Homepage redesign: explain the service, make every task a measurable link, keep the center dominant. */
+.home-directory{width:100%;max-width:none!important;min-width:0}
+.home-directory .directory-hero{padding:15px 0 18px}
+.home-directory .directory-eyebrow{margin:0 0 7px;color:#a32330;font-size:10px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+.home-directory .directory-hero h1{max-width:950px;margin:0 0 12px;color:#1d3554;font-size:clamp(27px,2.7vw,38px);line-height:1.16;letter-spacing:-.04em;font-weight:800}
+.home-directory .directory-lead{max-width:900px;margin:0;color:#56657a;font-size:14px;line-height:1.7}
+.directory-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:17px}
+.directory-benefits>span{display:block;padding:12px 13px;border:1px solid #dce5f0;border-radius:10px;background:#fff}
+.directory-benefits strong{display:block;color:#274d7a;font-size:12px;line-height:1.4}
+.directory-benefits small{display:block;margin-top:4px;color:#737e8d;font-size:11px;line-height:1.45}
+.task-directory{margin-top:12px;padding:18px;background:#fff;border:1px solid #e1e6ed;border-radius:14px}
+.task-object-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.task-object-grid>a{display:flex;flex-direction:column;gap:6px;min-width:0;min-height:90px;padding:13px 14px;border:1px solid #e1e7ef;border-radius:10px;background:#fff;text-decoration:none;transition:background .15s,border-color .15s,transform .15s}
+.task-object-grid>a:hover{background:#f5f8fd;border-color:#a9c1e3;transform:translateY(-1px)}
+.task-object-grid strong{color:#263f60;font-size:13px;line-height:1.4;font-weight:800}
+.task-object-grid span{color:#6c7787;font-size:11px;line-height:1.5}
+.task-directory-note{margin:12px 0 0;color:#737e8d;font-size:10px;line-height:1.5}
+.home-directory .directory-block{margin-top:22px}
+.home-directory .directory-block-head h2{color:#244d7d;font-size:20px;font-weight:800;letter-spacing:-.025em}
+.home-directory .directory-block-head p{color:#737b87;font-size:12px;line-height:1.5}
+.home-directory .directory-subsections strong{color:#263f60;font-weight:800}
+.home-directory .directory-subsections span{color:#737b87}
+.workspace-layout.home-directory-layout{grid-template-columns:minmax(150px,.7fr) minmax(0,3fr) minmax(170px,.8fr);gap:18px;max-width:1480px}
+.home-quick-left,.home-quick-right{position:sticky;top:66px;align-self:start}
+.quick-panel-card h2{color:#244d7d;font-weight:850;border-bottom:2px solid #e5edf8;padding-bottom:8px}
+@media(max-width:1180px){.workspace-layout.home-directory-layout{grid-template-columns:minmax(145px,.65fr) minmax(0,2.35fr) minmax(160px,.75fr);gap:12px}.home-quick-panel{font-size:12px}}
+@media(max-width:900px){.workspace-layout.home-directory-layout{grid-template-columns:1fr}.home-quick-left,.home-quick-right{position:static;max-height:none;overflow:visible}.home-quick-left{order:2}.home-directory{order:1}.home-quick-right{order:3}.home-quick-left .quick-panel-card{display:grid;grid-template-columns:1fr 1fr;gap:6px}.home-quick-left .quick-panel-card h2{grid-column:1/-1}.home-quick-left .quick-panel-card a{margin:0}.task-object-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.directory-benefits{grid-template-columns:1fr}.task-directory{padding:13px}.task-object-grid{grid-template-columns:1fr}.task-object-grid>a{min-height:0}.home-directory .directory-hero h1{font-size:27px}}
+@media(prefers-reduced-motion:reduce){.task-object-grid>a{transition:none}}
 </style>
 </head>
 <body>
@@ -262,78 +292,77 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 </header>
 
 <div class="workspace-layout home-directory-layout">
-<aside class="home-quick-panel home-quick-left" aria-label="Быстрый доступ к задачам">
+<aside class="home-quick-panel home-quick-left" aria-label="Быстрый старт">
   <section class="quick-panel-card">
     <h2>Быстрый старт</h2>
-    <a class="quick-primary" href="/text2me/documents/">＋ Создать документ</a>
-    <a href="/text2me/situations/">Разобрать ситуацию</a>
-    <a href="/text2me/prompts/">Подготовить текст</a>
-    <a href="/text2me/business/">Задача для бизнеса</a>
-  </section>
-  <section class="quick-panel-card">
-    <h2>Популярные документы</h2>
-    <a href="/text2me/documents/pretenziya-prodavtsu/">Претензия продавцу</a>
-    <a href="/text2me/documents/dogovor-arendy/">Договор найма жилья</a>
-    <a href="/text2me/documents/isk-v-sud/">Исковое заявление</a>
-    <a class="quick-panel-all" href="/text2me/documents/">Весь каталог →</a>
-  </section>
-  <section class="quick-panel-card">
-    <h2>По ситуации</h2>
-    <a href="/text2me/situations/#bad-goods">Возврат денег</a>
-    <a href="/text2me/situations/#salary">Работа и зарплата</a>
-    <a href="/text2me/situations/#housing">Жильё и ЖКХ</a>
-    <a href="/text2me/situations/#bank">Деньги и долги</a>
+    <a class="quick-primary" href="/text2me/documents/" data-task-id="quick_create_document">＋ Создать документ</a>
+    <a href="/text2me/situations/" data-task-id="quick_solve_situation">Разобрать ситуацию</a>
+    <a href="/text2me/prompts/" data-task-id="quick_prepare_text">Подготовить текст</a>
+    <a href="/text2me/business/" data-task-id="quick_business_task">Задача для бизнеса</a>
   </section>
 </aside>
-
 <main id="main" class="workspace-main home-directory">
 <section class="directory-hero" aria-labelledby="main-title">
-  <h1 id="main-title">Что нужно сделать?</h1>
-  <p>Выберите действие или найдите нужный документ через поиск выше.</p>
-  <div class="directory-shortcuts" aria-label="Основные задачи">
-    <a href="/text2me/documents/"><strong>Документ</strong><span>Договор, претензия, заявление</span></a>
-    <a href="/text2me/situations/"><strong>Ситуация</strong><span>Проблема и следующие шаги</span></a>
-    <a href="/text2me/prompts/"><strong>Текст</strong><span>Письмо, обращение, инструкция</span></a>
-    <a href="/text2me/business/"><strong>Для бизнеса</strong><span>Договоры и рабочие задачи</span></a>
+  <p class="directory-eyebrow">text2me · практические задачи и документы</p>
+  <h1 id="main-title">Разберитесь в ситуации. Подготовьте нужный документ. Сэкономьте время.</h1>
+  <p class="directory-lead">text2me помогает понять, с чего начать, найти подходящий документ или инструкцию и подготовить рабочий черновик — для личных дел, общения с организациями и бизнеса.</p>
+  <div class="directory-benefits" aria-label="Польза сервиса">
+    <span><strong>Понятный следующий шаг</strong><small>от описания проблемы к возможным действиям</small></span>
+    <span><strong>Нужные материалы в одном месте</strong><small>документы, шаблоны и инструкции</small></span>
+    <span><strong>Меньше рутины</strong><small>подготовка и сохранение черновиков там, где функция доступна</small></span>
   </div>
 </section>
-
+<section class="directory-block task-directory" id="popular-tasks" aria-labelledby="popular-tasks-title">
+  <div class="directory-block-head"><div><h2 id="popular-tasks-title">Что вы хотите сделать?</h2><p>Выберите задачу — каждая карточка ведёт к соответствующему разделу.</p></div></div>
+  <div class="task-object-grid">
+    <a data-task-id="return_purchase_money" href="/text2me/situations/#bad-goods"><strong>Вернуть деньги за товар</strong><span>Брак, отказ продавца, возврат покупки</span></a>
+    <a data-task-id="complain_housing_utility" href="/text2me/situations/#housing"><strong>Решить проблему с ЖКХ</strong><span>Ремонт, начисления, обращение в управляющую компанию</span></a>
+    <a data-task-id="claim_unpaid_salary" href="/text2me/situations/#salary"><strong>Добиться выплаты зарплаты</strong><span>Задержка выплат и обращение к работодателю</span></a>
+    <a data-task-id="write_official_complaint" href="/text2me/prompts/"><strong>Составить жалобу или обращение</strong><span>Подготовить текст для организации или ведомства</span></a>
+    <a data-task-id="prepare_rental_agreement" href="/text2me/documents/dogovor-arendy/"><strong>Оформить аренду жилья</strong><span>Договор найма и передача помещения</span></a>
+    <a data-task-id="write_claim_to_seller" href="/text2me/documents/pretenziya-prodavtsu/"><strong>Написать претензию продавцу</strong><span>Сформулировать требования по покупке</span></a>
+    <a data-task-id="prepare_court_claim" href="/text2me/documents/isk-v-sud/"><strong>Подготовить исковое заявление</strong><span>Начать черновик документа для суда</span></a>
+    <a data-task-id="record_money_transfer" href="/text2me/documents/"><strong>Оформить расписку о деньгах</strong><span>Найти подходящий шаблон или материалы</span></a>
+    <a data-task-id="cancel_service_or_subscription" href="/text2me/situations/"><strong>Отказаться от услуги или подписки</strong><span>Разобраться с условиями и подготовить обращение</span></a>
+    <a data-task-id="prepare_car_power_of_attorney" href="/text2me/documents/"><strong>Оформить документ на автомобиль</strong><span>Найти материалы по доверенности и передаче</span></a>
+    <a data-task-id="draft_business_letter" href="/text2me/business/"><strong>Подготовить деловое письмо</strong><span>Ответ клиенту, партнёру или подрядчику</span></a>
+    <a data-task-id="create_business_document" href="/text2me/business/"><strong>Подготовить документ для бизнеса</strong><span>Договор, акт или рабочий шаблон</span></a>
+  </div>
+  <p class="task-directory-note">Наличие отдельного конструктора зависит от типа документа. Если конструктора нет, ссылка ведёт к каталогу или справочным материалам.</p>
+</section>
 <section class="directory-block" id="documents" aria-labelledby="directory-documents">
-  <div class="directory-block-head"><div><h2 id="directory-documents">Документы</h2><p>Подготовьте черновик или откройте каталог.</p></div><a class="directory-open" href="/text2me/documents/">Все документы <span aria-hidden="true">→</span></a></div>
+  <div class="directory-block-head"><div><h2 id="directory-documents">Документы и шаблоны</h2><p>Переходите сразу к названию документа, если уже знаете, что нужно.</p></div><a class="directory-open" href="/text2me/documents/">Весь каталог <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span>Договор и акт передачи.</span></a>
-    <a href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензия продавцу</strong><span>Требование по покупке или возврату денег.</span></a>
-    <a href="/text2me/documents/isk-v-sud/"><strong>Исковое заявление</strong><span>Черновик заявления в суд.</span></a>
-    <a href="/text2me/documents/"><strong>Другой документ</strong><span>Договоры, заявления, письма и акты.</span></a>
+    <a data-task-id="document_rental_agreement" href="/text2me/documents/dogovor-arendy/"><strong>Договор найма жилья</strong><span>Условия найма и передача помещения.</span></a>
+    <a data-task-id="document_seller_claim" href="/text2me/documents/pretenziya-prodavtsu/"><strong>Претензия продавцу</strong><span>Требование по покупке или возврату денег.</span></a>
+    <a data-task-id="document_court_claim" href="/text2me/documents/isk-v-sud/"><strong>Исковое заявление</strong><span>Черновик заявления в суд.</span></a>
+    <a data-task-id="document_other" href="/text2me/documents/"><strong>Другой документ</strong><span>Договоры, заявления, письма и акты.</span></a>
   </div>
 </section>
-
 <section class="directory-block" id="situations" aria-labelledby="directory-situations">
-  <div class="directory-block-head"><div><h2 id="directory-situations">Решить ситуацию</h2><p>Выберите проблему, чтобы понять следующие шаги и нужные документы.</p></div><a class="directory-open" href="/text2me/situations/">Все ситуации <span aria-hidden="true">→</span></a></div>
+  <div class="directory-block-head"><div><h2 id="directory-situations">Другие жизненные ситуации</h2><p>Когда сначала нужно понять проблему, а уже потом выбирать документ.</p></div><a class="directory-open" href="/text2me/situations/">Все ситуации <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/situations/#bad-goods"><strong>Покупки и возврат денег</strong><span>Брак, возврат, спор с продавцом.</span></a>
-    <a href="/text2me/situations/#salary"><strong>Работа и зарплата</strong><span>Выплаты, увольнение, рабочие документы.</span></a>
-    <a href="/text2me/situations/#housing"><strong>Жильё и ЖКХ</strong><span>Аренда, коммунальные вопросы.</span></a>
-    <a href="/text2me/situations/#bank"><strong>Деньги и долги</strong><span>Банки, задолженность, спор.</span></a>
+    <a data-task-id="situation_bank_debt" href="/text2me/situations/#bank"><strong>Банк, кредит или долг</strong><span>Разобраться с задолженностью или спором.</span></a>
+    <a data-task-id="situation_service_dispute" href="/text2me/situations/"><strong>Некачественная услуга</strong><span>Определить возможные действия и подготовить обращение.</span></a>
+    <a data-task-id="situation_contract_dispute" href="/text2me/situations/"><strong>Нарушение договора</strong><span>Понять, какие документы и доказательства собрать.</span></a>
+    <a data-task-id="situation_public_authority" href="/text2me/situations/"><strong>Обращение в госорган</strong><span>Найти официальный канал и сформулировать запрос.</span></a>
   </div>
 </section>
-
 <section class="directory-block" id="texts" aria-labelledby="directory-texts">
-  <div class="directory-block-head"><div><h2 id="directory-texts">Тексты и инструкции</h2><p>Подготовьте письмо или обращение либо найдите порядок действий.</p></div></div>
+  <div class="directory-block-head"><div><h2 id="directory-texts">Тексты, инструкции и инструменты</h2><p>Для задач, где важны формулировки, порядок действий или поиск информации.</p></div></div>
   <div class="directory-subsections">
-    <a href="/text2me/prompts/"><strong>Письмо или обращение</strong><span>Деловой текст под вашу задачу.</span></a>
-    <a href="/text2me/guides/"><strong>Пошаговая инструкция</strong><span>Что проверить и как действовать.</span></a>
-    <a href="/text2me/sources/"><strong>Официальные источники</strong><span>Государственные органы и сервисы.</span></a>
-    <a href="/text2me/knowledge/"><strong>Справочные материалы</strong><span>Объяснения по темам.</span></a>
+    <a data-task-id="prepare_letter" href="/text2me/prompts/"><strong>Письмо или официальное обращение</strong><span>Подготовить текст под конкретную задачу.</span></a>
+    <a data-task-id="find_instructions" href="/text2me/guides/"><strong>Пошаговая инструкция</strong><span>Понять, что проверить и как действовать.</span></a>
+    <a data-task-id="find_official_source" href="/text2me/sources/"><strong>Официальные источники</strong><span>Государственные органы и сервисы.</span></a>
+    <a data-task-id="find_reference_material" href="/text2me/knowledge/"><strong>Справочные материалы</strong><span>Разобраться в теме до подготовки документа.</span></a>
   </div>
 </section>
-
 <section class="directory-block" id="business" aria-labelledby="directory-business">
-  <div class="directory-block-head"><div><h2 id="directory-business">Для бизнеса</h2><p>Рабочие документы и профессиональная поддержка.</p></div><a class="directory-open" href="/text2me/business/">Раздел для бизнеса <span aria-hidden="true">→</span></a></div>
+  <div class="directory-block-head"><div><h2 id="directory-business">Для специалистов и бизнеса</h2><p>Рабочие документы и повторяющиеся деловые задачи.</p></div><a class="directory-open" href="/text2me/business/">Раздел для бизнеса <span aria-hidden="true">→</span></a></div>
   <div class="directory-subsections">
-    <a href="/text2me/business/"><strong>Документы и рабочие процессы</strong><span>Материалы для предпринимателей и организаций.</span></a>
-    <a href="/text2me/services/"><strong>Профессиональные услуги</strong><span>Юридические, бухгалтерские и другие направления.</span></a>
-    <a href="/text2me/request/"><strong>Передать задачу специалисту</strong><span>Описать запрос в форме обращения.</span></a>
+    <a data-task-id="business_contracts_processes" href="/text2me/business/"><strong>Договоры и рабочие процессы</strong><span>Материалы для предпринимателей и организаций.</span></a>
+    <a data-task-id="business_professional_services" href="/text2me/services/"><strong>Профессиональные услуги</strong><span>Юридические, бухгалтерские и другие направления.</span></a>
+    <a data-task-id="business_send_specialist_request" href="/text2me/request/"><strong>Передать задачу специалисту</strong><span>Описать запрос в форме обращения.</span></a>
   </div>
 </section>
 </main>
@@ -420,6 +449,34 @@ function filterDashCategories(){if(!catGrid)return;var type=(document.getElement
 ["dash-filter-type","dash-filter-situation","dash-filter-nature"].forEach(function(id){var node=document.getElementById(id);if(node)node.addEventListener("change",filterDashCategories)});
 var workspaceSummary=document.getElementById("workspace-local-summary");if(workspaceSummary){try{var workspaceDocs=JSON.parse(localStorage.getItem("text2me.space.v1")||"[]"),workspaceDrafts=JSON.parse(localStorage.getItem("text2me.drafts.v1")||"{}"),workspaceActive=workspaceDocs.filter(function(x){return x&&!x.archived}).length,workspaceDraftCount=Object.keys(workspaceDrafts).length;workspaceSummary.textContent=workspaceActive+" сохранённых документов · "+workspaceDraftCount+" автосохранённых форм. Данные доступны только в этом браузере."}catch(e){workspaceSummary.textContent="Черновики хранятся локально в браузере."}}
 var spaceSummary=document.getElementById("home-space-summary");if(spaceSummary){try{var saved=JSON.parse(localStorage.getItem("text2me.space.v1")||"[]"),drafts=JSON.parse(localStorage.getItem("text2me.drafts.v1")||"{}"),active=saved.filter(function(x){return x&&!x.archived}),archived=saved.filter(function(x){return x&&x.archived}).length,draftCount=Object.keys(drafts).length;spaceSummary.textContent="В этом браузере: "+active.length+" активных документов, "+archived+" в архиве, "+draftCount+" автосохранённых форм. Данные не синхронизируются между устройствами.";var items=document.getElementById("home-space-items");if(items){items.replaceChildren();if(active.length){active.slice(0,3).forEach(function(doc){var a=document.createElement("a");a.href="/text2me/space/";a.textContent="↳ "+(doc.title||"Без названия");items.appendChild(a)});if(active.length>3){var more=document.createElement("a");more.href="/text2me/space/";more.textContent="Ещё "+(active.length-3)+" документов →";items.appendChild(more)}}else{var empty=document.createElement("p");empty.textContent="Пока нет документов. Создайте документ или загрузите файл — он появится здесь автоматически.";items.appendChild(empty)}}}catch(e){spaceSummary.textContent="Документы хранятся локально в браузере. Облачной синхронизации и аккаунтов пока нет."}}
+
+
+/* Task analytics: browser-local anonymous click counts. Configure TEXT2ME_ANALYTICS_ENDPOINT
+   to forward events to a real collection service; static hosting alone cannot aggregate visitors. */
+(function(){
+  var storageKey="text2me.task-clicks.v1";
+  document.addEventListener("click",function(event){
+    var link=event.target&&event.target.closest?event.target.closest("a[data-task-id]"):null;
+    if(!link)return;
+    var taskId=link.getAttribute("data-task-id");
+    if(!taskId)return;
+    var record={event:"task_click",task_id:taskId,path:link.pathname,at:new Date().toISOString()};
+    try{
+      var log=JSON.parse(localStorage.getItem(storageKey)||"[]");
+      if(!Array.isArray(log))log=[];
+      log.push(record);
+      if(log.length>5000)log=log.slice(-5000);
+      localStorage.setItem(storageKey,JSON.stringify(log));
+    }catch(e){}
+    var endpoint=window.TEXT2ME_ANALYTICS_ENDPOINT;
+    if(endpoint&&typeof endpoint==="string"){
+      try{
+        if(navigator.sendBeacon)navigator.sendBeacon(endpoint,new Blob([JSON.stringify(record)],{type:"application/json"}));
+        else fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(record),keepalive:true,mode:"cors"}).catch(function(){});
+      }catch(e){}
+    }
+  });
+})();
 
 })();
 </script>
