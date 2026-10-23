@@ -125,8 +125,8 @@ def main():
                                 name = (get(a, "NAME") or "").strip()
                                 if row_id is None or oid is None or not name:
                                     raise RuntimeError("Invalid required OBJECT attributes in " + filename)
-                                batch.append((row_id, oid, get(a, "OBJECTGUID"), name, get(a, "TYPENAME"),
-                                    integer(get(a, "LEVEL")), name.casefold(), flag(get(a, "ISACTIVE")), flag(get(a, "ISACTUAL")),
+                                batch.append((row_id, oid, get(a, "OBJECTGUID"), name, name.casefold(), get(a, "TYPENAME"),
+                                    integer(get(a, "LEVEL")), flag(get(a, "ISACTIVE")), flag(get(a, "ISACTUAL")),
                                     get(a, "STARTDATE"), get(a, "ENDDATE"), filename))
                                 counts["object_rows"] += 1
                                 if len(batch) >= BATCH_SIZE:
