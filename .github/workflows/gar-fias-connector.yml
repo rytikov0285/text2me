@@ -4,6 +4,15 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "preflight проверяет только заголовки; validate-and-build пробует сборку лишь при подтверждённом допустимом размере"
+        required: true
+        type: choice
+        default: preflight
+        options:
+          - preflight
+          - validate-and-build
   schedule:
     - cron: "23 3 * * 2"
 permissions:
@@ -32,7 +41,7 @@ jobs:
       - name: Check official FNS feed and build index when a new archive fits runner limits
         env:
           GAR_INDEX_OUTPUT: ${{ runner.temp }}/gar-address-index.sqlite
-          GAR_PREFLIGHT_ONLY: ${{ contains(github.event.head_commit.message, '[run-gar-fias-preflight]') }}
+          GAR_PREFLIGHT_ONLY: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[run-gar-fias-preflight]')) || (github.event_name == 'workflow_dispatch' && inputs.mode == 'preflight') }}
         run: python data-engine/fias_connector.py
       - name: Commit connector status for the public site
         run: |
@@ -46,7 +55,7 @@ jobs:
             git push origin HEAD:main
           fi
       - name: Fail the run if the source check failed
-        if: always() && (github.event_name != 'push' || !contains(github.event.head_commit.message, '[run-gar-fias-preflight]'))
+        if: always() && github.event_name != 'schedule' && (github.event_name != 'push' || !contains(github.event.head_commit.message, '[run-gar-fias-preflight]')) && (github.event_name != 'workflow_dispatch' || inputs.mode != 'preflight')
         run: python data-engine/fias_connector.py --assert-success
       - name: Detect built index artifact
         id: index-artifact
