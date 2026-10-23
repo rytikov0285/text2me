@@ -97,7 +97,15 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_OPTIONS(self):
-        self.send_json(204,{})
+        self.send_response(204)
+        self.send_header("Content-Length","0")
+        self.send_header("Vary","Origin")
+        origin = self.headers.get("Origin")
+        if origin in ALLOWED_ORIGINS:
+            self.send_header("Access-Control-Allow-Origin",origin)
+            self.send_header("Access-Control-Allow-Methods","GET, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers","Content-Type")
+        self.end_headers()
 
     def do_GET(self):
         route = urlparse(self.path)
@@ -105,18 +113,21 @@ class Handler(BaseHTTPRequestHandler):
             if not DB_PATH.is_file():
                 self.send_json(503,{"status":"not_ready","reason":"database_file_missing"})
                 return
+            con = None
             try:
-                with connect_db() as con:
-                    check = con.execute("PRAGMA quick_check").fetchone()[0]
-                    names = {r["name"] for r in con.execute("SELECT name FROM sqlite_master WHERE type IN ('table','view')")}
-                    if check != "ok" or not {"current_address_objects","current_houses","hierarchy","metadata"}.issubset(names):
-                        self.send_json(503,{"status":"not_ready","reason":"database_check_failed"})
-                        return
-                    meta = dict(con.execute("SELECT key,value FROM metadata").fetchall())
+                con = connect_db()
+                names = {r["name"] for r in con.execute("SELECT name FROM sqlite_master WHERE type IN ('table','view')")}
+                if not {"current_address_objects","current_houses","hierarchy","metadata"}.issubset(names):
+                    self.send_json(503,{"status":"not_ready","reason":"database_schema_incomplete"})
+                    return
+                meta = dict(con.execute("SELECT key,value FROM metadata").fetchall())
                 self.send_json(200,{"status":"ready","schema_version":meta.get("schema_version"),
                     "built_at_utc":meta.get("built_at_utc"),"database_bytes":DB_PATH.stat().st_size})
             except (OSError,sqlite3.Error):
                 self.send_json(503,{"status":"not_ready","reason":"database_unreadable"})
+            finally:
+                if con is not None:
+                    con.close()
             return
         if route.path != "/api/addresses":
             self.send_json(404,{"error":"not_found"})
