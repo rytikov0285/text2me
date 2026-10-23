@@ -26,6 +26,23 @@ class FiasConnectorTests(unittest.TestCase):
         self.assertEqual(open_url.call_count, 1)
         self.assertEqual(open_url.call_args.args[0].get_method(), "HEAD")
 
+    def test_refuses_archive_above_runner_limit_before_download(self):
+        oversized = {"declared_size_bytes": connector.MAX_ARCHIVE_BYTES + 1, "result": "checked"}
+        with mock.patch.object(connector, "inspect_release_size", return_value=oversized), \
+             mock.patch.object(connector.urllib.request, "urlopen") as open_url:
+            with self.assertRaisesRegex(ValueError, "above configured limit"):
+                connector.download_and_validate("https://fias.nalog.ru/opendata/7707329152-fias/data.zip")
+        open_url.assert_not_called()
+
+    def test_refuses_unknown_archive_size_without_override(self):
+        unknown = {"declared_size_bytes": None, "result": "unavailable", "error": "timed out"}
+        with mock.patch.dict(os.environ, {"GAR_ALLOW_UNSIZED_ARCHIVE": ""}), \
+             mock.patch.object(connector, "inspect_release_size", return_value=unknown), \
+             mock.patch.object(connector.urllib.request, "urlopen") as open_url:
+            with self.assertRaisesRegex(ValueError, "could not be verified by HEAD"):
+                connector.download_and_validate("https://fias.nalog.ru/opendata/7707329152-fias/data.zip")
+        open_url.assert_not_called()
+
     def test_validates_xml_zip(self):
         with tempfile.TemporaryDirectory() as directory:
             path=os.path.join(directory,"sample.zip")
