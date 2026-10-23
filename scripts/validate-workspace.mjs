@@ -27,6 +27,9 @@ assert.ok(html.includes("var savedDoc=x.documentId&&savedLibrary()"), "Linked li
 assert.equal(schema.storage.cloud_sync, false, "Cloud sync must not be claimed as implemented");
 assert.ok(calendar.includes('id="calendar"') && calendar.includes('id="events"'), "Calendar controls are missing");
 assert.ok(calendar.includes("text2me.dashboard.v1"), "Calendar must share workspace storage");
+assert.ok(calendar.includes("state.tasks.forEach(function(t){if(t.date)counts[t.date]"), "Calendar must count dated tasks");
+assert.ok(calendar.includes("data-task-done"), "Calendar must allow marking tasks complete");
+assert.ok(calendar.includes("События и задачи на "), "Calendar must display dated tasks alongside events");
 
 const start = html.indexOf("<script>");
 const end = html.lastIndexOf("</script>");
