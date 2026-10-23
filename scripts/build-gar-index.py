@@ -153,7 +153,7 @@ def main():
                                 elem.clear()
                         flush(con, hierarchy_sql, batch)
 
-                house_sql = "INSERT OR REPLACE INTO houses VALUES (?,?,?,?,?,?,?,?,?,?)"
+                house_sql = "INSERT OR REPLACE INTO houses VALUES (?,?,?,?,?,?,?,?,?,?,?)"
                 for filename in groups["houses"]:
                     batch = []
                     with zf.open(filename) as stream:
