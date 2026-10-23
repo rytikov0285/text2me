@@ -108,7 +108,14 @@ try {
     entry_count: entries.length,
     xml_entry_count: xmlEntries.length,
     xml_entry_examples: xmlEntries.slice(0, 10),
-    note: "Архив скачан во временное хранилище Actions, ZIP-тест пройден, найдены XML. Архив не сохраняется в Git; схема XML и адресный индекс этим шагом не проверяются."
+    xml_inspection: {
+      xml_files_well_formed: xmlInspection.xml_files_well_formed,
+      recognized_table_kinds: xmlInspection.recognized_table_kinds,
+      missing_expected_table_kinds: xmlInspection.missing_expected_table_kinds,
+      parse_errors: xmlInspection.parse_errors.length,
+      inspected_file_examples: xmlInspection.files.slice(0, 20)
+    },
+    note: "Архив скачан во временное хранилище Actions, ZIP-тест и потоковый синтаксический разбор XML пройдены. Это не подтверждает XSD, целостность ссылок между объектами или готовность адресного индекса."
   };
   previous.last_archive_validation = result;
   previous.last_successful_source_check = {
