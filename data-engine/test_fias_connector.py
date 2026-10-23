@@ -1,4 +1,5 @@
 import hashlib, os, sys, tempfile, unittest, zipfile
+from unittest import mock
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import fias_connector as connector
@@ -16,6 +17,15 @@ class FiasConnectorTests(unittest.TestCase):
         text="Дата последнего внесения изменений 20.10.2026 Дата актуальности 21.10.2026"
         self.assertEqual(connector.extract_date_after_label(text,"Дата последнего внесения изменений"),"20.10.2026")
         self.assertEqual(connector.extract_date_after_label(text,"Дата актуальности"),"21.10.2026")
+    def test_size_preflight_never_falls_back_to_get(self):
+        with mock.patch.object(connector.urllib.request, "urlopen", side_effect=TimeoutError("timed out")) as open_url:
+            result = connector.inspect_release_size("https://fias.nalog.ru/opendata/7707329152-fias/data.zip")
+        self.assertEqual(result["result"], "unavailable")
+        self.assertIsNone(result["declared_size_bytes"])
+        self.assertIn("no GET fallback", result["note"])
+        self.assertEqual(open_url.call_count, 1)
+        self.assertEqual(open_url.call_args.args[0].get_method(), "HEAD")
+
     def test_validates_xml_zip(self):
         with tempfile.TemporaryDirectory() as directory:
             path=os.path.join(directory,"sample.zip")
