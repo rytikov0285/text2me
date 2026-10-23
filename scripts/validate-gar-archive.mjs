@@ -111,6 +111,14 @@ try {
     note: "Архив скачан во временное хранилище Actions, ZIP-тест пройден, найдены XML. Архив не сохраняется в Git; схема XML и адресный индекс этим шагом не проверяются."
   };
   previous.last_archive_validation = result;
+  previous.last_successful_source_check = {
+    checked_at: finishedAt,
+    source_url: metadataUrl,
+    http_status: metadataResponse.status,
+    content_type: metadataResponse.headers.get("content-type"),
+    check_kind: "metadata_and_archive_validation",
+    archive_sha256: result.sha256
+  };
   previous.status = "healthy";
   previous.latest_attempt = {
     started_at: startedAt,
