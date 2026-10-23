@@ -295,6 +295,18 @@ if(document.querySelector(".dash-shell")) return;
 var main=document.querySelector("main#main"),header=document.querySelector(".site-header");
 if(!main||!header) return;
 var current=(location.pathname||"/").replace(/\/index\.html$/,"").replace(/\/+$/,"")||"/text2me";
+var mainNav=header.querySelector(".main-nav");
+if(mainNav){
+var navItems=[
+{label:"Главная",url:"/text2me/",match:function(){return current==="/text2me"}},
+{label:"Документы",url:"/text2me/documents/",match:function(){return current.indexOf("/text2me/documents")===0}},
+{label:"По ситуации",url:"/text2me/situations/",match:function(){return current.indexOf("/text2me/situations")===0||current.indexOf("/text2me/people")===0}},
+{label:"Для бизнеса",url:"/text2me/business/",match:function(){return current.indexOf("/text2me/business")===0||current.indexOf("/text2me/services")===0||current.indexOf("/text2me/request")===0}},
+{label:"Мои документы",url:"/text2me/space/",match:function(){return current.indexOf("/text2me/space")===0}}
+];
+mainNav.replaceChildren();mainNav.setAttribute("aria-label","Основная навигация");
+navItems.forEach(function(item){var a=document.createElement("a");a.href=item.url;a.textContent=item.label;if(item.match())a.setAttribute("aria-current","page");mainNav.appendChild(a)});
+}
 var sections=[
 {title:"Главная",url:"/text2me/",keys:"домой начало старт"},
 {title:"Документы",url:"/text2me/documents/",keys:"договор претензия иск заявление шаблон"},
