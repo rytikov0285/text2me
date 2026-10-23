@@ -1,0 +1,33 @@
+name: Validate reference-data engine
+
+on:
+  pull_request:
+    paths:
+      - "data-engine/**"
+      - "scripts/monitor-gar-fias.mjs"
+      - "scripts/validate-reference-data.mjs"
+      - ".github/workflows/**"
+  push:
+    paths:
+      - "data-engine/**"
+      - "scripts/monitor-gar-fias.mjs"
+      - "scripts/validate-reference-data.mjs"
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate reference registry and connector status
+        run: node scripts/validate-reference-data.mjs
+      - name: Syntax-check monitoring script
+        run: node --check scripts/monitor-gar-fias.mjs
