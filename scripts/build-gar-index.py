@@ -72,7 +72,7 @@ def main():
     os.unlink(tmp)
     dbpath = Path(tmp)
     groups = {k: [] for k in PATTERNS}
-    counts = {"object_rows": 0, "house_rows": 0, "admin_hierarchy_rows": 0, "municipal_hierarchy_rows": 0}
+    counts = {"object_rows": 0, "house_rows": 0, "adm_hierarchy_rows": 0, "mun_hierarchy_rows": 0}
     warnings = []
     try:
         with zipfile.ZipFile(archive) as zf:
