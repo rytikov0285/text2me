@@ -12,7 +12,6 @@ on:
   push:
     paths:
       - "data-engine/**"
-      - "scripts/monitor-gar-fias.mjs"
       - "scripts/validate-reference-data.mjs"
       - "scripts/build-gar-index.py"
       - "scripts/search-gar-index.py"
