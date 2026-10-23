@@ -27,7 +27,11 @@ assert(Array.isArray(registry.sources), "sources.json: поле sources долж
 assert(typeof registry.schema_version === "string", "sources.json: отсутствует schema_version.");
 assert(status.connector_id === "gar_fias", "status.json: connector_id должен быть gar_fias.");
 assert(["not_run", "healthy", "degraded", "error"].includes(status.status), "status.json: неизвестное значение status.");
-assert(status.address_index && status.address_index.status === "not_implemented", "status.json: нельзя отмечать адресный индекс готовым до реализации.");
+assert(status.address_index && ["not_implemented", "builder_implemented_not_deployed", "built_not_deployed", "deployed"].includes(status.address_index.status), "status.json: неизвестный статус адресного индекса.");
+if (status.address_index && status.address_index.status === "deployed") {
+  assert(status.address_index.endpoint && isHttpUrl(status.address_index.endpoint), "status.json: deployed требует URL поискового API.");
+  assert(status.address_index.last_successful_build, "status.json: deployed требует last_successful_build.");
+}
 assert(page.includes("/text2me/data-engine/status.json"), "Страница движка не ссылается на status.json.");
 assert(page.includes("/text2me/data-engine/sources.json"), "Страница движка не ссылается на реестр источников.");
 
