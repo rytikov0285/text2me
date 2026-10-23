@@ -595,37 +595,63 @@ function installSiteDescription(){
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installSiteDescription);else installSiteDescription();
 })();
 
-/* Full-width section navigation: the links span the entire workspace, including both rails. */
+/* Unified corporate navigation and task-category tabs. */
 (function(){
 "use strict";
-function installFullWidthSectionNav(){
- if(document.getElementById("text2me-section-strip"))return;
+function installNavigation(){
  var header=document.querySelector(".site-header, .dash-header");
  if(!header)return;
- var strip=document.createElement("nav");
- strip.id="text2me-section-strip";
- strip.className="text2me-section-strip";
- if(header.classList.contains("dash-header"))strip.classList.add("text2me-section-strip-home");
- strip.setAttribute("aria-label","Основные разделы сайта");
- var links=[
- ["Главная","/text2me/"],
- ["Жизненные ситуации","/text2me/situations/"],
- ["Документы и шаблоны","/text2me/documents/"],
- ["Тексты и инструменты","/text2me/prompts/"],
- ["Инструкции","/text2me/guides/"],
- ["Для бизнеса","/text2me/business/"],
- ["Официальные источники","/text2me/sources/"],
- ["Мои документы","/text2me/space/"]
- ];
  var current=(location.pathname||"/").replace(/index\.html$/,"").replace(/\/+$/,"")||"/text2me";
- links.forEach(function(item){
-  var a=document.createElement("a");a.href=item[1];a.textContent=item[0];
-  var target=item[1].replace(/\/+$/,"")||"/text2me";
-  if(current===target||(target==="/text2me"&&current==="/text2me"))a.setAttribute("aria-current","page");
-  strip.appendChild(a);
- });
- var description=document.getElementById("text2me-site-description");
- (description||header).insertAdjacentElement("afterend",strip);
+ var normalize=function(url){return url.replace(/\/+$/,"")||"/text2me"};
+ var mainId="text2me-section-strip";
+ var taskId="text2me-task-strip";
+ if(!document.getElementById(mainId)){
+  var strip=document.createElement("nav");
+  strip.id=mainId;strip.className="text2me-section-strip";
+  if(header.classList.contains("dash-header"))strip.classList.add("text2me-section-strip-home");
+  strip.setAttribute("aria-label","Основные разделы сайта");
+  var links=[
+   ["Главная","/text2me/"],
+   ["Жизненные ситуации","/text2me/situations/"],
+   ["Документы и шаблоны","/text2me/documents/"],
+   ["Тексты и инструменты","/text2me/prompts/"],
+   ["Инструкции и знания","/text2me/guides/"],
+   ["Бизнес и услуги","/text2me/services/"],
+   ["Задачи и сроки","/text2me/organizer/"],
+   ["Мои документы","/text2me/space/"]
+  ];
+  links.forEach(function(item){
+   var a=document.createElement("a");a.href=item[1];a.textContent=item[0];
+   var target=normalize(item[1]);
+   if(current===target||(target==="/text2me"&&current==="/text2me"))a.setAttribute("aria-current","page");
+   strip.appendChild(a);
+  });
+  var description=document.getElementById("text2me-site-description");
+  (description||header).insertAdjacentElement("afterend",strip);
+ }
+ if(!document.getElementById(taskId)){
+  var tasks=document.createElement("nav");
+  tasks.id=taskId;tasks.className="text2me-task-strip";
+  tasks.setAttribute("aria-label","Быстрый выбор задачи по направлению");
+  var groups=[
+   {label:"Личные дела",links:[["Жизненная ситуация","/text2me/situations/"],["Заявление или претензия","/text2me/documents/"],["Проверить документ","/text2me/knowledge/document-standard/"]]},
+   {label:"Профессиональные услуги",links:[["Страхование","/text2me/services/#insurance"],["Юридические вопросы","/text2me/services/#legal"],["Бухгалтерия","/text2me/services/#accounting"],["Маркетинг","/text2me/services/#marketing"]]},
+   {label:"Рабочие инструменты",links:[["Задачи и сроки","/text2me/organizer/"],["Официальные сведения","/text2me/sources/"],["Сохранённые документы","/text2me/space/"]]}
+  ];
+  groups.forEach(function(group){
+   var section=document.createElement("div");section.className="text2me-task-group";
+   var title=document.createElement("span");title.className="text2me-task-group-title";title.textContent=group.label;section.appendChild(title);
+   var list=document.createElement("div");list.className="text2me-task-links";
+   group.links.forEach(function(item){
+    var a=document.createElement("a");a.href=item[1];a.textContent=item[0];
+    if(item[1].indexOf("/text2me/services/#")===0&&location.pathname.indexOf("/text2me/services")===0&&location.hash===item[1].split("#")[1])a.setAttribute("aria-current","location");
+    list.appendChild(a);
+   });
+   section.appendChild(list);tasks.appendChild(section);
+  });
+  var strip=document.getElementById(mainId);
+  if(strip)strip.insertAdjacentElement("afterend",tasks);else header.insertAdjacentElement("afterend",tasks);
+ }
 }
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installFullWidthSectionNav);else installFullWidthSectionNav();
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installNavigation);else installNavigation();
 })();
