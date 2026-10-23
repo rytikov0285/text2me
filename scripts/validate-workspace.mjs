@@ -16,7 +16,8 @@ assert.equal(schema.schema_version, 1, "Unexpected workspace schema version");
 assert.ok(schema.entities.task && schema.entities.event && schema.entities.case, "Core entities are missing");
 assert.equal(schema.storage.cloud_sync, false, "Cloud sync must not be claimed as implemented");
 
-const scripts = [...html.matchAll(/<script>([\\s\\S]*?)<\\/script>/g)];
-assert.ok(scripts.length > 0, "Inline dashboard script not found");
-for (const match of scripts) new Function(match[1]);
+const start = html.indexOf("<script>");
+const end = html.lastIndexOf("</script>");
+assert.ok(start >= 0 && end > start, "Inline dashboard script not found");
+new Function(html.slice(start + 8, end));
 console.log("Workspace validation passed: HTML markers, schema JSON, core entities, and JavaScript syntax.");
