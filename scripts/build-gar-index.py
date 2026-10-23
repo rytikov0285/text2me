@@ -99,12 +99,12 @@ def main():
                 CREATE TABLE metadata(key TEXT PRIMARY KEY, value TEXT NOT NULL);
                 CREATE TABLE address_objects(
                   row_id INTEGER PRIMARY KEY, object_id INTEGER NOT NULL, object_guid TEXT,
-                  name TEXT NOT NULL, type_name TEXT, level INTEGER, is_active INTEGER NOT NULL,
+                  name TEXT NOT NULL, name_folded TEXT NOT NULL, type_name TEXT, level INTEGER, is_active INTEGER NOT NULL,
                   is_actual INTEGER NOT NULL, start_date TEXT, end_date TEXT, source_file TEXT NOT NULL
                 );
                 CREATE TABLE houses(
                   row_id INTEGER PRIMARY KEY, house_object_id INTEGER NOT NULL, object_guid TEXT,
-                  house_num TEXT, build_num TEXT, postal_code TEXT, is_active INTEGER NOT NULL,
+                  house_num TEXT, house_num_folded TEXT, build_num TEXT, postal_code TEXT, is_active INTEGER NOT NULL,
                   is_actual INTEGER NOT NULL, start_date TEXT, end_date TEXT, source_file TEXT NOT NULL
                 );
                 CREATE TABLE hierarchy(
@@ -114,7 +114,7 @@ def main():
                 );
                 """)
                 con.execute("BEGIN")
-                object_sql = "INSERT OR REPLACE INTO address_objects VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+                object_sql = "INSERT OR REPLACE INTO address_objects VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
                 for filename in groups["objects"]:
                     batch = []
                     with zf.open(filename) as stream:
@@ -126,7 +126,7 @@ def main():
                                 if row_id is None or oid is None or not name:
                                     raise RuntimeError("Invalid required OBJECT attributes in " + filename)
                                 batch.append((row_id, oid, get(a, "OBJECTGUID"), name, get(a, "TYPENAME"),
-                                    integer(get(a, "LEVEL")), flag(get(a, "ISACTIVE")), flag(get(a, "ISACTUAL")),
+                                    integer(get(a, "LEVEL")), name.casefold(), flag(get(a, "ISACTIVE")), flag(get(a, "ISACTUAL")),
                                     get(a, "STARTDATE"), get(a, "ENDDATE"), filename))
                                 counts["object_rows"] += 1
                                 if len(batch) >= BATCH_SIZE:
@@ -153,7 +153,7 @@ def main():
                                 elem.clear()
                         flush(con, hierarchy_sql, batch)
 
-                house_sql = "INSERT OR REPLACE INTO houses VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+                house_sql = "INSERT OR REPLACE INTO houses VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
                 for filename in groups["houses"]:
                     batch = []
                     with zf.open(filename) as stream:
@@ -164,8 +164,9 @@ def main():
                                 house_oid = integer(get(a, "OBJECTID"))
                                 if row_id is None or house_oid is None:
                                     raise RuntimeError("Invalid required HOUSE attributes in " + filename)
-                                batch.append((row_id, house_oid, get(a, "OBJECTGUID"), get(a, "HOUSENUM"),
-                                    get(a, "BUILDNUM"), get(a, "POSTALCODE"), flag(get(a, "ISACTIVE")),
+                                house_num = get(a, "HOUSENUM")
+                                batch.append((row_id, house_oid, get(a, "OBJECTGUID"), house_num,
+                                    (house_num or "").casefold(), get(a, "BUILDNUM"), get(a, "POSTALCODE"), flag(get(a, "ISACTIVE")),
                                     flag(get(a, "ISACTUAL")), get(a, "STARTDATE"), get(a, "ENDDATE"), filename))
                                 counts["house_rows"] += 1
                                 if len(batch) >= BATCH_SIZE:
@@ -175,9 +176,10 @@ def main():
 
                 con.executescript("""
                 CREATE INDEX idx_address_object_id ON address_objects(object_id);
-                CREATE INDEX idx_address_current_name ON address_objects(is_active,is_actual,name COLLATE NOCASE);
+                CREATE INDEX idx_address_current_name ON address_objects(is_active,is_actual,name_folded);
                 CREATE INDEX idx_address_guid ON address_objects(object_guid);
                 CREATE INDEX idx_house_object_id ON houses(house_object_id);
+                CREATE INDEX idx_house_current_number ON houses(is_active,is_actual,house_num_folded);
                 CREATE INDEX idx_house_current_postal ON houses(is_active,is_actual,postal_code);
                 CREATE INDEX idx_hierarchy_object ON hierarchy(object_id,division,is_active);
                 CREATE INDEX idx_hierarchy_parent ON hierarchy(parent_object_id,division,is_active);
