@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "purpose": "Machine-readable schema for the Text2me personal workspace prototype.",
+  "storage": {
+    "current": "browser_localStorage",
+    "key": "text2me.dashboard.v1",
+    "cloud_sync": false,
+    "server_notifications": false,
+    "backup_format": "JSON"
+  },
+  "entities": {
+    "task": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "description": "string",
+        "date": "YYYY-MM-DD or empty",
+        "priority": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "done": "boolean",
+        "updatedAt": "ISO-8601"
+      }
+    },
+    "event": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "description": "string",
+        "date": "YYYY-MM-DD or empty",
+        "updatedAt": "ISO-8601"
+      }
+    },
+    "case": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "description": "string",
+        "status": [
+          "active",
+          "waiting",
+          "done"
+        ],
+        "updatedAt": "ISO-8601"
+      }
+    },
+    "document_reference": {
+      "planned": true,
+      "fields": {
+        "id": "string",
+        "title": "string",
+        "fileName": "string",
+        "caseId": "string or empty",
+        "createdAt": "ISO-8601",
+        "source": "local file reference"
+      }
+    }
+  },
+  "roadmap": [
+    {
+      "id": "dashboard-local",
+      "status": "implemented_in_static_prototype",
+      "scope": "Tasks, events, cases, local export/import, print"
+    },
+    {
+      "id": "documents-vault",
+      "status": "existing_partial",
+      "scope": "Browser-local file storage in IndexedDB where supported"
+    },
+    {
+      "id": "accounts-sync",
+      "status": "not_implemented",
+      "scope": "Requires backend, authentication, authorization, and secure storage"
+    },
+    {
+      "id": "push-notifications",
+      "status": "not_implemented",
+      "scope": "Requires notification service and user opt-in"
+    },
+    {
+      "id": "reference-refresh",
+      "status": "partial",
+      "scope": "Separate metadata/archive validation workflows; source data import not assumed live"
+    },
+    {
+      "id": "ocr",
+      "status": "not_implemented",
+      "scope": "Needs OCR engine and file-processing limits"
+    },
+    {
+      "id": "collaboration",
+      "status": "not_implemented",
+      "scope": "Requires accounts, sharing model, audit log, and access controls"
+    }
+  ],
+  "privacy_rules": [
+    "Do not place sensitive personal data in public repository files.",
+    "Browser-local data may be lost when browser storage is cleared.",
+    "Exported JSON backups may contain personal data; store them securely.",
+    "Never claim local reminders run when the page is closed."
+  ]
+}\n
