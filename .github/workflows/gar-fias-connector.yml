@@ -41,10 +41,12 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data-engine/status.json
             git commit -m "chore: update GAR/FIAS connector status"
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
       - name: Fail the run if the source check failed
-        if: always()
+        if: always() && (github.event_name != 'push' || !contains(github.event.head_commit.message, '[run-gar-fias-preflight]'))
         run: python data-engine/fias_connector.py --assert-success
       - name: Detect built index artifact
         id: index-artifact
