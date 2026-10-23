@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 const html = readFileSync("dashboard/index.html", "utf8");
 const schema = JSON.parse(readFileSync("data-engine/user-workspace-schema.json", "utf8"));
 const calendar = readFileSync("calendar/index.html", "utf8");
+const enhancements = readFileSync("assets/enhancements.js", "utf8");
 const requiredIds = [
   "taskList", "eventList", "caseList", "entryForm", "exportData",
   "importFile", "statTasks", "statDue", "statEvents", "statCases"
@@ -27,4 +28,6 @@ const cStart = calendar.indexOf("<script>");
 const cEnd = calendar.lastIndexOf("</script>");
 assert.ok(cStart >= 0 && cEnd > cStart, "Calendar script not found");
 new Function(calendar.slice(cStart + 8, cEnd));
+new Function(enhancements);
+assert.ok(enhancements.includes('["/text2me/calendar/","Календарь"]'), "Calendar navigation link is missing");
 console.log("Workspace validation passed: HTML markers, schema JSON, core entities, and JavaScript syntax.");
