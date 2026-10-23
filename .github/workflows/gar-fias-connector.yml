@@ -1,0 +1,45 @@
+name: Text2me GAR-FIAS connector
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 3 * * 2"
+permissions:
+  contents: write
+concurrency:
+  group: text2me-gar-fias-connector
+  cancel-in-progress: false
+jobs:
+  check-official-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check official FNS feed and validate a changed archive
+        run: python data-engine/fias_connector.py
+      - name: Commit connector status for the public site
+        run: |
+          if ! git diff --quiet -- data-engine/status.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data-engine/status.json
+            git commit -m "chore: update GAR/FIAS connector status"
+            git push origin HEAD:main
+          fi
+      - name: Fail the run if the source check failed
+        if: always()
+        run: python data-engine/fias_connector.py --assert-success
+      - name: Upload public status snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: text2me-gar-fias-status
+          path: data-engine/status.json
+          if-no-files-found: error
+          retention-days: 14
