@@ -7,7 +7,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 SOURCE_PAGE="https://www.nalog.gov.ru/opendata/7707329152-fias/"
 ALLOWED_HOSTS={"fias.nalog.ru","data.nalog.ru"}
-MAX_ARCHIVE_BYTES=10*1024*1024*1024
+MAX_ARCHIVE_BYTES=int(os.environ.get("GAR_MAX_ARCHIVE_BYTES",10*1024*1024*1024))
 USER_AGENT="text2me-open-data-monitor/1.0 (official FNS GAR/FIAS open data)"
 def utc_now():
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00","Z")
@@ -61,6 +61,9 @@ def download_and_validate(url, index_output=None):
             with urllib.request.urlopen(request,timeout=90) as response:
                 final_host=(urllib.parse.urlparse(response.geturl()).hostname or "").lower()
                 if final_host not in ALLOWED_HOSTS: raise ValueError("Archive redirected to unexpected host: "+final_host)
+                declared=response.headers.get("Content-Length")
+                if declared and int(declared)>MAX_ARCHIVE_BYTES:
+                    raise ValueError("Official archive declares "+str(declared)+" bytes, exceeding the configured "+str(MAX_ARCHIVE_BYTES)+" byte runner limit; refusing an oversized download.")
                 while True:
                     chunk=response.read(1024*1024)
                     if not chunk: break
