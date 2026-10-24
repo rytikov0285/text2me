@@ -67,6 +67,8 @@ state = workspace.get();
 assert.equal(state.tasks.find(item => item.id === task.id).caseId, "", "Updating a task must not create a dangling case reference.");
 assert.equal(state.events.find(item => item.id === event.id).documentId, "", "Updating an event must not create a dangling document reference.");
 
+workspace.updateTask(task.id, { caseId: caseItem.id, documentId: documentItem.id, contactIds: [contact.id] });
+workspace.updateEvent(event.id, { caseId: caseItem.id, documentId: documentItem.id, contactIds: [contact.id] });
 workspace.removeEntity("contacts", contact.id);
 state = workspace.get();
 for (const entity of [...state.cases, ...state.documents, ...state.tasks, ...state.events]) {
@@ -84,6 +86,11 @@ assert.notEqual(state.events.find(item => item.id === event.id).documentId, docu
 
 localStorage.setItem("text2me.space.v1", JSON.stringify([{ id: "library-source-1", title: "Saved source", content: "Keep me" }]));
 const saved = workspace.upsertLibraryDocument({ id: "library-source-1", title: "Saved source", text: "Keep me" });
+const savedCaseId = saved.caseId;
+workspace.removeEntity("cases", savedCaseId);
+state = workspace.get();
+assert.equal(state.cases.some(item => item.id === savedCaseId), false, "A deliberately deleted case must not be recreated by library-link initialization.");
+assert.equal(state.documents.find(item => item.id === saved.documentId).caseId, "", "Deleting a case must leave its library document unlinked.");
 workspace.removeEntity("documents", saved.documentId);
 const retainedLibrary = JSON.parse(localStorage.getItem("text2me.space.v1") || "[]");
 assert.ok(retainedLibrary.some(item => item.id === "library-source-1"), "Removing a workspace reference must not delete the source library document.");
