@@ -588,7 +588,7 @@ document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key
 "use strict";
 function installSiteDescription(){
  if(document.getElementById("text2me-site-description"))return;
- var header=document.querySelector(".site-header, .dash-header");
+ var header=document.querySelector(".site-header, .dash-header, .top");
  if(!header)return;
  var band=document.createElement("section");
  band.id="text2me-site-description";
