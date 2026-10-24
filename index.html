@@ -430,6 +430,9 @@ body{background:#f4f5f7;color:#202124;font-family:Arial,Helvetica,sans-serif;fon
 @media(max-width:650px){.dash-shell{padding:0 12px 28px}.dash-header{margin:0 -12px;padding:12px;display:grid;grid-template-columns:1fr auto;gap:10px}.reference-header-tagline{display:none}.workspace-search{grid-column:1/-1;grid-row:2;max-width:none;width:100%}.reference-header-link{font-size:12px}.workspace-layout{display:flex;flex-direction:column;gap:12px}.workspace-sidebar,.workspace-main,.workspace-aside{width:100%;grid-column:auto;grid-row:auto}.workspace-sidebar{order:2}.workspace-main{order:1}.workspace-aside{order:3}.reference-side-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.reference-home{padding:15px;gap:17px}.reference-task-search{padding:12px}.reference-search-bottom{align-items:stretch;flex-direction:column}.reference-search-bottom button{width:100%}.reference-document-grid{grid-template-columns:1fr 1fr}.reference-trust{grid-template-columns:1fr}.reference-quick-actions{padding:12px}}
 @media(prefers-reduced-motion:reduce){.mockup-role-card,.reference-document{transition:none}}
 
+/* Final control sizing overrides: let Russian labels wrap instead of clipping or shrinking. */
+.reference-header-search .workspace-search-submit,.universal-search-controls .dash-btn,.dash-btn,.reference-search-bottom button{box-sizing:border-box;max-width:100%;min-width:0;min-height:44px;line-height:1.25;text-align:center;white-space:normal;overflow-wrap:anywhere}
+@media(max-width:650px){.reference-header-search .workspace-search-submit{padding:8px 10px;font-size:12px}}
 </style>
 </head>
 <body>
