@@ -641,3 +641,7 @@ header.top nav a:hover{background:var(--portal-soft);color:var(--portal-brand)}
 .audience-switch-links{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
 .audience-switch-links a{display:inline-flex;align-items:center;min-height:40px;padding:8px 13px;border:1px solid #c7dcee;border-radius:9px;background:#fff;color:#075da3;font-size:13px;font-weight:750;text-decoration:none}
 .audience-switch-links a:hover,.audience-switch-links a:focus-visible{background:#e8f3fc;border-color:#87b7df}
+
+.site-header .main-nav a.portal-nav-current,header.top nav a.portal-nav-current{background:#e8f3fc;color:#075da3;box-shadow:inset 0 -2px 0 #0873c9;font-weight:800}
+.site-header .main-nav a[data-portal-nav],header.top nav a[data-portal-nav]{border:1px solid transparent}
+.site-header .main-nav a[data-portal-nav]:hover,header.top nav a[data-portal-nav]:hover{border-color:#c7dcee}
