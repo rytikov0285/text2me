@@ -58,6 +58,7 @@ assert.ok(calendarScript, "Calendar inline script is missing.");
 new Function(calendarScript[1]);
 assert.ok(dashboardScript, "Dashboard inline script is missing.");
 new Function(dashboardScript[1]);
+assert.ok(crmWorkspace.includes('name="email"') && crmWorkspace.includes('name="phone"') && crmWorkspace.includes('name="organization"'), "CRM must preserve contact details when editing a contact.");
 assert.ok(workspace.includes("function normalizeRelations(x)"), "Relationship normalization is missing.");
 assert.ok(workspace.includes("function validContactIds(x,ids)"), "Contact relationship validation is missing.");
 assert.ok(workspace.includes("resolveDocumentId(x,opts.documentId)"), "Task/event document IDs must resolve to workspace document IDs.");
