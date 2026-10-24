@@ -79,6 +79,6 @@
 .crm-form-grid select[multiple]{min-height:96px;padding:8px 10px}
 .crm-form-grid label small{color:#657286;font-size:12px;font-weight:400;line-height:1.45}
 .crm-form-grid select:disabled{background:#f1f4f8;color:#667085;cursor:not-allowed}
-.crm-contact-details:not([hidden]){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.crm-contact-details label{display:flex;flex-direction:column;gap:6px;min-width:0}
-@media(max-width:640px){.crm-contact-details:not([hidden]){grid-template-columns:minmax(0,1fr)}}
+.crm-contact-details:not([hidden]),.crm-document-details:not([hidden]){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.crm-contact-details label,.crm-document-details label{display:flex;flex-direction:column;gap:6px;min-width:0}
+@media(max-width:640px){.crm-contact-details:not([hidden]),.crm-document-details:not([hidden]){grid-template-columns:minmax(0,1fr)}}
