@@ -43,6 +43,35 @@ test.describe("text2me published-site smoke tests", () => {
     await expect(opener).toBeFocused();
   });
 
+  test("CRM links cases and tasks to contacts by stable IDs", async ({ page }) => {
+    await page.goto(baseURL + "/space/", { waitUntil: "domcontentloaded" });
+    const form = page.locator("#crm-create-form");
+    const newButton = page.locator("#crm-new-button");
+    const board = page.locator("#crm-board");
+
+    await newButton.click();
+    await form.locator('select[name="type"]').selectOption("Контакт");
+    await form.locator('input[name="title"]').fill("Контакт E2E");
+    await form.locator('button[type="submit"]').click();
+    await expect(board).toContainText("Контакт E2E");
+
+    await newButton.click();
+    await form.locator('select[name="type"]').selectOption("Дело");
+    await form.locator('input[name="title"]').fill("Дело E2E");
+    await form.locator('select[name="contactIds"]').selectOption({ label: "Контакт E2E" });
+    await form.locator('button[type="submit"]').click();
+    await expect(board).toContainText("Дело E2E");
+    await expect(board).toContainText("Контакт E2E");
+
+    await newButton.click();
+    await form.locator('select[name="type"]').selectOption("Задача");
+    await form.locator('input[name="title"]').fill("Задача E2E");
+    await form.locator('select[name="caseId"]').selectOption({ label: "Дело E2E" });
+    await form.locator('select[name="contactIds"]').selectOption({ label: "Контакт E2E" });
+    await form.locator('button[type="submit"]').click();
+    await expect(board).toContainText("Задача E2E");
+  });
+
   test("shared navigation avoids duplicate audience and quick-access links", async ({ page }) => {
     await page.goto(baseURL + "/documents/", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".global-audience-switcher")).toHaveCount(0);
