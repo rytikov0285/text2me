@@ -223,3 +223,15 @@ body{background:#f5f6f7;color:#202a33;font-size:16px}.portal-wrap{width:min(1080
 @media(max-width:1199px){.portal-wrap,.portal-main,.portal-topic-bar{width:calc(100% - 36px)}.portal-workflow-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.portal-hero{grid-template-columns:1fr}.portal-hero-aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.portal-workflow-steps{grid-template-columns:1fr 1fr}.portal-document-picker{align-items:flex-start;flex-direction:column}.portal-picker-actions{width:100%}.portal-spreadsheet-grid{grid-template-columns:1fr}.portal-hero-main{padding:20px 17px}}
 @media(max-width:480px){.portal-workflow-steps{grid-template-columns:1fr}.portal-hero-aside{grid-template-columns:1fr}.portal-popular-searches{align-items:flex-start}.portal-search-form input{font-size:14px}}
+
+/* Keep the homepage light and calm even where earlier theme layers define gradients */
+.portal-hero{background:#fff!important;border:0!important;box-shadow:none!important}
+.portal-hero-main,.portal-hero-aside,.portal-feature{background:#fff!important;background-image:none!important;color:#202a33!important;border-color:#d1d7dc!important;box-shadow:none!important}
+.portal-hero h1,.portal-feature strong{color:#202a33!important}
+.portal-hero p,.portal-feature small{color:#46535e!important}
+.portal-hero .portal-eyebrow{color:#315c7b!important}
+.portal-feature{border:1px solid #d1d7dc!important;border-radius:7px!important}
+.portal-feature-icon{background:#eef1f3!important;color:#315c7b!important;border:1px solid #d1d7dc!important}
+.portal-search-form input{border-color:#9ba8b1!important}
+.portal-popular-searches a{background:#fff!important;color:#2d526f!important;border-color:#d1d7dc!important}
+.portal-hero-aside{gap:10px!important}
