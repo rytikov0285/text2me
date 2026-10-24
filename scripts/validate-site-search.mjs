@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { Script } from "node:vm";
 
 const errors = [];
 function assert(condition, message) {
@@ -11,6 +12,21 @@ const main = await readFile("assets/main.js", "utf8");
 const style = await readFile("assets/style.css", "utf8");
 const design = await readFile("docs/DESIGN_SYSTEM.md", "utf8");
 const agents = await readFile("AGENTS.md", "utf8");
+
+try {
+  new Script(main, { filename: "assets/main.js" });
+} catch (error) {
+  errors.push("assets/main.js: ошибка синтаксиса JavaScript: " + error.message);
+}
+const inlineScript = home.match(/<script>\\s*([\\s\\S]*?)\\s*<\\/script>/);
+assert(!!inlineScript, "Главная: не найден встроенный JavaScript для проверки синтаксиса.");
+if (inlineScript) {
+  try {
+    new Script(inlineScript[1], { filename: "index.html:inline-script" });
+  } catch (error) {
+    errors.push("index.html: ошибка синтаксиса встроенного JavaScript: " + error.message);
+  }
+}
 
 assert(home.includes('id="title-search-form"'), "Главная: отсутствует форма поиска по названию.");
 assert(home.includes('placeholder="Название документа, например «Исковое заявление»"'), "Главная: поиск не объясняет, что требуется название документа.");
