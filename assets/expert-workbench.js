@@ -12,7 +12,7 @@ analyst:{title:"Бизнес-аналитик",category:"Бизнес и опе�
 ["process","Название процесса и ожидаемый результат","text"],["owner","Владелец процесса и участники","textarea"],["trigger","Что запускает процесс и какие входные данные нужны","textarea"],["current","Текущие этапы процесса","textarea"],["pain","Проблемы, задержки и ошибки","textarea"],["target","Как должен выглядеть желаемый результат","textarea"],["constraints","Ограничения, системы и зависимости","textarea"],["success","Критерии успешного результата","textarea"],["followup","Дата следующего действия","date"]
 ],generate:function(v){return ["ОПИСАНИЕ БИЗНЕС-ПРОЦЕССА И ЧЕРНОВИК ТРЕБОВАНИЙ","Процесс: "+v.process,"","1. ЦЕЛЬ И РЕЗУЛЬТАТ",v.target,"","2. УЧАСТНИКИ И ОТВЕТСТВЕННОСТЬ",v.owner,"Предварительно назначить владельца процесса, исполнителей и согласующих; подтвердить роли с командой.","","3. ТРИГГЕР И ВХОДЫ",v.trigger,"","4. ТЕКУЩИЙ ПРОЦЕСС",v.current,"","5. ПРОБЛЕМЫ И РИСКИ",v.pain,"","6. ОГРАНИЧЕНИЯ И ЗАВИСИМОСТИ",v.constraints,"","7. ЧЕРНОВИК ТРЕБОВАНИЙ","- Система/процесс должен принимать указанные входные данные и проверять их полноту.","- Каждый этап должен иметь ответственного, вход, результат и условие перехода.","- Ошибки и исключения должны фиксироваться и иметь понятный маршрут обработки.","- Данные должны повторно использоваться в связанных документах и задачах без ручного дублирования.","- Существенные изменения должны попадать в журнал действий.","","8. КРИТЕРИИ ПРИЁМКИ",v.success,"- Основной сценарий выполнен от начала до конца на согласованном тестовом примере.","- Для каждого этапа определены ответственный и результат.","- Исключения и возврат на доработку проверены.","- Документы, задачи и сроки связаны с одним делом.","","9. СЛЕДУЮЩИЕ ШАГИ","1. Подтвердить текущую и целевую схему с участниками.","2. Уточнить требования и исключения.","3. Назначить владельцев этапов и сроки.","4. Согласовать критерии приёмки и провести тестовый прогон.","","Черновик требует проверки владельцем процесса и заинтересованными участниками."].join("\n")}}
 };
-var profile=profiles[document.body.dataset.profile]||profiles.legal,form=document.getElementById("expert-form"),fields=document.getElementById("expert-fields"),output=document.getElementById("expert-output"),save=document.getElementById("expert-save"),download=document.getElementById("expert-download"),status=document.getElementById("expert-status"),lastTitle="";
+var profile=profiles[document.body.dataset.profile]||profiles.legal,form=document.getElementById("expert-form"),fields=document.getElementById("expert-fields"),output=document.getElementById("expert-output"),save=document.getElementById("expert-save"),download=document.getElementById("expert-download"),status=document.getElementById("expert-status"),lastTitle="",lastSaved=null;
 document.title=profile.title+" — text2me";
 document.getElementById("expert-title").textContent=profile.title;
 document.getElementById("expert-category").textContent=profile.category;
@@ -23,6 +23,31 @@ fields.innerHTML=profile.fields.map(function(f){var id="field-"+f[0],label=esc(f
 function values(){var v={};profile.fields.forEach(function(f){var n=document.getElementById("field-"+f[0]);v[f[0]]=n?n.value.trim():""});return v}
 function titleFor(v){return profile.title+" — "+(v.process||v.product||v.documentType||"Рабочая задача")}
 form.addEventListener("submit",function(e){e.preventDefault();var v=values();if(!profile.fields.some(function(f){return f[2]!=="date"&&v[f[0]]})){status.textContent="Заполните исходные данные.";return}lastTitle=titleFor(v);output.value=profile.generate(v);output.focus();save.disabled=false;download.disabled=false;status.textContent="Черновик сформирован. Проверьте факты, формулировки и полноту результата."});
-save.addEventListener("click",function(){if(!output.value.trim())return;if(!window.Text2meWorkspace){status.textContent="Рабочее пространство пока недоступно. Перезагрузите страницу и повторите попытку.";return}var v=values(),stamp=new Date().toISOString(),lib=[];try{lib=JSON.parse(localStorage.getItem("text2me.space.v1")||"[]");if(!Array.isArray(lib))lib=[]}catch(e){lib=[]}var doc={id:"d"+Date.now().toString(36)+Math.random().toString(36).slice(2,8),title:lastTitle,text:output.value,content:output.value,source:location.pathname,created:stamp,updated:stamp,version:1,versions:[],collection:profile.category,archived:false};lib.unshift(doc);try{localStorage.setItem("text2me.space.v1",JSON.stringify(lib))}catch(e){status.textContent="Не удалось сохранить документ в браузере.";return}var link=window.Text2meWorkspace.upsertLibraryDocument(doc),contactName=v.author||"";if(contactName)window.Text2meWorkspace.linkContactToCase(link.caseId,contactName);var follow=v.followup;if(follow){window.Text2meWorkspace.addTask({title:"Следующее действие: "+lastTitle,due:follow,caseId:link.caseId,documentId:link.documentId,description:"Контрольный шаг по результату профильного рабочего места."});window.Text2meWorkspace.addEvent({title:"Контрольная дата: "+lastTitle,date:follow,caseId:link.caseId,documentId:link.documentId,description:"Дата указана пользователем; проверьте применимый срок."})}status.textContent="Результат сохранён в библиотеке и связан с делом. Создана задача проверки документа."+(follow?" Добавлены задача и календарное событие на "+follow+".":"");});
+save.addEventListener("click",function(){
+ if(!output.value.trim())return;
+ if(!window.Text2meWorkspace){status.textContent="Рабочее пространство пока недоступно. Перезагрузите страницу и повторите попытку.";return}
+ var v=values(),stamp=new Date().toISOString(),lib=[];
+ try{lib=JSON.parse(localStorage.getItem("text2me.space.v1")||"[]");if(!Array.isArray(lib))lib=[]}catch(e){lib=[]}
+ var doc=lastSaved&&lib.find(function(d){return d.id===lastSaved&&!d.archived});
+ if(doc){doc.versions=Array.isArray(doc.versions)?doc.versions:[];if(doc.text!==output.value)doc.versions.unshift({text:doc.text||"",updated:doc.updated||doc.created});doc.versions=doc.versions.slice(0,10);doc.text=output.value;doc.content=output.value;doc.updated=stamp;doc.version=(doc.version||1)+1;doc.title=lastTitle}
+ else{doc={id:"d"+Date.now().toString(36)+Math.random().toString(36).slice(2,8),title:lastTitle,text:output.value,content:output.value,source:location.pathname,created:stamp,updated:stamp,version:1,versions:[],collection:profile.category,archived:false};lib.unshift(doc)}
+ try{localStorage.setItem("text2me.space.v1",JSON.stringify(lib))}catch(e){status.textContent="Не удалось сохранить документ в браузере.";return}
+ var link=window.Text2meWorkspace.upsertLibraryDocument(doc),contactName=v.author||"";
+ if(contactName)window.Text2meWorkspace.linkContactToCase(link.caseId,contactName);
+ var follow=v.followup;
+ if(follow){
+  var taskFields={title:"Следующее действие: "+lastTitle,name:"Следующее действие: "+lastTitle,due:follow,date:follow,caseId:link.caseId,documentId:link.documentId,description:"Контрольный шаг по результату профильного рабочего места."};
+  var eventFields={title:"Контрольная дата: "+lastTitle,name:"Контрольная дата: "+lastTitle,date:follow,caseId:link.caseId,documentId:link.documentId,description:"Дата указана пользователем; проверьте применимый срок."};
+  var task=doc.followupActionTaskId&&window.Text2meWorkspace.updateTask(doc.followupActionTaskId,taskFields);
+  if(!task){task=window.Text2meWorkspace.addTask(taskFields);doc.followupActionTaskId=task.id}
+  var event=doc.followupEventId&&window.Text2meWorkspace.updateEvent(doc.followupEventId,eventFields);
+  if(!event){event=window.Text2meWorkspace.addEvent(eventFields);doc.followupEventId=event.id}
+  doc.followupDate=follow;
+ }
+ doc.workspaceDocumentId=link.documentId;doc.caseId=link.caseId;
+ try{localStorage.setItem("text2me.space.v1",JSON.stringify(lib))}catch(e){}
+ status.textContent="Результат сохранён в библиотеке и связан с делом. Задача проверки документа создана автоматически."+(follow?" Контрольная дата "+follow+" синхронизирована с задачей и календарём.":"");
+ lastSaved=doc.id;
+});
 download.addEventListener("click",function(){var blob=new Blob([output.value],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=(lastTitle||profile.title).replace(/[\\/:*?"<>|]+/g,"_")+".txt";a.click();URL.revokeObjectURL(url)});
 })();
