@@ -68,7 +68,7 @@ body{background-image:none!important}
 h1,h2,h3,h4,h5,h6,.portal-hero h1,.page-hero h1,.portal-section-head h2{color:#294d65!important}
 a,.portal-shell-brand,.portal-brand,.portal-footer a,.site-header .main-nav a,.portal-service-nav a{color:#294d65}
 p,li,small,label,figcaption,.portal-hero p,.portal-feature small,.portal-tile p,.portal-news-card p{color:#343a40}
-.portal-header,.portal-shell-header,.site-header,header.top{background:#fff!important;background-image:none!important;border-color:#d5dadd!important;box-shadow:none!important}
+.portal-header,.portal-shell-header,.site-header,header.top{background:var(--t2m-white-ral9016)!important;background-image:none!important;border-color:#d5dadd!important;box-shadow:none!important}
 .portal-header{border-bottom:1px solid #d5dadd!important}
 .portal-head-main{border-bottom-color:#d5dadd!important}
 .portal-main,.portal-wrap,.portal-section,.portal-workflow,.portal-document-picker,.portal-topic-label,.portal-topic-bar,.portal-section-head,.portal-footer,.site-footer,.page-hero,.hero,.portal-hero,.portal-hero-main,.portal-hero-aside,.section-muted,.route-builder-section,.cta-section,.audience-section,.portal-category-bar,.portal-service-group,.portal-notice,.portal-news-grid,.portal-news-card,.portal-tile,.portal-tool,.portal-feature,.portal-quick-card,.portal-path-links a,.external-resource,.document-category,.tool-card,.info-card,.choice-card,.knowledge-card,.side-panel,.document-builder,.need-form,.need-result,.readiness-check,.space-status,.space-preview article,.generated-result,.knowledge-note,.form-privacy{background:#fff!important;background-image:none!important;box-shadow:none!important}
@@ -275,9 +275,9 @@ body{background:var(--t2m-page-bg)!important;color:var(--t2m-ink)!important;font
 body :where(p,li,label,input,textarea,select,button,a,small,strong,span){text-shadow:none!important}
 body :where(p,li,label,input,textarea,select){color:var(--t2m-ink)}
 .portal-header,.portal-shell-header,.site-header,header.top{background:#fff!important;border-color:#c4c9ce!important;box-shadow:none!important}
-.portal-service-nav,.portal-shell-nav{background:#f7f7f7!important;border-color:#c5cbd1!important}
+.portal-service-nav,.portal-shell-nav{background:var(--t2m-white-ral9016)!important;border-color:#c5cbd1!important}
 .portal-main,.portal-wrap,.portal-section,.portal-workflow,.portal-document-picker,.portal-hero,.portal-hero-main,.portal-hero-aside,.portal-feature,.portal-tile,.portal-tool,.portal-quick-card,.portal-news-card,.choice-card,.info-card,.knowledge-card,.document-category,.tool-card,.side-panel,.document-builder,.need-form,.need-result,.readiness-check,.space-preview article,.generated-result,.portal-footer,.portal-shell-panel,.portal-shell-dialog{color:var(--t2m-ink)}
-.portal-hero,.portal-workflow,.portal-document-picker,.portal-tile,.portal-feature,.choice-card,.info-card,.knowledge-card,.tool-card,.document-category,.side-panel,.document-builder,.need-form,.need-result,.readiness-check,.space-preview article,.generated-result,.portal-news-card,.portal-quick-card{background:#fff!important;background-image:none!important;box-shadow:none!important;border:1px solid #d1d5d9!important}
+.portal-hero,.portal-workflow,.portal-document-picker,.portal-tile,.portal-feature,.choice-card,.info-card,.knowledge-card,.tool-card,.document-category,.side-panel,.document-builder,.need-form,.need-result,.readiness-check,.space-preview article,.generated-result,.portal-news-card,.portal-quick-card{background:var(--t2m-white-ral9016)!important;background-image:none!important;box-shadow:none!important;border:1px solid #d1d5d9!important}
 .portal-main{background:transparent!important}
 .portal-hero h1,.portal-section-head h2,.section-heading h2,.page-hero h1,.portal-tile strong,.portal-tool strong,.choice-card h3,.info-card h3,.knowledge-card h3,.portal-feature strong{color:#111820!important}
 .portal-hero p,.portal-section-head p,.section-heading p,.portal-tile p,.portal-tool p,.choice-card p,.info-card p,.knowledge-card p,.portal-feature small,.portal-news-card p{color:#27313a!important}
@@ -294,7 +294,7 @@ body :where(p,li,label,input,textarea,select){color:var(--t2m-ink)}
 .portal-shell-contact{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;border:1px solid;border-radius:3px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}
 .portal-shell-search{border-radius:3px!important}
 .portal-shell-nav a{font-size:14px}
-.portal-footer{background:#f7f7f7!important;border-top:1px solid #c5cbd1!important}
+.portal-footer{background:var(--t2m-white-ral9016)!important;border-top:1px solid #c5cbd1!important}
 .portal-footer-grid a{color:#174f7a!important}
 .t2m-partner-links{display:flex;align-items:center;flex-wrap:wrap;gap:14px;padding:20px 0;border-top:1px solid #c5cbd1;margin-top:18px}
 .t2m-partner-link{display:flex;align-items:center;justify-content:center;min-width:120px;min-height:58px;padding:8px 12px;background:#fff;border:1px solid #d1d5d9;text-decoration:none;border-radius:2px}
