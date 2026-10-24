@@ -57,7 +57,7 @@ function addTemplateWorkspace(r){
  panel.append(checklist);
  var status=el("p",{class:"rw-check-status","aria-live":"polite"});status.textContent=checks.every(function(_,i){return !!saved[i]})?"Все пункты отмечены.":"Проверено пунктов: "+checks.filter(function(_,i){return !!saved[i]}).length+" из "+checks.length+".";panel.append(status);
  var noteLabel=el("label",{class:"rw-template-note-label"},"Мои заметки к шаблону"),note=el("textarea",{class:"rw-template-note",rows:"4",placeholder:"Запишите вопросы, недостающие сведения или замечания к этому документу."});note.value=String(noteStore[info.id]||"");note.addEventListener("input",function(){var all=safeRead("text2me.template-notes.v1",{});if(!all||typeof all!=="object")all={};all[info.id]=note.value;safeWrite("text2me.template-notes.v1",all)});noteLabel.append(note);panel.append(noteLabel);
- var h1=main.querySelector("h1");if(h1&&h1.parentElement)h1.parentElement.insertAdjacentElement("afterend",panel);else main.insertBefore(panel,main.firstChild);
+ var h1=main.querySelector("h1"),roleIndicator=main.querySelector(".rw-page-role");if(roleIndicator)roleIndicator.insertAdjacentElement("afterend",panel);else if(h1&&h1.parentElement)h1.parentElement.insertAdjacentElement("afterend",panel);else main.insertBefore(panel,main.firstChild);
  if(!main.dataset.rwDownloadGuard){main.dataset.rwDownloadGuard="1";main.addEventListener("click",function(e){var target=e.target.closest("a,button,input[type=button],input[type=submit]");if(!target)return;var label=((target.innerText||target.value||target.getAttribute("aria-label")||"")+"").toLowerCase();if(!/(скачать|download|docx|pdf|экспортировать документ)/i.test(label))return;var active=main.querySelector(".rw-template-workspace");if(!active)return;var all=safeRead("text2me.template-checks.v1",{}),marks=all[active.dataset.checkKey]||{},count=Number(active.dataset.checkCount||0),complete=true;for(var i=0;i<count;i++){if(!marks[i])complete=false}if(!complete){e.preventDefault();e.stopImmediatePropagation();alert("Скачивание приостановлено: сначала проверьте все обязательные пункты контрольного списка.");}},true);}
 }
 function renderRoleState(){
@@ -99,7 +99,8 @@ function filterCatalog(r){
  var empty=document.getElementById("full-catalog-empty");if(empty)empty.hidden=cards.some(function(c){return !c.hidden});
 }
 function adaptFields(r){
- var form=document.querySelector("form");if(!form)return;
+ var path=window.location.pathname.replace(/\/+$/,"");if(!(path.indexOf("/text2me/documents/pretenziya-prodavtsu")===0||path.indexOf("/text2me/documents/isk-v-sud")===0||path.indexOf("/text2me/documents/dogovor-arendy")===0||path==="/text2me/business"))return;
+ var form=Array.from(document.querySelectorAll("main form")).find(function(f){return f.id!=="complex-request-form"&&f.querySelector("input,textarea,select")});if(!form)return;
  var roleHints={citizen:"Укажите ФИО сторон и факты простыми словами. Не заполняйте реквизиты организации, если вы обращаетесь как частное лицо.",ip:"Укажите статус ИП, ОГРНИП и реквизиты контрагента. Печать указывается только если она фактически используется.",organization:"Укажите полное наименование, ОГРН, адрес организации и основание полномочий подписанта."};
  var hint=form.querySelector(".rw-form-role-hint");if(!hint&&form.querySelector("input,textarea,select")){hint=el("p",{class:"rw-form-role-hint"});form.insertBefore(hint,form.firstChild)}if(hint)hint.textContent=roleHints[r];
  form.querySelectorAll("label").forEach(function(label){var t=(label.innerText||label.textContent||"").toLowerCase(),field=label.querySelector("input,select,textarea"),wrap=label;
@@ -148,8 +149,8 @@ function footer(){
  if(!f.querySelector(".rw-footer-links")){var nav=el("nav",{class:"rw-footer-links","aria-label":"Навигация по рабочему пространству"});[["Каталог","/text2me/documents/"],["Черновики","/text2me/drafts/"],["Калькуляторы","/text2me/calculators/"],["Источники","/text2me/sources/"],["Настройки","/text2me/settings/"]].forEach(function(x){nav.append(el("a",{href:x[1]},x[0]))});f.append(nav)}
 }
 function init(){
- addStyle();var h=header();var r=role();
- renderRoleState();rolePanel();patchDraftRole();footer();
+ addStyle();var h=header();var params=new URLSearchParams(window.location.search),requestedRole=params.get("role");if(ROLES[requestedRole])safeWrite(ROLE_KEY,requestedRole);var r=role();
+ rolePanel();renderRoleState();patchDraftRole();footer();
  if(!r)chooser();
  document.addEventListener("text2me:rolechange",function(){renderRoleState()});
  window.addEventListener("storage",function(e){if(e.key===ROLE_KEY)renderRoleState()});
