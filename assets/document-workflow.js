@@ -9,8 +9,14 @@ function installProfiles(){
  var forms=Array.from(document.forms).filter(function(f){return !f.matches('[role="search"]')&&!f.querySelector('input[type="search"]')&&f.querySelector("input:not([type=hidden]),textarea")});
  forms.forEach(function(form){
   if(form.dataset.t2mProfiles==="1")return;form.dataset.t2mProfiles="1";
-  var wrap=el("details","t2m-profile-tools");var sum=el("summary","","Подставить сохранённые реквизиты");wrap.appendChild(sum);
-  var note=el("p","t2m-profile-note","Профили сохраняются только в этом браузере. Не сохраняйте здесь сведения, которыми не хотите делиться с другими пользователями устройства.");wrap.appendChild(note);
+  var wrap=el("details","t2m-profile-tools");var sum=el("summary","","Что нужно сделать?");wrap.appendChild(sum);
+  var tasks=el("div","t2m-profile-tasks");[
+   ["＋","Создать документ","/text2me/documents/"],
+   ["⌕","Документ по ситуации","/text2me/situations/"],
+   ["✓","Проанализировать документ","/text2me/ai/"],
+   ["▯","Мои документы","/text2me/space/"]
+  ].forEach(function(item){var a=el("a","",item[0]+" "+item[1]);a.href=item[2];tasks.appendChild(a)});wrap.appendChild(tasks);
+  var note=el("p","t2m-profile-note","Сохранённые реквизиты: выберите профиль, чтобы заполнить подходящие поля формы. Профили хранятся только в этом браузере.");wrap.appendChild(note);
   var row=el("div","t2m-profile-row");var select=el("select","");select.setAttribute("aria-label","Сохранённый профиль");var empty=el("option","","Выберите профиль");empty.value="";select.appendChild(empty);
   var profiles=read(PROFILE_KEY,[]);if(!Array.isArray(profiles))profiles=[];
   profiles.forEach(function(p,i){var o=el("option","",p.name||("Профиль "+(i+1)));o.value=p.id;select.appendChild(o)});
@@ -53,7 +59,7 @@ function installRegistry(){
  section.appendChild(el("p","lifecycle-note","Нумерация локальная и может совпасть на другом устройстве или после очистки данных. Не используйте этот номер как официальный регистрационный номер организации."));
  main.appendChild(section);render();
 }
-function styles(){var s=el("style","");s.textContent=".t2m-profile-tools{margin:12px 0;padding:13px;border:1px solid #d8e0e8;border-radius:10px;background:#f8fafc}.t2m-profile-tools summary{font-weight:750;cursor:pointer;color:#174b7d}.t2m-profile-note,.t2m-profile-result{font-size:13px;color:#536477;line-height:1.5}.t2m-profile-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.t2m-profile-row select{min-width:180px;max-width:100%;padding:10px;border:1px solid #cbd5df;border-radius:8px;background:white}.t2m-registry-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.t2m-registry-field{display:grid;gap:5px;font-size:14px;font-weight:700}.t2m-registry-field input,.t2m-registry-field select,.t2m-registry-field textarea{width:100%;min-width:0;padding:10px;border:1px solid #cbd5df;border-radius:8px;font:inherit;font-weight:400;background:#fff}.t2m-registry-field:has(textarea){grid-column:1/-1}.t2m-registry-form button{justify-self:start}.t2m-registry-list{overflow-x:auto}.t2m-registry-list table{min-width:700px}@media(max-width:650px){.t2m-registry-form{grid-template-columns:1fr}.t2m-registry-field:has(textarea){grid-column:auto}}";document.head.appendChild(s)}
+function styles(){var s=el("style","");s.textContent=".t2m-profile-tools{margin:12px 0;padding:13px;border:1px solid #d8e0e8;border-radius:10px;background:#f8fafc}.t2m-profile-tools summary{font-weight:750;cursor:pointer;color:#174b7d}.t2m-profile-tasks{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.t2m-profile-tasks a{display:inline-flex;align-items:center;min-height:38px;padding:8px 11px;border:1px solid #cbd5df;border-radius:8px;background:#fff;color:#174b70;text-decoration:none;font-size:13px;font-weight:750}.t2m-profile-tasks a:hover{background:#eef6fb;border-color:#8eb3cb}.t2m-profile-note,.t2m-profile-result{font-size:13px;color:#536477;line-height:1.5}.t2m-profile-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.t2m-profile-row select{min-width:180px;max-width:100%;padding:10px;border:1px solid #cbd5df;border-radius:8px;background:white}.t2m-registry-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.t2m-registry-field{display:grid;gap:5px;font-size:14px;font-weight:700}.t2m-registry-field input,.t2m-registry-field select,.t2m-registry-field textarea{width:100%;min-width:0;padding:10px;border:1px solid #cbd5df;border-radius:8px;font:inherit;font-weight:400;background:#fff}.t2m-registry-field:has(textarea){grid-column:1/-1}.t2m-registry-form button{justify-self:start}.t2m-registry-list{overflow-x:auto}.t2m-registry-list table{min-width:700px}@media(max-width:650px){.t2m-registry-form{grid-template-columns:1fr}.t2m-registry-field:has(textarea){grid-column:auto}}";document.head.appendChild(s)}
 function start(){styles();installProfiles();installRegistry()}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
 })();
