@@ -1,7 +1,7 @@
 (function(){
 "use strict";
 if(!document.body||document.getElementById("t2m-ai-review-root"))return;
-var KEY="text2me.ai-review.v1",ROOT="t2m-ai-review-root",active=false,selected=null;
+var KEY="text2me.ai-review.v2",ROOT="t2m-ai-review-root",active=false,selected=null;
 var css=`
 #t2m-ai-review-root{font:14px/1.45 Arial,"Segoe UI",sans-serif;color:#17243a;position:relative;z-index:2147483000}
 #t2m-ai-review-root *{box-sizing:border-box}#t2m-ai-review-root [hidden]{display:none!important}
