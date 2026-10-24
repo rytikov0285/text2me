@@ -191,6 +191,7 @@ function dashboardState(){
  var x=read();
  return {
   cases:x.cases.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",status:dashboardStatus(o.status),contactIds:o.contactIds||[],createdAt:o.createdAt,updatedAt:o.updatedAt}}),
+  contacts:x.contacts.map(function(o){return {id:o.id,name:o.name||o.title||"",title:o.title||o.name||"",kind:o.kind||"person",email:o.email||"",phone:o.phone||"",organization:o.organization||"",createdAt:o.createdAt,updatedAt:o.updatedAt}}),
   tasks:x.tasks.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",date:o.date||o.due||"",caseId:o.caseId||"",documentId:o.documentId||"",contactIds:o.contactIds||[],priority:o.priority||"normal",done:o.done||o.status==="done",createdAt:o.createdAt,updatedAt:o.updatedAt}}),
   events:x.events.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",date:o.date||"",caseId:o.caseId||"",documentId:o.documentId||"",contactIds:o.contactIds||[],createdAt:o.createdAt,updatedAt:o.updatedAt}}),
   documents:x.documents.map(function(o){
