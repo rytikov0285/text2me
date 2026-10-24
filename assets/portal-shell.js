@@ -65,3 +65,6 @@ if(act==="print"){var w=window.open("","_blank");if(w){w.document.write("<!docty
 }}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addUtilities);else addUtilities();
 })();
+
+/* Mobile equivalent of persistent side rails */
+(function(){function addMobileActions(){if(document.querySelector(".text2me-mobile-actions"))return;var nav=document.createElement("nav");nav.className="text2me-mobile-actions";nav.setAttribute("aria-label","Быстрый доступ");[["Создать документ","/text2me/documents/"],["Претензия","/text2me/documents/pretenziya-prodavtsu/"],["Правовые источники","/text2me/law/"],["Календарь","/text2me/calendar/"]].forEach(function(x){var a=document.createElement("a");a.href=x[1];a.textContent=x[0];nav.appendChild(a);});document.body.appendChild(nav);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addMobileActions);else addMobileActions();})();
