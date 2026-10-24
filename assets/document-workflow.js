@@ -6,7 +6,7 @@ function write(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}ca
 function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
 function btn(text,fn){var b=el("button","button button-outline",text);b.type="button";b.addEventListener("click",fn);return b}
 function installProfiles(){
- var forms=Array.from(document.forms).filter(function(f){return f.querySelector("input:not([type=hidden]),textarea")});
+ var forms=Array.from(document.forms).filter(function(f){return !f.matches('[role="search"]')&&!f.querySelector('input[type="search"]')&&f.querySelector("input:not([type=hidden]),textarea")});
  forms.forEach(function(form){
   if(form.dataset.t2mProfiles==="1")return;form.dataset.t2mProfiles="1";
   var wrap=el("details","t2m-profile-tools");var sum=el("summary","","Подставить сохранённые реквизиты");wrap.appendChild(sum);
@@ -38,7 +38,7 @@ function installProfiles(){
 }
 function installRegistry(){
  var main=document.querySelector(".lifecycle-wrap");if(!main||document.querySelector(".t2m-registry"))return;
- var section=el("section","lifecycle-section t2m-registry");section.appendChild(el("h2","","8. Локальный реестр документов — рабочий прототип"));
+ var section=el("section","lifecycle-section t2m-registry");section.id="document-registry";section.appendChild(el("h2","","8. Локальный реестр документов — рабочий прототип"));
  section.appendChild(el("p","","Создавайте регистрационные карточки, назначайте локальные номера, фиксируйте статус и срок. Данные доступны только в этом браузере; это не корпоративный реестр и не юридически значимая регистрация."));
  var form=el("form","t2m-registry-form");
  function field(label,type,name,placeholder){var l=el("label","t2m-registry-field",label),i=document.createElement(type==="textarea"?"textarea":"input");if(type!=="textarea")i.type=type;i.name=name;i.placeholder=placeholder||"";if(name==="title")i.required=true;l.appendChild(i);return l}
