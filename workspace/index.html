@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<title>Рабочее пространство — text2me</title>
+<meta name="description" content="Рабочее пространство text2me: документы, согласования, задачи и контрагенты.">
+<link rel="stylesheet" href="/text2me/assets/style.css">
+<link rel="stylesheet" href="/text2me/assets/portal-shell.css">
+<link rel="stylesheet" href="/text2me/assets/workspace-crm.css">
+<script defer src="/text2me/assets/workspace-crm.js"></script>
+</head>
+<body class="crm-body">
+<a class="crm-skip" href="#crm-main">Перейти к содержанию</a>
+<div class="crm-app">
+<aside class="crm-sidebar" aria-label="Рабочее пространство">
+  <a class="crm-brand" href="/text2me/" aria-label="text2me — главная"><span>text</span><b>2</b><span>me</span></a>
+  <div class="crm-workspace-switch"><span class="crm-workspace-avatar">T</span><span><strong>Рабочее пространство</strong><small>Локальный режим</small></span><span aria-hidden="true">⌄</span></div>
+  <button class="crm-primary crm-sidebar-create" type="button" data-action="new-document"><span aria-hidden="true">＋</span> Создать документ</button>
+  <nav class="crm-nav" aria-label="Разделы">
+    <button class="crm-nav-item is-active" type="button" data-view="overview"><span>⌂</span>Обзор</button>
+    <button class="crm-nav-item" type="button" data-view="documents"><span>▤</span>Документы <small data-count="documents">0</small></button>
+    <button class="crm-nav-item" type="button" data-view="approvals"><span>✓</span>Согласования <small data-count="approvals">0</small></button>
+    <button class="crm-nav-item" type="button" data-view="tasks"><span>☷</span>Задачи <small data-count="tasks">0</small></button>
+    <button class="crm-nav-item" type="button" data-view="counterparties"><span>♙</span>Контрагенты</button>
+    <button class="crm-nav-item" type="button" data-view="team"><span>♧</span>Команда</button>
+    <button class="crm-nav-item" type="button" data-view="analytics"><span>▥</span>Аналитика</button>
+  </nav>
+  <div class="crm-sidebar-section"><span>РАБОЧИЕ КАНАЛЫ</span>
+    <button type="button" data-view="tasks"><span class="crm-hash">#</span>входящие-запросы</button>
+    <button type="button" data-view="approvals"><span class="crm-hash">#</span>на-согласовании</button>
+    <button type="button" data-view="documents"><span class="crm-hash">#</span>договоры-и-документы</button>
+  </div>
+  <div class="crm-sidebar-bottom">
+    <div class="crm-user"><span class="crm-user-avatar">Я</span><span><strong>Моё рабочее место</strong><small>Данные на этом устройстве</small></span></div>
+    <a href="/text2me/space/">Мои файлы</a>
+    <a href="/text2me/calendar/">Календарь</a>
+    <a href="/text2me/">На главную text2me</a>
+  </div>
+</aside>
+<div class="crm-main-wrap">
+<header class="crm-topbar">
+  <div class="crm-breadcrumb"><span>Рабочее пространство</span><span aria-hidden="true">/</span><strong id="crm-current-section">Обзор</strong></div>
+  <label class="crm-search"><span aria-hidden="true">⌕</span><input id="crm-search" type="search" placeholder="Поиск документов, задач, контрагентов" aria-label="Поиск по рабочему пространству"><kbd>Ctrl K</kbd></label>
+  <button class="crm-icon-button" type="button" data-action="help" aria-label="Информация о рабочем пространстве" title="Информация">?</button>
+</header>
+<main id="crm-main" class="crm-main" tabindex="-1">
+<section class="crm-view is-visible" data-panel="overview">
+  <div class="crm-page-heading"><div><p class="crm-eyebrow">ЕДИНОЕ РАБОЧЕЕ ПРОСТРАНСТВО</p><h1>Рабочий стол</h1><p class="crm-subtitle">Документы, задачи и согласования — в одном месте.</p></div><button class="crm-primary" type="button" data-action="new-document">＋ Создать документ</button></div>
+  <div class="crm-notice" role="status"><span aria-hidden="true">ⓘ</span><p><strong>Прототип интерфейса.</strong> Записи ниже хранятся только в этом браузере. Сервер, общие аккаунты и синхронизация пока не подключены. Не вводите конфиденциальные данные.</p><button type="button" data-action="dismiss-notice" aria-label="Скрыть уведомление">×</button></div>
+  <div class="crm-stat-grid">
+    <article class="crm-stat-card"><span>Документы</span><strong data-stat="documents">0</strong><small>В рабочем пространстве</small></article>
+    <article class="crm-stat-card"><span>Ожидают согласования</span><strong data-stat="approvals">0</strong><small>Требуют решения</small></article>
+    <article class="crm-stat-card"><span>Мои задачи</span><strong data-stat="tasks">0</strong><small>Не завершены</small></article>
+    <article class="crm-stat-card"><span>Просроченные</span><strong data-stat="overdue">0</strong><small>По сроку выполнения</small></article>
+  </div>
+  <div class="crm-overview-grid">
+    <section class="crm-panel crm-wide-panel"><div class="crm-panel-heading"><div><h2>Последняя работа</h2><p>Документы и процессы, к которым недавно обращались</p></div><button class="crm-text-button" type="button" data-view="documents">Все документы →</button></div><div id="crm-recent-documents" class="crm-list"></div></section>
+    <section class="crm-panel"><div class="crm-panel-heading"><div><h2>Мои задачи</h2><p>Ближайшие действия</p></div><button class="crm-text-button" type="button" data-view="tasks">Все задачи →</button></div><div id="crm-upcoming-tasks" class="crm-list"></div><button class="crm-secondary crm-full-button" type="button" data-action="add-task">＋ Добавить задачу</button></section>
+    <section class="crm-panel"><div class="crm-panel-heading"><div><h2>Согласования</h2><p>Документы, ожидающие решения</p></div><button class="crm-text-button" type="button" data-view="approvals">Открыть очередь →</button></div><div id="crm-pending-approvals" class="crm-list"></div></section>
+    <section class="crm-panel"><div class="crm-panel-heading"><div><h2>Быстрые действия</h2><p>Начните с нужного процесса</p></div></div><div class="crm-quick-actions"><button type="button" data-action="new-document"><span>＋</span><strong>Новый документ</strong><small>Открыть каталог и конструкторы</small></button><button type="button" data-action="add-task"><span>☷</span><strong>Поставить задачу</strong><small>Назначить исполнителя и срок</small></button><button type="button" data-action="add-counterparty"><span>♙</span><strong>Добавить контрагента</strong><small>Создать карточку организации</small></button></div></section>
+  </div>
+</section>
+<section class="crm-view" data-panel="documents"><div class="crm-page-heading"><div><p class="crm-eyebrow">БИБЛИОТЕКА РАБОЧЕГО ПРОСТРАНСТВА</p><h1>Документы</h1><p class="crm-subtitle">Карточки документов и связанные с ними процессы.</p></div><button class="crm-primary" type="button" data-action="new-document">＋ Создать документ</button></div><div class="crm-panel"><div class="crm-toolbar"><input type="search" id="crm-document-filter" placeholder="Найти документ по названию" aria-label="Поиск документов"><select id="crm-document-status" aria-label="Фильтр по статусу"><option value="">Все статусы</option><option>Черновик</option><option>На согласовании</option><option>Согласован</option><option>Подписан</option><option>В архиве</option></select></div><div id="crm-documents-table"></div></div></section>
+<section class="crm-view" data-panel="approvals"><div class="crm-page-heading"><div><p class="crm-eyebrow">КОНТРОЛЬ ПРОЦЕССА</p><h1>Согласования</h1><p class="crm-subtitle">Очередь решений и текущий статус каждого документа.</p></div><button class="crm-secondary" type="button" data-action="new-document">Выбрать документ</button></div><div class="crm-panel"><div id="crm-approvals-table"></div></div></section>
+<section class="crm-view" data-panel="tasks"><div class="crm-page-heading"><div><p class="crm-eyebrow">ПЛАН РАБОТЫ</p><h1>Задачи</h1><p class="crm-subtitle">Ответственные, сроки и текущие состояния.</p></div><button class="crm-primary" type="button" data-action="add-task">＋ Новая задача</button></div><div class="crm-panel"><div class="crm-toolbar"><input id="crm-task-filter" type="search" placeholder="Поиск задач" aria-label="Поиск задач"><select id="crm-task-status" aria-label="Фильтр задач"><option value="">Все задачи</option><option value="Открыта">Открытые</option><option value="В работе">В работе</option><option value="Выполнена">Выполненные</option></select></div><div id="crm-tasks-table"></div></div></section>
+<section class="crm-view" data-panel="counterparties"><div class="crm-page-heading"><div><p class="crm-eyebrow">КЛИЕНТЫ И ПАРТНЁРЫ</p><h1>Контрагенты</h1><p class="crm-subtitle">Карточки организаций и контакты, связанные с документами.</p></div><button class="crm-primary" type="button" data-action="add-counterparty">＋ Новый контрагент</button></div><div class="crm-panel"><div class="crm-toolbar"><input id="crm-party-filter" type="search" placeholder="Название, ИНН или контакт" aria-label="Поиск контрагентов"></div><div id="crm-counterparties-table"></div></div></section>
+<section class="crm-view" data-panel="team"><div class="crm-page-heading"><div><p class="crm-eyebrow">СОВМЕСТНАЯ РАБОТА</p><h1>Команда</h1><p class="crm-subtitle">Роли показаны как модель интерфейса; реальные пользователи и права пока не подключены.</p></div></div><div class="crm-panel"><div class="crm-role-grid"><article><span>Владелец</span><p>Настройка пространства и процессов</p></article><article><span>Администратор</span><p>Справочники и рабочие маршруты</p></article><article><span>Автор</span><p>Подготовка документов и запросов</p></article><article><span>Согласующий</span><p>Проверка и принятие решения</p></article><article><span>Исполнитель</span><p>Задачи и контрольные сроки</p></article><article><span>Наблюдатель</span><p>Просмотр хода работы</p></article></div><p class="crm-muted-note">Это описание будущей модели ролей, а не работающая система авторизации.</p></div></section>
+<section class="crm-view" data-panel="analytics"><div class="crm-page-heading"><div><p class="crm-eyebrow">ОБЗОР ПРОЦЕССОВ</p><h1>Аналитика</h1><p class="crm-subtitle">Сводные показатели по локальным записям этого браузера.</p></div></div><div class="crm-stat-grid"><article class="crm-stat-card"><span>Всего документов</span><strong data-stat="documents">0</strong></article><article class="crm-stat-card"><span>Задачи в работе</span><strong data-stat="tasks">0</strong></article><article class="crm-stat-card"><span>Согласования</span><strong data-stat="approvals">0</strong></article><article class="crm-stat-card"><span>Контрагенты</span><strong data-stat="counterparties">0</strong></article></div><div class="crm-panel"><h2>Состояние рабочего пространства</h2><p>Графики и показатели появятся после определения правил учёта и проверки данных. Сейчас здесь отображаются только базовые счётчики локальных записей.</p></div></section>
+</main>
+<footer class="crm-footer">text2me · Рабочее пространство · <a href="/text2me/privacy/">Конфиденциальность</a></footer>
+</div>
+</div>
+<dialog id="crm-dialog" class="crm-dialog"><form id="crm-dialog-form" method="dialog"><div class="crm-dialog-heading"><h2 id="crm-dialog-title">Новая запись</h2><button type="button" class="crm-icon-button" data-action="close-dialog" aria-label="Закрыть">×</button></div><div id="crm-dialog-fields" class="crm-dialog-fields"></div><p id="crm-dialog-error" class="crm-form-error" role="alert"></p><div class="crm-dialog-actions"><button type="button" class="crm-secondary" data-action="close-dialog">Отмена</button><button type="submit" class="crm-primary">Сохранить локально</button></div></form></dialog>
+<div id="crm-toast" class="crm-toast" role="status" aria-live="polite"></div>
+</body>
+</html>
