@@ -23,3 +23,20 @@
 .portal-tag.soon{background:#f0f2f4;color:#5b6b7d}
 .portal-footer{background:#f0f3f6;border-top-color:#d8e0e8}
 @media(max-width:760px){.portal-topic-bar{padding-top:8px;gap:6px}.portal-topic-bar a{font-size:11px;padding:6px 9px}}
+
+/* Task-first quick start: actions, not duplicated audience/category navigation. */
+.portal-quick-start{padding-top:22px}
+.portal-quick-start-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.portal-quick-card{display:flex;align-items:flex-start;gap:12px;min-height:104px;padding:17px;background:#fff;border:1px solid #d8e0e8;border-radius:12px;color:#1b2c40;text-decoration:none;box-shadow:0 5px 18px rgba(21,56,91,.04);transition:border-color .15s,transform .15s,box-shadow .15s}
+.portal-quick-card:hover{border-color:#205b91;transform:translateY(-1px);box-shadow:0 9px 24px rgba(21,56,91,.09)}
+.portal-quick-card-primary{background:#f0f5fa;border-color:#9bb7d2}
+.portal-quick-icon{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:10px;background:#e7eef6;color:#15385b;font-size:21px;font-weight:700}
+.portal-quick-card-primary .portal-quick-icon{background:#15385b;color:#fff}
+.portal-quick-card-copy{display:flex;flex:1;flex-direction:column;gap:6px;min-width:0}
+.portal-quick-card-copy strong{font-size:15px;line-height:1.35;color:#15385b}
+.portal-quick-card-copy small{font-size:13px;line-height:1.45;color:#5b6b7d}
+.portal-quick-arrow{color:#205b91;font-size:20px;line-height:1.2}
+@media(max-width:900px){.portal-quick-start-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.portal-quick-start-grid{grid-template-columns:1fr}.portal-quick-card{min-height:88px;padding:14px}.portal-quick-card-copy strong{font-size:14px}}
+/* The homepage uses its top-level audience selector and task shortcuts; no duplicate second nav row. */
+.portal-header .portal-nav{display:none!important}
