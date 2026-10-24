@@ -611,3 +611,18 @@ header.top nav a:hover{background:var(--portal-soft);color:var(--portal-brand)}
 .site-header .main-nav a.audience-current,header.top nav a.audience-current{background:#e8f3fc;color:#075da3;box-shadow:inset 0 -2px 0 #0873c9;font-weight:800}
 .site-header .main-nav a[data-audience],header.top nav a[data-audience]{border:1px solid transparent}
 .site-header .main-nav a[data-audience]:hover,header.top nav a[data-audience]:hover{border-color:#c7dcee}
+
+/* Shared quick search dialog (Ctrl+K / Esc). */
+.portal-quick-search-button{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:9px 13px;border:1px solid #cbdceb;border-radius:9px;background:#fff;color:#175d98;font:700 14px/1.2 inherit;cursor:pointer}
+.portal-quick-search-button:hover{background:#e8f3fc;border-color:#a9cbe8}
+.portal-quick-search-dialog[hidden]{display:none!important}
+.portal-quick-search-dialog{position:fixed;inset:0;z-index:1000;display:grid;place-items:start center;padding:12vh 16px 24px;background:rgba(11,31,53,.48)}
+.portal-quick-search-panel{width:min(620px,100%);padding:25px;background:#fff;border:1px solid #d8e3ef;border-radius:16px;box-shadow:0 24px 70px rgba(0,25,50,.25)}
+.portal-quick-search-panel h2{margin:0 0 17px;color:#172b4d;font-size:24px}
+.portal-quick-search-close{float:right;border:0;background:transparent;color:#53677e;cursor:pointer;font:inherit;font-size:13px}
+.portal-quick-search-form{display:grid;gap:10px}
+.portal-quick-search-label{font-size:13px;font-weight:700;color:#344e68}
+.portal-quick-search-form input{width:100%;min-height:48px;padding:12px 14px;border:1px solid #b6cee3;border-radius:9px;font:inherit}
+.portal-quick-search-submit{min-height:44px;padding:10px 15px;border:0;border-radius:9px;background:#0873c9;color:#fff;font-weight:800;cursor:pointer}
+.portal-quick-search-panel>p{margin:13px 0 0;color:#5c6f87;font-size:12px}
+@media(max-width:760px){.portal-quick-search-button{padding:8px 10px;font-size:12px}.portal-quick-search-panel{padding:18px}.portal-quick-search-panel h2{font-size:21px}}
