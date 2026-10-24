@@ -16,8 +16,8 @@ function header(){
  var existing=document.querySelector("body > header");
  if(existing&&existing.classList.contains("role-workspace-header"))return existing;
  var h=el("header",{class:"role-workspace-header"});
- h.innerHTML='<div class="rw-top"><a class="rw-brand" href="/text2me/">text2me</a><div class="rw-role-control"><label for="rw-role">Режим работы</label><select id="rw-role"><option value="citizen">Гражданин</option><option value="ip">ИП</option><option value="organization">Организация</option></select></div><button class="rw-search-button" type="button">Поиск</button></div><nav class="rw-nav" aria-label="Основная навигация"><a href="/text2me/documents/">Каталог</a><a href="/text2me/drafts/">Черновики</a><a href="/text2me/calculators/">Калькуляторы</a><a href="/text2me/sources/">Источники</a><a href="/text2me/settings/">Настройки</a></nav><div class="rw-role-indicator" aria-live="polite"></div>';
- if(existing)existing.replaceWith(h);else document.body.insertBefore(h,document.body.firstChild);
+ h.innerHTML='<div class="rw-top"><a class="rw-brand" href="/text2me/">text2me</a><div class="rw-role-control"><label for="rw-role">Режим работы</label><select id="rw-role"><option value="" disabled>Выберите роль</option><option value="citizen">Гражданин</option><option value="ip">ИП</option><option value="organization">Организация</option></select></div><button class="rw-search-button" type="button">Поиск</button></div><nav class="rw-nav" aria-label="Основная навигация"><a href="/text2me/documents/">Каталог</a><a href="/text2me/drafts/">Черновики</a><a href="/text2me/calculators/">Калькуляторы</a><a href="/text2me/sources/">Источники</a><a href="/text2me/settings/">Настройки</a></nav><div class="rw-role-indicator" aria-live="polite"></div>';
+ if(existing)existing.replaceWith(h);else document.body.insertBefore(h,document.body.firstChild);var oldServiceNav=document.querySelector(".portal-service-nav");if(oldServiceNav)oldServiceNav.remove();
  var select=h.querySelector("#rw-role");select.addEventListener("change",function(){setRole(select.value)});
  h.querySelector(".rw-search-button").addEventListener("click",function(){var q=prompt("Название документа или ситуация");if(q&&q.trim())window.location.href="/text2me/documents/?q="+encodeURIComponent(q.trim())});
  var current=window.location.pathname.replace(/\/+$/,"");h.querySelectorAll(".rw-nav a").forEach(function(a){var u=new URL(a.href,location.href).pathname.replace(/\/+$/,"");if(u===current)a.setAttribute("aria-current","page")});
@@ -42,7 +42,7 @@ function rolePanel(){
 function renderRoleState(){
  var r=role();if(!r)return;
  var data=ROLES[r];document.documentElement.setAttribute("data-text2me-role",r);
- var select=document.getElementById("rw-role");if(select)select.value=r;
+ var select=document.getElementById("rw-role");if(select)select.value=r||"";
  var ind=document.querySelector(".rw-role-indicator");if(ind)ind.textContent="Вы работаете как: "+data.label;
  document.querySelectorAll(".rw-page-role").forEach(function(p){var b=p.querySelector(".rw-role-badge"),d=p.querySelector(".rw-role-description");if(b){b.textContent="Вы работаете как: "+data.label;b.dataset.role=r}if(d)d.textContent=data.description});
  renderHome(r);filterCatalog(r);adaptFields(r);
