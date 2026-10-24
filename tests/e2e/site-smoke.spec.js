@@ -64,9 +64,13 @@ test("consumer claim form generates a draft and downloadable text", async ({ pag
     await page.goto(`${baseURL}/documents/pretenziya-prodavtsu/`, { waitUntil: "domcontentloaded" });
     await expect(page.locator("#claim-builder")).toBeVisible();
   });
-  await test.step("fill required fields and generate the draft", async () => {
+  await test.step("complete the parties step and continue to purchase details", async () => {
     await page.locator("#seller-name").fill("Тестовый продавец");
     await page.locator("#buyer-name").fill("Тестовый покупатель");
+    await page.getByRole("button", { name: "Продолжить" }).click();
+    await expect(page.locator("#product-name")).toBeVisible();
+  });
+  await test.step("fill purchase details and generate the draft", async () => {
     await page.locator("#product-name").fill("Тестовый товар");
     await page.locator("#defect-description").fill("Тестовое описание недостатка товара.");
     await page.locator("#claim-demand").selectOption("refund");
