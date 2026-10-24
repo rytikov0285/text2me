@@ -41,6 +41,40 @@ test.describe("text2me published-site smoke tests", () => {
     await expect(opener).toBeFocused();
   });
 
+  test("homepage title search submits on Enter and does not search situation descriptions", async ({ page }) => {
+    await page.goto(baseURL + "/", { waitUntil: "domcontentloaded" });
+    const input = page.locator("#title-search");
+    const results = page.locator("#title-search-results");
+    const status = page.locator("#title-search-status");
+
+    await input.fill("Исковое заявление");
+    await input.press("Enter");
+    await expect(results).toContainText("Исковое заявление");
+    await expect(results.locator("a").first()).toHaveAttribute("href", /documents\\/isk-v-sud/);
+
+    await input.fill("снимаю квартиру хочу зафиксировать условия");
+    await input.press("Enter");
+    await expect(status).toContainText("Для описания обстоятельств");
+    await expect(results.locator("a")).toHaveCount(0);
+  });
+
+  test("start page title search shows results on Enter and leaves situation shortcuts available", async ({ page }) => {
+    await page.goto(baseURL + "/start/", { waitUntil: "domcontentloaded" });
+    const input = page.locator("#search-input");
+    const status = page.locator("#search-status");
+
+    await input.fill("Исковое заявление");
+    await input.press("Enter");
+    await expect(status).toContainText("Найдено документов по названию: 1");
+    await expect(page.locator("#catalog-cards [data-search-item]:visible")).toHaveCount(1);
+    await expect(page.locator("#quick-actions a:visible").first()).toBeVisible();
+
+    await input.fill("вернуть деньги за товар");
+    await input.press("Enter");
+    await expect(status).toContainText("Для описания ситуации");
+    await expect(page.locator("#quick-actions a:visible").first()).toBeVisible();
+  });
+
   for (const width of [320, 375, 768, 1024, 1280, 1440]) {
     test(`homepage has no document-level horizontal overflow at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
