@@ -81,7 +81,7 @@ def source_html_routes(prefix):
             except (OSError, UnicodeError):
                 continue
             robots = re.search(
-                r'<meta\\b(?=[^>]*\\bname=["\\']robots["\\'])(?=[^>]*\\bcontent=["\\'][^"\\']*noindex)[^>]*>',
+                r"""<meta\b(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["'][^"']*noindex)[^>]*>""",
                 source,
                 flags=re.IGNORECASE,
             )
