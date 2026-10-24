@@ -15,7 +15,7 @@ const sourcesPage = readFileSync("sources/index.html", "utf8");
 const sitemap = readFileSync("sitemap.xml", "utf8");
 const requiredIds = [
   "taskList", "eventList", "caseList", "entryForm", "exportData",
-  "importFile", "statTasks", "statDue", "statEvents", "statCases", "documentList", "addDocument", "entryCase", "entryUrl", "entrySavedDocument"
+  "importFile", "statTasks", "statDue", "statEvents", "statCases", "documentList", "addDocument", "entryCase", "entryUrl", "entrySavedDocument", "entryContacts"
 ];
 for (const id of requiredIds) {
   assert.ok(html.includes('id="' + id + '"'), "Missing dashboard element: " + id);
@@ -64,6 +64,8 @@ assert.ok(workspace.includes("normalizeRelations(x);return write(x)"), "CRM/dash
 assert.ok(schema.entities.document.fields.libraryDocumentId && schema.entities.document.fields.linkageInitialized, "Library and workspace document IDs must be represented separately.");
 assert.ok(calendar.includes('id="eventCase"') && calendar.includes('id="eventDocument"') && calendar.includes('id="eventContacts"'), "Calendar events must support case, document and contact links.");
 assert.ok(calendar.includes('id="taskDocument"') && calendar.includes('id="taskContacts"'), "Calendar tasks must support document and contact links.");
+assert.ok(html.includes('id="entryContacts"') && html.includes('contactIds:Array.from(node("entryContacts")'), "Dashboard records must support contact links.");
+assert.ok(html.includes('if(!window.Text2meWorkspace.syncDashboard(state))'), "Dashboard must not report a successful save if workspace synchronization fails.");
 assert.ok(enhancements.includes('["/text2me/calendar/","Календарь"]'), "Calendar navigation link is missing");
 assert.ok(!sitemap.includes("https://rytikov0285.github.io/text2me/space/"), "Noindex personal workspace must not be listed in sitemap");
 assert.ok(!sitemap.includes("https://rytikov0285.github.io/text2me/request/"), "Noindex request form must not be listed in sitemap");
