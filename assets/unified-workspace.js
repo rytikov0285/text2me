@@ -9,7 +9,7 @@ function read(){var x=safeParse(KEY,null);if(!x||x.version!==1)return migrate();
 function write(x){x.updatedAt=now();try{localStorage.setItem(KEY,JSON.stringify(x));window.dispatchEvent(new CustomEvent("text2me:workspace-updated",{detail:{updatedAt:x.updatedAt}}));return true}catch(e){return false}}
 function byId(a,id){return a.find(function(x){return x.id===id})}
 function validContactIds(x,ids){var known=new Set((x.contacts||[]).map(function(c){return c.id}));return Array.from(new Set((Array.isArray(ids)?ids:[]).filter(function(id){return known.has(id)})))}
-function resolveDocumentId(x,id){if(!id)return "";if(byId(x.documents,id))return id;var d=(x.documents||[]).find(function(o){return o.libraryId===id||o.libraryDocumentId===id});return d?d.id:""}
+function resolveDocumentId(x,id){if(!id)return "";var direct=byId(x.documents,id);if(direct)return direct.id;var source=(x.documents||[]).find(function(o){return o.libraryId===id});if(source)return source.id;var reference=(x.documents||[]).find(function(o){return o.libraryDocumentId===id});if(reference&&reference.documentId&&byId(x.documents,reference.documentId))return reference.documentId;return ""}
 function normalizeRelations(x){
  var changed=false,caseIds=new Set((x.cases||[]).map(function(o){return o.id})),taskIds=new Set((x.tasks||[]).map(function(o){return o.id}));
  (x.cases||[]).forEach(function(c){
