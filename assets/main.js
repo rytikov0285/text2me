@@ -22,33 +22,45 @@
   var searchForm = document.getElementById("document-search");
   if (searchForm) {
     var input = document.getElementById("search-input");
-    var quickCards = Array.prototype.slice.call(document.querySelectorAll("#quick-actions a"));
     var catalogCards = Array.prototype.slice.call(document.querySelectorAll("#catalog-cards [data-search-item]"));
     var status = document.getElementById("search-status");
     var empty = document.getElementById("empty-state");
-    function filterCards() {
-      var query = (input.value || "").trim().toLocaleLowerCase("ru");
-      var visible = 0;
-      quickCards.forEach(function (card) {
-        var haystack = ((card.innerText || "") + " " + (card.getAttribute("data-search") || "")).toLocaleLowerCase("ru");
-        var match = !query || haystack.indexOf(query) !== -1;
-        card.hidden = !match;
-        if (match) visible++;
-      });
-      catalogCards.forEach(function (card) {
-        var haystack = ((card.innerText || "") + " " + (card.getAttribute("data-search") || "")).toLocaleLowerCase("ru");
-        var match = !query || haystack.indexOf(query) !== -1;
-        card.hidden = !match;
-        if (match) visible++;
-      });
-      if (status) status.textContent = query ? "Найдено подходящих направлений: " + visible : "";
-      if (empty) empty.hidden = visible !== 0;
+    var catalog = document.getElementById("catalog");
+
+    function normalizeSearchText(value) {
+      return String(value || "").toLocaleLowerCase("ru").replace(/ё/g, "е").replace(/[^\\p{L}\\p{N}]+/gu, " ").trim();
     }
+
+    function filterCards(scrollToResults) {
+      if (!input) return;
+      var query = normalizeSearchText(input.value);
+      var terms = query ? query.split(/\\s+/).filter(Boolean) : [];
+      var visible = 0;
+      catalogCards.forEach(function (card) {
+        var heading = card.querySelector("h3");
+        var title = normalizeSearchText(heading ? heading.textContent : card.textContent);
+        var match = !query || terms.every(function (term) { return title.indexOf(term) !== -1; });
+        card.hidden = !match;
+        if (match) visible++;
+      });
+
+      if (status) {
+        status.textContent = !query
+          ? (scrollToResults ? "Введите название документа для поиска." : "")
+          : visible
+            ? "Найдено документов по названию: " + visible + ". Выберите подходящий результат ниже."
+            : "По этому названию ничего не найдено. Для описания ситуации используйте отдельный подбор по ситуации.";
+      }
+      if (empty) empty.hidden = visible !== 0;
+      if (scrollToResults && catalog) catalog.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (scrollToResults && !query && input) input.focus();
+    }
+
+    if (input) input.addEventListener("input", function () { filterCards(false); });
     searchForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      filterCards();
+      filterCards(true);
     });
-    input.addEventListener("input", filterCards);
   }
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-search-chip]"), function (chip) {
