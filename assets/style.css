@@ -634,3 +634,7 @@ header.top nav a:hover{background:var(--portal-soft);color:var(--portal-brand)}
 .site-header .main-nav a.portal-nav-current,header.top nav a.portal-nav-current{background:#e8f3fc;color:#075da3;box-shadow:inset 0 -2px 0 #0873c9;font-weight:800}
 .site-header .main-nav a[data-portal-nav],header.top nav a[data-portal-nav]{border:1px solid transparent}
 .site-header .main-nav a[data-portal-nav]:hover,header.top nav a[data-portal-nav]:hover{border-color:#c7dcee}
+
+/* Override legacy element-level widths on pages migrated to the shared shell. */
+.site-header{max-width:none;margin:0;padding:0}
+.site-footer{max-width:none;margin:0;padding:28px 0 20px}
