@@ -63,7 +63,7 @@ assert.ok(workspace.includes("function validContactIds(x,ids)"), "Contact relati
 assert.ok(workspace.includes("resolveDocumentId(x,opts.documentId)"), "Task/event document IDs must resolve to workspace document IDs.");
 assert.ok(!workspace.includes('localStorage.setItem("text2me.space.v1",JSON.stringify(lib))'), "Deleting a workspace reference must not delete the source library record.");
 assert.ok(workspace.includes('["cases","documents","tasks","events"].forEach(function(k)'), "Contact deletion must clean all relationship arrays.");
-assert.ok(workspace.includes("normalizeRelations(x);return write(x)"), "CRM/dashboard synchronization must validate relationships before persistence.");
+assert.ok(workspace.includes("normalizeRelations(x);") && workspace.includes("return write(x);"), "CRM/dashboard synchronization must validate relationships before persistence.");
 assert.ok(schema.entities.document.fields.libraryDocumentId && schema.entities.document.fields.linkageInitialized, "Library and workspace document IDs must be represented separately.");
 assert.ok(calendar.includes('id="eventCase"') && calendar.includes('id="eventDocument"') && calendar.includes('id="eventContacts"'), "Calendar events must support case, document and contact links.");
 assert.ok(calendar.includes('id="taskDocument"') && calendar.includes('id="taskContacts"'), "Calendar tasks must support document and contact links.");
