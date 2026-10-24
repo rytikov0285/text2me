@@ -57,7 +57,7 @@ test.describe("text2me published-site smoke tests", () => {
     await form.locator('input[name="organization"]').fill("Тестовая организация");
     await form.locator('button[type="submit"]').click();
     await expect(board).toContainText("Контакт E2E");
-    await board.locator(".crm-item").filter({ hasText: "Контакт E2E" }).first().locator('button[data-edit]').click();
+    await board.locator(".crm-item").filter({ hasText: "Контакт E2E" }).last().locator('button[data-edit]').click();
     await expect(form.locator('input[name="email"]')).toHaveValue("contact-e2e@example.test");
     await expect(form.locator('input[name="phone"]')).toHaveValue("+7 900 000-00-00");
     await form.locator("#crm-cancel").click();
