@@ -3,7 +3,7 @@
  "use strict";
  function addServiceNetwork(){
   if(document.querySelector(".text2me-service-network"))return;
-  var header=document.querySelector(".portal-shell-header,.portal-header,body > header");
+  var header=document.querySelector(".portal-shell-header,.portal-header,.reference-header,.site-header,body > header");
   if(!header)return;
   var nav=document.createElement("nav");
   nav.className="text2me-service-network portal-shell-wrap";
