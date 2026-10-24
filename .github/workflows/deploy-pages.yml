@@ -23,12 +23,72 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
+      - name: Write deployment marker
+        env:
+          DEPLOY_COMMIT: ${{ github.sha }}
+          DEPLOY_RUN_ID: ${{ github.run_id }}
+        run: |
+          printf '{"commit":"%s","run_id":"%s"}\n' "$DEPLOY_COMMIT" "$DEPLOY_RUN_ID" > deploy-version.json
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify published version and critical assets
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+          EXPECTED_COMMIT: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          BASE_URL="${SITE_URL%/}"
+          MARKER_URL="$BASE_URL/deploy-version.json"
+          PAGE_URL="$BASE_URL/"
+
+          echo "Checking published marker: $MARKER_URL"
+          marker_ok=0
+          for attempt in $(seq 1 18); do
+            if curl --fail --silent --show-error "$MARKER_URL?check=$GITHUB_RUN_ID" -o /tmp/deploy-version.json 2>/dev/null; then
+              if grep -Fq "\"commit\":\"$EXPECTED_COMMIT\"" /tmp/deploy-version.json; then
+                marker_ok=1
+                break
+              fi
+            fi
+            echo "Published version not visible yet (attempt $attempt/18); waiting 10 seconds."
+            sleep 10
+          done
+          if [ "$marker_ok" -ne 1 ]; then
+            echo "::error::Published deployment marker does not match commit $EXPECTED_COMMIT."
+            cat /tmp/deploy-version.json 2>/dev/null || true
+            exit 1
+          fi
+
+          echo "Checking homepage: $PAGE_URL"
+          curl --fail --silent --show-error --retry 5 --retry-delay 5 "$PAGE_URL?check=$GITHUB_RUN_ID" -o /tmp/text2me-home.html
+          grep -Eiq '<title>text2me' /tmp/text2me-home.html || {
+            echo "::error::Homepage title marker was not found."
+            exit 1
+          }
+          grep -Fq 'portal-home.css' /tmp/text2me-home.html || {
+            echo "::error::Expected homepage stylesheet reference was not found."
+            exit 1
+          }
+
+          for asset in assets/portal-home.css assets/portal-shell.css assets/portal-home.js assets/portal-shell.js; do
+            echo "Checking asset: $BASE_URL/$asset"
+            curl --fail --silent --show-error --retry 3 --retry-delay 3 "$BASE_URL/$asset?check=$GITHUB_RUN_ID" -o /tmp/text2me-asset
+            test -s /tmp/text2me-asset || {
+              echo "::error::Asset is empty: $asset"
+              exit 1
+            }
+          done
+
+          echo "Published commit $EXPECTED_COMMIT verified successfully."
