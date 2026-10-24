@@ -626,3 +626,7 @@ header.top nav a:hover{background:var(--portal-soft);color:var(--portal-brand)}
 .portal-quick-search-submit{min-height:44px;padding:10px 15px;border:0;border-radius:9px;background:#0873c9;color:#fff;font-weight:800;cursor:pointer}
 .portal-quick-search-panel>p{margin:13px 0 0;color:#5c6f87;font-size:12px}
 @media(max-width:760px){.portal-quick-search-button{padding:8px 10px;font-size:12px}.portal-quick-search-panel{padding:18px}.portal-quick-search-panel h2{font-size:21px}}
+
+.audience-switch-links{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.audience-switch-links a{display:inline-flex;align-items:center;min-height:40px;padding:8px 13px;border:1px solid #c7dcee;border-radius:9px;background:#fff;color:#075da3;font-size:13px;font-weight:750;text-decoration:none}
+.audience-switch-links a:hover,.audience-switch-links a:focus-visible{background:#e8f3fc;border-color:#87b7df}
