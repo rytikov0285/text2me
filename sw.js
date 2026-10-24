@@ -1,10 +1,11 @@
 "use strict";
-var CACHE_NAME="text2me-shell-v1";
+var CACHE_NAME="text2me-shell-v2";
 var SHELL_URLS=[
   "/text2me/",
   "/text2me/organizer/",
   "/text2me/assets/style.css",
   "/text2me/assets/enhancements.css",
+  "/text2me/assets/portal-shell.css",
   "/text2me/assets/organizer.css",
   "/text2me/assets/enhancements.js",
   "/text2me/assets/organizer.js",
