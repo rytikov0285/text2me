@@ -9,7 +9,7 @@ function search(q){
  if(!q){results.classList.add("portal-hidden");status.textContent="";return;}
  var hits=searchable.filter(function(el){return (el.textContent+" "+(el.getAttribute("data-keywords")||"")).toLocaleLowerCase("ru-RU").indexOf(q)!==-1;}).slice(0,12);
  results.classList.remove("portal-hidden");
- if(!hits.length){status.textContent="Совпадений в каталоге главной страницы не найдено. Попробуйте другое слово или откройте полный каталог.";return;}
+ if(!hits.length){status.textContent="На главной странице совпадений нет. Можно выполнить поиск по полному каталогу.";var all=document.createElement("a");all.className="portal-search-result";all.href="/text2me/documents/?q="+encodeURIComponent(q);var title=document.createElement("strong");title.textContent="Искать по всему каталогу документов";var hint=document.createElement("span");hint.textContent="Открыть результаты поиска";all.append(title,hint);results.appendChild(all);return;}
  status.textContent="Найдено: "+hits.length+(hits.length===12?" (показаны первые 12)":"")+".";
  hits.forEach(function(el){
   var a=el.matches("a")?el:el.querySelector("a");
@@ -19,6 +19,7 @@ function search(q){
   var hint=document.createElement("span");hint.textContent=a.getAttribute("href").indexOf("#")>=0?"Перейти к разделу":"Открыть раздел";
   row.append(title,hint);results.appendChild(row);
  });
+ var all=document.createElement("a");all.className="portal-search-result";all.href="/text2me/documents/?q="+encodeURIComponent(q);var allTitle=document.createElement("strong");allTitle.textContent="Искать по всему каталогу документов";var allHint=document.createElement("span");allHint.textContent="Показать больше результатов";all.append(allTitle,allHint);results.appendChild(all);
 }
 if(form)form.addEventListener("submit",function(e){e.preventDefault();search(input.value);if(results)results.scrollIntoView({behavior:"smooth",block:"nearest"});});
 document.querySelectorAll("[data-search-term]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();if(input){input.value=a.getAttribute("data-search-term");search(input.value);input.focus();}});});
