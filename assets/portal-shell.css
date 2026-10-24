@@ -257,4 +257,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .portal-hero h1{font-size:28px;line-height:1.2}
   .portal-section-head h2,.section-heading h2{font-size:22px;line-height:1.3}
 }
+.portal-home-contact{display:flex;align-items:center;gap:10px;margin-left:auto;flex-wrap:wrap}
+.portal-home-contact>span{font-size:12px;color:#343d46;max-width:175px}
+.portal-home-contact>a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;background:#174f7a;color:#fff!important;border:1px solid #174f7a;border-radius:3px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}
+.portal-home-contact>a:hover{background:#103b5c}
+.portal-home-contact button{min-height:40px}
+@media(max-width:900px){.portal-home-contact{gap:6px}.portal-home-contact>span{display:none}.portal-home-contact>a{min-height:36px;padding:7px 9px;font-size:12px}}
 
