@@ -16,10 +16,14 @@ const keyRoutes = [
 test.describe("text2me published-site smoke tests", () => {
   for (const route of keyRoutes) {
     test(`route loads: ${route}`, async ({ page }) => {
+      const pageErrors = [];
+      page.on("pageerror", error => pageErrors.push(error.message));
       const response = await page.goto(`${baseURL}${route}`, { waitUntil: "domcontentloaded" });
       expect(response, `No HTTP response for ${route}`).not.toBeNull();
       expect(response.status(), `Unexpected HTTP status for ${route}`).toBe(200);
       await expect(page.locator("body")).not.toBeEmpty();
+      await page.waitForTimeout(300);
+      expect(pageErrors, `Uncaught JavaScript errors on ${route}`).toEqual([]);
     });
   }
 
