@@ -39,13 +39,34 @@ function rolePanel(){
   p.querySelector(".rw-change-role").addEventListener("click",function(){var s=document.getElementById("rw-role");if(s)s.focus()});
  }
 }
+function addTemplateWorkspace(r){
+ var path=window.location.pathname.replace(/\/+$/,""),info=null;
+ if(path.indexOf("/text2me/documents/pretenziya-prodavtsu")===0)info={id:"pretenziya-prodavtsu",title:"Претензия продавцу"};
+ else if(path.indexOf("/text2me/documents/isk-v-sud")===0)info={id:"isk-v-sud",title:"Исковое заявление"};
+ else if(path.indexOf("/text2me/documents/dogovor-arendy")===0)info={id:"dogovor-arendy",title:"Договор найма жилого помещения"};
+ if(!info)return;
+ var main=document.querySelector("main");if(!main||main.dataset.rwBlocked==="1")return;
+ var old=main.querySelector(".rw-template-workspace");if(old)old.remove();
+ var noteStore=safeRead("text2me.template-notes.v1",{}),checkStore=safeRead("text2me.template-checks.v1",{}),checkKey=info.id+":"+r;
+ var checks=r==="organization"?["Реквизиты организации и подписанта сверены","Основание полномочий подтверждено","НДС и цена проверены, если применимо","Корпоративные согласования проверены","Факты и доказательства сверены","Приложения и порядок направления проверены"]:r==="ip"?["Статус ИП и реквизиты сторон сверены","Договор, даты и суммы проверены","Факты и доказательства подтверждены","Правовое основание и срок проверены","Приложения и порядок направления проверены"]:["ФИО и реквизиты сторон сверены","Факты, даты и суммы проверены","Требования и правовое основание проверены","Приложения, адресат и способ направления проверены"];
+ var panel=el("section",{class:"rw-template-workspace","aria-labelledby":"rw-template-title"});
+ var heading=el("h2",{id:"rw-template-title"},"Проверка документа: "+info.title),intro=el("p",{},"Контрольный список перед скачиванием или отправкой. Отметьте каждый пункт после проверки по исходным материалам и актуальным правилам.");
+ panel.append(heading,intro);
+ var checklist=el("div",{class:"rw-template-checklist"}),saved=checkStore[checkKey]||{};
+ checks.forEach(function(label,i){var row=el("label",{class:"rw-check-row"}),cb=el("input",{type:"checkbox"});cb.checked=!!saved[i];cb.addEventListener("change",function(){var latest=safeRead("text2me.template-checks.v1",{});if(!latest||typeof latest!=="object")latest={};if(!latest[checkKey])latest[checkKey]={};latest[checkKey][i]=cb.checked;safeWrite("text2me.template-checks.v1",latest);status.textContent=checks.every(function(_,n){return !!latest[checkKey][n]})?"Все пункты отмечены. Проверьте документ по существу перед использованием.":"Проверено пунктов: "+checks.filter(function(_,n){return !!latest[checkKey][n]}).length+" из "+checks.length+".";});row.append(cb,el("span",{},label));checklist.append(row)});
+ panel.append(checklist);
+ var status=el("p",{class:"rw-check-status","aria-live":"polite"});status.textContent=checks.every(function(_,i){return !!saved[i]})?"Все пункты отмечены.":"Проверено пунктов: "+checks.filter(function(_,i){return !!saved[i]}).length+" из "+checks.length+".";panel.append(status);
+ var noteLabel=el("label",{class:"rw-template-note-label"},"Мои заметки к шаблону"),note=el("textarea",{class:"rw-template-note",rows:"4",placeholder:"Запишите вопросы, недостающие сведения или замечания к этому документу."});note.value=String(noteStore[info.id]||"");note.addEventListener("input",function(){var all=safeRead("text2me.template-notes.v1",{});if(!all||typeof all!=="object")all={};all[info.id]=note.value;safeWrite("text2me.template-notes.v1",all)});noteLabel.append(note);panel.append(noteLabel);
+ var h1=main.querySelector("h1");if(h1&&h1.parentElement)h1.parentElement.insertAdjacentElement("afterend",panel);else main.insertBefore(panel,main.firstChild);
+ main.addEventListener("click",function(e){var target=e.target.closest("a,button,input[type=button],input[type=submit]");if(!target)return;var label=((target.innerText||target.value||target.getAttribute("aria-label")||"")+"").toLowerCase();if(!/(скачать|download|docx|pdf|экспортировать документ)/i.test(label))return;var current=safeRead("text2me.template-checks.v1",{}),marks=current[checkKey]||{};if(!checks.every(function(_,i){return !!marks[i]})){e.preventDefault();e.stopImmediatePropagation();alert("Скачивание приостановлено: сначала проверьте все обязательные пункты контрольного списка.");}},true);
+}
 function renderRoleState(){
  var r=role();if(!r)return;
  var data=ROLES[r];document.documentElement.setAttribute("data-text2me-role",r);enforcePageRole(r);
  var select=document.getElementById("rw-role");if(select)select.value=r||"";
  var ind=document.querySelector(".rw-role-indicator");if(ind)ind.textContent="Вы работаете как: "+data.label;
  document.querySelectorAll(".rw-page-role").forEach(function(p){var b=p.querySelector(".rw-role-badge"),d=p.querySelector(".rw-role-description");if(b){b.textContent="Вы работаете как: "+data.label;b.dataset.role=r}if(d)d.textContent=data.description});
- renderHome(r);filterCatalog(r);adaptFields(r);
+ renderHome(r);filterCatalog(r);adaptFields(r);addTemplateWorkspace(r);
 }
 function renderHome(r){
  var main=document.querySelector("main");if(!main)return;
