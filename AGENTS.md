@@ -1,7 +1,8 @@
 # AGENTS.md — правила работы с text2me
 
 **Область действия:** весь репозиторий `rytikov0285/text2me`.  
-**Обязательный проектный стандарт:** [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).  
+**Обязательный проектный стандарт:** [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).
+**Модель данных и миграция:** [docs/WORKSPACE_DATA_MIGRATION.md](docs/WORKSPACE_DATA_MIGRATION.md).  
 **Общий регламент владельца проекта:** [SmartGP/Agents/Agents.md](https://github.com/rytikov0285/SmartGP/blob/main/Agents/Agents.md).
 
 ## 1. Приоритеты
