@@ -218,3 +218,43 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
  .portal-search-form{flex-direction:column}
  .portal-search-form input,.portal-primary-btn{width:100%}
 }
+
+/* Readability and workspace-width correction: preserve the shared layout while avoiding undersized body text. */
+@media(min-width:1200px){
+  body:has(.text2me-rail) main:not(.portal-main),
+  body:has(.text2me-rail) .portal-main{
+    width:min(960px,calc(100% - 410px))!important;
+    max-width:960px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
+.portal-rail-title,
+.text2me-rail h2{font-size:15px;line-height:1.4}
+.text2me-rail p{font-size:13px;line-height:1.5}
+.text2me-rail a{font-size:13px;line-height:1.45}
+.portal-tile p,
+.portal-tool p,
+.choice-card p,
+.info-card p,
+.knowledge-card p,
+.portal-news-card p{font-size:14px;line-height:1.55}
+.portal-tile strong,
+.portal-tool strong,
+.choice-card h3,
+.info-card h3,
+.knowledge-card h3{font-size:16px;line-height:1.4}
+.portal-section-head p,
+.section-heading p,
+.hero-lead{font-size:15px;line-height:1.6}
+@media(max-width:760px){
+  .portal-hero p,.portal-section-head p,.section-heading p,.hero-lead{font-size:15px;line-height:1.6}
+  .portal-tile p,.portal-tool p,.choice-card p,.info-card p,.knowledge-card p,.portal-news-card p{font-size:14px;line-height:1.55}
+  .portal-tile strong,.portal-tool strong,.choice-card h3,.info-card h3,.knowledge-card h3{font-size:15px;line-height:1.4}
+  .text2me-mobile-actions a{font-size:13px;line-height:1.35}
+}
+@media(max-width:480px){
+  .portal-hero h1{font-size:28px;line-height:1.2}
+  .portal-section-head h2,.section-heading h2{font-size:22px;line-height:1.3}
+}
+
