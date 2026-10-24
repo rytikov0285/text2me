@@ -90,7 +90,7 @@ function adaptFields(r){
  });
 }
 function enforcePageRole(r){
- var path=window.location.pathname.replace(/\\/+$/,""),allowed=null;
+ var path=window.location.pathname.replace(/\/+$/,""),allowed=null;
  if(path.indexOf("/text2me/documents/pretenziya-prodavtsu")===0||path.indexOf("/text2me/documents/isk-v-sud")===0||path.indexOf("/text2me/documents/dogovor-arendy")===0)allowed=["citizen","ip"];
  else if(path==="/text2me/people")allowed=["citizen","ip"];
  else if(path==="/text2me/business")allowed=["ip","organization"];
