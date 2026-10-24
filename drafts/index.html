@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Черновики — text2me</title><meta name="description" content="Локальный список черновиков документов с ролью, датой и действиями.">
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://rytikov0285.github.io/text2me/drafts/">
+<link rel="stylesheet" href="/text2me/assets/style.css"><link rel="stylesheet" href="/text2me/assets/role-workspace.css?v=roles1">
+<style>.drafts-wrap{max-width:1100px;margin:28px auto;padding:0 22px}.draft-list{display:grid;gap:10px;margin:22px 0}.draft-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;padding:16px;border:1px solid #d7dee7;border-radius:9px;background:#fff}.draft-item h2{font-size:18px;margin:0 0 6px}.draft-meta{font-size:13px;color:#596b7e}.draft-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.draft-actions button,.draft-actions a{padding:8px 11px;border:1px solid #b7c4d2;border-radius:6px;background:#fff;color:#234e7b;text-decoration:none;cursor:pointer;font:inherit;font-size:14px}.draft-empty{padding:20px;border:1px dashed #b7c4d2;border-radius:9px;color:#596b7e}@media(max-width:650px){.draft-item{grid-template-columns:1fr}.draft-actions{justify-content:flex-start}}</style></head>
+<body><main id="main" class="drafts-wrap"><p class="rw-eyebrow">Локальные данные браузера</p><h1>Черновики и история</h1><p>Здесь отображаются сохранённые черновики этого браузера. Они не отправляются на сервер и не синхронизируются между устройствами.</p><div id="draft-list" class="draft-list" aria-live="polite"></div><p class="draft-meta">Черновики, созданные до включения режимов работы, могут не иметь сведений о роли. Их роль отмечается как «Не указана».</p></main>
+<footer><p class="rw-footer-note">Данные хранятся локально в вашем браузере.</p></footer>
+<script>
+(function(){
+"use strict";
+var key="text2me.drafts.v1",roleKey="text2me.role.v1",mapKey="text2me.draft-roles.v1",host=document.getElementById("draft-list");
+function read(k,f){try{var v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
+function write(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+function esc(s){return String(s==null?"":s)}
+function getItems(){var x=read(key,{});if(Array.isArray(x))return x.map(function(d,i){return {id:String(d.id||i),data:d,storeKey:String(i)}});if(x&&typeof x==="object")return Object.keys(x).map(function(k){return {id:String(x[k]&&x[k].id||k),data:x[k]||{},storeKey:k}});return []}
+function render(){host.innerHTML="";var all=getItems(),current=read(roleKey,""),labels={citizen:"Гражданин",ip:"ИП",organization:"Организация"};
+if(!all.length){var empty=document.createElement("div");empty.className="draft-empty";empty.textContent="Сохранённых черновиков пока нет. Откройте каталог документов и создайте первый документ.";var a=document.createElement("a");a.href="/text2me/documents/";a.textContent="Открыть каталог";empty.append(document.createElement("br"),a);host.append(empty);return}
+all.reverse().forEach(function(item){var d=item.data||{},node=document.createElement("article");node.className="draft-item";var info=document.createElement("div"),title=document.createElement("h2");title.textContent=d.title||d.name||d.documentTitle||d.type||"Черновик документа";var meta=document.createElement("p");meta.className="draft-meta";var role=d.role||read(mapKey,{})[item.id]||read(mapKey,{})[item.storeKey]||"unknown";meta.textContent="Роль: "+(labels[role]||"Не указана")+" · "+(d.updatedAt||d.savedAt||d.date||"Дата не записана");info.append(title,meta);var actions=document.createElement("div");actions.className="draft-actions";var open=document.createElement("a");open.href=d.url||d.href||"/text2me/space/";open.textContent="Открыть";actions.append(open);
+var dup=document.createElement("button");dup.textContent="Дублировать";dup.addEventListener("click",function(){var store=read(key,{}),copy=JSON.parse(JSON.stringify(d));copy.title=(copy.title||copy.name||"Черновик")+" — копия";copy.role=d.role||current||undefined;copy.updatedAt=new Date().toLocaleDateString("ru-RU");if(Array.isArray(store)){copy.id="draft-"+Date.now();store.push(copy)}else{store["draft-"+Date.now()]=copy}if(write(key,store)){render()}else alert("Не удалось сохранить копию. Возможно, в браузере недостаточно места.")});actions.append(dup);
+var del=document.createElement("button");del.textContent="Удалить";del.addEventListener("click",function(){if(!confirm("Удалить этот черновик из локального хранилища?"))return;var store=read(key,{});if(Array.isArray(store)){store.splice(Number(item.storeKey),1)}else delete store[item.storeKey];write(key,store);render()});actions.append(del);node.append(info,actions);host.append(node)})}
+window.addEventListener("storage",render);render();
+})();
+</script></body></html>
