@@ -275,3 +275,10 @@ body{font-size:14px;line-height:1.45}
  .reference-sidebar{position:static!important;max-height:none!important;overflow:visible!important}
  .reference-quick-actions .reference-quick-card{grid-template-columns:36px minmax(0,1fr) 12px!important}
 }
+
+/* Distinguish the login action from the relocated document-space link. */
+.reference-header-link:not(.reference-header-space)[href="/text2me/space/"]{order:4!important;background:#174b70!important;color:#fff!important;border-color:#174b70!important;min-width:92px!important}
+.reference-header-link:not(.reference-header-space)[href="/text2me/space/"]:hover{background:#103752!important;color:#fff!important}
+.reference-header-space{order:8!important;display:inline-flex!important;align-items:center;justify-content:center;min-width:132px;background:#fff!important;color:#243746!important;border:1px solid #aebbc8!important}
+.reference-header-space:hover{background:#eef1f3!important;color:#202a33!important}
+@media(max-width:800px){.reference-header-space{display:inline-flex!important;order:8!important;flex:1 1 100%!important}}
