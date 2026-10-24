@@ -151,7 +151,7 @@ function patchDraftRole(){
 }
 function footer(){
  var f=document.querySelector("body > footer");if(!f){f=el("footer",{class:"rw-shared-footer"});document.body.append(f)}f.classList.add("rw-shared-footer");
- if(!f.querySelector(".rw-footer-note")){var n=el("p",{class:"rw-footer-note"});n.textContent="Черновики и настройки хранятся локально в этом браузере. Облачная синхронизация не подключена. Дата правовой проверки указывается в карточке документа; если её нет, проверьте актуальность перед использованием.";f.append(n)}
+ if(!f.querySelector(".rw-footer-note")){var n=el("p",{class:"rw-footer-note"});n.textContent="Черновики и настройки хранятся локально в этом браузере. Облачная синхронизация не подключена. Централизованная дата проверки шаблонов пока не ведётся; перед использованием сверяйте актуальность.";f.append(n)}
  if(!f.querySelector(".rw-footer-links")){var nav=el("nav",{class:"rw-footer-links","aria-label":"Навигация по рабочему пространству"});[["Каталог","/text2me/documents/"],["Черновики","/text2me/drafts/"],["Калькуляторы","/text2me/calculators/"],["Источники","/text2me/sources/"],["Настройки","/text2me/settings/"]].forEach(function(x){nav.append(el("a",{href:x[1]},x[0]))});f.append(nav)}
 }
 function init(){
