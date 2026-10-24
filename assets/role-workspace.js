@@ -24,7 +24,7 @@ function header(){
  return h;
 }
 function chooser(){
- if(role()||sessionStorage.getItem("text2me.role-choice-dismissed")==="1")return;
+ if(role())return;
  var overlay=el("div",{class:"rw-role-overlay"}),dialog=el("section",{class:"rw-role-dialog",role:"dialog","aria-modal":"true","aria-labelledby":"rw-choice-title"});
  dialog.innerHTML='<p class="rw-eyebrow">Первичная настройка</p><h2 id="rw-choice-title">В каком качестве вы готовите документы?</h2><p>Выбор изменит доступные категории и подсказки. Его можно поменять в шапке в любой момент.</p><div class="rw-role-options"><button type="button" data-pick="citizen"><strong>Гражданин</strong><span>Личные и бытовые ситуации</span></button><button type="button" data-pick="ip"><strong>ИП</strong><span>Личные и предпринимательские документы</span></button><button type="button" data-pick="organization"><strong>Организация</strong><span>Договоры и документы юридического лица</span></button></div>';
  overlay.append(dialog);document.body.append(overlay);
@@ -107,9 +107,8 @@ function footer(){
 }
 function init(){
  addStyle();var h=header();var r=role();
- if(!r){r="citizen";safeWrite(ROLE_KEY,r)}
  renderRoleState();rolePanel();patchDraftRole();footer();
- if(!sessionStorage.getItem("text2me.role-choice-dismissed")&&!safeRead(ROLE_KEY,""))chooser();
+ if(!r)chooser();
  document.addEventListener("text2me:rolechange",function(){renderRoleState()});
  window.addEventListener("storage",function(e){if(e.key===ROLE_KEY)renderRoleState()});
 }
