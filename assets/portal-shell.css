@@ -135,3 +135,7 @@ p,li,small,label,figcaption,.portal-hero p,.portal-feature small,.portal-tile p,
  .portal-service-nav a{padding:8px 12px;font-size:12px}
  .portal-main,.portal-wrap{width:calc(100% - 28px)!important}
 }
+
+/* Final sizing: reserve the right panel for AI without shrinking the main search */
+@media(min-width:761px){.portal-hero{grid-template-columns:minmax(0,1fr) 220px!important}.portal-feature{max-width:220px!important}.portal-search-form{max-width:none!important;width:100%!important}}
+main,main>section,main>.container,.container>.section-muted,.hero,.page-hero,.section-muted,.route-builder-section,.cta-section,.portal-category-bar,.portal-topic-bar,.portal-footer,.site-footer{background-color:transparent!important;background-image:none!important}
