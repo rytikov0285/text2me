@@ -11,7 +11,7 @@ function byId(a,id){return a.find(function(x){return x.id===id})}
 function validContactIds(x,ids){var known=new Set((x.contacts||[]).map(function(c){return c.id}));return Array.from(new Set((Array.isArray(ids)?ids:[]).filter(function(id){return known.has(id)})))}
 function resolveDocumentId(x,id){if(!id)return "";if(byId(x.documents,id))return id;var d=(x.documents||[]).find(function(o){return o.libraryId===id||o.libraryDocumentId===id});return d?d.id:""}
 function normalizeRelations(x){
- var changed=false,caseIds=new Set((x.cases||[]).map(function(o){return o.id})),contactIds=new Set((x.contacts||[]).map(function(o){return o.id}));
+ var changed=false,caseIds=new Set((x.cases||[]).map(function(o){return o.id}));
  (x.cases||[]).forEach(function(c){var ids=validContactIds(x,c.contactIds);if(JSON.stringify(ids)!==JSON.stringify(c.contactIds||[])){c.contactIds=ids;changed=true}});
  ["documents","tasks","events"].forEach(function(k){
   (x[k]||[]).forEach(function(o){
@@ -74,7 +74,29 @@ function get(){return read()}
 function crmType(entityType){return ({case:"Дело",document:"Документ",task:"Задача",contact:"Контакт"})[entityType]||"Задача"}
 function crmStatus(status){if(status==="active"||status==="done"||status==="waiting")return status==="done"?"Завершено":status==="waiting"?"Ожидает ответа":"В работе";return status||"В работе"}
 function dashboardStatus(status){if(status==="Завершено"||status==="done")return "done";if(status==="Ожидает ответа"||status==="waiting")return "waiting";return "active"}
- function crmList(){var x=read(),all=[];["cases","documents","tasks","contacts"].forEach(function(k){x[k].forEach(function(o){var linkedContact=(o.contactIds||[]).map(function(id){return byId(x.contacts,id)}).find(Boolean);all.push({id:o.id,type:crmType(k.slice(0,-1)),title:o.title||o.name||"",contact:linkedContact?(linkedContact.title||linkedContact.name||""):o.contactName||o.contact||"",contactId:linkedContact?linkedContact.id:"",case:o.caseName||o.case||(o.caseId&&byId(x.cases,o.caseId)?(byId(x.cases,o.caseId).title||byId(x.cases,o.caseId).name):""),caseId:o.caseId||"",documentId:o.documentId||"",description:o.description||"",url:o.url||"",content:o.content||o.text||"",libraryId:o.libraryId||"",followupTaskId:o.followupTaskId||"",contactIds:o.contactIds||[],source:o.source||"",metadata:o.metadata||{},collection:o.collection||"",version:o.version||1,done:!!o.done,priority:o.priority||"normal",date:o.date||"",kind:o.kind||"",email:o.email||"",phone:o.phone||"",organization:o.organization||"",next:o.nextStep||"",due:o.due||o.date||"",status:crmStatus(o.status),createdAt:o.createdAt,updatedAt:o.updatedAt,crmManaged:!!o.crmManaged})})});return {items:all,activity:x.activity.map(function(a){return {id:a.id,message:a.action||a.message||"",at:a.at}})}}
+function crmList(){
+ var x=read(),all=[];
+ ["cases","documents","tasks","contacts"].forEach(function(k){
+  x[k].forEach(function(o){
+   var linkedContact=(o.contactIds||[]).map(function(id){return byId(x.contacts,id)}).find(Boolean);
+   var linkedCase=o.caseId&&byId(x.cases,o.caseId);
+   all.push({
+    id:o.id,type:crmType(k.slice(0,-1)),title:o.title||o.name||"",
+    contact:linkedContact?(linkedContact.title||linkedContact.name||""):o.contactName||o.contact||"",
+    contactId:linkedContact?linkedContact.id:"",contactIds:o.contactIds||[],
+    case:o.caseName||o.case||(linkedCase?(linkedCase.title||linkedCase.name):""),
+    caseId:o.caseId||"",documentId:o.documentId||"",description:o.description||"",
+    url:o.url||"",content:o.content||o.text||"",libraryId:o.libraryId||"",
+    followupTaskId:o.followupTaskId||"",source:o.source||"",metadata:o.metadata||{},
+    collection:o.collection||"",version:o.version||1,done:!!o.done,priority:o.priority||"normal",
+    date:o.date||"",kind:o.kind||"",email:o.email||"",phone:o.phone||"",organization:o.organization||"",
+    next:o.nextStep||"",due:o.due||o.date||"",status:crmStatus(o.status),
+    createdAt:o.createdAt,updatedAt:o.updatedAt,crmManaged:!!o.crmManaged
+   });
+  });
+ });
+ return {items:all,activity:x.activity.map(function(a){return {id:a.id,message:a.action||a.message||"",at:a.at}})};
+}
 function syncCrm(data){
  var x=read(),incoming=new Set((data.items||[]).map(function(i){return i.id}));
  ["cases","documents","tasks","contacts"].forEach(function(k){
@@ -86,13 +108,12 @@ function syncCrm(data){
     ["documents","tasks","events"].forEach(function(q){x[q].forEach(function(z){if(z.caseId===o.id)z.caseId=""})});
     (data.items||[]).forEach(function(i){if(i.caseId===o.id)i.caseId="";if(i.case===o.title)i.case=""});
    }
-    if(k==="documents"){["tasks","events"].forEach(function(q){x[q].forEach(function(z){if(z.documentId===o.id)z.documentId=""})});(data.items||[]).forEach(function(i){if(i.documentId===o.id)i.documentId=""})}
+   if(k==="documents"){
     ["tasks","events"].forEach(function(q){x[q].forEach(function(z){if(z.documentId===o.id)z.documentId=""})});
     (data.items||[]).forEach(function(i){if(i.documentId===o.id)i.documentId=""});
-    if(o.libraryId){var lib=safeParse("text2me.space.v1",[]);if(Array.isArray(lib)){lib=lib.filter(function(d){return d.id!==o.libraryId});try{localStorage.setItem("text2me.space.v1",JSON.stringify(lib))}catch(e){}}}
    }
-    if(k==="contacts"){["cases","documents","tasks","events"].forEach(function(q){x[q].forEach(function(z){z.contactIds=(z.contactIds||[]).filter(function(cid){return cid!==o.id})})});(data.items||[]).forEach(function(i){i.contactIds=(i.contactIds||[]).filter(function(cid){return cid!==o.id})})}
-    ["cases","documents"].forEach(function(q){x[q].forEach(function(z){z.contactIds=(z.contactIds||[]).filter(function(cid){return cid!==o.id})})});
+   if(k==="contacts"){
+    ["cases","documents","tasks","events"].forEach(function(q){x[q].forEach(function(z){z.contactIds=(z.contactIds||[]).filter(function(cid){return cid!==o.id})})});
     (data.items||[]).forEach(function(i){i.contactIds=(i.contactIds||[]).filter(function(cid){return cid!==o.id})});
    }
    log(x,"Удалена запись: "+(o.title||o.name||o.id),o);
@@ -101,20 +122,42 @@ function syncCrm(data){
  });
  (data.items||[]).forEach(function(i){
   var k=({"Дело":"cases","Документ":"documents","Задача":"tasks","Контакт":"contacts"})[i.type]||"tasks";
-  var o={id:i.id||uid("crm"),type:i.type==="Дело"?"case":i.type==="Документ"?"document":i.type==="Контакт"?"contact":"task",title:i.title||"",name:i.title||"",contactName:i.contact||"",caseName:i.case||"",caseId:i.caseId||"",documentId:i.documentId||"",description:i.description||"",url:i.url||"",content:i.content||"",text:i.content||"",libraryId:i.libraryId||"",followupTaskId:i.followupTaskId||"",contactIds:i.contactIds||[],source:i.source||"",metadata:i.metadata||{},collection:i.collection||"",version:i.version||1,done:!!i.done,priority:i.priority||"normal",date:i.date||i.due||"",kind:i.kind||"",email:i.email||"",phone:i.phone||"",organization:i.organization||"",nextStep:i.next||"",due:i.due||"",status:i.status||"В работе",createdAt:i.createdAt||now(),updatedAt:i.updatedAt||now(),crmManaged:true,legacy:"crm"};
+  var o={
+   id:i.id||uid("crm"),type:i.type==="Дело"?"case":i.type==="Документ"?"document":i.type==="Контакт"?"contact":"task",
+   title:i.title||"",name:i.title||"",contactName:i.contact||"",caseName:i.case||"",
+   caseId:i.caseId||"",documentId:i.documentId||"",description:i.description||"",url:i.url||"",
+   content:i.content||"",text:i.content||"",libraryId:i.libraryId||"",followupTaskId:i.followupTaskId||"",
+   contactIds:Array.isArray(i.contactIds)?i.contactIds.slice():[],source:i.source||"",metadata:i.metadata||{},
+   collection:i.collection||"",version:i.version||1,done:!!i.done,priority:i.priority||"normal",
+   date:i.date||i.due||"",kind:i.kind||"",email:i.email||"",phone:i.phone||"",organization:i.organization||"",
+   nextStep:i.next||"",due:i.due||"",status:i.status||"В работе",createdAt:i.createdAt||now(),
+   updatedAt:i.updatedAt||now(),crmManaged:true,legacy:"crm"
+  };
   upsert(x[k],o);
  });
  (data.activity||[]).slice(0,40).forEach(function(a){if(!x.activity.some(function(z){return z.id===a.id}))x.activity.push({id:a.id||uid("a"),action:a.message||"Действие CRM",at:a.at||now(),legacy:"crm"})});
  x.activity=x.activity.slice(0,500);
-normalizeRelations(x);return write(x);
+ normalizeRelations(x);
+ return write(x);
 }
- function dashboardState(){var x=read();return {cases:x.cases.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",status:dashboardStatus(o.status),contactIds:o.contactIds||[],createdAt:o.createdAt,updatedAt:o.updatedAt}}),tasks:x.tasks.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",date:o.date||o.due||"",caseId:o.caseId||"",documentId:o.documentId||"",contactIds:o.contactIds||[],priority:o.priority||"normal",done:o.done||o.status==="done",createdAt:o.createdAt,updatedAt:o.updatedAt}}),events:x.events.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",date:o.date||"",caseId:o.caseId||"",documentId:o.documentId||"",contactIds:o.contactIds||[],createdAt:o.createdAt,updatedAt:o.updatedAt}}),documents:x.documents.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",url:o.url||"",caseId:o.caseId||"",documentId:o.documentId||"",contactIds:o.contactIds||[],createdAt:o.createdAt,updatedAt:o.updatedAt}})}}
-function syncDashboard(state){var x=read(),stamp=now();function sync(key,arr,convert){(arr||[]).forEach(function(i){var o=convert(i);o.legacy="dashboard";o.updatedAt=i.updatedAt||stamp;upsert(x[key],o)})}
-  sync("cases",state.cases,function(i){return {id:i.id||uid("case"),type:"case",title:i.name||i.title||"",name:i.name||i.title||"",description:i.description||"",status:i.status||"active",contactIds:validContactIds(x,i.contactIds),createdAt:i.createdAt||stamp}});
-  sync("tasks",state.tasks,function(i){return {id:i.id||uid("task"),type:"task",title:i.name||i.title||"",name:i.name||i.title||"",description:i.description||"",due:i.date||i.due||"",date:i.date||i.due||"",caseId:i.caseId&&byId(x.cases,i.caseId)?i.caseId:"",documentId:resolveDocumentId(x,i.documentId),contactIds:validContactIds(x,i.contactIds),priority:i.priority||"normal",done:!!i.done,status:i.done?"done":"active",createdAt:i.createdAt||stamp}});
-  sync("events",state.events,function(i){return {id:i.id||uid("event"),type:"event",title:i.name||i.title||"",name:i.name||i.title||"",description:i.description||"",date:i.date||"",caseId:i.caseId&&byId(x.cases,i.caseId)?i.caseId:"",documentId:resolveDocumentId(x,i.documentId),contactIds:validContactIds(x,i.contactIds),createdAt:i.createdAt||stamp}});
-  sync("documents",state.documents,function(i){return {id:i.id||uid("doc"),type:"document",title:i.name||i.title||"",name:i.name||i.title||"",description:i.description||"",url:i.url||"",caseId:i.caseId&&byId(x.cases,i.caseId)?i.caseId:"",documentId:i.documentId||"",contactIds:validContactIds(x,i.contactIds),createdAt:i.createdAt||stamp}});
-normalizeRelations(x);return write(x)
-
+function dashboardState(){
+ var x=read();
+ return {
+  cases:x.cases.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",status:dashboardStatus(o.status),contactIds:o.contactIds||[],createdAt:o.createdAt,updatedAt:o.updatedAt}}),
+  tasks:x.tasks.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",date:o.date||o.due||"",caseId:o.caseId||"",documentId:o.documentId||"",contactIds:o.contactIds||[],priority:o.priority||"normal",done:o.done||o.status==="done",createdAt:o.createdAt,updatedAt:o.updatedAt}}),
+  events:x.events.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",date:o.date||"",caseId:o.caseId||"",documentId:o.documentId||"",contactIds:o.contactIds||[],createdAt:o.createdAt,updatedAt:o.updatedAt}}),
+  documents:x.documents.map(function(o){return {id:o.id,name:o.name||o.title||"",description:o.description||"",url:o.url||"",caseId:o.caseId||"",documentId:o.documentId||"",contactIds:o.contactIds||[],createdAt:o.createdAt,updatedAt:o.updatedAt}})
+ };
+}
+function syncDashboard(state){
+ var x=read(),stamp=now();
+ function sync(key,arr,convert){(arr||[]).forEach(function(i){var o=convert(i);o.legacy="dashboard";o.updatedAt=i.updatedAt||stamp;upsert(x[key],o)})}
+ sync("cases",state.cases,function(i){return {id:i.id||uid("case"),type:"case",title:i.name||i.title||"",name:i.name||i.title||"",description:i.description||"",status:i.status||"active",contactIds:Array.isArray(i.contactIds)?i.contactIds.slice():[],createdAt:i.createdAt||stamp}});
+ sync("tasks",state.tasks,function(i){return {id:i.id||uid("task"),type:"task",title:i.name||i.title||"",name:i.name||i.title||"",description:i.description||"",due:i.date||i.due||"",date:i.date||i.due||"",caseId:i.caseId||"",documentId:i.documentId||"",contactIds:Array.isArray(i.contactIds)?i.contactIds.slice():[],priority:i.priority||"normal",done:!!i.done,status:i.done?"done":"active",createdAt:i.createdAt||stamp}});
+ sync("events",state.events,function(i){return {id:i.id||uid("event"),type:"event",title:i.name||i.title||"",name:i.name||i.title||"",description:i.description||"",date:i.date||"",caseId:i.caseId||"",documentId:i.documentId||"",contactIds:Array.isArray(i.contactIds)?i.contactIds.slice():[],createdAt:i.createdAt||stamp}});
+ sync("documents",state.documents,function(i){return {id:i.id||uid("doc"),type:"document",title:i.name||i.title||"",name:i.name||i.title||"",description:i.description||"",url:i.url||"",caseId:i.caseId||"",documentId:i.documentId||"",contactIds:Array.isArray(i.contactIds)?i.contactIds.slice():[],createdAt:i.createdAt||stamp}});
+ normalizeRelations(x);
+ return write(x);
+}
 window.Text2meWorkspace={key:KEY,get:get,save:write,migrate:migrate,createCase:createCase,createDocument:createDocument,addTask:addTask,addEvent:addEvent,updateTask:updateTask,updateEvent:updateEvent,addContact:addContact,attachDocumentToCase:attachDocumentToCase,removeEntity:removeEntity,linkContactToCase:linkContactToCase,upsertLibraryDocument:upsertLibraryDocument,crmList:crmList,syncCrm:syncCrm,dashboardState:dashboardState,syncDashboard:syncDashboard,log:function(action,entity){var x=read();log(x,action,entity);write(x)},version:1};
 })();
