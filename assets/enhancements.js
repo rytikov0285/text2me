@@ -663,3 +663,58 @@ function installNavigation(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installNavigation);else installNavigation();
 })();
+
+/* Context-aware links: official public services plus the relevant Text2me templates and tools. */
+(function(){
+"use strict";
+function installContextualLinks(){
+ if(document.getElementById("text2me-related-panel"))return;
+ var path=(location.pathname||"/").replace(/index\.html$/,"").replace(/\/+$/,"")||"/text2me";
+ var text=(document.querySelector("main")||document.body).innerText.toLowerCase();
+ var cards=[];
+ function add(title,desc,url){if(!cards.some(function(x){return x.url===url}))cards.push({title:title,desc:desc,url:url})}
+ add("Документы и шаблоны","Найдите заявление, претензию, договор или другой документ.","/text2me/documents/");
+ add("Мои документы","Сохраните файлы и продолжите работу с черновиками в этом браузере.","/text2me/space/");
+ if(path.indexOf("/situations")===0||/ситуац|что делать|возврат|некачествен|потребител|продавц/.test(text)){
+  add("Претензия продавцу","Подготовьте обращение по поводу товара или услуги.","/text2me/documents/pretenziya-prodavtsu/");
+  add("Жизненные ситуации","Выберите ситуацию и посмотрите возможные следующие шаги.","/text2me/situations/");
+ }
+ if(path.indexOf("/documents/isk-v-sud")===0||/иск в суд|судебн|исковое заявление|судопроизводств/.test(text)){
+  add("Исковое заявление","Откройте конструктор судебного документа.","/text2me/documents/isk-v-sud/");
+  add("Правовая база","Проверьте правовую тему и связанные официальные источники.","/text2me/law/");
+  add("Календарь сроков","Зафиксируйте заседание, дату подачи или другой срок.","/text2me/calendar/");
+ }
+ if(path.indexOf("/documents/dogovor-arendy")===0||/аренд|найм жилья|договор аренды/.test(text)){
+  add("Договор аренды","Откройте документ для согласования условий аренды.","/text2me/documents/dogovor-arendy/");
+  add("Жилищные ситуации","Посмотрите материалы по вопросам жилья и коммунальных услуг.","/text2me/situations/#housing");
+ }
+ if(/госуслуг|государственн|мфц|паспорт|регистраци[яию]|пособи|пенси|социальн|запись к врачу|записаться к врачу|госорган/.test(text)||path==="/text2me/law"||path.indexOf("/situations/")===0&&/государств|госуслуг|мфц/.test(text)){
+  add("Госуслуги — официальный портал","Перейдите к государственным и муниципальным услугам на официальном портале.","https://www.gosuslugi.ru/");
+ }
+ if(/налог|деклараци[яию]|фнс/.test(text)){
+  add("ФНС России","Официальный сайт налоговой службы и электронные сервисы.","https://www.nalog.gov.ru/");
+ }
+ if(/труд|зарплат|работодател|увольнен|трудов/.test(text)){
+  add("Трудовые обращения","Перейдите к материалам о трудовых спорах и обращениях.","/text2me/situations/#salary");
+ }
+ if(/затоплен|залив квартир|жкх|коммунальн|управляющ[аяей]+ компани/.test(text)){
+  add("Залив квартиры и ЖКХ","Соберите информацию и выберите дальнейший шаг по жилищной ситуации.","/text2me/situations/#housing");
+ }
+ if(path==="/text2me"||path==="/text2me/"){
+  add("Рабочий стол","Объедините дела, задачи, события и ссылки на документы.","/text2me/dashboard/");
+  add("Календарь","Отслеживайте события и задачи со сроками.","/text2me/calendar/");
+  add("Госуслуги","Официальный портал государственных и муниципальных услуг.","https://www.gosuslugi.ru/");
+ }
+ if(cards.length===0)return;
+ var panel=document.createElement("section");panel.id="text2me-related-panel";panel.className="text2me-related-panel";panel.setAttribute("aria-label","Полезные ссылки по теме");
+ var title=document.createElement("h2");title.textContent="Полезные ссылки по вашей задаче";
+ var intro=document.createElement("p");intro.textContent="Переходите к подходящим шаблонам, инструментам Text2me и официальным сервисам.";
+ var grid=document.createElement("div");grid.className="text2me-related-grid";
+ cards.slice(0,6).forEach(function(item){var a=document.createElement("a");a.className="text2me-related-card";a.href=item.url;if(/^https:\/\//.test(item.url)){a.target="_blank";a.rel="noopener noreferrer"}var strong=document.createElement("strong");strong.textContent=item.title;var span=document.createElement("span");span.textContent=item.desc;a.append(strong,span);grid.appendChild(a)});
+ panel.append(title,intro,grid);
+ var main=document.querySelector("main");
+ var hero=main&&main.querySelector(".page-hero,.hero,.home-hero,.hero-section");
+ if(hero)hero.insertAdjacentElement("afterend",panel);else if(main)main.appendChild(panel);else{var footer=document.querySelector("footer");if(footer)footer.insertAdjacentElement("beforebegin",panel)}
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installContextualLinks);else installContextualLinks();
+})();
