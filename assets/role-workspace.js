@@ -41,7 +41,7 @@ function rolePanel(){
 }
 function renderRoleState(){
  var r=role();if(!r)return;
- var data=ROLES[r];document.documentElement.setAttribute("data-text2me-role",r);
+ var data=ROLES[r];document.documentElement.setAttribute("data-text2me-role",r);enforcePageRole(r);
  var select=document.getElementById("rw-role");if(select)select.value=r||"";
  var ind=document.querySelector(".rw-role-indicator");if(ind)ind.textContent="Вы работаете как: "+data.label;
  document.querySelectorAll(".rw-page-role").forEach(function(p){var b=p.querySelector(".rw-role-badge"),d=p.querySelector(".rw-role-description");if(b){b.textContent="Вы работаете как: "+data.label;b.dataset.role=r}if(d)d.textContent=data.description});
@@ -63,14 +63,13 @@ function filterCatalog(r){
  var grid=document.getElementById("full-doc-catalog");if(!grid)return;
  var select=document.getElementById("full-filter-audience");
  if(select){select.innerHTML='<option value="">Все документы вашей роли</option>';select.value=""}
- var cards=Array.from(grid.querySelectorAll("a[data-audience]"));
+ var cards=Array.from(grid.querySelectorAll("a[data-audience],a[data-role]"));
  cards.forEach(function(card){
-  var aud=(card.getAttribute("data-audience")||"").toLowerCase().split(/[\s,]+/),allowed=false;
-  if(r==="citizen")allowed=aud.indexOf("citizens")>=0||aud.indexOf("citizen")>=0;
-  if(r==="ip")allowed=aud.indexOf("citizens")>=0||aud.indexOf("business")>=0||aud.indexOf("ip")>=0;
-  if(r==="organization")allowed=aud.indexOf("business")>=0||aud.indexOf("organization")>=0||aud.indexOf("org")>=0;
+  var hasExplicit=!!card.getAttribute("data-role"),aud=(card.getAttribute(hasExplicit?"data-role":"data-audience")||"").toLowerCase().split(/[\s,]+/),allowed=false;
+  if(hasExplicit){if(r==="citizen")allowed=aud.indexOf("citizen")>=0;if(r==="ip")allowed=aud.indexOf("citizen")>=0||aud.indexOf("ip")>=0;if(r==="organization")allowed=aud.indexOf("organization")>=0||aud.indexOf("org")>=0}
+  else{if(r==="citizen")allowed=aud.indexOf("citizens")>=0||aud.indexOf("citizen")>=0;if(r==="ip")allowed=aud.indexOf("citizens")>=0||aud.indexOf("business")>=0||aud.indexOf("ip")>=0;if(r==="organization")allowed=aud.indexOf("business")>=0||aud.indexOf("organization")>=0||aud.indexOf("org")>=0}
   card.dataset.roleAllowed=allowed?"true":"false";card.hidden=!allowed;
-  var badges=card.querySelector(".rw-card-roles");if(!badges){badges=el("span",{class:"rw-card-roles"});var status=card.querySelector(".status-badge");if(status)status.insertAdjacentElement("beforebegin",badges);else card.append(badges)}badges.innerHTML="";var roleLabels=[];if(aud.indexOf("citizens")>=0||aud.indexOf("citizen")>=0){roleLabels.push("Гражданин");roleLabels.push("ИП")}if(aud.indexOf("business")>=0){roleLabels.push("ИП");roleLabels.push("Организация")}if(aud.indexOf("organization")>=0||aud.indexOf("org")>=0)roleLabels.push("Организация");Array.from(new Set(roleLabels)).forEach(function(label){badges.append(el("span",{class:"rw-card-role"},label))});
+  var badges=card.querySelector(".rw-card-roles");if(!badges){badges=el("span",{class:"rw-card-roles"});var status=card.querySelector(".status-badge");if(status)status.insertAdjacentElement("beforebegin",badges);else card.append(badges)}badges.innerHTML="";var roleLabels=[];if(hasExplicit){if(aud.indexOf("citizen")>=0){roleLabels.push("Гражданин");roleLabels.push("ИП")}if(aud.indexOf("ip")>=0)roleLabels.push("ИП");if(aud.indexOf("organization")>=0||aud.indexOf("org")>=0)roleLabels.push("Организация")}else{if(aud.indexOf("citizens")>=0||aud.indexOf("citizen")>=0){roleLabels.push("Гражданин");roleLabels.push("ИП")}if(aud.indexOf("business")>=0){roleLabels.push("ИП");roleLabels.push("Организация")}}Array.from(new Set(roleLabels)).forEach(function(label){badges.append(el("span",{class:"rw-card-role"},label))});
  });
  var audienceFilter=document.getElementById("full-filter-audience");
  ["full-catalog-search","full-filter-category","full-filter-situation","full-filter-nature","full-filter-audience"].forEach(function(id){var n=document.getElementById(id);if(n&&!n.dataset.rwCountListener){n.dataset.rwCountListener="1";n.addEventListener("input",updateCount);n.addEventListener("change",updateCount)}});
@@ -90,14 +89,25 @@ function adaptFields(r){
   if(r==="citizen"&&/(контрагент.*огрн|реквизиты юридического лица)/i.test(t)){wrap.hidden=true;field.required=false}
  });
 }
+function enforcePageRole(r){
+ var path=window.location.pathname.replace(/\/+$/,""),allowed=null;
+ if(path.indexOf("/text2me/documents/pretenziya-prodavtsu")===0||path.indexOf("/text2me/documents/isk-v-sud")===0||path.indexOf("/text2me/documents/dogovor-arendy")===0)allowed=["citizen","ip"];
+ else if(path==="/text2me/people")allowed=["citizen","ip"];
+ else if(path==="/text2me/business")allowed=["ip","organization"];
+ if(!allowed||allowed.indexOf(r)>=0)return;
+ var main=document.querySelector("main");if(!main)return;
+ if(main.dataset.rwBlocked==="1")return;
+ main.dataset.rwBlocked="1";main.innerHTML='<section class="rw-access-denied"><h1>Документ недоступен в выбранном режиме</h1><p>Этот раздел предназначен для другой роли. Переключите режим работы в шапке, чтобы открыть подходящие материалы.</p><button type="button" class="rw-access-change">Сменить режим</button><a href="/text2me/documents/">Вернуться в каталог</a></section>';
+ main.querySelector(".rw-access-change").addEventListener("click",function(){var s=document.getElementById("rw-role");if(s)s.focus()});
+}
 function patchDraftRole(){
  if(window.__text2meDraftRolePatched)return;window.__text2meDraftRolePatched=true;
- var baseline=safeRead("text2me.draft-roles.v1",{});if(!baseline||typeof baseline!=="object")baseline={};
+ var baseline=safeRead("text2me.draft-roles.v1",{});if(!baseline||typeof baseline!=="object")baseline={};\n ["text2me.drafts.v1","text2me.space.v1"].forEach(function(k){var old=safeRead(k,{});if(Array.isArray(old)){old.forEach(function(d,i){var id=String(d&&d.id||i);if(!baseline[id])baseline[id]="legacy"})}else if(old&&typeof old==="object"){Object.keys(old).forEach(function(id){var d=old[id]||{};var key=String(d.id||id);if(!baseline[key])baseline[key]="legacy"})}});
  var original=Storage.prototype.setItem;
  Storage.prototype.setItem=function(key,value){
   if((key==="text2me.drafts.v1"||key==="text2me.space.v1")&&role()){
    try{var parsed=JSON.parse(value),items=Array.isArray(parsed)?parsed:(parsed&&typeof parsed==="object"?parsed:null);
-    if(items){Object.keys(items).forEach(function(k){var d=items[k];if(!d||typeof d!=="object")return;var id=String(d.id||d._draftKey||k);if(!baseline[id]&& !d.role){baseline[id]=role()}if(!d.role&&baseline[id])d.role=baseline[id]});value=JSON.stringify(parsed);safeWrite(ROLE_MAP_KEY,baseline)}
+    if(items){Object.keys(items).forEach(function(k){var d=items[k];if(!d||typeof d!=="object")return;var id=String(d.id||d._draftKey||k);if(!baseline[id]&& !d.role){baseline[id]=role()}if(!d.role&&ROLES[baseline[id]])d.role=baseline[id]});value=JSON.stringify(parsed);safeWrite(ROLE_MAP_KEY,baseline)}
    }catch(e){}
   }
   return original.call(this,key,value);
