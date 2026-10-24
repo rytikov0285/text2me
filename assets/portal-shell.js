@@ -68,3 +68,32 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 
 /* Mobile equivalent of persistent side rails */
 (function(){function addMobileActions(){if(document.querySelector(".text2me-mobile-actions"))return;var nav=document.createElement("nav");nav.className="text2me-mobile-actions";nav.setAttribute("aria-label","Быстрый доступ");[["Создать документ","/text2me/documents/"],["Описать ситуацию","/text2me/people/"],["Спросить эксперта","/text2me/request/"],["Календарь","/text2me/calendar/"]].forEach(function(x){var a=document.createElement("a");a.href=x[1];a.textContent=x[0];nav.appendChild(a);});document.body.appendChild(nav);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addMobileActions);else addMobileActions();})();
+
+/* Official public-resource links in the footer; the third-party counter is linked, not embedded. */
+(function(){
+ "use strict";
+ function addPartnerLinks(){
+  if(document.querySelector(".t2m-partner-links"))return;
+  var footer=document.querySelector(".portal-footer,.site-footer");
+  if(!footer)return;
+  var nav=document.createElement("nav");
+  nav.className="t2m-partner-links";
+  nav.setAttribute("aria-label","Официальные информационные ресурсы");
+  var items=[
+   ["https://government.ru/","https://www.nalog.gov.ru/images_ca/banners/government.png","Правительство России"],
+   ["https://www.gosuslugi.ru/","https://www.nalog.gov.ru/images_ca/banners/ul2018/c45c164d-bcde-46d1-9e51-5853c9a10971.png","Госуслуги"],
+   ["https://www.nalog.gov.ru/rn77/about_fts/og/","https://www.nalog.gov.ru/images_ca/banners/ul2018/open.png","Открытые данные ФНС России"],
+   ["https://www.nalog.gov.ru/","https://data.nalog.ru/css/ul2018/img/logo-footer.svg","Федеральная налоговая служба России"]
+  ];
+  items.forEach(function(item){
+   var a=document.createElement("a");a.className="t2m-partner-link";a.href=item[0];a.target="_blank";a.rel="noopener noreferrer";
+   var img=document.createElement("img");img.src=item[1];img.alt=item[2];img.loading="lazy";
+   a.appendChild(img);nav.appendChild(a);
+  });
+  var counter=document.createElement("a");counter.className="t2m-partner-link";counter.href="https://cnt.sputnik.ru/public/nalog.gov.ru";counter.target="_blank";counter.rel="noopener noreferrer";
+  var label=document.createElement("span");label.textContent="Счётчик «Спутник» — источник";counter.appendChild(label);nav.appendChild(counter);
+  var target=footer.querySelector(".portal-footer-bottom,.footer-bottom");
+  if(target)footer.insertBefore(nav,target);else footer.appendChild(nav);
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addPartnerLinks);else addPartnerLinks();
+})();
