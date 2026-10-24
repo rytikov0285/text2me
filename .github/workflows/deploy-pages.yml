@@ -34,6 +34,7 @@ jobs:
           node --check assets/main.js
           node --check assets/document-workflow.js
           node --check assets/dadata-config.js
+          python3 -c "from pathlib import Path; compile(Path('scripts/validate-site-links.py').read_text(encoding='utf-8'), 'scripts/validate-site-links.py', 'exec')"
 
       - name: Write deployment marker
         env:
