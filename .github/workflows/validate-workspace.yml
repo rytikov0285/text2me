@@ -8,6 +8,7 @@ on:
       - "assets/enhancements.js"
       - "assets/unified-workspace.js"
       - "assets/crm-workspace.js"
+      - "assets/crm-workspace.css"
       - "assets/space-dashboard.js"
       - "assets/document-workflow.js"
       - "index.html"
@@ -15,6 +16,9 @@ on:
       - "data-engine/user-workspace-schema.json"
       - "scripts/validate-workspace.mjs"
       - "scripts/test-workspace-relations.mjs"
+      - "docs/WORKSPACE_DATA_MIGRATION.md"
+      - "README.md"
+      - "AGENTS.md"
       - ".github/workflows/validate-workspace.yml"
   pull_request:
     paths:
