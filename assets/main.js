@@ -28,13 +28,13 @@
     var catalog = document.getElementById("catalog");
 
     function normalizeSearchText(value) {
-      return String(value || "").toLocaleLowerCase("ru").replace(/ё/g, "е").replace(/[^\\p{L}\\p{N}]+/gu, " ").trim();
+      return String(value || "").toLocaleLowerCase("ru").replace(/ё/g, "е").replace(/[^a-zа-я0-9]+/g, " ").trim();
     }
 
     function filterCards(scrollToResults) {
       if (!input) return;
       var query = normalizeSearchText(input.value);
-      var terms = query ? query.split(/\\s+/).filter(Boolean) : [];
+      var terms = query ? query.split(/\s+/).filter(Boolean) : [];
       var visible = 0;
       catalogCards.forEach(function (card) {
         var heading = card.querySelector("h3");
