@@ -102,7 +102,8 @@ function enforcePageRole(r){
 }
 function patchDraftRole(){
  if(window.__text2meDraftRolePatched)return;window.__text2meDraftRolePatched=true;
- var baseline=safeRead("text2me.draft-roles.v1",{});if(!baseline||typeof baseline!=="object")baseline={};\n ["text2me.drafts.v1","text2me.space.v1"].forEach(function(k){var old=safeRead(k,{});if(Array.isArray(old)){old.forEach(function(d,i){var id=String(d&&d.id||i);if(!baseline[id])baseline[id]="legacy"})}else if(old&&typeof old==="object"){Object.keys(old).forEach(function(id){var d=old[id]||{};var key=String(d.id||id);if(!baseline[key])baseline[key]="legacy"})}});
+ var baseline=safeRead("text2me.draft-roles.v1",{});if(!baseline||typeof baseline!=="object")baseline={};
+ ["text2me.drafts.v1","text2me.space.v1"].forEach(function(k){var old=safeRead(k,{});if(Array.isArray(old)){old.forEach(function(d,i){var id=String(d&&d.id||i);if(!baseline[id])baseline[id]="legacy"})}else if(old&&typeof old==="object"){Object.keys(old).forEach(function(id){var d=old[id]||{};var key=String(d.id||id);if(!baseline[key])baseline[key]="legacy"})}});
  var original=Storage.prototype.setItem;
  Storage.prototype.setItem=function(key,value){
   if((key==="text2me.drafts.v1"||key==="text2me.space.v1")&&role()){
