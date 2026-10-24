@@ -724,7 +724,7 @@ function installAudienceNavigation(){
  navs.forEach(function(nav){
   function findByPath(path){
    return Array.prototype.find.call(nav.querySelectorAll("a[href]"),function(a){
-    try{return new URL(a.getAttribute("href"),window.location.href).pathname.replace(/\\/+$/,"")===path.replace(/\\/+$/,"")}catch(e){return false}
+    try{return new URL(a.getAttribute("href"),window.location.href).pathname.replace(/\/+$/,"")===path.replace(/\/+$/,"")}catch(e){return false}
    });
   }
   function ensureLink(path,label,kind){
@@ -739,7 +739,7 @@ function installAudienceNavigation(){
   var legal=ensureLink("/text2me/law/","Правовая база","law");
   var calendar=ensureLink("/text2me/calendar/","Календарь","calendar");
   var news=ensureLink("/text2me/news/","Новости","news");
-  var path=window.location.pathname.replace(/\\/+$/,"");
+  var path=window.location.pathname.replace(/\/+$/,"");
   [[citizen,"/text2me/people"],[business,"/text2me/business"],[legal,"/text2me/law"],[calendar,"/text2me/calendar"],[news,"/text2me/news"]].forEach(function(pair){
    if(path===pair[1]||path.indexOf(pair[1]+"/")===0){pair[0].setAttribute("aria-current","page");pair[0].classList.add(pair[0]===citizen||pair[0]===business?"audience-current":"portal-nav-current")}
   });
