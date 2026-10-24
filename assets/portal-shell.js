@@ -19,7 +19,7 @@ function initPortalShell(){
  var oldHeader=document.querySelector("body > header");
  if(!oldHeader)return;
  var header=document.createElement("header");header.className="portal-shell-header";
- header.innerHTML='<a class="portal-shell-skip" href="#main">Перейти к содержанию</a><div class="portal-shell-wrap portal-shell-top"><a class="portal-shell-brand" href="/text2me/" aria-label="text2me — главная">text2<span class="shell-brand-mark">me</span></a><nav class="portal-shell-audience" aria-label="Выбор аудитории"><a href="/text2me/people/" data-audience="citizens">Физическим лицам</a><a href="/text2me/ip/" data-audience="ip">ИП</a><a href="/text2me/business/" data-audience="business">Юридическим лицам</a></nav><div class="portal-shell-actions"><a class="portal-shell-contact" href="/text2me/request/">Контакты</a><button type="button" class="portal-shell-search" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">⌕ Поиск</button></div></div><nav class="portal-shell-wrap portal-shell-nav" aria-label="Основная навигация"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/documents/?audience=citizens">Каталог документов</a><a href="/text2me/documents/library/">Библиотека шаблонов</a><a href="/text2me/space/">Рабочий стол</a><a href="/text2me/law/">Правовая база</a><a href="/text2me/calendar/">Сроки и календарь</a><a href="/text2me/request/">Спросите эксперта</a><a href="/text2me/experts/">Профильные эксперты</a><a href="/text2me/business/">Организациям</a><a href="/text2me/workflows/document-lifecycle/">Жизненный цикл документов</a><a href="/text2me/government/">Госорганы</a></nav>';
+ header.innerHTML='<a class="portal-shell-skip" href="#main">Перейти к содержанию</a><div class="portal-shell-wrap portal-shell-top"><a class="portal-shell-brand" href="/text2me/" aria-label="text2me — главная">text2<span class="shell-brand-mark">me</span></a><nav class="portal-shell-audience" aria-label="Выбор аудитории"><a href="/text2me/people/" data-audience="citizens">Физическим лицам</a><a href="/text2me/ip/" data-audience="ip">ИП</a><a href="/text2me/business/" data-audience="business">Юридическим лицам</a></nav><div class="portal-shell-actions"><a class="portal-shell-contact" href="/text2me/request/">Контакты</a><button type="button" class="portal-shell-search" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">⌕ Поиск</button></div></div><nav class="portal-shell-wrap portal-shell-nav" aria-label="Основная навигация"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/documents/?audience=citizens">Каталог документов</a><a href="/text2me/documents/library/">Библиотека шаблонов</a><a href="/text2me/space/">Рабочий стол</a><a href="/text2me/law/">Правовая база</a><a href="/text2me/calendar/">Сроки и календарь</a><a href="/text2me/request/">Спросите эксперта</a><a href="/text2me/experts/">Профильные эксперты</a><a href="/text2me/workflows/document-lifecycle/">Жизненный цикл документов</a><a href="/text2me/government/">Госорганы</a></nav>';
  oldHeader.replaceWith(header);
  /* Breadcrumb trail: make the user's current section and next step visible on every internal page. */
  var base="/text2me", clean=path.indexOf(base)===0?path.slice(base.length):path;
@@ -70,7 +70,7 @@ function addUtilities(){
 if(!document.querySelector(".text2me-rail")){
 var rails=[
 {cls:"text2me-rail-left",title:"Быстрый старт",intro:"Действия, а не виды документов",links:[["＋","Создать документ","/text2me/documents/"],["⌖","Описать ситуацию","/text2me/people/"],["✓","Проверить документ","/text2me/ai/"],["↗","Подготовить к отправке","/text2me/start/"],["§","Заявления в госорганы","/text2me/government/"]]},
-{cls:"text2me-rail-right",title:"Справка и инструменты",intro:"Сопутствующие сервисы",links:[["?","Спросите эксперта","/text2me/request/"],["▤","Мои документы","/text2me/space/"],["§","Правовые источники","/text2me/law/"],["▦","Календарь и сроки","/text2me/calendar/"],["∑","Таблицы и расчёты","/text2me/calculators/"],["⌖","Адреса и учреждения","/text2me/data-engine/"],["↗","Новости России","https://government.ru/news/"],["i","Помощь по сайту","/text2me/start/"],["§","Заявления в госорганы","/text2me/government/"]]}];
+{cls:"text2me-rail-right",title:"Справка и инструменты",intro:"Сопутствующие сервисы",links:[["?","Спросите эксперта","/text2me/request/"],["▤","Мои документы","/text2me/space/"],["§","Правовые источники","/text2me/law/"],["▦","Календарь и сроки","/text2me/calendar/"],["∑","Таблицы и расчёты","/text2me/calculators/"],["⌖","Адреса и учреждения","/text2me/data-engine/"],["↗","Новости России","https://government.ru/news/"],["i","Помощь по сайту","/text2me/start/"]}]}];
 rails.forEach(function(d){var el=document.createElement("aside");el.className="text2me-rail "+d.cls;if(d.cls==="text2me-rail-left")el.id="quick-start";el.setAttribute("aria-label",d.title);var h=document.createElement("h2");h.textContent=d.title;var p=document.createElement("p");p.textContent=d.intro;el.append(h,p);d.links.forEach(function(x){var a=document.createElement("a");a.href=x[2];if(x[2].indexOf("http")===0){a.target="_blank";a.rel="noopener";}var m=document.createElement("span");m.className="rail-mark";m.textContent=x[0];var t=document.createElement("span");t.textContent=x[1];a.append(m,t);el.appendChild(a);});document.body.appendChild(el);});
 }
 if(!document.querySelector(".text2me-selection-tools")){
@@ -126,7 +126,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   if((currentPath==="/text2me"||currentPath==="/")&&document.querySelector(".mockup-role-row"))return;
   if(document.querySelector(".global-audience-switcher"))return;
   var header=document.querySelector(".portal-shell-header,body > header");
-  if(!header)return;
+  if(!header||header.querySelector(".portal-shell-audience"))return;
   var section=document.createElement("nav");
   section.className="global-audience-switcher";
   section.setAttribute("aria-label","Выберите тип пользователя");
@@ -165,7 +165,6 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   heading.textContent="Сервисы экосистемы";
   nav.appendChild(heading);
   var items=[
-   {href:"/text2me/",name:"text2me",desc:"Подготовка документов, шаблоны и контроль следующих действий",kind:"Документы и процессы"},
    {href:"https://expert2me.ru/",name:"expert2me.ru",desc:"Профильная помощь специалистов по юридическим и деловым задачам",kind:"Экспертные услуги"},
    {href:"https://safe2me.ru/",name:"safe2me.ru",desc:"Страховые решения и помощь с выбором защиты",kind:"Страхование"}
   ];
