@@ -434,111 +434,112 @@ body{background:#f4f5f7;color:#202124;font-family:Arial,Helvetica,sans-serif;fon
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
-<div class="dash-shell">
-<header class="dash-header workspace-header reference-header">
-<a class="dash-logo reference-logo" href="/text2me/" aria-label="text2me — главная">text<span>2</span>me</a>
-<div class="reference-header-tagline">От ситуации<br>к документу и результату</div>
-<form id="title-search-form" role="search" class="workspace-search reference-header-search">
-<label class="sr-only" for="title-search">Поиск документов, ситуаций и материалов</label>
-<span class="workspace-search-icon" aria-hidden="true">⌕</span>
-<input id="title-search" type="search" autocomplete="off" placeholder="Опишите свою ситуацию или задачу…" aria-describedby="title-search-status">
-<button class="workspace-search-submit" type="submit">Найти документ <span aria-hidden="true">⌕</span></button>
-<div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
-</form>
-<a class="reference-header-link" href="/text2me/guides/">♧ &nbsp;Справка</a>
-<a class="reference-header-link" href="/text2me/space/">♙ &nbsp;Мои документы</a>
-</header>
+<div class="reference-page">
+  <header class="reference-header">
+    <a class="reference-logo" href="/text2me/" aria-label="text2me — главная">text<span>2</span>me</a>
+    <div class="reference-header-tagline">Ваш помощник в подготовке<br>юридических документов</div>
+    <form id="title-search-form" role="search" class="reference-header-search">
+      <label class="sr-only" for="title-search">Поиск документов, ситуаций и материалов</label>
+      <span class="header-search-icon" aria-hidden="true">⌕</span>
+      <input id="title-search" type="search" autocomplete="off" placeholder="Опишите свою ситуацию или задачу…" aria-describedby="title-search-status">
+      <button class="workspace-search-submit" type="submit">Найти документ <span aria-hidden="true">⌕</span></button>
+      <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
+    </form>
+    <div class="reference-header-contact"><strong>☎ &nbsp;8 800 302-18-68</strong><small>Пн–Пт с 9:00 до 18:00 МСК</small></div>
+    <a class="reference-header-link" href="/text2me/request/">☏ &nbsp;Контакты</a>
+    <a class="reference-header-link" href="/text2me/space/">♙ &nbsp;Войти</a>
+  </header>
 
-  <section class="audience-service-directory mockup-role-row" aria-label="Выбор рабочего пространства">
-    <a class="mockup-role-card active" href="/text2me/people/">
-      <span class="mockup-role-icon" aria-hidden="true">♙</span>
-      <span class="mockup-role-copy"><strong>Физическим лицам</strong><small>Защита прав, жизненные ситуации, жильё, семья, работа и личные тексты</small><em>Открыть раздел →</em></span>
+  <section class="reference-audience" aria-label="Выберите рабочее пространство">
+    <a class="reference-audience-card active" href="/text2me/people/">
+      <span class="reference-audience-icon" aria-hidden="true">♙</span>
+      <span class="reference-audience-copy"><strong>Физическим лицам</strong><small>Защита прав, жалобы, претензии, семейные вопросы, трудовые споры, жильё и другое</small></span>
+      <span class="reference-open">Открыть кабинет</span>
     </a>
-    <a class="mockup-role-card" href="/text2me/ip/">
-      <span class="mockup-role-icon" aria-hidden="true">▣</span>
-      <span class="mockup-role-copy"><strong>Индивидуальным предпринимателям</strong><small>Договоры, акты, клиенты, поставщики, налоги и деловая переписка</small><em>Открыть раздел →</em></span>
+    <a class="reference-audience-card" href="/text2me/ip/">
+      <span class="reference-audience-icon business" aria-hidden="true">▣</span>
+      <span class="reference-audience-copy"><strong>Индивидуальным предпринимателям</strong><small>Договоры, акты, взаимодействие с контрагентами, налоги, споры и деловая переписка</small></span>
+      <span class="reference-open">Открыть кабинет</span>
     </a>
-    <a class="mockup-role-card" href="/text2me/business/">
-      <span class="mockup-role-icon" aria-hidden="true">▥</span>
-      <span class="mockup-role-copy"><strong>Юридическим лицам</strong><small>Документы организации, договорная работа, претензии и корпоративные вопросы</small><em>Открыть раздел →</em></span>
+    <a class="reference-audience-card" href="/text2me/business/">
+      <span class="reference-audience-icon business" aria-hidden="true">▦</span>
+      <span class="reference-audience-copy"><strong>Юридическим лицам</strong><small>Договоры, корпоративные документы, претензии, суды, compliance и корпоративное право</small></span>
+      <span class="reference-open">Открыть кабинет</span>
     </a>
   </section>
- 
 
-<div class="workspace-layout">
-<aside class="workspace-sidebar reference-sidebar" aria-label="Навигация по сайту">
-<nav class="workspace-nav-group reference-side-nav">
-<a class="workspace-nav-link active" href="#main"><span aria-hidden="true">⌂</span>Главная</a>
-<a class="workspace-nav-link" href="/text2me/documents/"><span aria-hidden="true">⊕</span>Создать документ</a>
-<a class="workspace-nav-link" href="/text2me/situations/"><span aria-hidden="true">⌕</span>Подбор по ситуации</a>
-<a class="workspace-nav-link" href="/text2me/space/"><span aria-hidden="true">▯</span>Мои документы</a>
-<a class="workspace-nav-link" href="/text2me/knowledge/"><span aria-hidden="true">⚖</span>Правовая база</a>
-<a class="workspace-nav-link" href="/text2me/calendar/"><span aria-hidden="true">▦</span>Календарь и сроки</a>
-<a class="workspace-nav-link" href="/text2me/guides/"><span aria-hidden="true">▤</span>Расчёты и госпошлины</a>
-<a class="workspace-nav-link" href="/text2me/business/"><span aria-hidden="true">◇</span>Проверка контрагентов</a>
-<a class="workspace-nav-link" href="/text2me/knowledge/"><span aria-hidden="true">▣</span>База знаний</a>
-<a class="workspace-nav-link" href="/text2me/guides/"><span aria-hidden="true">◯</span>Обращение к юристу</a>
-</nav>
-<a class="reference-pro-card" href="/text2me/space/"><span aria-hidden="true">♛</span><span><strong>text2me PRO</strong><small>Расширенные возможности для профессионалов</small><em>Подробнее →</em></span></a>
-</aside>
-<main id="main" class="workspace-main">
-<section class="reference-home" aria-label="Главная страница text2me">
-  <div class="reference-greeting"><p class="reference-eyebrow">РАБОЧЕЕ ПРОСТРАНСТВО TEXT2ME</p><h1>От ситуации — к документу и следующему шагу</h1><p class="reference-home-lead">Опишите, что произошло или чего вы хотите добиться. text2me поможет найти подходящий путь, подготовить документ и не потерять из виду дальнейшие действия.</p></div>
-  <form class="reference-task-search" action="/text2me/start/" method="get">
-    <label class="sr-only" for="reference-task">Опишите ситуацию или документ, который вам нужен</label>
-    <textarea id="reference-task" name="task" rows="2" placeholder="Например: управляющая компания не устраняет протечку; хочу вернуть деньги за товар; нужно оформить договор с клиентом…"></textarea>
-    <div class="reference-search-bottom"><span>Опишите задачу своими словами — не обязательно знать название документа.</span><button type="submit">Начать подбор решения <span aria-hidden="true">→</span></button></div>
-  </form>
-  <div class="reference-examples"><strong>Частые задачи:</strong><a href="/text2me/documents/pretenziya-prodavtsu/">Вернуть деньги за товар</a><a href="/text2me/situations/">Затопление квартиры</a><a href="/text2me/documents/dogovor-arendy/">Составить договор аренды</a><a href="/text2me/people/">Проблема на работе</a><a href="/text2me/business/">Документ для бизнеса</a><a href="/text2me/situations/">Не знаю, с чего начать</a></div>
-  <section class="reference-popular" aria-labelledby="reference-popular-title">
-    <div class="reference-section-heading"><h2 id="reference-popular-title">Популярные документы</h2><a href="/text2me/documents/">Все документы →</a></div>
-    <div class="reference-document-grid">
-      <a class="reference-document" href="/text2me/documents/pretenziya-prodavtsu/"><span class="reference-document-icon">▤</span><strong>Претензия продавцу</strong><small>Возврат денег, товар с недостатками</small></a>
-      <a class="reference-document" href="/text2me/documents/dogovor-arendy/"><span class="reference-document-icon">▧</span><strong>Договор аренды</strong><small>Жильё, условия и передача имущества</small></a>
-      <a class="reference-document" href="/text2me/documents/isk-v-sud/"><span class="reference-document-icon">⚖</span><strong>Исковое заявление</strong><small>Подготовка обращения в суд</small></a>
-      <a class="reference-document" href="/text2me/prompts/"><span class="reference-document-icon">✎</span><strong>Тексты и редактура</strong><small>Письма, обращения, правка и улучшение текста</small></a>
-    </div>
-  </section>
-  <section class="home-workflow" aria-labelledby="home-workflow-title">
-  <div class="reference-section-heading"><div><h2 id="home-workflow-title">Не просто шаблон — понятный путь к результату</h2><p>Работайте по шагам и сохраняйте контроль над своим делом.</p></div><a href="/text2me/situations/">Посмотреть ситуации →</a></div>
-  <div class="home-workflow-grid">
-    <a href="/text2me/situations/"><span class="home-step-number">01</span><strong>Разберитесь в ситуации</strong><small>Начните с того, что произошло. Не обязательно знать название документа или процедуру.</small></a>
-    <a href="/text2me/documents/"><span class="home-step-number">02</span><strong>Подготовьте документ</strong><small>Выберите доступный конструктор или подходящий материал, заполните сведения и проверьте текст.</small></a>
-    <a href="/text2me/space/"><span class="home-step-number">03</span><strong>Сохраните материалы</strong><small>Вернитесь к сохранённым документам и черновикам в этом браузере.</small></a>
-    <a href="/text2me/calendar/"><span class="home-step-number">04</span><strong>Контролируйте сроки</strong><small>Откройте календарь и отметьте дальнейшие действия и важные даты.</small></a>
+  <div class="reference-workspace">
+    <aside class="reference-sidebar" aria-label="Основное меню">
+      <nav class="reference-side-nav">
+        <a class="active" href="/text2me/"><span>⌂</span>Главная</a>
+        <a href="/text2me/documents/"><span>⊕</span>Создать документ</a>
+        <a href="/text2me/situations/"><span>⌕</span>Подбор по ситуации</a>
+        <a href="/text2me/space/"><span>▯</span>Мои документы</a>
+        <a href="/text2me/knowledge/"><span>⚖</span>Правовая база</a>
+        <a href="/text2me/calendar/"><span>▦</span>Календарь и сроки</a>
+        <a href="/text2me/calculators/"><span>▤</span>Расчёты и госпошлины</a>
+        <a href="/text2me/business/"><span>◇</span>Проверка контрагентов</a>
+        <a href="/text2me/knowledge/"><span>▣</span>База знаний</a>
+        <a href="/text2me/request/"><span>♧</span>Обращение к юристу</a>
+      </nav>
+      <a class="reference-pro-card" href="/text2me/space/">
+        <span class="pro-crown">♛</span><span><strong>text2me PRO</strong><small>Расширенные возможности для профессионалов</small><em>Подробнее →</em></span>
+      </a>
+    </aside>
+
+    <main id="main" class="reference-main">
+      <section class="reference-greeting">
+        <h1>Добрый день!</h1>
+        <p>Чем мы можем помочь сегодня?</p>
+      </section>
+      <form id="home-situation-form" class="reference-task-search" action="/text2me/start/" method="get">
+        <label class="sr-only" for="home-situation">Опишите свою ситуацию или задачу</label>
+        <input id="home-situation" name="task" type="text" placeholder="Например: вернуть деньги за товар ненадлежащего качества" autocomplete="off">
+        <button type="submit">Найти <span aria-hidden="true">⌕</span></button>
+      </form>
+      <div class="reference-examples"><strong>Примеры запросов:</strong>
+        <button type="button" data-situation-chip="Вернуть деньги за товар">Вернуть деньги за товар</button>
+        <button type="button" data-situation-chip="Затопило квартиру">Затопило квартиру</button>
+        <button type="button" data-situation-chip="Уволили незаконно">Уволили незаконно</button>
+        <button type="button" data-situation-chip="Взыскать долг">Взыскать долг</button>
+      </div>
+
+      <section class="reference-popular" aria-labelledby="reference-popular-title">
+        <div class="reference-section-heading"><h2 id="reference-popular-title">Популярные документы</h2><a href="/text2me/documents/">Все категории&nbsp; →</a></div>
+        <div class="reference-document-grid">
+          <a class="reference-document" href="/text2me/documents/"><span class="reference-document-icon">🛒</span><strong>Защита прав потребителей</strong><small>32 документа</small></a>
+          <a class="reference-document" href="/text2me/people/"><span class="reference-document-icon">⌂</span><strong>Жилищные вопросы</strong><small>28 документов</small></a>
+          <a class="reference-document" href="/text2me/people/"><span class="reference-document-icon">▣</span><strong>Трудовые споры</strong><small>27 документов</small></a>
+          <a class="reference-document" href="/text2me/people/"><span class="reference-document-icon">♧</span><strong>Семейные вопросы</strong><small>31 документ</small></a>
+          <a class="reference-document" href="/text2me/documents/isk-v-sud/"><span class="reference-document-icon">⚖</span><strong>Судебные документы</strong><small>45 документов</small></a>
+        </div>
+      </section>
+
+      <section class="reference-trust" aria-label="Информация о документах">
+        <span class="trust-shield" aria-hidden="true">✓</span>
+        <div><strong>Документы, созданные с text2me, юридически грамотны и соответствуют законодательству РФ</strong><span>Актуальные законы&nbsp; • &nbsp;Проверенные формулировки&nbsp; • &nbsp;Постоянное обновление базы знаний</span></div>
+      </section>
+    </main>
+
+    <aside class="reference-quick-actions" aria-label="Быстрые действия">
+      <h2>Быстрые действия</h2>
+      <a class="reference-quick-card" href="/text2me/situations/"><span class="reference-quick-icon">⌕</span><span><strong>Подбор по ситуации</strong><small>Ответьте на несколько вопросов и получите подходящий документ</small></span><span class="quick-arrow">›</span></a>
+      <a class="reference-quick-card" href="/text2me/documents/"><span class="reference-quick-icon">＋</span><span><strong>Создать документ</strong><small>Выберите шаблон и создайте документ за несколько минут</small></span><span class="quick-arrow">›</span></a>
+      <a class="reference-quick-card" href="/text2me/calendar/"><span class="reference-quick-icon">▦</span><span><strong>Календарь и сроки</strong><small>Отслеживайте важные даты и процессуальные сроки</small></span><span class="quick-arrow">›</span></a>
+      <a class="reference-quick-card" href="/text2me/guides/"><span class="reference-quick-icon">✓</span><span><strong>Проверить документ</strong><small>Проверка на ошибки, реквизиты и соответствие закону</small></span><span class="quick-arrow">›</span></a>
+      <a class="reference-quick-card" href="/text2me/request/"><span class="reference-quick-icon">♙</span><span><strong>Обращение к юристу</strong><small>Получите консультацию профессионального юриста</small></span><span class="quick-arrow">›</span></a>
+    </aside>
   </div>
-</section>
-<section class="home-scope" aria-label="Основные направления">
-  <div class="reference-section-heading"><div><h2>Для повседневной жизни и работы</h2><p>Начните с подходящего направления — сервис поможет сориентироваться.</p></div></div>
-  <div class="home-scope-grid">
-    <a href="/text2me/people/"><strong>Жизненные ситуации</strong><span>Жильё, семья, работа, покупки и защита прав</span><em>Подобрать шаги →</em></a>
-    <a href="/text2me/documents/"><strong>Документы</strong><span>Претензии, заявления, договоры и обращения</span><em>Открыть каталог →</em></a>
-    <a href="/text2me/business/"><strong>ИП и организации</strong><span>Деловые документы, клиенты, поставщики и договорная работа</span><em>Для бизнеса →</em></a>
-    <a href="/text2me/knowledge/"><strong>Правовая информация</strong><span>Справочные материалы и ориентиры для самостоятельной проверки</span><em>Изучить материалы →</em></a>
-  </div>
-</section>
-<section class="home-honesty" aria-label="Важная информация о возможностях сервиса">
-  <span aria-hidden="true">ⓘ</span><p><strong>Вы контролируете результат.</strong> Перед использованием проверьте документ и исходные данные. Наличие черновика не означает, что документ отправлен адресату, подписан или принят органом. Сохранённые материалы на текущем этапе могут храниться только в этом браузере и не синхронизироваться между устройствами.</p>
-</section>
-<section class="reference-trust" aria-label="Принципы работы">
-    <div><strong>Понятный процесс</strong><span>От ситуации к документу по шагам</span></div>
-    <div><strong>Документ под задачу</strong><span>Можно начать с описания своими словами</span></div>
-    <div><strong>Контроль пользователя</strong><span>Проверьте результат перед использованием</span></div>
-  </section>
-  <section class="reference-official-links"><strong>Официальные ресурсы</strong><a href="https://www.gosuslugi.ru/" target="_blank" rel="noopener noreferrer">Госуслуги</a><a href="https://government.ru/" target="_blank" rel="noopener noreferrer">Правительство России</a><a href="https://www.nalog.gov.ru/" target="_blank" rel="noopener noreferrer">ФНС России</a><a href="https://rospotrebnadzor.ru/" target="_blank" rel="noopener noreferrer">Роспотребнадзор</a></section>
-</section>
-</main>
-<aside class="workspace-aside reference-quick-actions" aria-label="Быстрые действия">
-<section class="workspace-aside-card reference-quick-card"><h2>Быстрые действия</h2>
-<a class="workspace-quick-link" href="/text2me/situations/"><span class="reference-quick-icon" aria-hidden="true">⌕</span><span><strong>Подбор по ситуации</strong><small>Ответьте на несколько вопросов и получите подходящий документ</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/documents/"><span class="reference-quick-icon" aria-hidden="true">＋</span><span><strong>Создать документ</strong><small>Выберите шаблон и создайте документ за несколько минут</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/calendar/"><span class="reference-quick-icon" aria-hidden="true">▦</span><span><strong>Календарь и сроки</strong><small>Отслеживайте важные даты и процессуальные сроки</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/guides/"><span class="reference-quick-icon" aria-hidden="true">✓</span><span><strong>Как проверить документ</strong><small>Памятки по проверке текста, условий и реквизитов перед использованием</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/request/"><span class="reference-quick-icon" aria-hidden="true">♙</span><span><strong>Спросите эксперта</strong><small>Узнайте, какие вопросы стоит уточнить по вашей ситуации</small></span><span aria-hidden="true">›</span></a>
-</section>
-</aside>
-</div>
-<footer class="dash-footer"><nav class="dash-footer-catalog" aria-label="Быстрая навигация и информация о сайте"><strong>Разделы сайта:</strong><a href="/text2me/">Главная</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/prompts/#personal-prompts">Личное</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/people/">Гражданам</a><a href="/text2me/business/">Организациям</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/privacy/">Конфиденциальность</a><a href="/text2me/security/">Безопасность данных</a><a href="/text2me/terms/">Условия использования</a><a href="/text2me/updates/">Обновления</a></nav><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
+
+  <footer class="reference-footer">
+    <strong class="official-label">Официальные ресурсы</strong>
+    <a class="official-resource government" href="https://government.ru/" target="_blank" rel="noopener noreferrer"><span class="resource-emblem">♜</span><span>Правительство России<small>government.ru</small></span></a>
+    <a class="official-resource gosuslugi" href="https://www.gosuslugi.ru/" target="_blank" rel="noopener noreferrer"><strong>ГОСУСЛУГИ</strong><small>gosuslugi.ru</small></a>
+    <a class="official-resource" href="https://www.nalog.gov.ru/opendata/" target="_blank" rel="noopener noreferrer"><span class="resource-emblem">◉</span><span>Открытые данные ФНС<small>nalog.gov.ru/opendata</small></span></a>
+    <a class="official-resource" href="https://www.nalog.gov.ru/" target="_blank" rel="noopener noreferrer"><span class="resource-emblem">◉</span><span>ФНС России<small>nalog.gov.ru</small></span></a>
+    <a class="official-resource counter" href="https://www.sputnik.ru/" target="_blank" rel="noopener noreferrer">Счётчик Спутник&nbsp; ↗</a>
+    <a class="footer-brand" href="/text2me/">text2me<small>© 2024 text2me</small></a>
+  </footer>
 </div>
 <button class="top-button" type="button" id="back-to-top" data-back-to-top aria-label="Наверх" title="Наверх">↑</button>
 <script>
