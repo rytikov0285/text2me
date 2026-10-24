@@ -51,7 +51,7 @@ assert.ok(!sitemap.includes("https://rytikov0285.github.io/text2me/space/"), "No
 assert.ok(!sitemap.includes("https://rytikov0285.github.io/text2me/request/"), "Noindex request form must not be listed in sitemap");
 assert.ok(sitemap.includes("https://rytikov0285.github.io/text2me/situations/zatoplenie-kvartiry/"), "Indexable flood-situation page must remain in sitemap");
 assert.ok(portalShell.includes('{href:"/text2me/ip/",icon:"▦",title:"Индивидуальным предпринимателям"'), "Global individual-entrepreneur card must link to the IP workspace");
-assert.ok(homePage.includes('<a class="mockup-role-card" href="/text2me/ip/">\\n      <span class="mockup-role-icon" aria-hidden="true">▣</span>\\n      <span class="mockup-role-copy"><strong>Индивидуальным предпринимателям</strong>'), "Homepage individual-entrepreneur card must link to the IP workspace");
+assert.ok(homePage.includes('<a class="mockup-role-card" href="/text2me/ip/">\n      <span class="mockup-role-icon" aria-hidden="true">▣</span>\n      <span class="mockup-role-copy"><strong>Индивидуальным предпринимателям</strong>'), "Homepage individual-entrepreneur card must link to the IP workspace");
 assert.ok(portalShell.includes('{href:"/text2me/business/",icon:"▤",title:"Юридическим лицам"'), "Legal-entity card must remain linked to the organization workspace");
 assert.ok(enhancements.includes('var routePath=path.replace(/^\\/text2me(?=\\/|$)/,"")||"/";'), "Contextual links must normalize the GitHub Pages base path");
 assert.ok(enhancements.includes('if(routePath.indexOf("/situations")===0||'), "Situation contextual links must match normalized routes");
