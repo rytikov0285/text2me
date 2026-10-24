@@ -100,3 +100,8 @@ jobs:
           done
 
           echo "Published commit $EXPECTED_COMMIT verified successfully."
+
+      - name: Verify published routes, internal links, and anchors
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: python3 scripts/validate-site-links.py
