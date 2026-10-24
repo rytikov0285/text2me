@@ -402,7 +402,7 @@ body:has(.portal-shell-header) main :focus-visible,body:has(.portal-shell-header
 
 /* Text2me responsive layout normalization — shared across all public pages */
 :root{
- --t2m-content-max:1560px;
+ --t2m-content-max:1240px;
  --t2m-content-gutter:clamp(14px,2vw,32px);
  --t2m-layout-gap:clamp(12px,1.5vw,22px);
 }
