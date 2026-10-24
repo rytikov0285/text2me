@@ -38,8 +38,22 @@ function textOf(el){var s=clean(el.innerText||el.textContent);return s.length>26
 function esc(s){return window.CSS&&CSS.escape?CSS.escape(s):String(s).replace(/([^a-zA-Z0-9_-])/g,"\\$1")}
 function selector(el){if(el.id)return"#"+esc(el.id);var parts=[],n=el;while(n&&n.nodeType===1&&n!==document.body){var p=n.tagName.toLowerCase(),cl=Array.prototype.slice.call(n.classList||[]).filter(function(c){return c.indexOf("t2m-review-")!==0&&c!=="t2m-ai-review-root"}).slice(0,2);if(cl.length)p+=cl.map(function(c){return"."+esc(c)}).join("");var par=n.parentElement;if(par){var same=Array.prototype.filter.call(par.children,function(s){return s.tagName===n.tagName});if(same.length>1)p+=":nth-of-type("+(same.indexOf(n)+1)+")"}parts.unshift(p);if(par&&par.id){parts.unshift("#"+esc(par.id));break}n=par;if(n&&(n.tagName==="MAIN"||n.tagName==="BODY")){if(n.tagName==="MAIN")parts.unshift("main");break}}return parts.join(" > ")||el.tagName.toLowerCase()}
 function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return(h>>>0).toString(36).toUpperCase()}
-function describe(el){var sel=selector(el),page=location.pathname.replace(/\/+$/,"")||"/";return{blockId:"T2M-"+hash(page+"|"+sel),page:page,url:location.origin+location.pathname,selector:sel,tag:el.tagName.toLowerCase(),excerpt:textOf(el)}}
-function candidate(target){if(!target||!target.closest)return null;var el=target.closest("h1,h2,h3,h4,h5,h6,p,li,button,a,section,article,[class*='card'],[class*='panel'],[class*='tile'],[class*='item']");if(!el||root.contains(el)||el.closest("header,footer,nav,[aria-hidden='true'],script,style"))return null;return el}
+function describe(el){var sel=selector(el),page=location.pathname.replace(/\/+$/,"")||"/",excerpt=textOf(el)||clean(el.getAttribute("alt")||el.getAttribute("aria-label")||el.getAttribute("title")||el.getAttribute("placeholder")||el.value||"");return{blockId:"T2M-"+hash(page+"|"+sel),page:page,url:location.origin+location.pathname,selector:sel,tag:el.tagName.toLowerCase(),excerpt:excerpt.slice(0,260)}}
+function candidate(target){
+ if(!target)return null;
+ var el=target.nodeType===1?target:target.parentElement;
+ while(el&&el!==document.documentElement&&el!==document.body){
+  if(root.contains(el))return null;
+  var tag=el.tagName.toLowerCase();
+  if(tag!=="script"&&tag!=="style"&&tag!=="noscript"&&tag!=="template"&&tag!=="meta"&&tag!=="link"){
+   var rect=el.getBoundingClientRect(),cs=window.getComputedStyle(el),visible=cs.display!=="none"&&cs.visibility!=="hidden"&&Number(cs.opacity)!==0&&rect.width>0&&rect.height>0;
+   var content=clean(el.innerText||el.textContent),label=clean(el.getAttribute("alt")||el.getAttribute("aria-label")||el.getAttribute("title")||el.getAttribute("placeholder")||el.value||"");
+   if(visible&&(content||label||tag==="img"||tag==="input"||tag==="textarea"||tag==="select"||tag==="svg"))return el;
+  }
+  el=el.parentElement;
+ }
+ return null;
+}
 function clearHighlight(){document.querySelectorAll(".t2m-ai-review-hover").forEach(function(e){e.classList.remove("t2m-ai-review-hover")})}
 function setActive(v){active=!!v;toggle.setAttribute("aria-pressed",String(active));toggle.textContent=active?"Выключить выбор блока":"Комментарии для ИИ";root.classList.toggle("is-selecting",active);if(!active)clearHighlight();say(active?"Режим выбора включён. Нажми на текст или блок, который нужно изменить.":"Режим выбора выключен.")}
 function closePanels(){commentPanel.hidden=true;listPanel.hidden=true;selected=null}
