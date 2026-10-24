@@ -667,6 +667,12 @@ function installNavigation(){
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installNavigation);else installNavigation();
 })();
 
+/* Context-aware links: official public services plus the relevant Text2me templates and tools. */
+(function(){
+"use strict";
+function installContextualLinks(){};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installContextualLinks);else installContextualLinks();
+
 /* Keep the citizen/business switch consistent across internal pages. */
 function installAudienceNavigation(){
  var navs=document.querySelectorAll(".site-header .main-nav,header.top nav");
