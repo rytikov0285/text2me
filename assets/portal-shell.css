@@ -1,5 +1,5 @@
 /* Text2me shared public-service shell — Russian official palette */
-:root{--shell-navy:#15385b;--shell-blue:#205b91;--shell-blue-dark:#143f6b;--shell-red:#b83243;--shell-ink:#1b2c40;--shell-muted:#5b6b7d;--shell-line:#d8e0e8;--shell-paper:#fff;--shell-bg:#f4f6f8;--shell-soft:#edf2f7}
+:root{--ink:#1b2c40;--muted:#5b6b7d;--line:#d8e0e8;--paper:#fff;--soft:#f4f6f8;--purple:#205b91;--purple-dark:#143f6b;--mint:#edf2f7;--radius:12px;--shadow:0 12px 34px rgba(21,56,91,.07);--status-demo:#5b6b7d;--shell-navy:#15385b;--shell-blue:#205b91;--shell-blue-dark:#143f6b;--shell-red:#b83243;--shell-ink:#1b2c40;--shell-muted:#5b6b7d;--shell-line:#d8e0e8;--shell-paper:#fff;--shell-bg:#f4f6f8;--shell-soft:#edf2f7}
 .portal-shell-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.98);border-bottom:1px solid var(--shell-line);box-shadow:0 3px 12px rgba(21,56,91,.07);color:var(--shell-ink);font-family:Arial,"Segoe UI",sans-serif}
 .portal-shell-wrap{width:min(1240px,calc(100% - 40px));margin-inline:auto}
 .portal-shell-top{min-height:72px;display:flex;align-items:center;gap:clamp(14px,2.5vw,32px)}
@@ -31,3 +31,8 @@
 .portal-shell-panel p{margin:12px 0 0;color:var(--shell-muted);font-size:12px}
 @media(max-width:800px){.portal-shell-wrap{width:calc(100% - 28px)}.portal-shell-top{min-height:unset;flex-wrap:wrap;gap:8px;padding:10px 0}.portal-shell-brand{font-size:24px}.portal-shell-audience{order:3;width:100%;min-height:40px;border-top:1px solid #edf0f3}.portal-shell-audience a{flex:1;justify-content:center;padding:8px 5px;font-size:13px}.portal-shell-actions{gap:6px}.portal-shell-search{padding:8px 10px;font-size:12px}.portal-shell-space{min-height:38px;padding:8px 10px;font-size:12px}.portal-shell-nav a{padding:10px 11px;font-size:12px}.portal-shell-nav{min-height:42px}.portal-shell-nav a{min-height:42px}}
 @media(max-width:420px){.portal-shell-brand{font-size:22px}.portal-shell-top{column-gap:8px}.portal-shell-actions{margin-left:auto}.portal-shell-search{font-size:11px}.portal-shell-space{font-size:11px;padding-inline:8px}}
+
+/* Keep status colors and legacy components within the same restrained palette. */
+.status-demo,.badge-demo,.status-badge.demo{background:#eef1f4!important;color:#4d6074!important;border-color:#d8e0e8!important}
+.status-warning,.badge-warning{background:#f4f6f8!important;color:#4d6074!important;border-color:#d8e0e8!important}
+.site-header,.portal-shell-header{border-bottom:2px solid #b83243}
