@@ -383,7 +383,7 @@
       document.body.appendChild(link);
       link.click();
       link.remove();
-      URL.revokeObjectURL(url);
+      window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
       courtStatus.textContent = "Файл с черновиком готов к скачиванию.";
     });
     var courtCopy = document.getElementById("copy-court");
