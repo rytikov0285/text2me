@@ -613,7 +613,7 @@ header.top nav a:hover{background:var(--portal-soft);color:var(--portal-brand)}
 .site-header .main-nav a[data-audience]:hover,header.top nav a[data-audience]:hover{border-color:#c7dcee}
 
 /* Shared quick search dialog (Ctrl+K / Esc). */
-.portal-quick-search-button{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:9px 13px;border:1px solid #cbdceb;border-radius:9px;background:#fff;color:#175d98;font:700 14px/1.2 inherit;cursor:pointer}
+.portal-quick-search-button{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:9px 13px;border:1px solid #cbdceb;border-radius:9px;background:#fff;color:#175d98;font-family:inherit;font-size:14px;line-height:1.2;font-weight:700;cursor:pointer}
 .portal-quick-search-button:hover{background:#e8f3fc;border-color:#a9cbe8}
 .portal-quick-search-dialog[hidden]{display:none!important}
 .portal-quick-search-dialog{position:fixed;inset:0;z-index:1000;display:grid;place-items:start center;padding:12vh 16px 24px;background:rgba(11,31,53,.48)}
