@@ -96,7 +96,7 @@ function renderDocuments(){
   var link=x.url&&(x.url.indexOf("https://")===0||x.url.indexOf("http://")===0)?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">Открыть внешнюю ссылку</a>':"";
   var savedDoc=x.documentId&&savedLibrary().find(function(doc){return doc.id===x.documentId});
   var libraryLink=savedDoc?'<a href="../space/">В библиотеке: '+esc(savedDoc.title||x.name)+'</a>':(x.documentId?'<span class="muted">Связанный документ больше не найден в локальной библиотеке.</span>':"");
-  return '<div class="item"><div class="item-main"><div class="item-title">'+esc(x.name)+'</div><div class="item-meta">'+(c?"Дело: "+esc(c.name):"Без привязки к делу")+relationText(x)+(x.description?" · "+esc(x.description):"")+'</div>'+link+libraryLink+'</div><div>'+itemActions("document",x)+'</div></div>';
+  return '<div class="item"><div class="item-main"><div class="item-title">'+esc(x.name)+'</div><div class="item-meta">'+(c?"":"Без привязки к делу")+relationText(x)+(x.description?" · "+esc(x.description):"")+'</div>'+link+libraryLink+'</div><div>'+itemActions("document",x)+'</div></div>';
  }).join(""):'<div class="empty">Документы ещё не привязаны к делам.</div>';
 }
 
