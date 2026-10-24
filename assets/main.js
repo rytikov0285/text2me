@@ -97,6 +97,13 @@
     });
   }
 
+  var incomingTask = new URLSearchParams(window.location.search).get("task");
+  var incomingPrompt = document.getElementById("ai-path-input");
+  if (incomingTask && incomingPrompt && aiPathForm && incomingTask.trim()) {
+    incomingPrompt.value = incomingTask.trim().slice(0, 1200);
+    aiPathForm.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+  }
+
   var needForm = document.getElementById("need-form");
   if (needForm) {
     var needResult = document.getElementById("need-result");
