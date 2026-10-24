@@ -8,6 +8,7 @@ from collections import deque
 from html.parser import HTMLParser
 import os
 import posixpath
+import re
 import sys
 import time
 from urllib.error import HTTPError, URLError
@@ -56,6 +57,35 @@ def fetch_text(url, attempts=3):
 def is_html_candidate(path):
     suffix = posixpath.splitext(path)[1].lower()
     return path.endswith("/") or not suffix or suffix in {".html", ".htm"}
+
+
+def source_html_routes(prefix):
+    """Yield deployed route paths and whether each source page explicitly sets noindex."""
+    excluded_dirs = {".git", "node_modules", ".venv", "__pycache__"}
+    for directory, subdirs, filenames in os.walk("."):
+        subdirs[:] = [name for name in subdirs if name not in excluded_dirs]
+        for filename in filenames:
+            if not filename.lower().endswith((".html", ".htm")):
+                continue
+            source_path = os.path.join(directory, filename)
+            relative = os.path.relpath(source_path, ".").replace(os.sep, "/")
+            if relative == "index.html":
+                route_path = prefix + "/"
+            elif relative.endswith("/index.html"):
+                route_path = prefix + "/" + relative[:-len("index.html")]
+            else:
+                route_path = prefix + "/" + relative
+            try:
+                with open(source_path, "r", encoding="utf-8") as source_file:
+                    source = source_file.read()
+            except (OSError, UnicodeError):
+                continue
+            robots = re.search(
+                r'<meta\\b(?=[^>]*\\bname=["\\']robots["\\'])(?=[^>]*\\bcontent=["\\'][^"\\']*noindex)[^>]*>',
+                source,
+                flags=re.IGNORECASE,
+            )
+            yield route_path, bool(robots)
 
 
 def main():
@@ -177,6 +207,14 @@ def main():
         elif fragment not in html_ids[target_path]:
             errors.append(f"Missing fragment #{fragment} in {target_path} (linked from {source_url})")
 
+    orphaned_noindex = []
+    for route_path, is_noindex in source_html_routes(prefix):
+        if route_path not in html_ids:
+            if is_noindex:
+                orphaned_noindex.append(route_path)
+            else:
+                errors.append(f"Indexable source HTML page is not reachable from sitemap/navigation: {route_path}")
+
     if outside_links:
         for link in sorted(outside_links):
             errors.append(f"Same-host URL is outside the deployed project path: {link}")
@@ -186,6 +224,9 @@ def main():
     print(f"Sitemap URLs: {len(sitemap_urls)}")
     print(f"Unique internal paths checked: {len(visited_paths)}")
     print(f"HTML pages parsed: {len(html_paths)}")
+    print(f"Unlinked noindex pages (allowed): {len(orphaned_noindex)}")
+    for route in sorted(orphaned_noindex):
+        print("INFO: noindex page is not linked from public navigation:", route)
     print(f"Cross-page and same-page fragments checked: {len(fragment_refs)}")
     print(f"Errors: {len(errors)}")
     for error in errors:
