@@ -840,3 +840,9 @@ body:has(.portal-shell-header) .t2m-breadcrumbs [aria-current=page]{color:#193a5
  .portal-shell-inline-search button{font-size:14px;padding:7px 10px}
  .text2me-rail{width:calc(100vw - 70px)!important;max-height:76vh!important}
 }
+
+/* Match the service wordmarks to the shared text2me logo system. */
+.text2me-service-copy strong{display:flex;align-items:baseline;gap:0;font-size:16px!important;letter-spacing:-.35px}
+.text2me-service-brand-main,.text2me-service-brand-tail{color:#176bc0}
+.text2me-service-brand-mark{color:#142b4c}
+.text2me-service-domain{margin-left:2px;color:#5d6873;font-size:.8em;letter-spacing:0}
