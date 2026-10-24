@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: github-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -77,12 +77,12 @@ jobs:
             echo "::error::Homepage title marker was not found."
             exit 1
           }
-          grep -Fq 'portal-home.css' /tmp/text2me-home.html || {
+          grep -Eq 'assets/(portal-home|style)\.css' /tmp/text2me-home.html || {
             echo "::error::Expected homepage stylesheet reference was not found."
             exit 1
           }
 
-          for asset in assets/portal-home.css assets/portal-shell.css assets/portal-home.js assets/portal-shell.js; do
+          for asset in assets/style.css assets/enhancements.css assets/enhancements.js assets/dadata-config.js; do
             echo "Checking asset: $BASE_URL/$asset"
             curl --fail --silent --show-error --retry 3 --retry-delay 3 "$BASE_URL/$asset?check=$GITHUB_RUN_ID" -o /tmp/text2me-asset
             test -s /tmp/text2me-asset || {
