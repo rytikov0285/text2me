@@ -658,3 +658,104 @@ body{font-size:var(--t2m-body-size);line-height:var(--t2m-body-leading)}
  .acrobat-tools-grid>a{font-size:12px!important}
  .feature-caption small{font-size:13px!important}
 }
+
+
+/* Shared page alignment pass: predictable spacing, readable type, and consistent controls. */
+body:has(.portal-shell-header){
+  color:var(--shell-ink,#193a55);
+  background:var(--shell-bg,#f7fbfe);
+}
+body:has(.portal-shell-header) main{
+  min-width:0;
+}
+body:has(.portal-shell-header) main h1{
+  max-width:1000px;
+  margin-top:0;
+  font-size:clamp(30px,3vw,42px);
+  line-height:1.16;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+}
+body:has(.portal-shell-header) main h2{
+  font-size:clamp(22px,2vw,29px);
+  line-height:1.25;
+  letter-spacing:-.015em;
+  text-wrap:balance;
+}
+body:has(.portal-shell-header) main h3{
+  font-size:clamp(18px,1.5vw,21px);
+  line-height:1.35;
+}
+body:has(.portal-shell-header) main p,
+body:has(.portal-shell-header) main li{
+  font-size:16px;
+  line-height:1.65;
+}
+body:has(.portal-shell-header) main .eyebrow,
+body:has(.portal-shell-header) main .small-copy,
+body:has(.portal-shell-header) main .field-help,
+body:has(.portal-shell-header) main .article-meta,
+body:has(.portal-shell-header) main .page-update{
+  font-size:13px;
+  line-height:1.55;
+}
+body:has(.portal-shell-header) main :is(.card,.tile,.tool-card,.template-card,.service-card,.portal-tile,.entry-card,.category-card,.document-builder,.generated-result,.changes-box,.notice,.info-card){
+  border-radius:12px;
+}
+body:has(.portal-shell-header) main :is(.card,.tile,.tool-card,.template-card,.service-card,.portal-tile,.entry-card,.category-card){
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+body:has(.portal-shell-header) main :is(button,.button,[type=button],[type=submit],[type=reset]){
+  min-height:42px;
+  line-height:1.35;
+}
+body:has(.portal-shell-header) main :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea){
+  min-height:44px;
+  border-radius:8px;
+  font-size:16px;
+}
+body:has(.portal-shell-header) main textarea{min-height:100px}
+body:has(.portal-shell-header) .t2m-breadcrumbs{
+  display:flex;
+  align-items:center;
+  min-height:42px;
+  padding-top:8px;
+  padding-bottom:8px;
+  color:#526f85;
+  font-size:13px;
+  line-height:1.5;
+}
+body:has(.portal-shell-header) .t2m-breadcrumbs ol{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+body:has(.portal-shell-header) .t2m-breadcrumbs li{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-width:0;
+  font-size:13px;
+}
+body:has(.portal-shell-header) .t2m-breadcrumbs li+li::before{
+  content:"/";
+  color:#9aabba;
+}
+body:has(.portal-shell-header) .t2m-breadcrumbs a{color:#205b91;text-decoration:none}
+body:has(.portal-shell-header) .t2m-breadcrumbs a:hover{text-decoration:underline}
+body:has(.portal-shell-header) .t2m-breadcrumbs [aria-current=page]{color:#193a55;font-weight:750}
+@media(max-width:760px){
+  body:has(.portal-shell-header) main p,
+  body:has(.portal-shell-header) main li{font-size:15px}
+  body:has(.portal-shell-header) main h1{font-size:clamp(27px,7vw,35px)}
+  body:has(.portal-shell-header) main h2{font-size:clamp(21px,5.5vw,26px)}
+  body:has(.portal-shell-header) .t2m-breadcrumbs{align-items:flex-start;padding-top:9px;padding-bottom:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  body:has(.portal-shell-header) *{scroll-behavior:auto!important}
+}
