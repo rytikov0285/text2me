@@ -759,3 +759,16 @@ body:has(.portal-shell-header) .t2m-breadcrumbs [aria-current=page]{color:#193a5
 @media(prefers-reduced-motion:reduce){
   body:has(.portal-shell-header) *{scroll-behavior:auto!important}
 }
+
+
+/* Cross-service strip: compact service descriptions on every page. */
+.text2me-service-network{display:grid;grid-template-columns:150px repeat(3,minmax(0,1fr));gap:9px;align-items:stretch;margin:12px auto 10px;padding:0;color:#202a33;font-family:Arial,"Segoe UI",sans-serif}
+.text2me-service-network-heading{display:flex;align-items:center;font-size:12px;line-height:1.35;font-weight:800;color:#4c5964;text-transform:uppercase;letter-spacing:.04em}
+.text2me-service-card{display:flex;min-width:0;align-items:center;padding:10px 12px;border:1px solid #d4d9de;border-radius:8px;background:#fff;color:#202a33;text-decoration:none;transition:border-color .15s,background .15s}
+.text2me-service-card:hover,.text2me-service-card:focus-visible{border-color:#7899b1;background:#f5f9fc;outline-offset:2px}
+.text2me-service-copy{display:grid;gap:3px;min-width:0}
+.text2me-service-copy strong{font-size:14px;line-height:1.2;font-weight:800}
+.text2me-service-description{font-size:11px;line-height:1.35;color:#4c5964}
+.text2me-service-kind{font-size:10px;line-height:1.25;color:#315c7b;font-weight:750}
+@media(max-width:900px){.text2me-service-network{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.text2me-service-network-heading{grid-column:1/-1}.text2me-service-card{padding:9px}.text2me-service-description{font-size:10px}}
+@media(max-width:560px){.text2me-service-network{grid-template-columns:1fr;margin-top:8px}.text2me-service-network-heading{grid-column:auto}.text2me-service-card{padding:10px 12px}.text2me-service-description{font-size:11px}}
