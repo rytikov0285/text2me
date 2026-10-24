@@ -1,0 +1,34 @@
+(function(){
+"use strict";
+var KEY="text2me.workspace.core.v1";
+function safeParse(key,fallback){try{var v=JSON.parse(localStorage.getItem(key)||"null");return v==null?fallback:v}catch(e){return fallback}}
+function now(){return new Date().toISOString()}
+function uid(prefix){return (prefix||"w")+Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+function empty(){return {version:1,updatedAt:now(),cases:[],contacts:[],documents:[],tasks:[],events:[],activity:[],migrations:{}}}
+function read(){var x=safeParse(KEY,null);if(!x||x.version!==1)return migrate();return x}
+function write(x){x.updatedAt=now();try{localStorage.setItem(KEY,JSON.stringify(x));window.dispatchEvent(new CustomEvent("text2me:workspace-updated",{detail:{updatedAt:x.updatedAt}}));return true}catch(e){return false}}
+function byId(a,id){return a.find(function(x){return x.id===id})}
+function log(x,action,entity){x.activity.unshift({id:uid("a"),action:action,entityId:entity&&entity.id||"",entityType:entity&&entity.type||"",at:now()});x.activity=x.activity.slice(0,500)}
+function upsert(list,obj){var i=list.findIndex(function(x){return x.id===obj.id});if(i<0)list.unshift(obj);else list[i]=obj;return obj}
+function migrate(){
+ var x=empty(),crm=safeParse("text2me.crm.workspace.v1",{items:[],activity:[]}),dash=safeParse("text2me.dashboard.v1,{tasks:[],events:[],cases:[],documents:[]}"),lib=safeParse("text2me.space.v1",[]),stamp=now();
+ if(Array.isArray(crm.items))crm.items.forEach(function(i){var type=({"Дело":"case","Документ":"document","Задача":"task","Контакт":"contact"})[i.type]||"task",o={id:i.id||uid(type),title:i.title||"",name:i.title||"",status:i.status||"Новый запрос",contactName:i.contact||"",caseName:i.case||"",nextStep:i.next||"",due:i.due||"",createdAt:i.createdAt||stamp,updatedAt:i.updatedAt||stamp,legacy:"crm"};if(type==="case")x.cases.push(o);else if(type==="document")x.documents.push(o);else if(type==="contact")x.contacts.push(o);else x.tasks.push(o)});
+ if(Array.isArray(dash.cases))dash.cases.forEach(function(i){if(!byId(x.cases,i.id))x.cases.push({id:i.id||uid("case"),title:i.name||"Дело",name:i.name||"Дело",description:i.description||"",status:i.status||"active",createdAt:i.createdAt||stamp,updatedAt:i.updatedAt||stamp,legacy:"dashboard"})});
+ if(Array.isArray(dash.tasks))dash.tasks.forEach(function(i){if(!byId(x.tasks,i.id))x.tasks.push({id:i.id||uid("task"),title:i.name||"Задача",name:i.name||"Задача",description:i.description||"",due:i.date||"",caseId:i.caseId||"",status:i.done?"done":"active",priority:i.priority||"normal",createdAt:i.createdAt||stamp,updatedAt:i.updatedAt||stamp,legacy:"dashboard"})});
+ if(Array.isArray(dash.events))dash.events.forEach(function(i){if(!byId(x.events,i.id))x.events.push({id:i.id||uid("event"),title:i.name||"Событие",name:i.name||"Событие",description:i.description||"",date:i.date||"",caseId:i.caseId||"",createdAt:i.createdAt||stamp,updatedAt:i.updatedAt||stamp,legacy:"dashboard"})});
+ if(Array.isArray(dash.documents))dash.documents.forEach(function(i){if(!byId(x.documents,i.id))x.documents.push({id:i.id||uid("doc"),title:i.name||"Документ",name:i.name||"Документ",description:i.description||"",caseId:i.caseId||"",url:i.url||"",documentId:i.documentId||"",createdAt:i.createdAt||stamp,updatedAt:i.updatedAt||stamp,legacy:"dashboard"})});
+ if(Array.isArray(lib))lib.forEach(function(i){if(i&&!byId(x.documents,i.id))x.documents.push({id:i.id||uid("doc"),title:i.title||"Документ",name:i.title||"Документ",content:i.content||i.text||"",collection:i.collection||"",source:"library",createdAt:i.createdAt||stamp,updatedAt:i.updated||stamp,legacy:"space-library"})});
+ x.activity=(Array.isArray(crm.activity)?crm.activity:[]).map(function(a){return {id:a.id||uid("a"),action:a.message||"Импортировано событие",at:a.at||stamp,legacy:"crm"}}).concat([{id:uid("a"),action:"Создана единая модель данных; импортированы доступные локальные записи без удаления исходных хранилищ.",at:stamp}]).slice(0,500);
+ x.migrations={crm:true,dashboard:true,documentLibrary:true,completedAt:stamp};
+ write(x);return x
+}
+function createCase(title,details){var x=read(),o={id:uid("case"),type:"case",title:title,name:title,description:details||"",status:"active",createdAt:now(),updatedAt:now()};x.cases.unshift(o);log(x,"Создано дело: "+title,o);write(x);return o}
+function createDocument(opts){opts=opts||{};var x=read(),caseItem=opts.caseId&&byId(x.cases,opts.caseId);if(!caseItem&&opts.createCase!==false){caseItem=createCase(opts.caseTitle||opts.title||"Дело по документу «"+(opts.title||"Без названия")+"»",opts.description||"Создано вместе с документом");x=read()}
+ var o={id:uid("doc"),type:"document",title:opts.title||"Новый документ",name:opts.title||"Новый документ",content:opts.content||"",url:opts.url||"",caseId:caseItem&&caseItem.id||opts.caseId||"",status:"draft",source:opts.source||"text2me",createdAt:now(),updatedAt:now(),metadata:opts.metadata||{}};x.documents.unshift(o);if(caseItem){caseItem.updatedAt=now();log(x,"Документ связан с делом «"+caseItem.title+"»: "+o.title,o)}else log(x,"Создан документ: "+o.title,o);write(x);return o}
+function addTask(opts){opts=opts||{};var x=read(),o={id:uid("task"),type:"task",title:opts.title||"Следующее действие",name:opts.title||"Следующее действие",description:opts.description||"",due:opts.due||"",date:opts.due||"",caseId:opts.caseId||"",documentId:opts.documentId||"",status:"active",priority:opts.priority||"normal",createdAt:now(),updatedAt:now()};x.tasks.unshift(o);log(x,"Добавлена задача: "+o.title,o);write(x);return o}
+function addEvent(opts){opts=opts||{};var x=read(),o={id:uid("event"),type:"event",title:opts.title||"Контрольная дата",name:opts.title||"Контрольная дата",description:opts.description||"",date:opts.date||"",caseId:opts.caseId||"",documentId:opts.documentId||"",createdAt:now(),updatedAt:now()};x.events.unshift(o);log(x,"Добавлено событие: "+o.title,o);write(x);return o}
+function addContact(opts){opts=opts||{};var x=read(),o={id:uid("contact"),type:"contact",title:opts.name||opts.title||"Новый контакт",name:opts.name||opts.title||"Новый контакт",kind:opts.kind||"person",email:opts.email||"",phone:opts.phone||"",organization:opts.organization||"",createdAt:now(),updatedAt:now()};x.contacts.unshift(o);log(x,"Добавлен контакт: "+o.title,o);write(x);return o}
+function attachDocumentToCase(documentId,caseId){var x=read(),d=byId(x.documents,documentId),c=byId(x.cases,caseId);if(!d||!c)return false;d.caseId=c.id;d.updatedAt=now();log(x,"Документ «"+d.title+"» привязан к делу «"+c.title+"»",d);return write(x)}
+function get(){return read()}
+window.Text2meWorkspace={key:KEY,get:get,save:write,migrate:migrate,createCase:createCase,createDocument:createDocument,addTask:addTask,addEvent:addEvent,addContact:addContact,attachDocumentToCase:attachDocumentToCase,log:function(action,entity){var x=read();log(x,action,entity);write(x)},version:1};
+})();
