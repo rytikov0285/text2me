@@ -94,7 +94,7 @@ $("save").addEventListener("click",function(){
   var event=localDoc.followupEventId&&window.Text2meWorkspace.updateEvent(localDoc.followupEventId,eventFields);
   if(!event){event=window.Text2meWorkspace.addEvent(eventFields);localDoc.followupEventId=event.id}
   localDoc.followupDate=follow;
- }
+ }else if(localDoc.followupActionTaskId||localDoc.followupEventId){if(localDoc.followupActionTaskId)window.Text2meWorkspace.removeEntity("tasks",localDoc.followupActionTaskId);if(localDoc.followupEventId)window.Text2meWorkspace.removeEntity("events",localDoc.followupEventId);localDoc.followupActionTaskId="";localDoc.followupEventId="";localDoc.followupDate="";}
  try{localStorage.setItem("text2me.space.v1",JSON.stringify(library))}catch(e){}
  $("status").textContent="Сохранено. Документ связан с делом; задача проверки создана автоматически"+(follow?" и контрольная дата "+follow+" синхронизирована с задачей и календарём.":". Следующее действие можно добавить позднее.");
  lastSaved=localDoc.id;
