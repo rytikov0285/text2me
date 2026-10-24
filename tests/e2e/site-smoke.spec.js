@@ -43,6 +43,62 @@ test.describe("text2me published-site smoke tests", () => {
     await expect(opener).toBeFocused();
   });
 
+  test("CRM links cases and tasks to contacts by stable IDs", async ({ page }) => {
+    await page.goto(baseURL + "/space/", { waitUntil: "domcontentloaded" });
+    const form = page.locator("#crm-create-form");
+    const newButton = page.locator("#crm-new-button");
+    const board = page.locator("#crm-board");
+
+    await newButton.click();
+    await form.locator('select[name="type"]').selectOption("Контакт");
+    await form.locator('input[name="title"]').fill("Контакт E2E");
+    await form.locator('input[name="email"]').fill("contact-e2e@example.test");
+    await form.locator('input[name="phone"]').fill("+7 900 000-00-00");
+    await form.locator('input[name="organization"]').fill("Тестовая организация");
+    await form.locator('button[type="submit"]').click();
+    await expect(board).toContainText("Контакт E2E");
+    await board.locator(".crm-item").filter({ hasText: "Контакт E2E" }).last().locator('button[data-edit]').click();
+    await expect(form.locator('input[name="email"]')).toHaveValue("contact-e2e@example.test");
+    await expect(form.locator('input[name="phone"]')).toHaveValue("+7 900 000-00-00");
+    await form.locator("#crm-cancel").click();
+
+    await newButton.click();
+    await form.locator('select[name="type"]').selectOption("Дело");
+    await form.locator('input[name="title"]').fill("Дело E2E");
+    await form.locator('select[name="contactIds"]').selectOption({ label: "Контакт E2E" });
+    await form.locator('button[type="submit"]').click();
+    await expect(board).toContainText("Дело E2E");
+    await expect(board).toContainText("Контакт E2E");
+
+    await newButton.click();
+    await form.locator('select[name="type"]').selectOption("Задача");
+    await form.locator('input[name="title"]').fill("Задача E2E");
+    await form.locator('select[name="caseId"]').selectOption({ label: "Дело E2E" });
+    await form.locator('select[name="contactIds"]').selectOption({ label: "Контакт E2E" });
+    await form.locator('button[type="submit"]').click();
+    await expect(board).toContainText("Задача E2E");
+
+    await newButton.click();
+    await form.locator('select[name="type"]').selectOption("Документ");
+    await form.locator('input[name="title"]').fill("Документ E2E");
+    await form.locator('select[name="caseId"]').selectOption({ label: "Дело E2E" });
+    await form.locator('select[name="contactIds"]').selectOption({ label: "Контакт E2E" });
+    await form.locator('button[type="submit"]').click();
+    await expect(board).toContainText("Документ E2E");
+
+    await page.goto(baseURL + "/calendar/", { waitUntil: "domcontentloaded" });
+    await page.locator("#add").click();
+    await page.locator("#name").fill("Событие E2E");
+    await page.locator("#eventCase").selectOption({ label: "Дело E2E" });
+    await page.locator("#eventDocument").selectOption({ label: "Документ E2E" });
+    await page.locator("#eventContacts").selectOption({ label: "Контакт E2E" });
+    await page.locator('#form button[type="submit"]').click();
+    await expect(page.locator("#events")).toContainText("Событие E2E");
+    await expect(page.locator("#events")).toContainText("Дело: Дело E2E");
+    await expect(page.locator("#events")).toContainText("Документ: Документ E2E");
+    await expect(page.locator("#events")).toContainText("Контакты: Контакт E2E");
+  });
+
   test("shared navigation avoids duplicate audience and quick-access links", async ({ page }) => {
     await page.goto(baseURL + "/documents/", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".global-audience-switcher")).toHaveCount(0);

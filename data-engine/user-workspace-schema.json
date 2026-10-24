@@ -1,120 +1,221 @@
 {
-  "schema_version": 1,
-  "purpose": "Machine-readable schema for the Text2me personal workspace prototype.",
+  "schema_version": 2,
+  "purpose": "Canonical logical schema for the Text2me personal workspace prototype. This describes relationships; it does not mean server storage is implemented.",
   "storage": {
     "current": "browser_localStorage",
-    "key": "text2me.dashboard.v1",
+    "canonical_key": "text2me.workspace.core.v1",
+    "legacy_keys": [
+      "text2me.dashboard.v1",
+      "text2me.crm.workspace.v1",
+      "text2me.space.v1",
+      "text2me.drafts.v1"
+    ],
+    "workspace_data_version": 1,
     "cloud_sync": false,
     "server_notifications": false,
-    "backup_format": "JSON"
+    "backup_format": "JSON",
+    "source_library_delete_on_workspace_unlink": false
   },
   "entities": {
-    "task": {
-      "required": [
-        "id",
-        "name"
-      ],
-      "fields": {
-        "id": "string",
-        "name": "string",
-        "description": "string",
-        "date": "YYYY-MM-DD or empty",
-        "priority": [
-          "low",
-          "normal",
-          "high"
-        ],
-        "done": "boolean",
-        "updatedAt": "ISO-8601"
-      }
-    },
-    "event": {
-      "required": [
-        "id",
-        "name"
-      ],
-      "fields": {
-        "id": "string",
-        "name": "string",
-        "description": "string",
-        "date": "YYYY-MM-DD or empty",
-        "updatedAt": "ISO-8601"
-      }
-    },
     "case": {
       "required": [
         "id",
-        "name"
+        "title",
+        "status"
       ],
       "fields": {
         "id": "string",
-        "name": "string",
+        "title": "string",
+        "name": "string (legacy alias of title)",
         "description": "string",
         "status": [
           "active",
           "waiting",
           "done"
         ],
+        "contactIds": "array of contact IDs",
+        "createdAt": "ISO-8601",
         "updatedAt": "ISO-8601"
       }
     },
-    "document_reference": {
-      "planned": false,
+    "contact": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "fields": {
+        "id": "string",
+        "title": "string (legacy alias of name)",
+        "name": "string",
+        "kind": [
+          "person",
+          "organization",
+          "party",
+          "other"
+        ],
+        "email": "string",
+        "phone": "string",
+        "organization": "string",
+        "createdAt": "ISO-8601",
+        "updatedAt": "ISO-8601"
+      }
+    },
+    "document": {
+      "required": [
+        "id",
+        "title",
+        "status"
+      ],
       "fields": {
         "id": "string",
         "title": "string",
-        "fileName": "string",
-        "caseId": "string or empty",
-        "createdAt": "ISO-8601",
-        "source": "local file reference",
+        "name": "string (legacy alias of title)",
+        "content": "string",
+        "text": "string (legacy alias of content)",
+        "source": "string",
+        "status": [
+          "draft",
+          "ready",
+          "archived"
+        ],
+        "caseId": "optional case ID",
+        "contactIds": "array of contact IDs",
+        "documentId": "optional related workspace document ID; not a library record ID",
+        "libraryId": "optional source ID in text2me.space.v1; deleting this workspace entity must not delete the source record",
         "url": "optional HTTP(S) URL",
-        "description": "string",
+        "metadata": "object",
+        "followupTaskId": "optional task ID",
+        "createdAt": "ISO-8601",
         "updatedAt": "ISO-8601",
-        "documentId": "optional ID from text2me.space.v1 local document library"
+        "linkageInitialized": "boolean; prevents deleted case links from being recreated during legacy-library initialization",
+        "libraryDocumentId": "optional source library ID referenced by a dashboard document-reference record"
+      }
+    },
+    "task": {
+      "required": [
+        "id",
+        "title",
+        "status"
+      ],
+      "fields": {
+        "id": "string",
+        "title": "string",
+        "name": "string (legacy alias of title)",
+        "description": "string",
+        "due": "YYYY-MM-DD or empty",
+        "date": "YYYY-MM-DD or empty (legacy alias of due)",
+        "caseId": "optional case ID",
+        "documentId": "optional workspace document ID",
+        "contactIds": "array of contact IDs",
+        "priority": [
+          "low",
+          "normal",
+          "high"
+        ],
+        "status": [
+          "active",
+          "waiting",
+          "done"
+        ],
+        "done": "boolean (legacy alias for status=done)",
+        "createdAt": "ISO-8601",
+        "updatedAt": "ISO-8601"
+      }
+    },
+    "event": {
+      "required": [
+        "id",
+        "title"
+      ],
+      "fields": {
+        "id": "string",
+        "title": "string",
+        "name": "string (legacy alias of title)",
+        "description": "string",
+        "date": "YYYY-MM-DD or empty",
+        "caseId": "optional case ID",
+        "documentId": "optional workspace document ID",
+        "contactIds": "array of contact IDs",
+        "createdAt": "ISO-8601",
+        "updatedAt": "ISO-8601"
+      }
+    },
+    "activity": {
+      "required": [
+        "id",
+        "action",
+        "at"
+      ],
+      "fields": {
+        "id": "string",
+        "action": "string",
+        "entityType": "optional entity type",
+        "entityId": "optional entity ID",
+        "at": "ISO-8601"
       }
     }
   },
+  "relationships": {
+    "case.contactIds": "Many-to-many: a case can have several contacts.",
+    "document.caseId": "Many documents can belong to one case; deleting a case clears this reference.",
+    "task.caseId": "Many tasks can belong to one case; deleting a case clears this reference.",
+    "event.caseId": "Many events can belong to one case; deleting a case clears this reference.",
+    "task.documentId": "Optional link to a canonical workspace document; deleting the workspace document clears this reference.",
+    "event.documentId": "Optional link to a canonical workspace document; deleting the workspace document clears this reference.",
+    "document.contactIds": "Many-to-many contact links.",
+    "task.contactIds": "Many-to-many contact links.",
+    "event.contactIds": "Many-to-many contact links.",
+    "delete_contact": "Remove the contact ID from every entity contactIds array.",
+    "delete_library_source": "Unlinking a workspace entity must not silently delete the original item in text2me.space.v1."
+  },
   "roadmap": [
     {
-      "id": "dashboard-local",
+      "id": "local-workspace-core",
       "status": "implemented_in_static_prototype",
-      "scope": "Tasks, events, cases, local export/import, print"
+      "scope": "Canonical local model for cases, contacts, documents, tasks, events and activity; relationships are validated in the browser."
     },
     {
-      "id": "documents-vault",
+      "id": "local-document-vault",
       "status": "partial",
-      "scope": "IndexedDB file vault exists separately; dashboard supports local document references linked to cases"
+      "scope": "The IndexedDB/localStorage file vault remains a separate source; libraryId identifies the source record."
     },
     {
       "id": "accounts-sync",
       "status": "not_implemented",
-      "scope": "Requires backend, authentication, authorization, and secure storage"
+      "scope": "Requires backend, authentication, authorization, server-side validation and secure storage."
+    },
+    {
+      "id": "server-database",
+      "status": "design_required",
+      "scope": "Define relational schema, API, ownership rules, migrations, audit log, backup/restore and conflict handling before implementation."
     },
     {
       "id": "push-notifications",
       "status": "not_implemented",
-      "scope": "Requires notification service and user opt-in"
+      "scope": "Requires notification service and explicit user opt-in."
     },
     {
       "id": "reference-refresh",
       "status": "partial",
-      "scope": "Separate metadata/archive validation workflows; source data import not assumed live"
+      "scope": "Separate metadata/archive validation workflows; source data import is not assumed live."
     },
     {
       "id": "ocr",
       "status": "not_implemented",
-      "scope": "Needs OCR engine and file-processing limits"
+      "scope": "Needs OCR engine, file-processing limits and malware scanning."
     },
     {
       "id": "collaboration",
       "status": "not_implemented",
-      "scope": "Requires accounts, sharing model, audit log, and access controls"
+      "scope": "Requires accounts, sharing model, audit log and access controls."
     }
   ],
   "privacy_rules": [
     "Do not place sensitive personal data in public repository files.",
     "Browser-local data may be lost when browser storage is cleared.",
     "Exported JSON backups may contain personal data; store them securely.",
-    "Never claim local reminders run when the page is closed."
+    "Never claim local reminders run when the page is closed.",
+    "Server-side personal data processing requires a documented purpose, data minimization, retention rules, access controls and jurisdiction-specific compliance review.",
+    "A server migration must not upload local data without explicit user action and an authenticated destination account."
   ]
 }

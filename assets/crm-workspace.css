@@ -75,3 +75,10 @@
 @media(max-width:1050px){.crm-layout{grid-template-columns:180px minmax(0,1fr)}.crm-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.crm-toolbar{flex-wrap:wrap}.crm-search-label{flex-basis:45%}}
 @media(max-width:700px){.crm-workspace{margin:20px -2px;padding:14px;border-radius:13px}.crm-heading{display:block}.crm-local-badge{display:inline-block;margin-top:12px}.crm-metrics{gap:8px}.crm-metrics article{min-height:92px;padding:12px}.crm-metrics article>strong{font-size:24px}.crm-layout{display:flex;flex-direction:column}.crm-rail,.crm-main{width:100%}.crm-rail{position:static;padding:10px}.crm-rail h3{margin-bottom:7px}.crm-nav{display:inline-flex;width:auto;min-height:35px;margin:2px;padding:8px}.crm-rail-tip{display:none}.crm-main{padding:11px}.crm-toolbar{display:grid;grid-template-columns:1fr 1fr}.crm-search-label{grid-column:1/-1}.crm-filter-label{width:auto}.crm-primary{width:100%}.crm-form-grid{grid-template-columns:1fr}.crm-form-grid .crm-wide{grid-column:auto}.crm-board{grid-template-columns:1fr}.crm-activity li{display:block}.crm-activity time{display:block;margin-top:4px}}
 @media(prefers-reduced-motion:reduce){.crm-workspace *{scroll-behavior:auto!important;transition:none!important}}
+/* Relationship selectors remain readable when several contacts are linked to a record. */
+.crm-form-grid select[multiple]{min-height:96px;padding:8px 10px}
+.crm-form-grid label small{color:#657286;font-size:12px;font-weight:400;line-height:1.45}
+.crm-form-grid select:disabled{background:#f1f4f8;color:#667085;cursor:not-allowed}
+.crm-contact-details:not([hidden]),.crm-document-details:not([hidden]){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.crm-contact-details label,.crm-document-details label{display:flex;flex-direction:column;gap:6px;min-width:0}
+@media(max-width:640px){.crm-contact-details:not([hidden]),.crm-document-details:not([hidden]){grid-template-columns:minmax(0,1fr)}}
