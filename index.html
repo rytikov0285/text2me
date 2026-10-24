@@ -137,6 +137,18 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 @media(max-width:1000px){.dash-header{flex-wrap:wrap;padding:10px 16px!important}.workspace-search{max-width:260px!important}.acrobat-nav{order:3;width:100%}.acrobat-workspace-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}.acrobat-panel{padding:16px}.acrobat-hero-grid{gap:10px}}
 @media(max-width:700px){.dash-shell{padding:0 10px 30px!important}.acrobat-home>h1{padding:26px 4px 18px;font-size:25px}.acrobat-hero-grid{grid-template-columns:1fr}.acrobat-feature{min-height:150px}.acrobat-workspace-grid{grid-template-columns:1fr}.acrobat-tools-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px 4px}.acrobat-panel{padding:15px 13px}.file-tabs{gap:17px}.file-actions{gap:10px}.acrobat-file-table{min-width:480px}.feature-inner{min-height:100px}.acrobat-upload{padding:12px}.acrobat-nav{gap:0!important}.acrobat-nav a{padding:7px!important;font-size:10px!important}}
 
+ 
+/* Audience cards: shared responsive grid aligned to the homepage workspace */
+.audience-switcher{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0 24px}
+.audience-card{display:flex;align-items:flex-start;gap:14px;min-width:0;padding:20px 18px;background:#fff;border:1px solid #dce4ee;border-radius:14px;color:#17243a;text-decoration:none;box-shadow:0 2px 8px rgba(23,36,58,.035);transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.audience-card:hover{border-color:#7aa7ef;box-shadow:0 7px 20px rgba(23,65,130,.09);transform:translateY(-1px)}
+.audience-card:focus-visible{outline:3px solid #2f6fed;outline-offset:3px}
+.audience-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:11px;background:#edf4ff;color:#245fc4;font-size:23px}
+.audience-copy{display:flex;flex:1;flex-direction:column;gap:7px;min-width:0}
+.audience-copy strong{font-size:18px;line-height:1.3;font-weight:700}
+.audience-copy small{font-size:14px;line-height:1.5;color:#63728a}
+.audience-arrow{margin-left:auto;color:#245fc4;font-size:20px}
+@media(max-width:900px){.audience-switcher{grid-template-columns:1fr;gap:10px}.audience-card{padding:16px}.audience-copy strong{font-size:17px}}
 </style>
 </head>
 <body>
@@ -179,6 +191,23 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <main id="main" class="workspace-main">
 <section class="acrobat-home" aria-label="Главная панель">
   <div class="home-greeting"><h1>Добрый день!</h1><p class="home-greeting-lead">Чем займёмся сегодня? Создайте документ, проверьте готовый файл или опишите задачу — сервис поможет выбрать следующий шаг.</p></div>
+  <nav class="audience-switcher" aria-label="Выберите для кого готовите документ">
+    <a class="audience-card" href="/text2me/people/">
+      <span class="audience-icon" aria-hidden="true">♙</span>
+      <span class="audience-copy"><strong>Физические лица</strong><small>Личные документы, заявления, обращения, договоры и жизненные ситуации</small></span>
+      <span class="audience-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="audience-card" href="/text2me/business/">
+      <span class="audience-icon" aria-hidden="true">▣</span>
+      <span class="audience-copy"><strong>Индивидуальные предприниматели</strong><small>Документы ИП, счета, акты, договоры и работа с клиентами</small></span>
+      <span class="audience-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="audience-card" href="/text2me/business/">
+      <span class="audience-icon" aria-hidden="true">▥</span>
+      <span class="audience-copy"><strong>Юридические лица</strong><small>Деловые и кадровые документы, договорная работа и процессы компании</small></span>
+      <span class="audience-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
   <div class="acrobat-hero-grid">
     <article class="acrobat-feature acrobat-upload"><div class="feature-inner"><h2>Создайте, проверьте или доработайте документ</h2><p>Подготовьте договор, счёт, деловое письмо или обычный текст. Загрузите готовый файл, чтобы разобраться в условиях и найти спорные места. Если потребуется, позовите эксперта прямо по ходу работы.</p><div class="feature-actions"><a class="ac-btn dark" href="/text2me/space/">Выбрать файлы</a><a class="ac-btn outline" href="/text2me/guides/">Примеры задач</a></div></div></article>
     <a class="acrobat-feature acrobat-express" href="/text2me/documents/"><div class="feature-art template-art" aria-hidden="true"><span>▤</span><span>▧</span><span>▣</span><span>✦</span></div><div class="feature-caption"><strong>Создать по шаблону</strong><small>Документы, формы и готовые примеры</small></div></a>
