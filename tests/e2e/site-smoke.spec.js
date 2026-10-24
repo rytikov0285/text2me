@@ -73,7 +73,7 @@ test("consumer claim form generates a draft and downloadable text", async ({ pag
   const downloadPromise = page.waitForEvent("download");
   await page.locator("#download-claim").click();
   const download = await downloadPromise;
-  expect(download.suggestedFilename()).toMatch(/\\.txt$/);
+  expect(download.suggestedFilename().endsWith(".txt")).toBeTruthy();
 });
 
 test("flood workflow creates a draft, saves locally, and downloads it", async ({ page }) => {
@@ -92,7 +92,7 @@ test("flood workflow creates a draft, saves locally, and downloads it", async ({
   const downloadPromise = page.waitForEvent("download");
   await page.locator("#download-first").click();
   const download = await downloadPromise;
-  expect(download.suggestedFilename()).toMatch(/\\.txt$/);
+  expect(download.suggestedFilename().endsWith(".txt")).toBeTruthy();
 });
 
 test("calendar event persists after reload", async ({ page }) => {
