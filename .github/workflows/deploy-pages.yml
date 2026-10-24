@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: github-pages-${{ github.run_id }}
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
