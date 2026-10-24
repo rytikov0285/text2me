@@ -57,3 +57,40 @@ test.describe("text2me published-site smoke tests", () => {
     });
   }
 });
+
+test("consumer claim form generates a draft and downloadable text", async ({ page }) => {
+  await page.goto(`${baseURL}/documents/pretenziya-prodavtsu/`, { waitUntil: "domcontentloaded" });
+  await page.locator("#seller-name").fill("Тестовый продавец");
+  await page.locator("#buyer-name").fill("Тестовый покупатель");
+  await page.locator("#product-name").fill("Тестовый товар");
+  await page.locator("#defect-description").fill("Тестовое описание недостатка товара.");
+  await page.locator("#claim-demand").selectOption("refund");
+  await page.getByRole("button", { name: "Сформировать черновик" }).click();
+  const output = page.locator("#claim-output");
+  await expect(output).toContainText("Тестовый продавец");
+  await expect(output).toContainText("Тестовый покупатель");
+  await expect(output).toContainText("Тестовое описание недостатка товара.");
+  const downloadPromise = page.waitForEvent("download");
+  await page.locator("#download-claim").click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/\\.txt$/);
+});
+
+test("flood workflow creates a draft, saves locally, and downloads it", async ({ page }) => {
+  await page.goto(`${baseURL}/situations/zatoplenie-kvartiry/`, { waitUntil: "domcontentloaded" });
+  await page.locator("#f-name").fill("Тестовый заявитель");
+  await page.locator("#f-address").fill("Тестовый адрес, дом 1");
+  await page.locator("#f-date").fill("2026-10-24");
+  await page.locator("#f-damage").fill("Повреждение потолка в комнате");
+  await page.locator("#flood-intake button[type=submit]").click();
+  await expect(page.locator("#first-document")).toBeVisible();
+  await expect(page.locator("#flood-draft")).toContainText("Тестовый заявитель");
+  await expect(page.locator("#flood-draft")).toContainText("Тестовый адрес, дом 1");
+  await page.locator("#save-first").click();
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("text2me.space.v1") || "[]"));
+  expect(saved.some(doc => doc.title && doc.text && doc.text.includes("Тестовый заявитель"))).toBeTruthy();
+  const downloadPromise = page.waitForEvent("download");
+  await page.locator("#download-first").click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/\\.txt$/);
+});
