@@ -18,8 +18,26 @@ function initPortalShell(){
  var oldHeader=document.querySelector("body > header");
  if(!oldHeader)return;
  var header=document.createElement("header");header.className="portal-shell-header";
- header.innerHTML='<a class="portal-shell-skip" href="#main">Перейти к содержанию</a><div class="portal-shell-wrap portal-shell-top"><a class="portal-shell-brand" href="/text2me/" aria-label="text2me — главная">text2<span class="shell-brand-mark">me</span></a><nav class="portal-shell-audience" aria-label="Выбор аудитории"><a href="/text2me/people/" data-audience="citizens">Физическим лицам</a><a href="/text2me/ip/" data-audience="ip">ИП</a><a href="/text2me/business/" data-audience="business">Юридическим лицам</a></nav><div class="portal-shell-actions"><span class="portal-shell-phone">Телефон поддержки не опубликован</span><a class="portal-shell-contact" href="/text2me/request/">Контакты</a><button type="button" class="portal-shell-search" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">⌕ Поиск</button></div></div><nav class="portal-shell-wrap portal-shell-nav" aria-label="Основная навигация"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/documents/?audience=citizens">Каталог документов</a><a href="/text2me/law/">Правовая база</a><a href="/text2me/calendar/">Сроки и календарь</a><a href="/text2me/request/">Спросите эксперта</a><a href="/text2me/business/">Организациям</a></nav>';
+ header.innerHTML='<a class="portal-shell-skip" href="#main">Перейти к содержанию</a><div class="portal-shell-wrap portal-shell-top"><a class="portal-shell-brand" href="/text2me/" aria-label="text2me — главная">text2<span class="shell-brand-mark">me</span></a><nav class="portal-shell-audience" aria-label="Выбор аудитории"><a href="/text2me/people/" data-audience="citizens">Физическим лицам</a><a href="/text2me/ip/" data-audience="ip">ИП</a><a href="/text2me/business/" data-audience="business">Юридическим лицам</a></nav><div class="portal-shell-actions"><a class="portal-shell-contact" href="/text2me/request/">Контакты</a><button type="button" class="portal-shell-search" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">⌕ Поиск</button></div></div><nav class="portal-shell-wrap portal-shell-nav" aria-label="Основная навигация"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/documents/?audience=citizens">Каталог документов</a><a href="/text2me/law/">Правовая база</a><a href="/text2me/calendar/">Сроки и календарь</a><a href="/text2me/request/">Спросите эксперта</a><a href="/text2me/business/">Организациям</a></nav>';
  oldHeader.replaceWith(header);
+ /* Breadcrumb trail: make the user's current section and next step visible on every internal page. */
+ var base="/text2me", clean=path.indexOf(base)===0?path.slice(base.length):path;
+ var parts=clean.split("/").filter(Boolean);
+ var labels={
+ "people":"Жизненные ситуации","ip":"Кабинет ИП","business":"Организациям","lawyer":"Для юристов",
+ "documents":"Каталог документов","pretenziya-prodavtsu":"Претензия продавцу","isk-v-sud":"Иск в суд","dogovor-arendy":"Договор аренды",
+ "space":"Мои документы","calendar":"Сроки и календарь","start":"Помощь по сайту","request":"Спросите эксперта",
+ "law":"Правовая база","calculators":"Расчёты","knowledge":"База знаний","document-standard":"Стандарт документа",
+ "privacy":"Конфиденциальность","security":"Безопасность","terms":"Условия использования","updates":"Обновления",
+ "standards":"Стандарты","news":"Новости","sources":"Источники","data-engine":"Справочники и данные",
+ "situations":"Ситуации","zatoplenie-kvartiry":"Затопление квартиры","guides":"Инструкции","services":"Сервисы",
+ "prompts":"Помощник","ai":"Проверка документа","dashboard":"Рабочая панель"
+ };
+ var crumbNav=document.createElement("nav");crumbNav.className="t2m-breadcrumbs portal-shell-wrap";crumbNav.setAttribute("aria-label","Ваше местоположение");
+ var crumbList=document.createElement("ol");var homeLi=document.createElement("li");var homeA=document.createElement("a");homeA.href=base+"/";homeA.textContent="Главная";homeLi.appendChild(homeA);crumbList.appendChild(homeLi);
+ var currentPath=base;
+ parts.forEach(function(part,index){currentPath+="/"+part;var li=document.createElement("li");li.setAttribute("aria-current",index===parts.length-1?"page":"false");var text=labels[part]||decodeURIComponent(part).replace(/[-_]+/g," ").replace(/^./,function(s){return s.toUpperCase();});if(index<parts.length-1){var a=document.createElement("a");a.href=currentPath+"/";a.textContent=text;li.appendChild(a);}else{var span=document.createElement("span");span.textContent=text;li.appendChild(span);}crumbList.appendChild(li);});
+ crumbNav.appendChild(crumbList);header.insertAdjacentElement("afterend",crumbNav);
  var mainTarget=document.querySelector("main[id]");if(mainTarget){var skip=header.querySelector(".portal-shell-skip");if(skip)skip.href="#"+mainTarget.id;}
  header.querySelectorAll("[data-audience]").forEach(function(a){if(a.getAttribute("data-audience")===audience)a.setAttribute("aria-current","page");});
  var navLinks=header.querySelectorAll(".portal-shell-nav a");
