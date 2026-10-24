@@ -3,7 +3,7 @@
 function initPortalShell(){
  var path=window.location.pathname.replace(/\/+$/,"")||"/text2me";
  var isHome=path==="/text2me"||path==="/";
- var audience=path==="/text2me/people"?"citizens":path==="/text2me/lawyer"?"lawyer":path==="/text2me/business"?"business":"";
+ var audience=path==="/text2me/people"||path==="/text2me"||path==="/"?"citizens":path==="/text2me/lawyer"?"lawyer":path==="/text2me/business"?"business":"";
  if(path.indexOf("/text2me/documents/pretenziya-prodavtsu")===0||path.indexOf("/text2me/documents/isk-v-sud")===0||path.indexOf("/text2me/documents/dogovor-arendy")===0)audience="citizens";
  var params=new URLSearchParams(window.location.search);
  if(path==="/text2me/documents"&&params.get("audience")==="citizens")audience="citizens";
