@@ -638,3 +638,7 @@ header.top nav a:hover{background:var(--portal-soft);color:var(--portal-brand)}
 /* Override legacy element-level widths on pages migrated to the shared shell. */
 .site-header{max-width:none;margin:0;padding:0}
 .site-footer{max-width:none;margin:0;padding:28px 0 20px}
+
+/* Global text contrast and restrained neutral palette */
+:root{--ink:#202a33;--muted:#4c5964;--line:#d4d9de;--paper:#fff;--soft:#f5f6f7;--purple:#315c7b;--purple-dark:#24455f;--mint:#eef1f3}
+body{color:#202a33;background:#f7f8f9}p,small,figcaption{color:inherit}::selection{background:#263f52;color:#fff}
