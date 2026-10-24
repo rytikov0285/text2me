@@ -606,7 +606,22 @@ searchInput.addEventListener("input",function(){
 document.querySelectorAll("[data-search-chip]").forEach(function(btn){btn.addEventListener("click",function(){searchInput.value=btn.getAttribute("data-search-chip")||"";searchInput.focus();search()})});
 var situationForm=document.getElementById("home-situation-form"),situationField=document.getElementById("home-situation");
 document.querySelectorAll("[data-situation-chip]").forEach(function(btn){btn.addEventListener("click",function(){if(!situationField)return;situationField.value=btn.getAttribute("data-situation-chip")||"";situationField.focus()})});
-if(situationForm&&situationField){situationForm.addEventListener("submit",function(e){var task=situationField.value.trim();if(!task){e.preventDefault();situationField.focus();situationField.setCustomValidity("Опишите ситуацию или выберите пример ниже.");situationField.reportValidity();return}situationField.setCustomValidity("");situationField.value=task});situationField.addEventListener("input",function(){situationField.setCustomValidity("")})}
+if(situationForm&&situationField){
+ situationForm.addEventListener("submit",function(e){
+  var task=situationField.value.trim();
+  if(!task){e.preventDefault();situationField.setCustomValidity("Опишите ситуацию или выберите пример ниже.");situationField.reportValidity();situationField.focus();return}
+  e.preventDefault();
+  situationField.setCustomValidity("");
+  try{
+   sessionStorage.setItem("text2me.pending-situation.v1",task);
+   window.location.href="/text2me/start/#ai-path";
+  }catch(error){
+   situationField.setCustomValidity("Не удалось передать описание в следующий раздел. Скопируйте текст и повторите попытку.");
+   situationField.reportValidity();
+  }
+ });
+ situationField.addEventListener("input",function(){situationField.setCustomValidity("")});
+}
 
 
 
