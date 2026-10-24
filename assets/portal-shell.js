@@ -204,3 +204,6 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
  }
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addServiceNetwork);else addServiceNetwork();
 })();
+
+/* Rotating document-title examples on every page; the field stays in the sticky header. */
+(function(){var fields=Array.from(document.querySelectorAll("#title-search, #portal-shell-inline-query"));if(!fields.length)return;var examples=["Название документа, например «Исковое заявление»","Например: претензия продавцу","Например: заявление в госорган","Например: договор аренды","Например: жалоба в Роспотребнадзор","Например: исковое заявление"];var index=0;function rotate(){fields.forEach(function(field){if(field!==document.activeElement||!field.value)field.placeholder=examples[index%examples.length];});index++;}rotate();window.setInterval(rotate,10000);})();
