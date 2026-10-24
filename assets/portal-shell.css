@@ -638,3 +638,23 @@ body{font-size:var(--t2m-body-size);line-height:var(--t2m-body-leading)}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+
+/* Ensure readability rules win over older page-level inline declarations. */
+.acrobat-nav a{font-size:13px!important;padding:9px 10px!important}
+.feature-inner p{font-size:14px!important;line-height:1.55!important}
+.feature-caption strong{font-size:15px!important}
+.feature-caption small{font-size:13px!important;line-height:1.5!important}
+.acrobat-panel-heading>a,.file-actions a,.all-files-link{font-size:13px!important}
+.acrobat-tools-grid>a{font-size:13px!important;line-height:1.5!important}
+.template-panel p{font-size:14px!important;line-height:1.55!important}
+.template-pills a{font-size:13px!important;min-height:40px!important}
+.acrobat-file-table{font-size:13px!important}
+.acrobat-file-table th{font-size:12px!important}
+.acrobat-file-table td:nth-child(3),.acrobat-file-table td:nth-child(4){font-size:13px!important}
+.file-tabs button{font-size:14px!important;min-height:42px!important}
+@media(max-width:700px){
+ .acrobat-nav a{font-size:12px!important;padding:9px 8px!important}
+ .acrobat-tools-grid>a{font-size:12px!important}
+ .feature-caption small{font-size:13px!important}
+}
