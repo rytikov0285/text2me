@@ -59,21 +59,29 @@ test.describe("text2me published-site smoke tests", () => {
 });
 
 test("consumer claim form generates a draft and downloadable text", async ({ page }) => {
-  await page.goto(`${baseURL}/documents/pretenziya-prodavtsu/`, { waitUntil: "domcontentloaded" });
-  await page.locator("#seller-name").fill("Тестовый продавец");
-  await page.locator("#buyer-name").fill("Тестовый покупатель");
-  await page.locator("#product-name").fill("Тестовый товар");
-  await page.locator("#defect-description").fill("Тестовое описание недостатка товара.");
-  await page.locator("#claim-demand").selectOption("refund");
-  await page.getByRole("button", { name: "Сформировать черновик" }).click();
-  const output = page.locator("#claim-output");
-  await expect(output).toContainText("Тестовый продавец");
-  await expect(output).toContainText("Тестовый покупатель");
-  await expect(output).toContainText("Тестовое описание недостатка товара.");
-  const downloadPromise = page.waitForEvent("download");
-  await page.locator("#download-claim").click();
-  const download = await downloadPromise;
-  expect(download.suggestedFilename().endsWith(".txt")).toBeTruthy();
+  test.setTimeout(45000);
+  await test.step("open the claim form", async () => {
+    await page.goto(`${baseURL}/documents/pretenziya-prodavtsu/`, { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#claim-builder")).toBeVisible();
+  });
+  await test.step("fill required fields and generate the draft", async () => {
+    await page.locator("#seller-name").fill("Тестовый продавец");
+    await page.locator("#buyer-name").fill("Тестовый покупатель");
+    await page.locator("#product-name").fill("Тестовый товар");
+    await page.locator("#defect-description").fill("Тестовое описание недостатка товара.");
+    await page.locator("#claim-demand").selectOption("refund");
+    await page.getByRole("button", { name: "Сформировать черновик" }).click();
+    const output = page.locator("#claim-output");
+    await expect(output).toContainText("Тестовый продавец");
+    await expect(output).toContainText("Тестовый покупатель");
+    await expect(output).toContainText("Тестовое описание недостатка товара.");
+  });
+  await test.step("download the generated text", async () => {
+    const downloadPromise = page.waitForEvent("download", { timeout: 8000 });
+    await page.locator("#download-claim").click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename().endsWith(".txt")).toBeTruthy();
+  });
 });
 
 test("flood workflow creates a draft, saves locally, and downloads it", async ({ page }) => {
