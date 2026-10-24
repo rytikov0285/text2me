@@ -268,7 +268,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
    RAL 9016 is used for white surfaces; no official FNS branding is copied. */
 :root{
  --t2m-page-bg:#e9eaec;--t2m-surface:#ffffff;--t2m-ink:#111820;--t2m-muted:#343d46;
- --t2m-line:#c5cbd1;--t2m-accent:#174f7a;--t2m-accent-hover:#103b5c;--t2m-white-ral9016:#f7f7f7;
+ --t2m-line:#c5cbd1;--t2m-accent:#174f7a;--t2m-accent-hover:#103b5c;--t2m-white-ral9016:#F4F4F4;
 }
 html{background:var(--t2m-page-bg);color:var(--t2m-ink)}
 body{background:var(--t2m-page-bg)!important;color:var(--t2m-ink)!important;font-family:Arial,"Segoe UI",sans-serif!important;-webkit-font-smoothing:auto!important;text-rendering:optimizeLegibility}
@@ -321,4 +321,17 @@ body :where(p,li,label,input,textarea,select){color:var(--t2m-ink)}
  .t2m-partner-links{gap:8px}.t2m-partner-link{flex:1 1 42%;min-width:0}
  .t2m-partner-link img{max-width:140px;max-height:40px}
 }
+
+/* Dedicated workspace selector on the homepage */
+:root{--t2m-white-ral9016:#F4F4F4}
+.t2m-workspaces{margin:24px 0 30px;padding:24px;background:#F4F4F4;border:1px solid #c5cbd1}
+.t2m-workspaces .portal-section-head{margin-bottom:18px}
+.t2m-workspace-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.t2m-workspace-card{display:flex;flex-direction:column;align-items:flex-start;min-height:220px;padding:22px;background:#F4F4F4;border:1px solid #bfc6cc;color:#111820!important;text-decoration:none}
+.t2m-workspace-card:hover{border-color:#174f7a;background:#fff}
+.t2m-workspace-card h3{margin:10px 0 8px;font-size:22px;line-height:1.3;color:#111820}
+.t2m-workspace-card p{margin:0 0 18px;font-size:15px;line-height:1.55;color:#27313a}
+.t2m-workspace-card>span:last-child{margin-top:auto;font-size:14px;font-weight:700;color:#174f7a}
+.t2m-workspace-kicker{font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#3c4852}
+@media(max-width:900px){.t2m-workspace-grid{grid-template-columns:1fr}.t2m-workspace-card{min-height:unset;padding:18px}.t2m-workspace-card h3{font-size:20px}.t2m-workspaces{padding:16px}}
 
