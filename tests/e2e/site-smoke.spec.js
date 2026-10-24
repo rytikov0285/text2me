@@ -84,8 +84,8 @@ test("flood workflow creates a draft, saves locally, and downloads it", async ({
   await page.locator("#f-damage").fill("Повреждение потолка в комнате");
   await page.locator("#flood-intake button[type=submit]").click();
   await expect(page.locator("#first-document")).toBeVisible();
-  await expect(page.locator("#flood-draft")).toContainText("Тестовый заявитель");
-  await expect(page.locator("#flood-draft")).toContainText("Тестовый адрес, дом 1");
+  await expect(page.locator("#flood-draft")).toHaveValue(/Тестовый заявитель/);
+  await expect(page.locator("#flood-draft")).toHaveValue(/Тестовый адрес, дом 1/);
   await page.locator("#save-first").click();
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("text2me.space.v1") || "[]"));
   expect(saved.some(doc => doc.title && doc.text && doc.text.includes("Тестовый заявитель"))).toBeTruthy();
