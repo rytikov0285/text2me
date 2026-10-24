@@ -1,6 +1,7 @@
 (function(){
 "use strict";
 function initPortalShell(){
+ var obsoleteRelatedPanel=document.getElementById("text2me-related-panel");if(obsoleteRelatedPanel)obsoleteRelatedPanel.remove();
  var path=window.location.pathname.replace(/\/+$/,"")||"/text2me";
  var isHome=path==="/text2me"||path==="/";
  var audience=path==="/text2me/people"||path==="/text2me"||path==="/"?"citizens":path==="/text2me/ip"?"ip":path==="/text2me/business"?"business":path==="/text2me/lawyer"?"business":"";
