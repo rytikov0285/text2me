@@ -43,7 +43,7 @@ save.addEventListener("click",function(){
   var event=doc.followupEventId&&window.Text2meWorkspace.updateEvent(doc.followupEventId,eventFields);
   if(!event){event=window.Text2meWorkspace.addEvent(eventFields);doc.followupEventId=event.id}
   doc.followupDate=follow;
- }
+ }else if(doc.followupActionTaskId||doc.followupEventId){if(doc.followupActionTaskId)window.Text2meWorkspace.removeEntity("tasks",doc.followupActionTaskId);if(doc.followupEventId)window.Text2meWorkspace.removeEntity("events",doc.followupEventId);doc.followupActionTaskId="";doc.followupEventId="";doc.followupDate="";}
  doc.workspaceDocumentId=link.documentId;doc.caseId=link.caseId;
  try{localStorage.setItem("text2me.space.v1",JSON.stringify(lib))}catch(e){}
  status.textContent="Результат сохранён в библиотеке и связан с делом. Задача проверки документа создана автоматически."+(follow?" Контрольная дата "+follow+" синхронизирована с задачей и календарём.":"");
