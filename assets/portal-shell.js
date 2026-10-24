@@ -3,7 +3,7 @@
 function initPortalShell(){
  var path=window.location.pathname.replace(/\/+$/,"")||"/text2me";
  var isHome=path==="/text2me"||path==="/";
- var audience=path==="/text2me/people"?"citizens":path==="/text2me/business"?"business":"";
+ var audience=path==="/text2me/people"?"citizens":path==="/text2me/lawyer"?"lawyer":path==="/text2me/business"?"business":"";
  if(path.indexOf("/text2me/documents/pretenziya-prodavtsu")===0||path.indexOf("/text2me/documents/isk-v-sud")===0||path.indexOf("/text2me/documents/dogovor-arendy")===0)audience="citizens";
  var params=new URLSearchParams(window.location.search);
  if(path==="/text2me/documents"&&params.get("audience")==="citizens")audience="citizens";
@@ -18,7 +18,7 @@ function initPortalShell(){
  var oldHeader=document.querySelector("body > header");
  if(!oldHeader)return;
  var header=document.createElement("header");header.className="portal-shell-header";
- header.innerHTML='<a class="portal-shell-skip" href="#main">Перейти к содержанию</a><div class="portal-shell-wrap portal-shell-top"><a class="portal-shell-brand" href="/text2me/" aria-label="text2me — главная">text2<span class="shell-brand-mark">me</span></a><nav class="portal-shell-audience" aria-label="Выбор аудитории"><a href="/text2me/people/" data-audience="citizens">Гражданам</a><a href="/text2me/business/" data-audience="business">Организациям и ИП</a></nav><div class="portal-shell-actions"><button type="button" class="portal-shell-search" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">⌕ Поиск</button></div></div><nav class="portal-shell-wrap portal-shell-nav" aria-label="Основная навигация"><a href="/text2me/#popular">Направления</a><a href="/text2me/documents/?audience=citizens">Документы граждан</a><a href="/text2me/business/">Для бизнеса</a><a href="/text2me/calculators/">Таблицы и расчёты</a><a href="/text2me/law/">Правовая база</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/start/">Помощь</a></nav>';
+ header.innerHTML='<a class="portal-shell-skip" href="#main">Перейти к содержанию</a><div class="portal-shell-wrap portal-shell-top"><a class="portal-shell-brand" href="/text2me/" aria-label="text2me — главная">text2<span class="shell-brand-mark">me</span></a><nav class="portal-shell-audience" aria-label="Выбор аудитории"><a href="/text2me/people/" data-audience="citizens">Для себя</a><a href="/text2me/lawyer/" data-audience="lawyer">Для юриста</a></nav><div class="portal-shell-actions"><button type="button" class="portal-shell-search" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">⌕ Поиск</button></div></div><nav class="portal-shell-wrap portal-shell-nav" aria-label="Основная навигация"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/documents/?audience=citizens">Каталог документов</a><a href="/text2me/law/">Правовая база</a><a href="/text2me/calendar/">Сроки и календарь</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/business/">Организациям</a><a href="/text2me/start/">Помощь</a></nav>';
  oldHeader.replaceWith(header);
  var mainTarget=document.querySelector("main[id]");if(mainTarget){var skip=header.querySelector(".portal-shell-skip");if(skip)skip.href="#"+mainTarget.id;}
  header.querySelectorAll("[data-audience]").forEach(function(a){if(a.getAttribute("data-audience")===audience)a.setAttribute("aria-current","page");});
@@ -30,7 +30,7 @@ function initPortalShell(){
  var title=document.createElement("h2");title.id="portal-shell-search-title";title.textContent="Поиск по документам и сервисам";
  var form=document.createElement("form");form.className="portal-shell-form";form.action="/text2me/documents/";form.method="get";
  var label=document.createElement("label");label.htmlFor="portal-shell-query";label.textContent="Введите название документа, тему или задачу";
- var input=document.createElement("input");input.id="portal-shell-query";input.name="q";input.type="search";input.placeholder="Например: претензия, договор, налоги";input.autocomplete="off";
+ var input=document.createElement("input");input.id="portal-shell-query";input.name="q";input.type="search";input.placeholder="Например: претензия, иск, заявление, срок";input.autocomplete="off";
  var submit=document.createElement("button");submit.className="portal-shell-submit";submit.type="submit";submit.textContent="Найти в каталоге";
  var note=document.createElement("p");note.textContent="Поиск выполняется по каталогу документов. Ctrl+K или ⌘K — открыть поиск, Esc — закрыть.";
  form.append(label,input,submit);panel.append(close,title,form,note);dialog.append(panel);document.body.append(dialog);
