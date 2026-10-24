@@ -194,21 +194,94 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 .audience-arrow{margin-left:auto;color:#245fc4;font-size:20px}
 @media(max-width:1150px){.workspace-layout{grid-template-columns:210px minmax(0,1fr);gap:16px}.workspace-aside{position:static;grid-column:2}.audience-switcher{padding:0 16px;gap:10px}.workspace-layout{padding:0 16px}}
 @media(max-width:760px){.audience-switcher{grid-template-columns:1fr;margin-top:12px}.workspace-layout{display:flex;flex-direction:column;padding:0 12px}.workspace-sidebar{position:static;width:100%;order:2}.workspace-main{width:100%;order:1}.workspace-aside{width:100%;order:3}.reference-greeting h1{font-size:30px}.reference-greeting p{font-size:20px}.reference-document-grid{grid-template-columns:1fr}.reference-trust{grid-template-columns:1fr}.reference-search-bottom{align-items:flex-start;flex-direction:column}.reference-search-bottom button{align-self:flex-end}.reference-examples{align-items:flex-start}.reference-official-links{gap:10px}}
+
+/* Reference-match correction: header, side navigation, quick actions */
+.dash-shell{max-width:none;padding:0 0 30px;background:#f5f6f8}
+.reference-header{display:grid;grid-template-columns:auto minmax(170px,220px) minmax(280px,1fr) auto auto auto;gap:22px;align-items:center;padding:14px 28px;background:#fff;border-bottom:1px solid #dfe3e9}
+.reference-logo{font-size:37px;line-height:1;letter-spacing:-1.8px;color:#176bc0;white-space:nowrap}
+.reference-logo span{color:#142b4c}
+.reference-header-tagline{font-size:14px;line-height:1.35;color:#333b49}
+.reference-header-search{width:100%;max-width:none;min-width:0;margin:0;display:flex;align-items:center;gap:8px;position:relative;border:1px solid #d9dee7;border-radius:12px;background:#fff;padding:6px 7px 6px 14px}
+.reference-header-search .workspace-search-icon{font-size:23px;color:#697789;line-height:1}
+.reference-header-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;font-size:14px;color:#17243a}
+.reference-header-search .workspace-search-submit{white-space:nowrap;border:0;border-radius:8px;background:#1764c6;color:#fff;font-size:13px;font-weight:700;padding:11px 14px;cursor:pointer}
+.reference-header-contact{display:flex;flex-direction:column;gap:4px;white-space:nowrap;color:#18243a}
+.reference-header-contact strong{font-size:15px;font-weight:700}
+.reference-header-contact small{font-size:12px;color:#667085}
+.reference-header-link{color:#202b3b;text-decoration:none;font-size:13px;white-space:nowrap}
+.audience-switcher{margin:22px auto 22px;padding:0 26px;gap:16px}
+.audience-card{min-height:104px;align-items:center;padding:16px;border-radius:11px}
+.audience-icon{flex-basis:68px;width:68px;height:68px;border-radius:50%;border:1px solid #d8e5f7;background:#f1f6fd;font-size:29px}
+.audience-copy strong{font-size:16px}
+.audience-copy small{font-size:13px;line-height:1.45;color:#303b4d}
+.audience-arrow{display:none}
+.workspace-layout{grid-template-columns:282px minmax(500px,1fr) 354px;gap:20px;padding:0 26px;max-width:1600px}
+.workspace-sidebar,.workspace-main,.workspace-aside{background:#fff;border:1px solid #e5e8ed;border-radius:12px;box-shadow:0 2px 8px rgba(19,35,60,.035)}
+.workspace-sidebar{padding:18px 18px 20px}
+.reference-side-nav{display:flex;flex-direction:column;gap:4px}
+.reference-side-nav .workspace-nav-link{display:flex;align-items:center;gap:14px;padding:11px 12px;border-radius:9px;font-size:14px;line-height:1.35;color:#202a39;text-decoration:none}
+.reference-side-nav .workspace-nav-link span{display:inline-flex;align-items:center;justify-content:center;flex:0 0 26px;width:26px;font-size:22px;color:#27374d}
+.reference-side-nav .workspace-nav-link.active{background:#edf4ff;color:#0759bc;font-weight:700}
+.reference-side-nav .workspace-nav-link.active span{color:#0759bc}
+.reference-pro-card{display:flex;gap:12px;margin-top:18px;padding:14px 12px;border:1px solid #f0d9bc;border-radius:10px;background:#fffaf4;color:#173b7b;text-decoration:none}
+.reference-pro-card>span:first-child{display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:50%;background:#fff0d8;font-size:22px;color:#c18a16}
+.reference-pro-card>span:last-child{display:flex;flex-direction:column;gap:6px}
+.reference-pro-card strong{font-size:14px}
+.reference-pro-card small{font-size:12px;line-height:1.4;color:#354052}
+.reference-pro-card em{font-size:12px;font-style:normal}
+.workspace-main{padding:20px 26px 18px}
+.reference-greeting{text-align:left;padding:2px 0 20px}
+.reference-greeting h1{font-size:28px;letter-spacing:-.02em;margin-bottom:8px}
+.reference-greeting p{font-size:18px;font-weight:500;color:#202a39}
+.reference-task-search{padding:16px;border-radius:12px}
+.reference-task-search textarea{min-height:55px;font-size:15px}
+.reference-search-bottom{border-top:0;padding-top:8px}
+.reference-examples{margin:12px 0 28px;gap:8px}
+.reference-examples a{font-size:12px;padding:7px 10px;color:#29374a;background:#f9fafc}
+.reference-section-heading h2{font-size:19px}
+.reference-document-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.reference-document{display:flex;flex-direction:column;align-items:center;text-align:center;min-height:174px;padding:17px 9px;border-radius:10px;gap:9px}
+.reference-document-icon{grid-row:auto;width:42px;height:42px;flex:0 0 42px;background:transparent;font-size:26px}
+.reference-document strong{font-size:14px;line-height:1.4}
+.reference-document small{font-size:12px;line-height:1.4}
+.reference-trust{display:block;margin:28px 0 0;padding:16px;border:1px solid #d1e0f4;border-radius:10px;background:#f3f8ff}
+.reference-trust div{display:inline-flex;vertical-align:middle;width:32%;padding:0 7px;gap:5px}
+.reference-trust strong{font-size:12px;color:#123a78}
+.reference-trust span{font-size:11px}
+.reference-official-links{display:none}
+.reference-quick-actions{padding:18px 20px}
+.reference-quick-card{border:0;box-shadow:none;padding:0}
+.reference-quick-card h2{font-size:18px;margin:4px 0 18px}
+.reference-quick-card .workspace-quick-link{display:grid;grid-template-columns:48px minmax(0,1fr) 14px;align-items:center;gap:12px;padding:14px 10px;margin:0 0 12px;border:1px solid #e1e6ee;border-radius:10px;color:#17243a;text-decoration:none}
+.reference-quick-card .workspace-quick-link>span:nth-child(2){min-width:0}
+.reference-quick-card .workspace-quick-link strong{font-size:13px;line-height:1.4}
+.reference-quick-card .workspace-quick-link small{display:block;margin-top:4px;font-size:11px;line-height:1.45;color:#424e60}
+.reference-quick-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#f0f5fc;border:1px solid #e1eaf8;color:#135cc0;font-size:23px}
+.dash-footer{max-width:none;margin:24px 26px 0;padding:18px 16px;background:#fff;border:1px solid #e2e6ec;border-radius:10px;font-size:12px}
+.dash-footer-catalog{display:flex;align-items:center;flex-wrap:wrap;gap:14px;border-bottom:1px solid #edf0f4;padding-bottom:14px;margin-bottom:12px}
+.dash-footer-catalog strong{margin-right:10px}
+@media(max-width:1350px){.reference-header{grid-template-columns:auto minmax(140px,180px) minmax(220px,1fr) auto auto;gap:12px}.reference-header-contact{display:none}.workspace-layout{grid-template-columns:240px minmax(0,1fr) 300px;gap:14px;padding:0 16px}.workspace-main{padding:18px}.reference-document-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:950px){.reference-header{grid-template-columns:auto 1fr auto;gap:12px;padding:12px 16px}.reference-header-tagline{display:none}.reference-header-search{grid-column:1/-1;grid-row:2}.workspace-layout{grid-template-columns:220px minmax(0,1fr)}.workspace-aside{grid-column:2;position:static}.workspace-sidebar{position:static}.audience-switcher{padding:0 16px}.reference-document-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.reference-header{grid-template-columns:1fr auto auto}.reference-logo{font-size:30px}.reference-header-link{font-size:12px}.workspace-layout{display:flex;flex-direction:column;padding:0 10px}.workspace-sidebar,.workspace-main,.workspace-aside{width:100%;position:static}.workspace-main{padding:16px 13px}.audience-switcher{grid-template-columns:1fr;padding:0 10px;margin:12px auto}.audience-card{min-height:auto}.audience-copy strong{font-size:15px}.reference-greeting h1{font-size:25px}.reference-greeting p{font-size:17px}.reference-document-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.reference-trust div{display:flex;width:100%;padding:5px 0}.dash-footer{margin:18px 10px 0}.dash-footer-catalog{gap:10px}}
+
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
 <div class="dash-shell">
-<header class="dash-header workspace-header">
-<a class="dash-logo" href="/text2me/" aria-label="text2me — главная">text<span>2</span>me</a>
-<form id="title-search-form" role="search" class="workspace-search">
+<header class="dash-header workspace-header reference-header">
+<a class="dash-logo reference-logo" href="/text2me/" aria-label="text2me — главная">text<span>2</span>me</a>
+<div class="reference-header-tagline">Ваш помощник в подготовке<br>документов</div>
+<form id="title-search-form" role="search" class="workspace-search reference-header-search">
 <label class="sr-only" for="title-search">Поиск документов, ситуаций и материалов</label>
 <span class="workspace-search-icon" aria-hidden="true">⌕</span>
-<input id="title-search" type="search" autocomplete="off" placeholder="Найти документ, шаблон или инструмент…" aria-describedby="title-search-status">
-<button class="workspace-search-submit" type="submit">Найти</button>
+<input id="title-search" type="search" autocomplete="off" placeholder="Опишите свою ситуацию или задачу…" aria-describedby="title-search-status">
+<button class="workspace-search-submit" type="submit">Найти документ <span aria-hidden="true">⌕</span></button>
 <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
 </form>
-<nav class="dash-nav workspace-top-links acrobat-nav" aria-label="Основная навигация"><a class="active" href="/text2me/">Главная</a><a href="/text2me/space/">PDF-пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/documents/">Редактировать</a><a href="/text2me/documents/">Создать</a><a href="/text2me/documents/">Преобразовать</a><a href="/text2me/knowledge/">Электронная подпись</a><a href="/text2me/guides/">Все инструменты</a></nav>
+<div class="reference-header-contact"><strong>☎ &nbsp;8 800 302-18-68</strong><small>Пн–Пт с 9:00 до 18:00 МСК</small></div>
+<a class="reference-header-link" href="/text2me/guides/">♧ &nbsp;Контакты</a>
+<a class="reference-header-link" href="/text2me/space/">♙ &nbsp;Войти</a>
 </header>
 
   <nav class="audience-switcher" aria-label="Выберите для кого готовите документ">
@@ -231,26 +304,20 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
  
 
 <div class="workspace-layout">
-<aside class="workspace-sidebar" aria-label="Навигация по сайту">
-<div class="workspace-nav-group"><p>Навигация</p>
+<aside class="workspace-sidebar reference-sidebar" aria-label="Навигация по сайту">
+<nav class="workspace-nav-group reference-side-nav">
 <a class="workspace-nav-link active" href="#main"><span aria-hidden="true">⌂</span>Главная</a>
-<a class="workspace-nav-link" href="#my-space-preview"><span aria-hidden="true">▣</span>Мои документы</a>
-<a class="workspace-nav-link" href="#updates-feed"><span aria-hidden="true">◷</span>Обновления</a>
-</div>
-<div class="workspace-nav-group"><p>Каталоги</p>
-<a class="workspace-nav-link" href="#situations"><span aria-hidden="true">⌘</span>Ситуации</a>
-<a class="workspace-nav-link" href="/text2me/documents/"><span aria-hidden="true">▤</span>Все документы</a>
-<a class="workspace-nav-link" href="/text2me/guides/"><span aria-hidden="true">☷</span>Инструкции</a>
-<a class="workspace-nav-link" href="/text2me/knowledge/"><span aria-hidden="true">◈</span>База знаний</a>
-<a class="workspace-nav-link" href="/text2me/sources/"><span aria-hidden="true">↗</span>Источники</a>
-</div>
-<div class="workspace-nav-group"><p>Аудитория и инструменты</p>
-<a class="workspace-nav-link" href="#categories"><span aria-hidden="true">▦</span>Категории</a>
-<a class="workspace-nav-link" href="#tools"><span aria-hidden="true">⌁</span>Инструменты PDF</a>
-<a class="workspace-nav-link" href="/text2me/people/"><span aria-hidden="true">♙</span>Гражданам</a>
-<a class="workspace-nav-link" href="/text2me/business/"><span aria-hidden="true">▥</span>Организациям</a>
-<a class="workspace-nav-link" href="/text2me/prompts/"><span aria-hidden="true">✎</span>Тексты и редактура</a>
-</div>
+<a class="workspace-nav-link" href="/text2me/documents/"><span aria-hidden="true">⊕</span>Создать документ</a>
+<a class="workspace-nav-link" href="/text2me/situations/"><span aria-hidden="true">⌕</span>Подбор по ситуации</a>
+<a class="workspace-nav-link" href="/text2me/space/"><span aria-hidden="true">▯</span>Мои документы</a>
+<a class="workspace-nav-link" href="/text2me/knowledge/"><span aria-hidden="true">⚖</span>Правовая база</a>
+<a class="workspace-nav-link" href="/text2me/space/"><span aria-hidden="true">▦</span>Календарь и сроки</a>
+<a class="workspace-nav-link" href="/text2me/guides/"><span aria-hidden="true">▤</span>Расчёты и госпошлины</a>
+<a class="workspace-nav-link" href="/text2me/business/"><span aria-hidden="true">◇</span>Проверка контрагентов</a>
+<a class="workspace-nav-link" href="/text2me/knowledge/"><span aria-hidden="true">▣</span>База знаний</a>
+<a class="workspace-nav-link" href="/text2me/guides/"><span aria-hidden="true">◯</span>Обращение к юристу</a>
+</nav>
+<a class="reference-pro-card" href="/text2me/space/"><span aria-hidden="true">♛</span><span><strong>text2me PRO</strong><small>Расширенные возможности для профессионалов</small><em>Подробнее →</em></span></a>
 </aside>
 <main id="main" class="workspace-main">
 <section class="reference-home" aria-label="Главная страница text2me">
@@ -278,20 +345,14 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
   <section class="reference-official-links"><strong>Официальные ресурсы</strong><a href="https://www.gosuslugi.ru/" target="_blank" rel="noopener noreferrer">Госуслуги</a><a href="https://government.ru/" target="_blank" rel="noopener noreferrer">Правительство России</a><a href="https://www.nalog.gov.ru/" target="_blank" rel="noopener noreferrer">ФНС России</a><a href="https://rospotrebnadzor.ru/" target="_blank" rel="noopener noreferrer">Роспотребнадзор</a></section>
 </section>
 </main>
-<aside class="workspace-aside" aria-label="Быстрый доступ и подсказки">
-<section class="workspace-aside-card"><h2><span aria-hidden="true">●</span> Состояние сервиса</h2>
-<div class="workspace-status-row"><span>Конструкторы документов</span><strong class="workspace-status good">3 работают</strong></div>
-<div class="workspace-status-row"><span>Эксперт</span><strong class="workspace-status demo">Демо</strong></div>
-<div class="workspace-status-row"><span>Синхронизация</span><strong class="workspace-status planned">Не подключена</strong></div>
+<aside class="workspace-aside reference-quick-actions" aria-label="Быстрые действия">
+<section class="workspace-aside-card reference-quick-card"><h2>Быстрые действия</h2>
+<a class="workspace-quick-link" href="/text2me/situations/"><span class="reference-quick-icon" aria-hidden="true">⌕</span><span><strong>Подбор по ситуации</strong><small>Ответьте на несколько вопросов и получите подходящий документ</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/documents/"><span class="reference-quick-icon" aria-hidden="true">＋</span><span><strong>Создать документ</strong><small>Выберите шаблон и создайте документ за несколько минут</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/space/"><span class="reference-quick-icon" aria-hidden="true">▦</span><span><strong>Календарь и сроки</strong><small>Отслеживайте важные даты и процессуальные сроки</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/guides/"><span class="reference-quick-icon" aria-hidden="true">✓</span><span><strong>Проверить документ</strong><small>Проверка на ошибки, реквизиты и соответствие требованиям</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/guides/"><span class="reference-quick-icon" aria-hidden="true">♙</span><span><strong>Обращение к юристу</strong><small>Получите информацию о возможной консультации</small></span><span aria-hidden="true">›</span></a>
 </section>
-<section class="workspace-aside-card"><h2><span aria-hidden="true">⌁</span> Частые задачи</h2>
-<a class="workspace-quick-link" href="/text2me/documents/dogovor-arendy/"><span aria-hidden="true">⌂</span><span><strong>Сдать или снять жильё</strong><small>Договор и акт передачи</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/documents/pretenziya-prodavtsu/"><span aria-hidden="true">↩</span><span><strong>Вернуть деньги за товар</strong><small>Подготовить претензию</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/documents/isk-v-sud/"><span aria-hidden="true">⚖</span><span><strong>Подготовиться к суду</strong><small>Черновик искового заявления</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/situations/"><span aria-hidden="true">☷</span><span><strong>Не знаю, с чего начать</strong><small>Пошаговые инструкции</small></span><span aria-hidden="true">›</span></a>
-</section>
-<section class="workspace-tip"><strong><span aria-hidden="true">✦</span> Подсказка</strong><p>Не знаете название документа? Опишите задачу в блоке «Описать задачу» или воспользуйтесь поиском сверху.</p><a href="/text2me/guides/">Как выбрать документ →</a></section>
-<section class="workspace-aside-card workspace-space-card"><h2>Мои документы</h2><p id="workspace-local-summary">Черновики хранятся в этом браузере.</p><a href="/text2me/space/">Открыть библиотеку →</a></section>
 </aside>
 </div>
 <footer class="dash-footer"><nav class="dash-footer-catalog" aria-label="Быстрая навигация и информация о сайте"><strong>Разделы сайта:</strong><a href="/text2me/">Главная</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/documents/">Документы</a><a href="/text2me/prompts/#personal-prompts">Личное</a><a href="/text2me/guides/">Инструкции</a><a href="/text2me/people/">Гражданам</a><a href="/text2me/business/">Организациям</a><a href="/text2me/knowledge/">База знаний</a><a href="/text2me/sources/">Официальные источники</a><a href="/text2me/privacy/">Конфиденциальность</a><a href="/text2me/security/">Безопасность данных</a><a href="/text2me/terms/">Условия использования</a><a href="/text2me/updates/">Обновления</a></nav><span>text2me · документы, знания и инструменты</span><span><a href="/text2me/privacy/">Конфиденциальность</a> · <a href="/text2me/security/">Безопасность данных</a> · <a href="/text2me/terms/">Условия использования</a></span></footer>
