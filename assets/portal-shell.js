@@ -83,11 +83,27 @@ rails.forEach(function(d){
  var p=document.createElement("p");p.textContent=d.intro;panel.append(heading,p);
  d.links.forEach(function(x){var a=document.createElement("a");a.href=x[2];if(x[2].indexOf("http")===0){a.target="_blank";a.rel="noopener noreferrer";}var m=document.createElement("span");m.className="rail-mark";m.textContent=x[0];m.setAttribute("aria-hidden","true");var t=document.createElement("span");t.textContent=x[1];a.append(m,t);panel.appendChild(a);});
  function shut(){panel.hidden=true;trigger.setAttribute("aria-expanded","false");trigger.focus();}
- trigger.addEventListener("click",function(){document.querySelectorAll(".text2me-rail").forEach(function(other){other.hidden=true;});document.querySelectorAll(".text2me-rail-trigger").forEach(function(other){other.setAttribute("aria-expanded","false");});panel.hidden=false;trigger.setAttribute("aria-expanded","true");close.focus();});
+ function reveal(focusClose){document.querySelectorAll(".text2me-rail").forEach(function(other){other.hidden=true;});document.querySelectorAll(".text2me-rail-trigger").forEach(function(other){other.setAttribute("aria-expanded","false");});panel.hidden=false;trigger.setAttribute("aria-expanded","true");if(focusClose)close.focus();}
+ trigger.addEventListener("click",function(){reveal(true);});
+ trigger.addEventListener("mouseenter",function(){if(panel.hidden)reveal(false);});
+ panel.addEventListener("mouseleave",function(){panel.hidden=true;trigger.setAttribute("aria-expanded","false");});
  close.addEventListener("click",shut);
  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!panel.hidden)shut();});
  document.body.append(trigger,panel);
 });
+/* Persistent primary sidebar on internal pages; the homepage keeps its own workspace sidebar. */
+var currentPath=window.location.pathname.replace(/\/+$/,"")||"/text2me";
+if(currentPath!=="/text2me"&&currentPath!=="/text2me/index.html"&&currentPath!=="/"){
+ if(!document.querySelector(".t2m-global-sidebar")){
+  var side=document.createElement("aside");side.className="t2m-global-sidebar";side.setAttribute("aria-label","Основное меню");
+  var sideNav=document.createElement("nav");sideNav.setAttribute("aria-label","Основное меню");
+  var sideLinks=[
+   ["⌂","Главная","/text2me/"],["⊕","Создать документ","/text2me/documents/"],["⌕","Документ по ситуации","/text2me/situations/"],["⚖","Правовая база","/text2me/knowledge/"],["▦","Календарь и сроки","/text2me/calendar/"],["▤","Расчёты и госпошлины","/text2me/calculators/"],["◇","Проверка контрагентов","/text2me/business/"],["▣","База знаний","/text2me/knowledge/"],["✳","Профильные эксперты","/text2me/experts/"],["♧","Спросите эксперта по сайту","/text2me/request/"]
+  ];
+  sideLinks.forEach(function(item){var a=document.createElement("a");a.href=item[2];var mark=document.createElement("span");mark.className="t2m-global-sidebar-icon";mark.setAttribute("aria-hidden","true");mark.textContent=item[0];var label=document.createElement("span");label.textContent=item[1];a.append(mark,label);if(currentPath===item[2].replace(/\/+$/,""))a.setAttribute("aria-current","page");sideNav.appendChild(a);});
+  side.appendChild(sideNav);document.body.appendChild(side);
+ }
+}
 }
 if(!document.querySelector(".text2me-selection-tools")){
 var bar=document.createElement("div");bar.className="text2me-selection-tools";bar.hidden=true;bar.setAttribute("role","toolbar");bar.setAttribute("aria-label","Действия с выделенным текстом");[["copy","Копировать"],["share","Поделиться"],["print","Печать"]].forEach(function(x){var b=document.createElement("button");b.type="button";b.dataset.action=x[0];b.textContent=x[1];bar.appendChild(b);});document.body.appendChild(bar);var selected="";
