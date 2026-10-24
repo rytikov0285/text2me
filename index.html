@@ -358,6 +358,77 @@ body{font-size:15px;line-height:1.55;color:#172438}
 .audience-directory-card>a.directory-all-link{margin-top:3px;padding-top:12px;color:#202a33;font-weight:800}
 @media(max-width:760px){.audience-directory-grid{grid-template-columns:1fr}.audience-directory-card{padding:15px}.audience-directory-heading{align-items:start;flex-direction:column;gap:8px}.audience-directory-heading h2{font-size:22px}}
 
+
+/* Library mockup alignment: restore the intended three-column document workspace. */
+:root{--dash-blue:#0b4599;--dash-soft:#f0f4ff;--dash-line:#e2e4e9;--dash-muted:#626b78;--dash-paper:#f4f5f7;--dash-ink:#202124}
+body{background:#f4f5f7;color:#202124;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5}
+.dash-shell{max-width:1600px;padding:0 24px 30px}
+.dash-header{position:relative;top:auto;z-index:5;display:flex;align-items:center;gap:20px;min-height:72px;margin:0 -24px;padding:12px 24px;background:#fff;border-bottom:1px solid #e2e4e9;box-shadow:none}
+.dash-logo{flex:0 0 auto;color:#0b4599;font-size:27px;font-weight:800;letter-spacing:-.7px}.dash-logo span{color:#202124}
+.reference-header-tagline{max-width:170px;color:#626b78;font-size:12px;line-height:1.35}
+.workspace-search{position:relative;flex:1;max-width:560px;margin:0 auto}
+.workspace-search input{height:42px;border:0;border-radius:0;padding:0 14px;font-size:14px}
+.workspace-search-submit{height:42px;padding:0 16px;background:#0b4599;color:#fff;border-radius:0;font-size:13px}
+.reference-header-link{white-space:nowrap;font-size:13px;color:#202124}
+.mockup-role-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:18px 0 20px;padding:0;border:0;background:transparent}
+.mockup-role-card{display:flex;align-items:flex-start;gap:14px;min-width:0;padding:16px;background:#fff;border:1px solid #e2e4e9;border-radius:8px;text-decoration:none;color:#202124;transition:border-color .15s,box-shadow .15s}
+.mockup-role-card:hover,.mockup-role-card.active{border-color:#93c5fd;box-shadow:0 0 0 1px #dbeafe}
+.mockup-role-icon{display:flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:#f3f6fc;color:#1a56db;font-size:22px}
+.mockup-role-copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+.mockup-role-copy strong{font-size:14px;font-weight:700;line-height:1.4}
+.mockup-role-copy small{font-size:12px;line-height:1.45;color:#626b78}
+.mockup-role-copy em{font-style:normal;font-size:12px;font-weight:700;color:#1a56db;margin-top:3px}
+.workspace-layout{display:grid;grid-template-columns:260px minmax(0,1fr) 320px;gap:20px;align-items:start}
+.workspace-sidebar,.workspace-aside{display:flex!important;position:static!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;width:auto!important;max-height:none!important;overflow:visible!important}
+.workspace-sidebar{flex-direction:column;gap:12px;min-width:0}
+.workspace-main{width:100%;max-width:none;min-width:0;margin:0}
+.workspace-aside{min-width:0}
+.reference-sidebar,.reference-quick-actions{background:#fff;border:1px solid #e2e4e9;border-radius:8px;padding:12px;box-shadow:none}
+.reference-side-nav{gap:4px}
+.reference-side-nav .workspace-nav-link{padding:10px 12px;border-radius:6px;font-size:13px}
+.reference-side-nav .workspace-nav-link.active{background:#f0f4ff;color:#1a56db}
+.reference-pro-card{margin-top:8px;background:#fffbf0;border:1px solid #fde68a;border-radius:8px;padding:14px}
+.reference-home{display:flex;flex-direction:column;gap:22px;min-width:0;background:#fff;border:1px solid #e2e4e9;border-radius:8px;padding:24px;box-shadow:none}
+.reference-greeting h1{font-size:23px;line-height:1.3;letter-spacing:-.02em;margin:0 0 4px}
+.reference-greeting p{font-size:14px;color:#626b78;margin:0}
+.reference-eyebrow{font-size:10px!important;letter-spacing:.12em;font-weight:800;color:#0b4599!important;margin-bottom:6px!important}
+.reference-task-search{padding:16px;border:1px solid #e2e4e9;border-radius:8px;background:#fff;box-shadow:none}
+.reference-task-search textarea{width:100%;min-height:86px;padding:12px;border:1px solid #d5d9e0;border-radius:6px;font:inherit;font-size:14px;resize:vertical}
+.reference-search-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.reference-search-bottom>span{font-size:12px;color:#626b78}
+.reference-search-bottom button{flex:0 0 auto;padding:11px 16px;border-radius:6px;background:#0b4599;color:#fff;font-size:13px;font-weight:700}
+.reference-examples{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:#626b78}
+.reference-examples strong{color:#202124}
+.reference-examples a{padding:5px 9px;border-radius:12px;background:#f3f4f6;color:#202124;text-decoration:none;font-size:12px}
+.reference-section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.reference-section-heading h2{font-size:17px;margin:0;font-weight:700}
+.reference-section-heading a{font-size:12px;color:#1a56db;text-decoration:none;white-space:nowrap}
+.reference-document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.reference-document{min-width:0;min-height:102px;padding:14px 10px;border:1px solid #e2e4e9;border-radius:8px;background:#fff;text-decoration:none;color:#202124}
+.reference-document:hover{border-color:#93c5fd}
+.reference-document-icon{display:block;color:#1a56db;font-size:22px;margin-bottom:8px}
+.reference-document strong{display:block;font-size:13px;line-height:1.35}
+.reference-document small{display:block;margin-top:5px;font-size:11px;line-height:1.4;color:#626b78}
+.reference-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.reference-trust>div{padding:11px;background:#f8faff;border:1px solid #e0eafc;border-radius:7px}
+.reference-trust strong,.reference-trust span{display:block}
+.reference-trust strong{font-size:12px}
+.reference-trust span{font-size:11px;color:#626b78;margin-top:4px;line-height:1.4}
+.reference-official-links{display:flex;flex-wrap:wrap;gap:9px 14px;padding-top:14px;border-top:1px solid #e2e4e9;font-size:12px}
+.reference-official-links strong{width:100%;font-size:13px}
+.reference-official-links a{color:#0b4599;text-decoration:underline;text-underline-offset:2px}
+.reference-quick-card h2{font-size:15px;margin:2px 0 14px}
+.reference-quick-card .workspace-quick-link{padding:12px 8px;border-bottom:1px solid #eef0f3;gap:10px}
+.reference-quick-card .workspace-quick-link:last-child{border-bottom:0}
+.reference-quick-card .workspace-quick-link strong{font-size:13px}
+.reference-quick-card .workspace-quick-link small{font-size:11px;line-height:1.45;color:#626b78}
+.reference-quick-icon{background:#f3f6fc;color:#1a56db}
+.dash-footer{margin-top:22px}
+@media(max-width:1180px){.workspace-layout{grid-template-columns:220px minmax(0,1fr) 270px;gap:14px}.dash-shell{padding-inline:16px}.dash-header{margin-inline:-16px;padding-inline:16px}.mockup-role-row{gap:10px}.mockup-role-card{padding:13px;gap:10px}}
+@media(max-width:900px){.workspace-layout{grid-template-columns:210px minmax(0,1fr)}.workspace-aside{grid-column:2;grid-row:2}.workspace-main{grid-column:2;grid-row:1}.workspace-sidebar{grid-column:1;grid-row:1 / span 2}.mockup-role-row{grid-template-columns:1fr}.mockup-role-card{padding:12px}.reference-home{padding:18px}}
+@media(max-width:650px){.dash-shell{padding:0 12px 28px}.dash-header{margin:0 -12px;padding:12px;display:grid;grid-template-columns:1fr auto;gap:10px}.reference-header-tagline{display:none}.workspace-search{grid-column:1/-1;grid-row:2;max-width:none;width:100%}.reference-header-link{font-size:12px}.workspace-layout{display:flex;flex-direction:column;gap:12px}.workspace-sidebar,.workspace-main,.workspace-aside{width:100%;grid-column:auto;grid-row:auto}.workspace-sidebar{order:2}.workspace-main{order:1}.workspace-aside{order:3}.reference-side-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.reference-home{padding:15px;gap:17px}.reference-task-search{padding:12px}.reference-search-bottom{align-items:stretch;flex-direction:column}.reference-search-bottom button{width:100%}.reference-document-grid{grid-template-columns:1fr 1fr}.reference-trust{grid-template-columns:1fr}.reference-quick-actions{padding:12px}}
+@media(prefers-reduced-motion:reduce){.mockup-role-card,.reference-document{transition:none}}
+
 </style>
 </head>
 <body>
@@ -377,40 +448,19 @@ body{font-size:15px;line-height:1.55;color:#172438}
 <a class="reference-header-link" href="/text2me/space/">♙ &nbsp;Мои документы</a>
 </header>
 
-  <section class="audience-service-directory" aria-label="Разделы text2me по аудиториям">
-    <div class="audience-directory-heading">
-      <div><p class="directory-eyebrow">ВЫБЕРИТЕ СВОЙ РАЗДЕЛ</p><h2>Документы и инструменты для разных задач</h2></div>
-      <a href="/text2me/documents/">Все документы и шаблоны <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="audience-directory-grid">
-      <section class="audience-directory-card" aria-labelledby="audience-citizens-title">
-        <div class="directory-card-title"><span aria-hidden="true">♙</span><h3 id="audience-citizens-title">Физическим лицам</h3></div>
-        <p>Личные вопросы, жизненные ситуации и повседневные тексты.</p>
-        <a href="/text2me/people/">Жизненные ситуации <span>→</span></a>
-        <a href="/text2me/documents/pretenziya-prodavtsu/">Претензия продавцу <span>→</span></a>
-        <a href="/text2me/documents/dogovor-arendy/">Договор аренды жилья <span>→</span></a>
-        <a href="/text2me/prompts/#personal-prompts">Личные тексты и редактура <span>→</span></a>
-        <a class="directory-all-link" href="/text2me/people/">Все материалы для граждан <span>→</span></a>
-      </section>
-      <section class="audience-directory-card" aria-labelledby="audience-ip-title">
-        <div class="directory-card-title"><span aria-hidden="true">▣</span><h3 id="audience-ip-title">Индивидуальным предпринимателям</h3></div>
-        <p>Документы для работы с клиентами, поставщиками и партнёрами.</p>
-        <a href="/text2me/business/">Рабочая среда для бизнеса <span>→</span></a>
-        <a href="/text2me/documents/">Договоры и деловые документы <span>→</span></a>
-        <a href="/text2me/prompts/">Письма и ответы клиентам <span>→</span></a>
-        <a href="/text2me/calculators/">Расчёты и полезные инструменты <span>→</span></a>
-        <a class="directory-all-link" href="/text2me/ip/">Все материалы для ИП <span>→</span></a>
-      </section>
-      <section class="audience-directory-card" aria-labelledby="audience-legal-title">
-        <div class="directory-card-title"><span aria-hidden="true">▥</span><h3 id="audience-legal-title">Юридическим лицам</h3></div>
-        <p>Документы компании, деловая переписка и организация работы.</p>
-        <a href="/text2me/business/">Документы организации <span>→</span></a>
-        <a href="/text2me/documents/">Каталог документов <span>→</span></a>
-        <a href="/text2me/knowledge/">Правовая база и инструкции <span>→</span></a>
-        <a href="/text2me/request/">Спросите эксперта <span>→</span></a>
-        <a class="directory-all-link" href="/text2me/business/">Все материалы для организаций <span>→</span></a>
-      </section>
-    </div>
+  <section class="audience-service-directory mockup-role-row" aria-label="Выбор рабочего пространства">
+    <a class="mockup-role-card active" href="/text2me/people/">
+      <span class="mockup-role-icon" aria-hidden="true">♙</span>
+      <span class="mockup-role-copy"><strong>Физическим лицам</strong><small>Защита прав, жизненные ситуации, жильё, семья, работа и личные тексты</small><em>Открыть раздел →</em></span>
+    </a>
+    <a class="mockup-role-card" href="/text2me/business/">
+      <span class="mockup-role-icon" aria-hidden="true">▣</span>
+      <span class="mockup-role-copy"><strong>Индивидуальным предпринимателям</strong><small>Договоры, акты, клиенты, поставщики, налоги и деловая переписка</small><em>Открыть раздел →</em></span>
+    </a>
+    <a class="mockup-role-card" href="/text2me/business/">
+      <span class="mockup-role-icon" aria-hidden="true">▥</span>
+      <span class="mockup-role-copy"><strong>Юридическим лицам</strong><small>Документы организации, договорная работа, претензии и корпоративные вопросы</small><em>Открыть раздел →</em></span>
+    </a>
   </section>
  
 
