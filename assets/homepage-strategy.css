@@ -55,15 +55,15 @@ body{font-size:14px;line-height:1.45}
 .reference-header-link{display:block;color:#202b3b;text-decoration:none;font-size:13px;white-space:nowrap}
 .reference-header-link:hover{color:#145bb8}
 .reference-audience{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 26px 24px}
-.reference-audience-card{display:grid;grid-template-columns:78px minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:14px;min-width:0;min-height:105px;padding:15px 16px;border:1px solid #e0e6ef;border-radius:11px;background:#fff;color:#17243a;text-decoration:none;box-shadow:0 2px 7px rgba(25,42,66,.025);box-sizing:border-box}
-.reference-audience-card.active{border-color:#4b8ef0}
-.reference-audience-icon{grid-row:1/3;display:grid;place-items:center;width:70px;height:70px;border:1px solid #d8e5f7;border-radius:50%;background:#f1f6fd;color:#155fbd;font-size:32px}
-.reference-audience-icon.business{color:#1b2c45;background:#f6f7f9;border-color:#eceef1}
-.reference-audience-copy{align-self:end;min-width:0}
-.reference-audience-copy strong{display:inline;font-size:16px;line-height:1.4;color:#18253a;font-weight:700}
-.reference-audience-copy small{display:block;margin-top:7px;font-size:13px;line-height:1.45;color:#303b4d}
+.mockup-role-card{display:grid;grid-template-columns:78px minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:14px;min-width:0;min-height:105px;padding:15px 16px;border:1px solid #e0e6ef;border-radius:11px;background:#fff;color:#17243a;text-decoration:none;box-shadow:0 2px 7px rgba(25,42,66,.025);box-sizing:border-box}
+.mockup-role-card.active{border-color:#4b8ef0}
+.mockup-role-icon{grid-row:1/3;display:grid;place-items:center;width:70px;height:70px;border:1px solid #d8e5f7;border-radius:50%;background:#f1f6fd;color:#155fbd;font-size:32px}
+.mockup-role-icon.business{color:#1b2c45;background:#f6f7f9;border-color:#eceef1}
+.mockup-role-copy{align-self:end;min-width:0}
+.mockup-role-copy strong{display:inline;font-size:16px;line-height:1.4;color:#18253a;font-weight:700}
+.mockup-role-copy small{display:block;margin-top:7px;font-size:13px;line-height:1.45;color:#303b4d}
 .reference-open{position:absolute;justify-self:end;align-self:start;margin:1px 0 0 0;transform:translateX(-4px);padding:4px 9px;border:1px solid #d7e5f8;border-radius:14px;background:#f5f9ff;color:#145bb8;font-size:11px;line-height:1.2;white-space:nowrap}
-.reference-audience-card{position:relative;padding-right:140px}
+.mockup-role-card{position:relative;padding-right:140px}
 .reference-workspace{display:grid;grid-template-columns:minmax(235px,282px) minmax(0,1fr) minmax(290px,354px);gap:20px;margin:0 26px 22px;align-items:stretch}
 .reference-sidebar,.reference-main,.reference-quick-actions{min-width:0;background:#fff;border:1px solid #edf0f3;border-radius:11px;box-shadow:0 2px 7px rgba(25,42,66,.025);box-sizing:border-box}
 .reference-sidebar{padding:19px 18px;align-self:stretch}
@@ -137,8 +137,8 @@ body{font-size:14px;line-height:1.45}
  .reference-header-contact{display:none}
  .reference-workspace{grid-template-columns:230px minmax(0,1fr) 290px;gap:12px;margin-inline:18px}
  .reference-audience{margin-inline:18px;gap:12px}
- .reference-audience-card{grid-template-columns:55px minmax(0,1fr);padding:13px 12px;padding-right:120px}
- .reference-audience-icon{width:52px;height:52px;font-size:26px}
+ .mockup-role-card{grid-template-columns:55px minmax(0,1fr);padding:13px 12px;padding-right:120px}
+ .mockup-role-icon{width:52px;height:52px;font-size:26px}
  .reference-open{font-size:10px}
  .reference-main{padding:20px}
  .reference-document-grid{gap:9px}
@@ -156,12 +156,12 @@ body{font-size:14px;line-height:1.45}
  .reference-quick-actions{grid-column:2;grid-row:2}
  .reference-quick-card{min-height:75px}
  .reference-audience{margin-inline:16px;gap:10px}
- .reference-audience-card{grid-template-columns:42px minmax(0,1fr);padding:12px;padding-right:12px}
- .reference-audience-icon{width:40px;height:40px;font-size:22px}
+ .mockup-role-card{grid-template-columns:42px minmax(0,1fr);padding:12px;padding-right:12px}
+ .mockup-role-icon{width:40px;height:40px;font-size:22px}
  .reference-open{position:static;grid-column:2;justify-self:start;transform:none;margin-top:6px}
- .reference-audience-copy{grid-column:2}
- .reference-audience-copy strong{font-size:14px}
- .reference-audience-copy small{font-size:12px}
+ .mockup-role-copy{grid-column:2}
+ .mockup-role-copy strong{font-size:14px}
+ .mockup-role-copy small{font-size:12px}
  .reference-document-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
  .reference-footer{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:14px 16px}
  .official-label{grid-column:1/-1;padding-bottom:7px}
@@ -173,10 +173,10 @@ body{font-size:14px;line-height:1.45}
  .reference-header-link{font-size:12px}
  .reference-header-search{grid-column:1/-1;grid-row:2}
  .reference-audience{grid-template-columns:1fr;margin:12px 10px 14px;gap:9px}
- .reference-audience-card{min-height:86px;grid-template-columns:48px minmax(0,1fr);padding:12px;gap:10px}
- .reference-audience-icon{width:44px;height:44px}
- .reference-audience-copy strong{font-size:14px}
- .reference-audience-copy small{font-size:12px}
+ .mockup-role-card{min-height:86px;grid-template-columns:48px minmax(0,1fr);padding:12px;gap:10px}
+ .mockup-role-icon{width:44px;height:44px}
+ .mockup-role-copy strong{font-size:14px}
+ .mockup-role-copy small{font-size:12px}
  .reference-workspace{display:flex;flex-direction:column;margin:0 10px 14px;gap:12px}
  .reference-main{order:1;padding:18px 14px}
  .reference-quick-actions{order:2;padding:16px 12px}
