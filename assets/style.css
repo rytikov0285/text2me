@@ -642,3 +642,93 @@ header.top nav a:hover{background:var(--portal-soft);color:var(--portal-brand)}
 /* Global text contrast and restrained neutral palette */
 :root{--ink:#202a33;--muted:#4c5964;--line:#d4d9de;--paper:#fff;--soft:#f5f6f7;--purple:#315c7b;--purple-dark:#24455f;--mint:#eef1f3}
 body{color:#202a33;background:#f7f8f9}p,small,figcaption{color:inherit}::selection{background:#263f52;color:#fff}
+
+/* Site-wide layout normalization: one responsive grid system across every page.
+   Keep existing component semantics and workflows; normalize only sizing and alignment. */
+:root {
+  --t2m-layout-max: 1440px;
+  --t2m-layout-gutter: clamp(14px, 2.4vw, 36px);
+  --t2m-layout-gap: clamp(14px, 1.6vw, 24px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { width: 100%; min-width: 320px; scroll-padding-top: 150px; }
+body { width: 100%; min-width: 320px; margin-inline: auto; overflow-wrap: anywhere; }
+img, video, canvas, iframe, svg { max-width: 100%; }
+input, select, textarea, button { max-width: 100%; font: inherit; }
+.container,
+.portal-shell-wrap,
+.page-container,
+.content-container,
+.workspace-container {
+  width: min(var(--t2m-layout-max), calc(100% - 2 * var(--t2m-layout-gutter)));
+  max-width: var(--t2m-layout-max);
+  margin-inline: auto;
+}
+main, #main, .page-content, .workspace, .content,
+section, article, aside, header, footer { min-width: 0; }
+main > section, #main > section { width: 100%; }
+.section, .page-section, .content-section { min-width: 0; }
+.section-heading, .text2me-editor-heading, .page-heading,
+.page-hero > .container, .section > .container {
+  min-width: 0;
+}
+.section-heading, .text2me-editor-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--t2m-layout-gap);
+}
+.section-heading > *, .text2me-editor-heading > *,
+.grid > *, .card-grid > *, .tools-grid > *,
+.document-grid > *, .dashboard-grid > *,
+.workspace-grid > *, .cards-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+.card-grid, .tools-grid, .document-grid, .dashboard-grid,
+.workspace-grid, .cards-grid, .features-grid, .service-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr));
+  align-items: stretch;
+}
+.card, .tool-card, .document-card, .service-card, .feature-card,
+.panel, .workspace-panel, .dashboard-panel, .content-card {
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  overflow-wrap: anywhere;
+}
+table { width: 100%; max-width: 100%; border-collapse: collapse; }
+.table-wrap, .table-responsive, .table-container { max-width: 100%; overflow-x: auto; }
+button, .button, a.button { min-height: 40px; }
+input, select, textarea { min-width: 0; }
+pre, code { overflow-wrap: anywhere; }
+pre { max-width: 100%; overflow-x: auto; }
+.t2m-breadcrumbs, .room-breadcrumb {
+  width: min(var(--t2m-layout-max), calc(100% - 2 * var(--t2m-layout-gutter)));
+  max-width: var(--t2m-layout-max);
+  margin-inline: auto;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+@media (max-width: 900px) {
+  .section-heading, .text2me-editor-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .section-heading > p, .text2me-editor-heading > p { max-width: 100%; }
+  .text2me-rail { position: static; width: auto; max-height: none; margin: 12px var(--t2m-layout-gutter); }
+}
+@media (max-width: 640px) {
+  :root { --t2m-layout-gutter: 14px; --t2m-layout-gap: 12px; }
+  .container, .portal-shell-wrap, .page-container, .content-container,
+  .workspace-container, .t2m-breadcrumbs, .room-breadcrumb {
+    width: calc(100% - 28px);
+  }
+  .card-grid, .tools-grid, .document-grid, .dashboard-grid,
+  .workspace-grid, .cards-grid, .features-grid, .service-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .button, a.button, button { white-space: normal; }
+  .page-hero h1, .section-heading h2 { overflow-wrap: anywhere; }
+}
+
