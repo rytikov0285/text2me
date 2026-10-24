@@ -284,3 +284,64 @@ body{background:#f5f6f7;color:#202a33;font-size:16px}.portal-wrap{width:min(1080
  .portal-section-head h2{font-size:23px}
  .t2m-workspaces{padding:15px}
 }
+
+
+/* Three-column document workspace: navigation, task composer, quick actions */
+.portal-main{width:min(1360px,calc(100% - 40px))!important}
+.portal-dashboard-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px;align-items:start}
+.t2m-sidebar{position:sticky;top:142px;min-width:0;padding:14px;background:#fff;border:1px solid #c5cbd1;border-radius:3px}
+.t2m-sidebar-heading{padding:4px 8px 10px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#59636c}
+.t2m-sidebar-subheading{margin-top:16px;border-top:1px solid #e0e3e6;padding-top:16px}
+.t2m-sidebar-link{display:flex;align-items:center;gap:10px;min-height:42px;padding:9px 10px;color:#202a33!important;border:1px solid transparent;border-radius:3px;font-size:14px;font-weight:600;text-decoration:none}
+.t2m-sidebar-link>span{display:grid;place-items:center;flex:none;width:25px;height:25px;background:#f0f1f3;border:1px solid #d9dde1;color:#174f7a;font-size:15px}
+.t2m-sidebar-link:hover,.t2m-sidebar-link.is-active{background:#f0f2f4;border-color:#d5d9dd;color:#111820!important}
+.t2m-sidebar-link.is-active{font-weight:800;border-left:3px solid #174f7a;padding-left:8px}
+.t2m-sidebar-note{margin-top:18px;padding:12px;background:#f4f4f4;border:1px solid #d5d9dd}
+.t2m-sidebar-note strong{font-size:13px;color:#111820}
+.t2m-sidebar-note p{margin:6px 0 0;font-size:12px;line-height:1.5;color:#343d46}
+.portal-dashboard-layout>.portal-hero{min-width:0;grid-template-columns:minmax(0,1fr) 248px;gap:14px;align-items:stretch}
+.portal-dashboard-layout .portal-hero-main{min-width:0;padding:27px 25px}
+.portal-dashboard-layout .portal-hero-aside{display:flex;flex-direction:column;gap:10px}
+.portal-dashboard-layout .portal-feature{min-height:96px;flex:1;padding:14px;gap:10px}
+.portal-dashboard-layout .portal-feature-icon{width:38px;height:38px;font-size:18px}
+.portal-dashboard-layout .portal-feature strong{font-size:14px}
+.portal-dashboard-layout .portal-feature small{font-size:12px}
+.portal-dashboard-layout .portal-hero h1{font-size:clamp(30px,2.6vw,39px)}
+.portal-dashboard-layout .portal-hero p{font-size:15px}
+.portal-dashboard-layout .portal-search-form input{font-size:14px}
+.portal-dashboard-layout .portal-popular-searches{max-height:136px;overflow:auto}
+@media(min-width:1200px){
+ .portal-dashboard-layout>.portal-hero{grid-template-columns:minmax(0,1fr) 248px}
+}
+@media(max-width:1120px){
+ .portal-main{width:calc(100% - 32px)!important}
+ .portal-dashboard-layout{grid-template-columns:190px minmax(0,1fr);gap:12px}
+ .portal-dashboard-layout>.portal-hero{grid-template-columns:minmax(0,1fr) 220px;gap:10px}
+ .t2m-sidebar{padding:10px}
+ .t2m-sidebar-link{font-size:13px;padding:8px}
+}
+@media(max-width:900px){
+ .portal-dashboard-layout{grid-template-columns:1fr;gap:12px}
+ .t2m-sidebar{position:static;display:flex;align-items:center;gap:6px;overflow-x:auto;padding:9px;white-space:nowrap}
+ .t2m-sidebar-heading,.t2m-sidebar-subheading,.t2m-sidebar-note{display:none}
+ .t2m-sidebar-link{flex:none;min-height:38px;padding:7px 9px;font-size:12px}
+ .t2m-sidebar-link>span{width:22px;height:22px}
+ .t2m-sidebar-link.is-active{padding-left:7px}
+ .portal-dashboard-layout>.portal-hero{grid-template-columns:minmax(0,1fr) 220px}
+ .portal-dashboard-layout .portal-hero-aside{display:flex;flex-direction:column}
+ .portal-dashboard-layout .portal-feature{min-height:88px}
+}
+@media(max-width:680px){
+ .portal-main{width:calc(100% - 24px)!important}
+ .portal-dashboard-layout>.portal-hero{grid-template-columns:1fr}
+ .portal-dashboard-layout .portal-hero-aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .portal-dashboard-layout .portal-feature{min-height:92px;align-items:flex-start;padding:12px}
+ .portal-dashboard-layout .portal-feature-icon{width:32px;height:32px}
+ .portal-dashboard-layout .portal-hero-main{padding:20px 16px}
+ .portal-dashboard-layout .portal-hero h1{font-size:30px}
+ .portal-dashboard-layout .portal-popular-searches{max-height:unset}
+}
+@media(max-width:430px){
+ .portal-dashboard-layout .portal-hero-aside{grid-template-columns:1fr}
+ .t2m-sidebar-link{gap:6px}
+}
