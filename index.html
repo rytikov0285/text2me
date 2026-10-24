@@ -43,6 +43,27 @@
  </nav>
 </header>
 
+<main id="main-content" class="portal-wrap portal-main">
+ <section class="portal-hero" aria-labelledby="main-heading">
+  <div class="portal-hero-main">
+   <div class="portal-eyebrow">Единая платформа документов и сервисов</div>
+   <h1 id="main-heading">Решайте задачи с text2me</h1>
+   <p>Найдите нужный документ, разберитесь в требованиях или выберите сервис для личных и деловых задач.</p>
+   <form class="portal-search-form" id="portal-search-form" role="search">
+    <label class="sr-only" for="portal-search">Поиск по документам и сервисам</label>
+    <input id="portal-search" name="q" type="search" placeholder="Например: претензия продавцу, договор, налоги, маркетинг" autocomplete="off">
+    <button class="portal-primary-btn" type="submit">Найти</button>
+   </form>
+   <div class="portal-popular-searches"><strong>Часто ищут:</strong>
+    <a href="#citizen-documents" data-search-term="претензия">Претензия</a>
+    <a href="#citizen-documents" data-search-term="иск">Иск в суд</a>
+    <a href="#business-services" data-search-term="договор">Договор</a>
+    <a href="/text2me/law/">Законы</a>
+    <a href="/text2me/standards/">Стандарты</a>
+   </div>
+   <div id="portal-search-status" class="portal-search-status" aria-live="polite"></div>
+   <div id="portal-search-results" class="portal-results portal-hidden" aria-label="Результаты поиска"></div>
+  </div>
   <div class="portal-hero-aside">
    <a class="portal-feature" href="/text2me/ai/">
     <span class="portal-feature-icon">AI</span><span><strong>Спросите эксперта</strong><small>Разобраться в задаче и выбрать следующий шаг</small></span>
