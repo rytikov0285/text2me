@@ -24,7 +24,7 @@ test.describe("text2me published-site smoke tests", () => {
   }
 
   test("shared search dialog opens, accepts text, and closes with Escape", async ({ page }) => {
-    await page.goto(baseURL + "/", { waitUntil: "domcontentloaded" });
+    await page.goto(baseURL + "/documents/", { waitUntil: "domcontentloaded" });
     const opener = page.locator(".portal-shell-search").first();
     await expect(opener).toBeVisible();
     await opener.click();
