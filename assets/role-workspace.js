@@ -69,7 +69,7 @@ function filterCatalog(r){
   if(r==="citizen")allowed=aud.indexOf("citizens")>=0||aud.indexOf("citizen")>=0;
   if(r==="ip")allowed=aud.indexOf("citizens")>=0||aud.indexOf("business")>=0||aud.indexOf("ip")>=0;
   if(r==="organization")allowed=aud.indexOf("business")>=0||aud.indexOf("organization")>=0||aud.indexOf("org")>=0;
-  card.dataset.roleAllowed=allowed?"true":"false";card.hidden=!allowed;
+  card.dataset.roleAllowed=allowed?"true":"false";card.hidden=!allowed;\n  var badges=card.querySelector(".rw-card-roles");if(!badges){badges=el("span",{class:"rw-card-roles"});var status=card.querySelector(".status-badge");if(status)status.insertAdjacentElement("beforebegin",badges);else card.append(badges)}badges.innerHTML="";var roleLabels=[];if(aud.indexOf("citizens")>=0||aud.indexOf("citizen")>=0){roleLabels.push("Гражданин");roleLabels.push("ИП")}if(aud.indexOf("business")>=0){roleLabels.push("ИП");roleLabels.push("Организация")}if(aud.indexOf("organization")>=0||aud.indexOf("org")>=0)roleLabels.push("Организация");Array.from(new Set(roleLabels)).forEach(function(label){badges.append(el("span",{class:"rw-card-role"},label))});
  });
  var audienceFilter=document.getElementById("full-filter-audience");
  if(audienceFilter)audienceFilter.addEventListener("change",function(){filterCatalog(role())},{once:true});
