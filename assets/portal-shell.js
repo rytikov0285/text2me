@@ -31,8 +31,9 @@ function initPortalShell(){
  "privacy":"Конфиденциальность","security":"Безопасность","terms":"Условия использования","updates":"Обновления",
  "standards":"Стандарты","news":"Новости","sources":"Источники","data-engine":"Справочники и данные",
  "situations":"Ситуации","zatoplenie-kvartiry":"Затопление квартиры","guides":"Инструкции","services":"Сервисы",
- "prompts":"Помощник","ai":"Проверка документа","dashboard":"Рабочая панель"
+ "prompts":"Помощник","ai":"Проверка документа","dashboard":"Рабочая панель","catalog":"Каталог","drafts":"Черновики и история","organizer":"Органайзер","settings":"Настройки","tools":"Инструменты","workflows":"Сценарии"
  };
+ var previousCrumb=document.querySelector(".room-breadcrumb,.t2m-breadcrumbs");if(previousCrumb)previousCrumb.remove();
  var crumbNav=document.createElement("nav");crumbNav.className="t2m-breadcrumbs portal-shell-wrap";crumbNav.setAttribute("aria-label","Ваше местоположение");
  var crumbList=document.createElement("ol");var homeLi=document.createElement("li");var homeA=document.createElement("a");homeA.href=base+"/";homeA.textContent="Главная";homeLi.appendChild(homeA);crumbList.appendChild(homeLi);
  var currentPath=base;
