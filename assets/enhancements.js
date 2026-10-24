@@ -717,4 +717,22 @@ function installContextualLinks(){
  if(hero)hero.insertAdjacentElement("afterend",panel);else if(main)main.appendChild(panel);else{var footer=document.querySelector("footer");if(footer)footer.insertAdjacentElement("beforebegin",panel)}
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installContextualLinks);else installContextualLinks();
+
+/* Keep the citizen/business switch consistent across internal pages. */
+function installAudienceNavigation(){
+ var navs=document.querySelectorAll(".site-header .main-nav,header.top nav");
+ navs.forEach(function(nav){
+  var citizen=nav.querySelector('a[href="/text2me/people/"],a[href="../people/"]');
+  var business=nav.querySelector('a[href="/text2me/business/"],a[href="../business/"]');
+  if(citizen){citizen.textContent="Гражданам";citizen.setAttribute("data-audience","citizens")}
+  else{citizen=document.createElement("a");citizen.href="/text2me/people/";citizen.textContent="Гражданам";citizen.setAttribute("data-audience","citizens");nav.appendChild(citizen)}
+  if(business){business.textContent="Организациям и ИП";business.setAttribute("data-audience","business")}
+  else{business=document.createElement("a");business.href="/text2me/business/";business.textContent="Организациям и ИП";business.setAttribute("data-audience","business");nav.appendChild(business)}
+  var path=window.location.pathname;
+  if(path.indexOf("/people/")===0||path.indexOf("/text2me/people/")===0){citizen.setAttribute("aria-current","page");citizen.classList.add("audience-current")}
+  if(path.indexOf("/business/")===0||path.indexOf("/text2me/business/")===0){business.setAttribute("aria-current","page");business.classList.add("audience-current")}
+ });
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installAudienceNavigation);else installAudienceNavigation();
+
 })();
