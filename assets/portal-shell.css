@@ -264,3 +264,61 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .portal-home-contact button{min-height:40px}
 @media(max-width:900px){.portal-home-contact{gap:6px}.portal-home-contact>span{display:none}.portal-home-contact>a{min-height:36px;padding:7px 9px;font-size:12px}}
 
+/* text2me workspace visual system inspired by the information architecture of nalog.gov.ru.
+   RAL 9016 is used for white surfaces; no official FNS branding is copied. */
+:root{
+ --t2m-page-bg:#e9eaec;--t2m-surface:#ffffff;--t2m-ink:#111820;--t2m-muted:#343d46;
+ --t2m-line:#c5cbd1;--t2m-accent:#174f7a;--t2m-accent-hover:#103b5c;--t2m-white-ral9016:#f7f7f7;
+}
+html{background:var(--t2m-page-bg);color:var(--t2m-ink)}
+body{background:var(--t2m-page-bg)!important;color:var(--t2m-ink)!important;font-family:Arial,"Segoe UI",sans-serif!important;-webkit-font-smoothing:auto!important;text-rendering:optimizeLegibility}
+body :where(p,li,label,input,textarea,select,button,a,small,strong,span){text-shadow:none!important}
+body :where(p,li,label,input,textarea,select){color:var(--t2m-ink)}
+.portal-header,.portal-shell-header,.site-header,header.top{background:#fff!important;border-color:#c4c9ce!important;box-shadow:none!important}
+.portal-service-nav,.portal-shell-nav{background:#f7f7f7!important;border-color:#c5cbd1!important}
+.portal-main,.portal-wrap,.portal-section,.portal-workflow,.portal-document-picker,.portal-hero,.portal-hero-main,.portal-hero-aside,.portal-feature,.portal-tile,.portal-tool,.portal-quick-card,.portal-news-card,.choice-card,.info-card,.knowledge-card,.document-category,.tool-card,.side-panel,.document-builder,.need-form,.need-result,.readiness-check,.space-preview article,.generated-result,.portal-footer,.portal-shell-panel,.portal-shell-dialog{color:var(--t2m-ink)}
+.portal-hero,.portal-workflow,.portal-document-picker,.portal-tile,.portal-feature,.choice-card,.info-card,.knowledge-card,.tool-card,.document-category,.side-panel,.document-builder,.need-form,.need-result,.readiness-check,.space-preview article,.generated-result,.portal-news-card,.portal-quick-card{background:#fff!important;background-image:none!important;box-shadow:none!important;border:1px solid #d1d5d9!important}
+.portal-main{background:transparent!important}
+.portal-hero h1,.portal-section-head h2,.section-heading h2,.page-hero h1,.portal-tile strong,.portal-tool strong,.choice-card h3,.info-card h3,.knowledge-card h3,.portal-feature strong{color:#111820!important}
+.portal-hero p,.portal-section-head p,.section-heading p,.portal-tile p,.portal-tool p,.choice-card p,.info-card p,.knowledge-card p,.portal-feature small,.portal-news-card p{color:#27313a!important}
+.portal-brand,.portal-shell-brand,.portal-footer-brand{color:#111820!important}
+.portal-audience a,.portal-service-nav a,.portal-shell-audience a,.portal-shell-nav a{color:#111820!important}
+.portal-audience a:hover,.portal-audience a[aria-current=page],.portal-service-nav a:hover,.portal-shell-audience a:hover,.portal-shell-audience a[aria-current=page],.portal-shell-nav a:hover,.portal-shell-nav a[aria-current=page]{background:#e5e8eb!important;color:#111820!important;border-bottom-color:#174f7a!important}
+.portal-primary-btn,.portal-picker-primary,.portal-shell-space,.portal-shell-submit,.portal-shell-contact{background:#174f7a!important;border-color:#174f7a!important;color:#fff!important}
+.portal-primary-btn:hover,.portal-picker-primary:hover,.portal-shell-space:hover,.portal-shell-submit:hover,.portal-shell-contact:hover{background:#103b5c!important}
+.portal-search-form input,.portal-shell-form input,.portal-shell-search{background:#fff!important;color:#111820!important;border:1px solid #747d85!important;border-radius:3px!important}
+.portal-search-form input::placeholder,.portal-shell-form input::placeholder{color:#4b535b!important;opacity:1}
+.portal-shell-top{min-height:76px}
+.portal-shell-actions{gap:10px;flex-wrap:wrap}
+.portal-shell-phone{font-size:12px;line-height:1.4;color:#343d46;max-width:175px}
+.portal-shell-contact{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;border:1px solid;border-radius:3px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}
+.portal-shell-search{border-radius:3px!important}
+.portal-shell-nav a{font-size:14px}
+.portal-footer{background:#f7f7f7!important;border-top:1px solid #c5cbd1!important}
+.portal-footer-grid a{color:#174f7a!important}
+.t2m-partner-links{display:flex;align-items:center;flex-wrap:wrap;gap:14px;padding:20px 0;border-top:1px solid #c5cbd1;margin-top:18px}
+.t2m-partner-link{display:flex;align-items:center;justify-content:center;min-width:120px;min-height:58px;padding:8px 12px;background:#fff;border:1px solid #d1d5d9;text-decoration:none;border-radius:2px}
+.t2m-partner-link img{display:block;max-width:170px;max-height:48px;width:auto;height:auto;object-fit:contain}
+.t2m-partner-link span{font-size:13px;font-weight:700;color:#174f7a}
+.t2m-partner-link:focus-visible,.portal-shell-contact:focus-visible,.portal-shell-search:focus-visible{outline:3px solid #111820;outline-offset:3px}
+.portal-home-contact{display:flex;align-items:center;gap:10px;margin-left:auto;flex-wrap:wrap}
+.portal-home-contact>span{font-size:12px;color:#343d46;max-width:175px}
+.portal-home-contact>a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;background:#174f7a;color:#fff!important;border:1px solid #174f7a;border-radius:3px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}
+.portal-home-contact>a:hover{background:#103b5c}
+.portal-home-contact button{min-height:40px}
+@media(max-width:900px){
+ .portal-shell-top{align-items:flex-start;flex-wrap:wrap;padding:10px 0}
+ .portal-shell-audience{order:3;width:100%;min-height:42px;overflow-x:auto}
+ .portal-shell-audience a{font-size:13px;padding:8px 10px}
+ .portal-shell-actions{margin-left:auto}
+ .portal-shell-phone,.portal-home-contact>span{display:none}
+ .portal-shell-contact,.portal-home-contact>a{min-height:36px;padding:7px 9px;font-size:12px}
+ .portal-home-contact{gap:6px}
+}
+@media(max-width:560px){
+ .portal-shell-brand{font-size:24px}.portal-shell-actions{gap:6px}
+ .portal-shell-search,.portal-shell-contact{font-size:12px}.portal-shell-audience a{font-size:12px}
+ .t2m-partner-links{gap:8px}.t2m-partner-link{flex:1 1 42%;min-width:0}
+ .t2m-partner-link img{max-width:140px;max-height:40px}
+}
+
