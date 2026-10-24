@@ -94,3 +94,22 @@ test("flood workflow creates a draft, saves locally, and downloads it", async ({
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toMatch(/\\.txt$/);
 });
+
+test("calendar event persists after reload", async ({ page }) => {
+  await page.goto(`${baseURL}/calendar/`, { waitUntil: "domcontentloaded" });
+  await page.locator("#add").click();
+  const eventDate = await page.evaluate(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 2);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  });
+  await page.locator("#name").fill("E2E: контрольный срок");
+  await page.locator("#date").fill(eventDate);
+  await page.locator("#description").fill("Проверка локального сохранения");
+  await page.locator("#form button[type=submit]").click();
+  await expect(page.locator("#events")).toContainText("E2E: контрольный срок");
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("text2me.dashboard.v1") || "{}"));
+  expect(saved.events.some(event => event.name === "E2E: контрольный срок")).toBeTruthy();
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await expect(page.locator("#events")).toContainText("E2E: контрольный срок");
+});
