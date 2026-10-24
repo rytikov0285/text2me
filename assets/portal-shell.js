@@ -93,7 +93,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   var counter=document.createElement("a");counter.className="t2m-partner-link";counter.href="https://cnt.sputnik.ru/public/nalog.gov.ru";counter.target="_blank";counter.rel="noopener noreferrer";
   var label=document.createElement("span");label.textContent="Счётчик «Спутник» — источник";counter.appendChild(label);nav.appendChild(counter);
   var target=footer.querySelector(".portal-footer-bottom,.footer-bottom");
-  if(target)footer.insertBefore(nav,target);else footer.appendChild(nav);
+  if(target&&target.parentNode)target.parentNode.insertBefore(nav,target);else footer.appendChild(nav);
  }
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addPartnerLinks);else addPartnerLinks();
 })();
