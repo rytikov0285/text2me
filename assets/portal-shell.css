@@ -36,3 +36,9 @@
 .status-demo,.badge-demo,.status-badge.demo{background:#eef1f4!important;color:#4d6074!important;border-color:#d8e0e8!important}
 .status-warning,.badge-warning{background:#f4f6f8!important;color:#4d6074!important;border-color:#d8e0e8!important}
 .site-header,.portal-shell-header{border-bottom:2px solid #b83243}
+
+.portal-topic-label{margin:20px auto 5px;color:#15385b;font-size:13px;font-weight:800;letter-spacing:.01em}
+.portal-topic-bar{margin-bottom:10px}
+@media(max-width:760px){.portal-topic-label{margin-top:14px;font-size:12px}}
+.section-nav{top:118px!important}
+@media(max-width:800px){.section-nav{top:142px!important}}
