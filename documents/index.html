@@ -39,7 +39,7 @@
 <header class="site-header"><div class="container header-inner"><a class="brand" href="/text2me/" aria-label="text2me — входное пространство"><span class="brand-mark">t2</span><span>text2me<span class="brand-dot">.</span>ru</span></a>
 <nav class="main-nav" aria-label="Тематические комнаты"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/knowledge/">Знания</a><a href="/text2me/business/">Организации и бизнес</a><a href="/text2me/prompts/">Тексты и инструменты</a><a href="/text2me/space/">Моё пространство</a><a href="/text2me/request/">Сложная задача</a></nav><a class="button button-small" href="/text2me/start/#route-builder">Подобрать по ситуации</a></div></header>
 <nav class="room-breadcrumb container" aria-label="Навигационная цепочка"><a href="/text2me/">Входное пространство</a><span aria-hidden="true">/</span><span aria-current="page">Документы</span></nav>
-<main id="main"><section class="page-hero"><div class="container"><p class="eyebrow">Каталог документов</p><h1>Какой документ нужно подготовить?</h1><p class="hero-lead">Выберите документ из списка или найдите его по названию. Для поздравлений, рецептов, дипломов и других текстов откройте раздел «Личное».</p></div></section>
+<main id="main"><section class="page-hero"><div class="container"><p class="eyebrow">Каталог документов</p><h1>Какой документ вам нужен?</h1><p class="hero-lead">Опишите ситуацию или выберите тему. Найдите заявление, жалобу, претензию, договор или другой документ и проверьте, доступен ли для него конструктор.</p></div></section>
 <section class="section"><div class="container">
 <p class="related-links"><a href="/text2me/prompts/#personal-prompts">Личное: поздравления, рецепты и другие тексты →</a></p><section class="catalog-taxonomy" aria-labelledby="catalog-taxonomy-title">
 <div class="catalog-taxonomy-heading"><div><p class="eyebrow">Навигация по уровням</p><h2 id="catalog-taxonomy-title">От области — к конкретному документу</h2></div><p>Начните с темы, уточните ситуацию и переходите к самому документу или инструменту.</p></div>
@@ -48,19 +48,19 @@
 <a href="#full-doc-catalog" data-catalog-term="договор найма"><span class="taxonomy-level">01 · Область</span><strong>Жильё и недвижимость</strong><span class="taxonomy-path">Жильё → аренда → договор найма жилого помещения</span><span class="taxonomy-leaf">Открыть конкретный документ →</span></a>
 <a href="#full-doc-catalog" data-catalog-term="иск"><span class="taxonomy-level">01 · Область</span><strong>Деньги и споры</strong><span class="taxonomy-path">Спор → судебное обращение → черновик иска</span><span class="taxonomy-leaf">Открыть конкретный документ →</span></a>
 <a href="#full-doc-catalog" data-catalog-term="приказы"><span class="taxonomy-level">01 · Область</span><strong>Работа и трудовые вопросы</strong><span class="taxonomy-path">Работа → трудовые отношения → документы и инструкции</span><span class="taxonomy-leaf">Посмотреть доступные материалы →</span></a>
-<a href="#full-doc-catalog" data-catalog-term="договоры"><span class="taxonomy-level">01 · Область</span><strong>Организации и бизнес</strong><span class="taxonomy-path">Бизнес → договоры и процессы → конкретный вид документа</span><span class="taxonomy-leaf">Перейти к каталогу →</span></a>
+<a href="#full-doc-catalog" data-catalog-term="договоры"><span class="taxonomy-level">01 · Область</span><strong>Государственные органы и суды</strong><span class="taxonomy-path">Ситуация → адресат → заявление, жалоба или судебный документ</span><span class="taxonomy-leaf">Найти обращение →</span></a>
 <a href="#full-doc-catalog" data-catalog-term="личное"><span class="taxonomy-level">01 · Область</span><strong>Личные и повседневные тексты</strong><span class="taxonomy-path">Личная задача → тип текста → пример или заготовка</span><span class="taxonomy-leaf">Открыть материалы →</span></a>
 </div>
 <p class="field-help">Это навигационная классификация, а не заявление о доступности каждого конструктора. Статус каждого инструмента указан в карточке.</p>
 </section>
 
 <section class="route-picker" id="global-document-route" aria-labelledby="route-picker-title">
-<p class="eyebrow">Глобальный каталог</p>
-<h2 id="route-picker-title">Подберите название документа, текста или цифрового материала</h2>
-<p class="route-picker-intro">Сначала выберите широкую область, затем уточняйте ветвь. Можно остановиться и выбрать уже на втором шаге или углубляться дальше — фиксированного ограничения по числу уровней нет. Каталог охватывает не только готовые шаблоны, но и тексты, справочные материалы, код, промпты и структурированные данные.</p>
+<p class="eyebrow">Поиск документа</p>
+<h2 id="route-picker-title">Найдите документ по своей ситуации</h2>
+<p class="route-picker-intro">Выберите тему и уточните, что произошло. Необязательно знать юридическое название документа: начните с обычных слов и переходите к подходящему варианту.</p>
 <div class="route-vocabulary">
-<label for="route-vocabulary-search"><strong>Поиск по большому словарю названий</strong></label>
-<input id="route-vocabulary-search" type="search" placeholder="Например: код для бота, описательные конструкции, договор, отчёт…" autocomplete="off">
+<label for="route-vocabulary-search"><strong>Название документа или описание ситуации</strong></label>
+<input id="route-vocabulary-search" type="search" placeholder="Например: вернуть деньги за товар, жалоба в прокуратуру, заявление в суд…" autocomplete="off">
 <div id="route-vocabulary-results" class="route-vocabulary-results" hidden></div>
 </div>
 <div id="route-picker-trail" class="route-picker-trail" aria-label="Управление уровнями выбора"></div>
@@ -74,16 +74,16 @@
 <p class="route-picker-note">Выбор пункта не означает, что для него уже есть готовый конструктор. Поиск по каталогу покажет существующие материалы; нестандартную задачу можно передать на отдельный разбор.</p>
 </section>
 <section class="complex-showcase" aria-labelledby="complex-showcase-title">
-<div class="catalog-taxonomy-heading"><div><p class="eyebrow">Витрина</p><h2 id="complex-showcase-title">Сложные документы и услуги</h2></div><p>Комплексные сценарии, где одного шаблона недостаточно. Сейчас это направления развития, а не готовые платные услуги.</p></div>
+<div class="catalog-taxonomy-heading"><div><p class="eyebrow">Витрина</p><h2 id="complex-showcase-title">Сложные правовые задачи</h2></div><p>Комплексные сценарии, где одного шаблона недостаточно. Сейчас это направления развития, а не готовые платные услуги.</p></div>
 <div class="complex-showcase-grid">
 <article><span class="status-badge" data-status="soon">В разработке</span><h3>Комплект документов для судебного спора</h3><p>Сбор фактов и доказательств, черновик иска, перечень приложений и контрольный список перед подачей.</p><a href="/text2me/documents/isk-v-sud/">Посмотреть доступный черновик иска →</a></article>
 <article><span class="status-badge" data-status="soon">В разработке</span><h3>Проверка и сравнение договора</h3><p>Сопоставление редакций, выделение изменённых условий и список вопросов для проверки специалистом.</p><a href="/text2me/prompts/#business-prompts">Материалы для работы с договорами →</a></article>
-<article><span class="status-badge" data-status="soon">В разработке</span><h3>Пакет документов для организации</h3><p>Связанные договоры, акты, письма и внутренние документы с едиными реквизитами и версиями.</p><a href="/text2me/business/">Направление для организаций →</a></article>
+<article><span class="status-badge" data-status="soon">В разработке</span><h3>Проверка комплекта документов</h3><p>Проверка логики, реквизитов, приложений и соответствия документов одной задаче перед отправкой или подачей.</p><a href="/text2me/lawyer/">Инструменты для юриста →</a></article>
 <article><span class="status-badge" data-status="soon">В разработке</span><h3>Обращение по сложной ситуации</h3><p>Маршрут действий, выбор адресата, подготовка текста и список официальных источников.</p><a href="/text2me/situations/">Открыть жизненные ситуации →</a></article>
 <article class="complex-showcase-contact"><h3>Есть нестандартная задача?</h3><p>Опишите контекст и нужный результат. Сформируйте обращение, чтобы передать задачу на индивидуальный разбор.</p><a href="/text2me/request/">Описать сложную задачу →</a></article>
 </div>
 </section><div class="catalog-search-panel"><label for="full-catalog-search"><strong>Поиск по названию документа</strong></label><input id="full-catalog-search" type="search" placeholder="Например: договор аренды, расписка, заявление" autocomplete="off"><p class="field-help">Ищет по названиям и ключевым словам каталога. Пустой результат означает, что нужного названия пока нет в этом списке.</p></div>
-<div class="audience-switch-links" aria-label="Быстрый выбор аудитории"><a href="/text2me/documents/?audience=citizens">Документы для граждан</a><a href="/text2me/documents/?audience=business">Документы для организаций и ИП</a><a href="/text2me/documents/">Весь каталог</a></div>
+<div class="audience-switch-links" aria-label="Быстрый выбор режима"><a href="/text2me/documents/?audience=citizens">Документы для себя</a><a href="/text2me/lawyer/">Рабочий режим юриста</a><a href="/text2me/business/">Документы организаций</a></div>
 <div class="catalog-filters" aria-label="Фильтры каталога"><label>Для кого<select id="full-filter-audience"><option value="">Все аудитории</option><option value="citizens">Гражданам</option><option value="business">Организациям и ИП</option></select></label><label>Категория<select id="full-filter-category"><option value="">Все категории</option><option>Договоры</option><option>Доверенности</option><option>Заявления</option><option>Акты</option><option>Приказы</option><option>Протоколы</option><option>Письма</option><option>Соглашения</option><option>Дипломы</option><option>Инструкции</option><option>Расписки</option><option>Претензии</option><option>Судебные документы</option><option>Личное</option></select></label><label>Ситуация<select id="full-filter-situation"><option value="">Все ситуации</option><option>Работа</option><option>Покупки</option><option>Жильё</option><option>Деньги</option><option>Суд</option><option>Бизнес</option></select></label><label>Правовая природа<select id="full-filter-nature"><option value="">Любая</option><option>ГПХ</option><option>Трудовые</option><option>Аренда</option><option>Купля-продажа</option><option>Дарение</option><option>Займы</option><option>Информационные</option></select></label></div>
 <p id="full-catalog-count" class="catalog-count" aria-live="polite">Загружается каталог…</p>
 <div class="room-direct-grid full-catalog-grid" id="full-doc-catalog">
