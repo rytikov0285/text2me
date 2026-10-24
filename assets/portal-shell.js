@@ -44,3 +44,24 @@ function initPortalShell(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initPortalShell);else initPortalShell();
 })();
+/* Global document navigation and selected-text tools */
+(function(){ "use strict";
+function addUtilities(){
+if(!document.querySelector(".text2me-rail")){
+var rails=[
+{cls:"text2me-rail-left",title:"Быстрый старт",intro:"Создание и оформление документов",links:[["＋","Создать документ","/text2me/documents/"],["§","Подготовить претензию","/text2me/documents/pretenziya-prodavtsu/"],["⚖","Составить иск","/text2me/documents/isk-v-sud/"],["▤","Договор аренды","/text2me/documents/dogovor-arendy/"],["✎","Деловое письмо","/text2me/business/"],["AI","Спросить эксперта","/text2me/ai/"],["⌕","Все шаблоны","/text2me/documents/"]]},
+{cls:"text2me-rail-right",title:"Полезные инструменты",intro:"Сопутствующие инструменты для работы с документом",links:[["▦","Календарь и сроки","/text2me/calendar/"],["⌖","Правовые источники","/text2me/law/"],["✓","Справочники","/text2me/knowledge/"],["⇧","Каталог документов","/text2me/documents/"],["▧","Организации и ИП","/text2me/business/"],["♧","Гражданам","/text2me/people/"],["↗","Новости России","https://government.ru/news/"]]}];
+rails.forEach(function(d){var el=document.createElement("aside");el.className="text2me-rail "+d.cls;el.setAttribute("aria-label",d.title);var h=document.createElement("h2");h.textContent=d.title;var p=document.createElement("p");p.textContent=d.intro;el.append(h,p);d.links.forEach(function(x){var a=document.createElement("a");a.href=x[2];a.target="_blank";a.rel="noopener";var m=document.createElement("span");m.className="rail-mark";m.textContent=x[0];var t=document.createElement("span");t.textContent=x[1];a.append(m,t);el.appendChild(a);});document.body.appendChild(el);});
+}
+if(!document.querySelector(".text2me-selection-tools")){
+var bar=document.createElement("div");bar.className="text2me-selection-tools";bar.hidden=true;bar.setAttribute("role","toolbar");bar.setAttribute("aria-label","Действия с выделенным текстом");[["copy","Копировать"],["share","Поделиться"],["print","Печать"]].forEach(function(x){var b=document.createElement("button");b.type="button";b.dataset.action=x[0];b.textContent=x[1];bar.appendChild(b);});document.body.appendChild(bar);var selected="";
+document.addEventListener("mouseup",function(e){if(bar.contains(e.target))return;var s=window.getSelection();selected=s?s.toString().trim():"";if(selected.length<2){bar.hidden=true;return;}var r=s.getRangeAt(0).getBoundingClientRect();bar.hidden=false;bar.style.left=Math.max(8,Math.min(window.innerWidth-250,r.left+r.width/2-110))+"px";bar.style.top=Math.max(8,Math.min(window.innerHeight-48,r.top-48))+"px";});
+document.addEventListener("selectionchange",function(){var s=window.getSelection();if(!s||!s.toString().trim())bar.hidden=true;});
+bar.addEventListener("click",function(e){var act=e.target&&e.target.dataset.action;if(!act||!selected)return;
+if(act==="copy"){if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(selected).then(function(){e.target.textContent="Скопировано";}).catch(function(){window.prompt("Скопируйте выделенный текст:",selected);});else window.prompt("Скопируйте выделенный текст:",selected);}
+if(act==="share"){if(navigator.share)navigator.share({title:document.title,text:selected,url:window.location.href}).catch(function(){});else if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(selected+"\n"+window.location.href).then(function(){e.target.textContent="Текст и ссылка скопированы";});else window.prompt("Скопируйте текст и ссылку:",selected+"\n"+window.location.href);}
+if(act==="print"){var w=window.open("","_blank");if(w){w.document.write("<!doctype html><html lang='ru'><meta charset='utf-8'><title>Выделенный текст</title><body style='font:16px/1.6 Arial,sans-serif;max-width:800px;margin:40px auto;white-space:pre-wrap'></body></html>");w.document.body.textContent=selected;w.document.close();w.focus();w.print();}}
+});
+}}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addUtilities);else addUtilities();
+})();
