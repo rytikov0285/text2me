@@ -274,7 +274,7 @@ html{background:var(--t2m-page-bg);color:var(--t2m-ink)}
 body{background:var(--t2m-page-bg)!important;color:var(--t2m-ink)!important;font-family:Arial,"Segoe UI",sans-serif!important;-webkit-font-smoothing:auto!important;text-rendering:optimizeLegibility}
 body :where(p,li,label,input,textarea,select,button,a,small,strong,span){text-shadow:none!important}
 body :where(p,li,label,input,textarea,select){color:var(--t2m-ink)}
-.portal-header,.portal-shell-header,.site-header,header.top{background:#fff!important;border-color:#c4c9ce!important;box-shadow:none!important}
+.portal-header,.portal-shell-header,.site-header,header.top{background:var(--t2m-white-ral9016)!important;border-color:#c4c9ce!important;box-shadow:none!important}
 .portal-service-nav,.portal-shell-nav{background:var(--t2m-white-ral9016)!important;border-color:#c5cbd1!important}
 .portal-main,.portal-wrap,.portal-section,.portal-workflow,.portal-document-picker,.portal-hero,.portal-hero-main,.portal-hero-aside,.portal-feature,.portal-tile,.portal-tool,.portal-quick-card,.portal-news-card,.choice-card,.info-card,.knowledge-card,.document-category,.tool-card,.side-panel,.document-builder,.need-form,.need-result,.readiness-check,.space-preview article,.generated-result,.portal-footer,.portal-shell-panel,.portal-shell-dialog{color:var(--t2m-ink)}
 .portal-hero,.portal-workflow,.portal-document-picker,.portal-tile,.portal-feature,.choice-card,.info-card,.knowledge-card,.tool-card,.document-category,.side-panel,.document-builder,.need-form,.need-result,.readiness-check,.space-preview article,.generated-result,.portal-news-card,.portal-quick-card{background:var(--t2m-white-ral9016)!important;background-image:none!important;box-shadow:none!important;border:1px solid #d1d5d9!important}
