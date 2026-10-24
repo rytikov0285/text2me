@@ -335,3 +335,23 @@ body :where(p,li,label,input,textarea,select){color:var(--t2m-ink)}
 .t2m-workspace-kicker{font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#3c4852}
 @media(max-width:900px){.t2m-workspace-grid{grid-template-columns:1fr}.t2m-workspace-card{min-height:unset;padding:18px}.t2m-workspace-card h3{font-size:20px}.t2m-workspaces{padding:16px}}
 
+
+
+/* Unified text2me visual system and persistent route context */
+.t2m-breadcrumbs{display:block;position:relative;z-index:2;padding-top:11px;padding-bottom:11px;color:var(--shell-muted);font:13px/1.45 Arial,"Segoe UI",sans-serif}
+.t2m-breadcrumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:7px;list-style:none;padding:0;margin:0}
+.t2m-breadcrumbs li{display:inline-flex;align-items:center;gap:7px;min-width:0}
+.t2m-breadcrumbs li+li:before{content:"/";color:#8b9aaa}
+.t2m-breadcrumbs a{color:var(--shell-blue);text-decoration:none}
+.t2m-breadcrumbs a:hover{text-decoration:underline}
+.t2m-breadcrumbs [aria-current="page"] span{color:var(--shell-ink);font-weight:750}
+body:has(.portal-shell-header){background:#f3f7fb;color:#172b4d}
+body:has(.portal-shell-header) main,body:has(.portal-shell-header) .page-main,body:has(.portal-shell-header) .container{color:#172b4d}
+body:has(.portal-shell-header) main h1,body:has(.portal-shell-header) .page-main h1{font-size:clamp(29px,3.2vw,40px);line-height:1.16;letter-spacing:-.65px;color:#142e50}
+body:has(.portal-shell-header) main h2,body:has(.portal-shell-header) .page-main h2{font-size:clamp(22px,2.2vw,29px);line-height:1.25;color:#17395d}
+body:has(.portal-shell-header) main h3,body:has(.portal-shell-header) .page-main h3{font-size:19px;line-height:1.35;color:#1d4269}
+body:has(.portal-shell-header) main a:not(.button):not(.btn):not([class*="button"]){text-underline-offset:3px}
+body:has(.portal-shell-header) main button,body:has(.portal-shell-header) main .button,body:has(.portal-shell-header) main .btn,body:has(.portal-shell-header) main [type="submit"]{border-radius:9px;transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
+body:has(.portal-shell-header) main input:not([type="checkbox"]):not([type="radio"]),body:has(.portal-shell-header) main select,body:has(.portal-shell-header) main textarea{max-width:100%;border-radius:8px}
+body:has(.portal-shell-header) main :focus-visible,body:has(.portal-shell-header) .portal-shell-header a:focus-visible,body:has(.portal-shell-header) .portal-shell-header button:focus-visible{outline:3px solid #f0b429;outline-offset:3px}
+@media(max-width:800px){.t2m-breadcrumbs{padding-top:8px;padding-bottom:8px}.t2m-breadcrumbs ol{gap:5px}.t2m-breadcrumbs li{font-size:12px}}
