@@ -13,7 +13,7 @@
 <link rel="manifest" href="/text2me/manifest.webmanifest">
 <meta name="theme-color" content="#214f91">
 <script defer src="/text2me/assets/enhancements.js"></script>
-<script defer src="/text2me/assets/flood-workflow.js?v=floodprint1"></script>
+<script defer src="/text2me/assets/flood-workflow.js?v=flooddocs2"></script>
 <script defer src="/text2me/assets/pwa.js"></script>
   <link rel="stylesheet" href="/text2me/assets/portal-shell.css?v=docworkflow8">
   <script defer src="/text2me/assets/portal-shell.js?v=docworkflow8"></script>
@@ -60,6 +60,7 @@
 <p class="flood-muted">Первый документ просит зарегистрировать происшествие, провести осмотр и составить акт. Он не подменяет денежную претензию: для неё обычно нужны сведения о причине и подтверждённый размер ущерба.</p>
 <label>Текст документа<textarea id="flood-draft" rows="18" spellcheck="true"></textarea></label>
 <div class="flood-actions"><button type="button" class="flood-button" id="download-first">Скачать заявление (.txt)</button>
+<button type="button" class="flood-button secondary" id="download-first-docx">Скачать для Word (.docx)</button>
 <button type="button" class="flood-button secondary" id="print-first">Печать / сохранить в PDF</button><button type="button" class="flood-button secondary" id="copy-first">Копировать текст</button><button type="button" class="flood-button secondary" id="save-first">Сохранить в «Мои документы»</button></div>
 <p id="first-status" class="flood-status" role="status"></p>
 <div class="flood-next"><h3>Что делать после подготовки</h3><ol>
@@ -83,6 +84,7 @@
 <div id="claim-output" hidden>
 <label>Черновик денежной претензии<textarea id="claim-draft" rows="18"></textarea></label>
 <div class="flood-actions"><button type="button" class="flood-button" id="download-claim">Скачать претензию (.txt)</button>
+<button type="button" class="flood-button secondary" id="download-claim-docx">Скачать для Word (.docx)</button>
 <button type="button" class="flood-button secondary" id="print-claim">Печать / сохранить в PDF</button><button type="button" class="flood-button secondary" id="save-claim">Сохранить в «Мои документы»</button></div>
 </div>
 </section>
