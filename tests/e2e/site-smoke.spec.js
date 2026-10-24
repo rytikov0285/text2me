@@ -7,7 +7,7 @@ const keyRoutes = [
   "/documents/",
   "/documents/pretenziya-prodavtsu/",
   "/documents/isk-v-sud/",
-  "/zatoplenie-kvartiry/",
+  "/situations/zatoplenie-kvartiry/",
   "/calendar/",
   "/dashboard/",
   "/request/",
