@@ -60,13 +60,16 @@ function addTemplateWorkspace(r){
  var h1=main.querySelector("h1"),roleIndicator=main.querySelector(".rw-page-role");if(roleIndicator)roleIndicator.insertAdjacentElement("afterend",panel);else if(h1&&h1.parentElement)h1.parentElement.insertAdjacentElement("afterend",panel);else main.insertBefore(panel,main.firstChild);
  if(!main.dataset.rwDownloadGuard){main.dataset.rwDownloadGuard="1";main.addEventListener("click",function(e){var target=e.target.closest("a,button,input[type=button],input[type=submit]");if(!target)return;var label=((target.innerText||target.value||target.getAttribute("aria-label")||"")+"").toLowerCase();if(!/(скачать|download|docx|pdf|экспортировать документ)/i.test(label))return;var active=main.querySelector(".rw-template-workspace");if(!active)return;var all=safeRead("text2me.template-checks.v1",{}),marks=all[active.dataset.checkKey]||{},count=Number(active.dataset.checkCount||0),complete=true;for(var i=0;i<count;i++){if(!marks[i])complete=false}if(!complete){e.preventDefault();e.stopImmediatePropagation();alert("Скачивание приостановлено: сначала проверьте все обязательные пункты контрольного списка.");}},true);}
 }
+function filterRoleBlocks(r){
+ document.querySelectorAll("[data-visible-roles]").forEach(function(node){if(node.dataset.rwOriginalHidden===undefined)node.dataset.rwOriginalHidden=node.hidden?"1":"0";var allowed=(node.getAttribute("data-visible-roles")||"").toLowerCase().split(/[\\s,]+/);var roleAllowed=allowed.indexOf(r)>=0;node.hidden=node.dataset.rwOriginalHidden==="1"||!roleAllowed});
+}
 function renderRoleState(){
  var r=role();if(!r)return;
  var data=ROLES[r];document.documentElement.setAttribute("data-text2me-role",r);enforcePageRole(r);
  var select=document.getElementById("rw-role");if(select)select.value=r||"";
  var ind=document.querySelector(".rw-role-indicator");if(ind)ind.textContent="Вы работаете как: "+data.label;
  document.querySelectorAll(".rw-page-role").forEach(function(p){var b=p.querySelector(".rw-role-badge"),d=p.querySelector(".rw-role-description");if(b){b.textContent="Вы работаете как: "+data.label;b.dataset.role=r}if(d)d.textContent=data.description});
- renderHome(r);filterCatalog(r);adaptFields(r);addTemplateWorkspace(r);
+ renderHome(r);filterCatalog(r);filterRoleBlocks(r);adaptFields(r);addTemplateWorkspace(r);
 }
 function renderHome(r){
  var main=document.querySelector("main");if(!main)return;
@@ -144,7 +147,7 @@ function patchDraftRole(){
  };
 }
 function footer(){
- var f=document.querySelector("body > footer");if(!f)return;
+ var f=document.querySelector("body > footer");if(!f){f=el("footer",{class:"rw-shared-footer"});document.body.append(f)}f.classList.add("rw-shared-footer");
  if(!f.querySelector(".rw-footer-note")){var n=el("p",{class:"rw-footer-note"});n.textContent="Черновики и настройки хранятся локально в этом браузере. Облачная синхронизация не подключена. Дата правовой проверки указывается в карточке документа; если её нет, проверьте актуальность перед использованием.";f.append(n)}
  if(!f.querySelector(".rw-footer-links")){var nav=el("nav",{class:"rw-footer-links","aria-label":"Навигация по рабочему пространству"});[["Каталог","/text2me/documents/"],["Черновики","/text2me/drafts/"],["Калькуляторы","/text2me/calculators/"],["Источники","/text2me/sources/"],["Настройки","/text2me/settings/"]].forEach(function(x){nav.append(el("a",{href:x[1]},x[0]))});f.append(nav)}
 }
