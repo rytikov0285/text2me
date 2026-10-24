@@ -117,3 +117,32 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
  }
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addPartnerLinks);else addPartnerLinks();
 })();
+
+/* Persistent audience switcher: keep the three primary entry points above every page. */
+(function(){
+ "use strict";
+ function addGlobalAudience(){
+  if(document.querySelector(".global-audience-switcher"))return;
+  var header=document.querySelector(".portal-shell-header,body > header");
+  if(!header)return;
+  var section=document.createElement("nav");
+  section.className="global-audience-switcher";
+  section.setAttribute("aria-label","Выберите тип пользователя");
+  var items=[
+   {href:"/text2me/people/",icon:"♙",title:"Физическим лицам",desc:"Защита прав, жизненные ситуации, жильё, семья, работа и личные тексты",cta:"Открыть раздел"},
+   {href:"/text2me/business/",icon:"▦",title:"Индивидуальным предпринимателям",desc:"Договоры, акты, клиенты, поставщики, налоги и деловая переписка",cta:"Открыть раздел"},
+   {href:"/text2me/business/",icon:"▤",title:"Юридическим лицам",desc:"Документы организации, договорная работа, претензии и корпоративные вопросы",cta:"Открыть раздел"}
+  ];
+  items.forEach(function(item){
+   var a=document.createElement("a");a.className="global-audience-card";a.href=item.href;
+   var icon=document.createElement("span");icon.className="global-audience-icon";icon.setAttribute("aria-hidden","true");icon.textContent=item.icon;
+   var copy=document.createElement("span");copy.className="global-audience-copy";
+   var title=document.createElement("strong");title.textContent=item.title;
+   var desc=document.createElement("small");desc.textContent=item.desc;
+   var cta=document.createElement("em");cta.textContent=item.cta+" →";
+   copy.append(title,desc,cta);a.append(icon,copy);section.appendChild(a);
+  });
+  header.insertAdjacentElement("afterend",section);
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addGlobalAudience);else addGlobalAudience();
+})();
