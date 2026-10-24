@@ -11,6 +11,8 @@ const keyRoutes = [
   "/calendar/",
   "/dashboard/",
   "/request/",
+  "/experts/",
+  "/experts/business-analyst/",
 ];
 
 test.describe("text2me published-site smoke tests", () => {
@@ -39,6 +41,24 @@ test.describe("text2me published-site smoke tests", () => {
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();
     await expect(opener).toBeFocused();
+  });
+
+  test("shared navigation avoids duplicate audience and quick-access links", async ({ page }) => {
+    await page.goto(baseURL + "/documents/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator(".global-audience-switcher")).toHaveCount(0);
+    await expect(page.locator('.portal-shell-audience a[href="/text2me/business/"]')).toHaveCount(1);
+    await expect(page.locator('.portal-shell-nav a[href="/text2me/business/"]')).toHaveCount(0);
+    await expect(page.locator('.text2me-rail-right a[href="/text2me/government/"]')).toHaveCount(0);
+    await expect(page.locator('.text2me-rail-left a[href="/text2me/government/"]')).toHaveCount(1);
+    await expect(page.locator('.text2me-service-network a[href="/text2me/"]')).toHaveCount(0);
+  });
+
+  test("dashboard has one context-specific action for each record type", async ({ page }) => {
+    await page.goto(baseURL + "/dashboard/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#addTaskTop")).toHaveCount(0);
+    await expect(page.locator("#addEventTop")).toHaveCount(0);
+    await expect(page.locator("#addTask")).toHaveText("＋ Новая задача");
+    await expect(page.locator("#addEvent")).toHaveText("＋ Новое событие");
   });
 
   test("homepage title search submits on Enter and does not search situation descriptions", async ({ page }) => {
