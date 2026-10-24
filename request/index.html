@@ -66,6 +66,6 @@ form.addEventListener("input",function(){if(lastText){lastText="";wrap.hidden=tr
 })();
 </script>
 <script id="text2me-request-prefill">
-(function(){var p=new URLSearchParams(location.search),d=p.get("document"),role=localStorage.getItem("text2me.role.v1")||"citizen",summary=document.getElementById("request-summary"),aud=document.getElementById("request-audience");if(d&&summary&&!summary.value)summary.value=d;if(aud){var map={citizen:"Гражданин",ip:"ИП",organization:"Организация"};var wanted=map[role];if(wanted){var opts=Array.from(aud.options);var match=opts.find(function(o){return o.textContent.trim()===wanted||o.textContent.toLowerCase().indexOf(wanted.toLowerCase())>=0});if(match)aud.value=match.value||match.textContent}}})();
+(function(){var p=new URLSearchParams(location.search),d=p.get("document"),role=(function(){try{return JSON.parse(localStorage.getItem("text2me.role.v1")||"\"citizen\"")}catch(e){return "citizen"}})(),summary=document.getElementById("request-summary"),aud=document.getElementById("request-audience");if(d&&summary&&!summary.value)summary.value=d;if(aud){var map={citizen:"Гражданин",ip:"ИП",organization:"Организация"};var wanted=map[role];if(wanted){var opts=Array.from(aud.options);var match=opts.find(function(o){return o.textContent.trim()===wanted||o.textContent.toLowerCase().indexOf(wanted.toLowerCase())>=0});if(match)aud.value=match.value||match.textContent}}})();
 </script></body>
 </html>
