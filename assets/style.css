@@ -731,4 +731,7 @@ pre { max-width: 100%; overflow-x: auto; }
   .button, a.button, button { white-space: normal; }
   .page-hero h1, .section-heading h2 { overflow-wrap: anywhere; }
 }
-
+/* text2me design-system guardrails: text determines button width; long labels may wrap. */
+.button,.dash-btn,.workspace-search-submit{box-sizing:border-box;max-width:100%;min-width:0;line-height:1.25;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.search-hint{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+@media(max-width:700px){.search-hint{font-size:12px}.search-box .button{max-width:100%;white-space:normal;overflow-wrap:anywhere}}

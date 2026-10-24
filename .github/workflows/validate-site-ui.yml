@@ -1,0 +1,39 @@
+name: Validate site search and UI contracts
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "start/**"
+      - "assets/main.js"
+      - "assets/style.css"
+      - "AGENTS.md"
+      - "docs/DESIGN_SYSTEM.md"
+      - "scripts/validate-site-search.mjs"
+      - ".github/workflows/validate-site-ui.yml"
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "start/**"
+      - "assets/main.js"
+      - "assets/style.css"
+      - "AGENTS.md"
+      - "docs/DESIGN_SYSTEM.md"
+      - "scripts/validate-site-search.mjs"
+      - ".github/workflows/validate-site-ui.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-search-and-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate search behavior contracts and design rules
+        run: node scripts/validate-site-search.mjs

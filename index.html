@@ -430,6 +430,9 @@ body{background:#f4f5f7;color:#202124;font-family:Arial,Helvetica,sans-serif;fon
 @media(max-width:650px){.dash-shell{padding:0 12px 28px}.dash-header{margin:0 -12px;padding:12px;display:grid;grid-template-columns:1fr auto;gap:10px}.reference-header-tagline{display:none}.workspace-search{grid-column:1/-1;grid-row:2;max-width:none;width:100%}.reference-header-link{font-size:12px}.workspace-layout{display:flex;flex-direction:column;gap:12px}.workspace-sidebar,.workspace-main,.workspace-aside{width:100%;grid-column:auto;grid-row:auto}.workspace-sidebar{order:2}.workspace-main{order:1}.workspace-aside{order:3}.reference-side-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.reference-home{padding:15px;gap:17px}.reference-task-search{padding:12px}.reference-search-bottom{align-items:stretch;flex-direction:column}.reference-search-bottom button{width:100%}.reference-document-grid{grid-template-columns:1fr 1fr}.reference-trust{grid-template-columns:1fr}.reference-quick-actions{padding:12px}}
 @media(prefers-reduced-motion:reduce){.mockup-role-card,.reference-document{transition:none}}
 
+/* Final control sizing overrides: let Russian labels wrap instead of clipping or shrinking. */
+.reference-header-search .workspace-search-submit,.universal-search-controls .dash-btn,.dash-btn,.reference-search-bottom button{box-sizing:border-box;max-width:100%;min-width:0;min-height:44px;line-height:1.25;text-align:center;white-space:normal;overflow-wrap:anywhere}
+@media(max-width:650px){.reference-header-search .workspace-search-submit{padding:8px 10px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -441,9 +444,9 @@ body{background:#f4f5f7;color:#202124;font-family:Arial,Helvetica,sans-serif;fon
     <form id="title-search-form" role="search" class="reference-header-search">
       <label class="sr-only" for="title-search">Поиск документов, ситуаций и материалов</label>
       <span class="header-search-icon" aria-hidden="true">⌕</span>
-      <input id="title-search" type="search" autocomplete="off" placeholder="Опишите свою ситуацию или задачу…" aria-describedby="title-search-status">
+      <input id="title-search" type="search" autocomplete="off" placeholder="Название документа, например «Исковое заявление»" aria-describedby="title-search-status" aria-controls="title-search-results">
       <button class="workspace-search-submit" type="submit">Найти документ <span aria-hidden="true">⌕</span></button>
-      <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
+      <div class="workspace-search-popover" id="title-search-popover" hidden><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
     </form>
     <div class="reference-header-contact"><strong>☎ &nbsp;8 800 302-18-68</strong><small>Пн–Пт с 9:00 до 18:00 МСК</small></div>
     <a class="reference-header-link" href="/text2me/request/">☏ &nbsp;Контакты</a>
@@ -572,10 +575,34 @@ var index=[
 {title:"Официальные источники",desc:"Справочник государственных органов, нотариата и финансовых источников.",url:"/text2me/sources/",keys:"источник официальные органы нотариат банк фнс закон"},
 {title:"Гайды по документам",desc:"Как выбрать документ и что проверить перед подписанием.",url:"/text2me/guides/",keys:"гайд гайды подписанием договор проверить документ"},
 {title:"Обновления сайта",desc:"Журнал изменений и доступности функций.",url:"/text2me/updates/",keys:"обновления что изменилось шаблоны изменения законов"}];
-var searchForm=document.getElementById("title-search-form"),searchInput=document.getElementById("title-search"),results=document.getElementById("title-search-results"),status=document.getElementById("title-search-status");
-function search(){var q=(searchInput.value||"").trim().toLocaleLowerCase("ru");results.replaceChildren();if(!q){status.textContent="Введите название или несколько ключевых слов.";searchInput.focus();return}var terms=q.split(/\s+/).filter(Boolean);var found=index.map(function(item){var hay=(item.title+" "+item.desc+" "+item.keys).toLocaleLowerCase("ru");var score=terms.reduce(function(n,t){return n+(hay.includes(t)?1:0)},0);return {item:item,score:score}}).filter(function(x){return x.score>0}).sort(function(a,b){return b.score-a.score}).slice(0,5);if(!found.length){status.textContent="Совпадений в текущем каталоге нет. Попробуйте другое название.";return}status.textContent="Найдено направлений: "+found.length+". Проверяйте статус перед переходом.";found.forEach(function(x){var a=document.createElement("a");a.className="search-result";a.href=x.item.url;var s=document.createElement("strong");s.textContent=x.item.title;var sm=document.createElement("small");sm.textContent=x.item.desc;a.append(s,sm);results.appendChild(a)})}
-searchForm.addEventListener("submit",function(e){e.preventDefault();search()});
-searchInput.addEventListener("input",function(){if(searchInput.value.trim().length>=2)search();else{results.replaceChildren();status.textContent=""}});
+var searchForm=document.getElementById("title-search-form"),searchInput=document.getElementById("title-search"),results=document.getElementById("title-search-results"),status=document.getElementById("title-search-status"),popover=document.getElementById("title-search-popover");
+function normalizeTitleQuery(value){return String(value||"").toLocaleLowerCase("ru").replace(/ё/g,"е").replace(/[^a-zа-я0-9]+/g," ").trim();}
+function search(){
+  var q=normalizeTitleQuery(searchInput.value);
+  results.replaceChildren();
+  if(popover)popover.hidden=false;
+  if(!q){status.textContent="Введите название документа для поиска.";searchInput.focus();return;}
+  var terms=q.split(/\s+/).filter(Boolean);
+  var found=index.map(function(item){
+   var title=normalizeTitleQuery(item.title);
+   var matches=terms.every(function(term){return title.indexOf(term)!==-1;});
+   var score=!matches?0:title===q?1000:title.indexOf(q)===0?500:title.indexOf(q)!==-1?300:100;
+   return {item:item,score:score};
+  }).filter(function(x){return x.score>0;}).sort(function(a,b){return b.score-a.score;}).slice(0,5);
+  if(!found.length){status.textContent="Документ с таким названием не найден. Для описания обстоятельств откройте отдельный раздел «Подбор по ситуации».";return;}
+  status.textContent="Найдено документов по названию: "+found.length+". Выберите нужный документ.";
+  found.forEach(function(x){
+   var a=document.createElement("a");a.className="search-result";a.href=x.item.url;
+   var title=document.createElement("strong");title.textContent=x.item.title;
+   var description=document.createElement("small");description.textContent=x.item.desc;
+   a.append(title,description);results.appendChild(a);
+  });
+ }
+ searchForm.addEventListener("submit",function(e){e.preventDefault();search();});
+searchInput.addEventListener("input",function(){
+  if(normalizeTitleQuery(searchInput.value).length>=2)search();
+  else{results.replaceChildren();status.textContent="";if(popover)popover.hidden=true;}
+ });
 document.querySelectorAll("[data-search-chip]").forEach(function(btn){btn.addEventListener("click",function(){searchInput.value=btn.getAttribute("data-search-chip")||"";searchInput.focus();search()})});
 var situationForm=document.getElementById("home-situation-form"),situationField=document.getElementById("home-situation");
 document.querySelectorAll("[data-situation-chip]").forEach(function(btn){btn.addEventListener("click",function(){if(!situationField)return;situationField.value=btn.getAttribute("data-situation-chip")||"";situationField.focus()})});

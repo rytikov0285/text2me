@@ -38,11 +38,12 @@
       </div>
       <div class="portal-search-wrap">
         <form class="search-box portal-search" role="search" id="document-search">
-          <label class="sr-only" for="search-input">Найти ответ на свой вопрос</label>
-          <input id="search-input" name="q" type="search" placeholder="Например: вернуть деньги, проблема с домом, зарплата…" autocomplete="off">
+          <label class="sr-only" for="search-input">Найти документ по названию</label>
+          <input id="search-input" name="q" type="search" placeholder="Название документа, например «Исковое заявление»" autocomplete="off" aria-describedby="search-status">
           <button class="button" type="submit">Найти</button>
         </form>
         <p class="search-status" id="search-status" aria-live="polite"></p>
+        <p class="search-hint">Этот поиск работает по названию документа. Чтобы описать обстоятельства, используйте подбор по ситуации ниже.</p>
         <div class="popular-chips" aria-label="Популярные документы"><span>Популярное:</span><button type="button" data-search-chip="договор аренды">Договор аренды</button><button type="button" data-search-chip="доверенность на авто">Доверенность на авто</button><button type="button" data-search-chip="заявление на увольнение">Заявление на увольнение</button><button type="button" data-search-chip="претензия продавцу">Претензия продавцу</button></div>
       </div>
       <div class="portal-path-links" aria-label="Выберите способ начать"><a href="#route-builder"><strong>1. По ситуации</strong><span>Расскажите, что произошло</span></a><a href="#catalog"><strong>2. По названию</strong><span>Найдите конкретный документ</span></a><a href="#ai-path"><strong>3. По вопросам</strong><span>Опишите задачу своими словами</span></a></div>
