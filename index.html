@@ -339,6 +339,25 @@ body{font-size:15px;line-height:1.55;color:#172438}
 @media(max-width:980px){.reference-header{grid-template-columns:auto 1fr auto}.reference-header-tagline{display:none}.reference-header-search{grid-column:1/-1;grid-row:2}.workspace-layout{grid-template-columns:220px minmax(0,1fr)}.workspace-aside{grid-column:2;position:static}.workspace-sidebar{position:static}.audience-switcher{grid-template-columns:1fr;padding:0 16px}.audience-card{min-height:82px}.reference-trust{grid-template-columns:1fr}.reference-trust div{display:flex}.dash-footer{margin-left:16px;margin-right:16px}}
 @media(max-width:640px){.reference-header{grid-template-columns:1fr auto auto;padding:12px}.reference-logo{font-size:30px}.reference-header-link{font-size:12px;padding:8px 5px}.reference-header-search{min-width:0}.reference-header-search .workspace-search-submit{padding:10px;font-size:12px}.audience-switcher{padding:0 10px;margin:12px auto}.workspace-layout{display:flex;flex-direction:column;padding:0 10px;gap:12px}.workspace-sidebar,.workspace-main,.workspace-aside{width:100%;position:static}.workspace-sidebar{padding:10px}.reference-side-nav .workspace-nav-link{padding:9px 10px}.workspace-main{padding:17px 13px}.reference-greeting h1{font-size:26px}.reference-greeting p:not(.reference-eyebrow){font-size:16px}.reference-search-bottom{align-items:stretch;flex-direction:column}.reference-search-bottom button{width:100%}.reference-document-grid{grid-template-columns:1fr}.reference-document{min-height:95px}.reference-trust{padding:12px}.reference-quick-actions{padding:15px}.dash-footer{margin:16px 10px 0;padding:14px}.dash-footer-catalog{gap:9px 12px}}
 
+ 
+/* Audience/service directory inspired by the clear three-audience breakdown on nalog.gov.ru; adapted to text2me tasks and routes. */
+.audience-service-directory{margin:12px 0 22px}
+.audience-directory-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 0 14px}
+.directory-eyebrow{margin:0 0 5px;color:#315c7b;font-size:11px;font-weight:850;letter-spacing:.09em}
+.audience-directory-heading h2{margin:0;color:#202a33;font-size:clamp(21px,2vw,27px);line-height:1.2;letter-spacing:-.025em}
+.audience-directory-heading>a{flex:none;color:#315c7b;font-size:13px;font-weight:750;text-decoration:none}
+.audience-directory-heading>a:hover,.audience-directory-card a:hover{text-decoration:underline}
+.audience-directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.audience-directory-card{min-width:0;padding:18px 18px 14px;background:#fff;border:1px solid #d5dadd;border-top:3px solid #315c7b;border-radius:7px;box-shadow:0 3px 12px rgba(24,42,56,.04)}
+.directory-card-title{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.directory-card-title>span{display:grid;place-items:center;width:34px;height:34px;flex:none;border-radius:5px;background:#eef1f3;color:#315c7b;font-size:19px}
+.directory-card-title h3{margin:0;color:#202a33;font-size:17px;line-height:1.25}
+.audience-directory-card>p{margin:0 0 12px;color:#4c5964;font-size:13px;line-height:1.45}
+.audience-directory-card>a{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:9px 0;border-top:1px solid #edf0f2;color:#315c7b;font-size:13px;line-height:1.35;text-decoration:none}
+.audience-directory-card>a span{flex:none;color:#7a858d}
+.audience-directory-card>a.directory-all-link{margin-top:3px;padding-top:12px;color:#202a33;font-weight:800}
+@media(max-width:760px){.audience-directory-grid{grid-template-columns:1fr}.audience-directory-card{padding:15px}.audience-directory-heading{align-items:start;flex-direction:column;gap:8px}.audience-directory-heading h2{font-size:22px}}
+
 </style>
 </head>
 <body>
@@ -358,23 +377,41 @@ body{font-size:15px;line-height:1.55;color:#172438}
 <a class="reference-header-link" href="/text2me/space/">♙ &nbsp;Мои документы</a>
 </header>
 
-  <nav class="audience-switcher" aria-label="Выберите для кого готовите документ">
-    <a class="audience-card" href="/text2me/people/">
-      <span class="audience-icon" aria-hidden="true">♙</span>
-      <span class="audience-copy"><strong>Физические лица</strong><small>Личные документы, заявления, обращения, договоры и жизненные ситуации</small></span>
-      <span class="audience-arrow" aria-hidden="true">→</span>
-    </a>
-    <a class="audience-card" href="/text2me/business/">
-      <span class="audience-icon" aria-hidden="true">▣</span>
-      <span class="audience-copy"><strong>Индивидуальные предприниматели</strong><small>Документы ИП, счета, акты, договоры и работа с клиентами</small></span>
-      <span class="audience-arrow" aria-hidden="true">→</span>
-    </a>
-    <a class="audience-card" href="/text2me/business/">
-      <span class="audience-icon" aria-hidden="true">▥</span>
-      <span class="audience-copy"><strong>Юридические лица</strong><small>Деловые и кадровые документы, договорная работа и процессы компании</small></span>
-      <span class="audience-arrow" aria-hidden="true">→</span>
-    </a>
-  </nav>
+  <section class="audience-service-directory" aria-label="Разделы text2me по аудиториям">
+    <div class="audience-directory-heading">
+      <div><p class="directory-eyebrow">ВЫБЕРИТЕ СВОЙ РАЗДЕЛ</p><h2>Документы и инструменты для разных задач</h2></div>
+      <a href="/text2me/documents/">Все документы и шаблоны <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="audience-directory-grid">
+      <section class="audience-directory-card" aria-labelledby="audience-citizens-title">
+        <div class="directory-card-title"><span aria-hidden="true">♙</span><h3 id="audience-citizens-title">Физическим лицам</h3></div>
+        <p>Личные вопросы, жизненные ситуации и повседневные тексты.</p>
+        <a href="/text2me/people/">Жизненные ситуации <span>→</span></a>
+        <a href="/text2me/documents/pretenziya-prodavtsu/">Претензия продавцу <span>→</span></a>
+        <a href="/text2me/documents/dogovor-arendy/">Договор аренды жилья <span>→</span></a>
+        <a href="/text2me/prompts/#personal-prompts">Личные тексты и редактура <span>→</span></a>
+        <a class="directory-all-link" href="/text2me/people/">Все материалы для граждан <span>→</span></a>
+      </section>
+      <section class="audience-directory-card" aria-labelledby="audience-ip-title">
+        <div class="directory-card-title"><span aria-hidden="true">▣</span><h3 id="audience-ip-title">Индивидуальным предпринимателям</h3></div>
+        <p>Документы для работы с клиентами, поставщиками и партнёрами.</p>
+        <a href="/text2me/business/">Рабочая среда для бизнеса <span>→</span></a>
+        <a href="/text2me/documents/">Договоры и деловые документы <span>→</span></a>
+        <a href="/text2me/prompts/">Письма и ответы клиентам <span>→</span></a>
+        <a href="/text2me/calculators/">Расчёты и полезные инструменты <span>→</span></a>
+        <a class="directory-all-link" href="/text2me/ip/">Все материалы для ИП <span>→</span></a>
+      </section>
+      <section class="audience-directory-card" aria-labelledby="audience-legal-title">
+        <div class="directory-card-title"><span aria-hidden="true">▥</span><h3 id="audience-legal-title">Юридическим лицам</h3></div>
+        <p>Документы компании, деловая переписка и организация работы.</p>
+        <a href="/text2me/business/">Документы организации <span>→</span></a>
+        <a href="/text2me/documents/">Каталог документов <span>→</span></a>
+        <a href="/text2me/knowledge/">Правовая база и инструкции <span>→</span></a>
+        <a href="/text2me/request/">Спросите эксперта <span>→</span></a>
+        <a class="directory-all-link" href="/text2me/business/">Все материалы для организаций <span>→</span></a>
+      </section>
+    </div>
+  </section>
  
 
 <div class="workspace-layout">
