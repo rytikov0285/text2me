@@ -87,6 +87,19 @@ assert.notEqual(state.events.find(item => item.id === event.id).documentId, docu
 localStorage.setItem("text2me.space.v1", JSON.stringify([{ id: "library-source-1", title: "Saved source", content: "Keep me" }]));
 const saved = workspace.upsertLibraryDocument({ id: "library-source-1", title: "Saved source", text: "Keep me" });
 const savedCaseId = saved.caseId;
+workspace.syncDashboard({
+  cases: [],
+  tasks: [],
+  events: [],
+  documents: [{ id: "dashboard-reference-1", name: "Library reference", documentId: "library-source-1", caseId: savedCaseId }]
+});
+state = workspace.get();
+const reference = state.documents.find(item => item.id === "dashboard-reference-1");
+assert.equal(reference.documentId, saved.documentId, "Dashboard library IDs must be converted to canonical workspace document IDs.");
+assert.equal(reference.libraryDocumentId, "library-source-1", "The library source ID must be stored separately from the workspace document ID.");
+assert.equal(workspace.dashboardState().documents.find(item => item.id === "dashboard-reference-1").documentId, "library-source-1", "Dashboard adapter must return the source-library ID for its selector.");
+const taskLinkedToLibraryId = workspace.addTask({ title: "Library-linked task", documentId: "library-source-1" });
+assert.equal(workspace.get().tasks.find(item => item.id === taskLinkedToLibraryId.id).documentId, saved.documentId, "Task creation must normalize library IDs to canonical workspace document IDs.");
 workspace.removeEntity("cases", savedCaseId);
 state = workspace.get();
 assert.equal(state.cases.some(item => item.id === savedCaseId), false, "A deliberately deleted case must not be recreated by library-link initialization.");
