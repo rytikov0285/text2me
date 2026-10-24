@@ -18,11 +18,13 @@ try {
 } catch (error) {
   errors.push("assets/main.js: ошибка синтаксиса JavaScript: " + error.message);
 }
-const inlineScript = home.match(/<script>\\s*([\\s\\S]*?)\\s*<\\/script>/);
-assert(!!inlineScript, "Главная: не найден встроенный JavaScript для проверки синтаксиса.");
-if (inlineScript) {
+const inlineStart = home.indexOf("<script>");
+const inlineEnd = inlineStart >= 0 ? home.indexOf("</script>", inlineStart) : -1;
+assert(inlineStart >= 0 && inlineEnd > inlineStart, "Главная: не найден встроенный JavaScript для проверки синтаксиса.");
+if (inlineStart >= 0 && inlineEnd > inlineStart) {
+  const inlineScript = home.slice(inlineStart + "<script>".length, inlineEnd);
   try {
-    new Script(inlineScript[1], { filename: "index.html:inline-script" });
+    new Script(inlineScript, { filename: "index.html:inline-script" });
   } catch (error) {
     errors.push("index.html: ошибка синтаксиса встроенного JavaScript: " + error.message);
   }
