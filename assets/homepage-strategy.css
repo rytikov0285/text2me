@@ -216,3 +216,62 @@ body{font-size:14px;line-height:1.45}
 .reference-trust strong{font-size:14px;line-height:1.45}
 .reference-trust span{font-size:13px;line-height:1.5}
 @media(max-width:800px){.reference-header{grid-template-columns:auto minmax(0,1fr);gap:10px;padding:10px 14px}.reference-header-tagline{display:block;font-size:12px}.reference-header-search{grid-column:1/-1;grid-row:2}.reference-header-contact,.reference-header-link{display:none}.reference-header-search .workspace-search-submit{font-size:16px;padding:8px 12px}}
+
+
+/* User feedback batch: compact command header, sticky workspace menu, and clear task cards. */
+.reference-header{
+  display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:10px 14px!important;
+  padding:12px 24px!important;min-height:0!important;
+}
+.reference-logo{order:1;flex:0 0 auto}
+.reference-header-tagline{order:2;flex:1 1 210px;min-width:180px}
+.reference-header-contact{order:3;flex:0 0 auto}
+.reference-header-link{order:4;display:inline-flex!important;align-items:center;justify-content:center;min-height:40px;padding:9px 13px;border:1px solid #aebbc8;border-radius:8px;background:#fff;color:#243746!important;font-weight:800;text-decoration:none;white-space:nowrap}
+.reference-header-link[href="/text2me/space/"]{order:5;background:#174b70;color:#fff!important;border-color:#174b70;min-width:132px;letter-spacing:.01em}
+.reference-header-link[href="/text2me/space/"]:hover{background:#103752;border-color:#103752;color:#fff!important}
+.reference-audience.global-audience-switcher{order:6!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;width:100%!important;max-width:none!important;margin:2px 0 0!important;padding:0!important}
+.reference-audience.global-audience-switcher .mockup-role-card{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:11px!important;min-width:0!important;min-height:82px!important;padding:12px 14px!important;border:1px solid #d5dde5!important;border-radius:10px!important;background:#fff!important;color:#202a33!important;text-align:left!important;text-decoration:none!important;box-shadow:none!important}
+.reference-audience.global-audience-switcher .mockup-role-card:hover{border-color:#718da4!important;background:#f6f9fb!important}
+.reference-audience.global-audience-switcher .mockup-role-copy,.reference-audience.global-audience-switcher .reference-audience-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:4px!important;min-width:0!important;text-align:left!important}
+.reference-audience.global-audience-switcher .mockup-role-copy strong,.reference-audience.global-audience-switcher .reference-audience-copy strong{display:block!important;width:100%!important;text-align:left!important;font-size:14px!important;line-height:1.3!important;color:#202a33!important}
+.reference-audience.global-audience-switcher .mockup-role-copy small,.reference-audience.global-audience-switcher .reference-audience-copy small{display:block!important;width:100%!important;text-align:left!important;font-size:11px!important;line-height:1.4!important;color:#4c5964!important}
+.reference-audience.global-audience-switcher .mockup-role-icon{flex:0 0 36px!important;width:36px!important;height:36px!important;display:grid!important;place-items:center!important;margin:0!important;font-size:20px!important;border-radius:8px!important;background:#eef1f3!important;color:#315c7b!important}
+.reference-header-search{order:7;flex:1 1 480px!important;width:auto!important;max-width:720px!important;min-width:240px!important;margin:0!important}
+.reference-header-search input{width:100%!important;min-width:0!important}
+.reference-header-space{order:8;flex:0 0 auto}
+.reference-header-link[href="/text2me/space/"]{order:8}
+.reference-header-search .workspace-search-submit{min-width:108px!important;font-size:15px!important;font-weight:900!important;letter-spacing:.03em!important;background:#174b70!important;color:#fff!important;border:1px solid #174b70!important}
+.reference-header-search .workspace-search-submit:hover{background:#103752!important}
+.reference-sidebar{position:sticky!important;top:76px!important;align-self:start!important;max-height:calc(100vh - 90px)!important;overflow:auto!important}
+.reference-audience-card,.mockup-role-card{text-align:left}
+.reference-audience-card strong,.mockup-role-card strong{text-align:left}
+.reference-quick-actions .reference-quick-card{display:grid!important;grid-template-columns:42px minmax(0,1fr) 14px!important;align-items:center!important;gap:10px!important;padding:11px 9px!important;margin:0 0 8px!important;border:1px solid #e1e6ee!important;border-radius:10px!important;background:#fff!important;text-decoration:none!important}
+.reference-quick-actions .reference-quick-card>span:nth-child(2){min-width:0!important;text-align:left!important}
+.reference-quick-actions .reference-quick-card strong{display:block!important;text-align:left!important;line-height:1.35!important}
+.reference-quick-actions .reference-quick-card small{display:block!important;text-align:left!important;line-height:1.4!important}
+.reference-quick-actions .reference-pro-card{margin:0 0 8px!important;background:#fffaf4!important;border-color:#f0d9bc!important}
+.reference-quick-actions .reference-pro-card .reference-quick-icon{background:#fff0d8!important;color:#8b6413!important}
+.reference-document-intro{margin:-3px 0 12px;color:#4c5964;font-size:13px;line-height:1.5}
+.reference-document strong{text-align:center!important;overflow-wrap:anywhere}
+.reference-document small{text-align:center!important;color:#4c5964!important}
+.reference-document{justify-content:flex-start!important}
+@media(max-width:1100px){
+ .reference-header{padding:10px 16px!important;gap:9px!important}
+ .reference-header-contact{display:none!important}
+ .reference-header-tagline{flex:1 1 170px;min-width:130px}
+ .reference-audience.global-audience-switcher{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .reference-audience.global-audience-switcher .mockup-role-card{padding:10px!important;gap:8px!important}
+ .reference-audience.global-audience-switcher .mockup-role-copy small,.reference-audience.global-audience-switcher .reference-audience-copy small{font-size:10px!important}
+}
+@media(max-width:760px){
+ .reference-header{display:flex!important;align-items:stretch!important;padding:10px 12px!important}
+ .reference-logo{font-size:29px!important}
+ .reference-header-tagline{order:2;flex:1 1 100%;min-width:0;font-size:12px!important}
+ .reference-header-link{display:inline-flex!important;flex:1 1 auto;min-width:0;font-size:12px!important;padding:8px!important}
+ .reference-audience.global-audience-switcher{order:6!important;grid-template-columns:1fr!important;gap:7px!important}
+ .reference-audience.global-audience-switcher .mockup-role-card{min-height:64px!important}
+ .reference-header-search{order:7;flex:1 1 100%!important;max-width:none!important;min-width:0!important}
+ .reference-header-space{order:8;flex:1 1 100%!important}
+ .reference-sidebar{position:static!important;max-height:none!important;overflow:visible!important}
+ .reference-quick-actions .reference-quick-card{grid-template-columns:36px minmax(0,1fr) 12px!important}
+}
