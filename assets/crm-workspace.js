@@ -3,8 +3,8 @@
 var KEY="text2me.crm.workspace.v1";
 var STATUSES=["Новый запрос","В работе","Ожидает ответа","Завершено"];
 var TYPES=["Дело","Документ","Задача","Контакт"];
-function read(){try{var x=JSON.parse(localStorage.getItem(KEY)||"null");return x&&Array.isArray(x.items)?x:{items:[],activity:[]}}catch(e){return{items:[],activity:[]}}}
-function write(data){try{localStorage.setItem(KEY,JSON.stringify(data));return true}catch(e){return false}}
+function read(){if(window.Text2meWorkspace)return window.Text2meWorkspace.crmList();try{var x=JSON.parse(localStorage.getItem(KEY)||"null");return x&&Array.isArray(x.items)?x:{items:[],activity:[]}}catch(e){return{items:[],activity:[]}}}
+function write(data){if(window.Text2meWorkspace)return window.Text2meWorkspace.syncCrm(data);try{localStorage.setItem(KEY,JSON.stringify(data));return true}catch(e){return false}}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function dateLabel(v){if(!v)return"Без срока";var d=new Date(v+"T12:00:00");return isNaN(d.getTime())?v:d.toLocaleDateString("ru-RU",{day:"numeric",month:"short",year:"numeric"})}
 function install(){
