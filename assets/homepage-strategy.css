@@ -127,7 +127,7 @@ body{font-size:14px;line-height:1.45}
 .counter{justify-content:center;border:1px solid #e1e5ec;border-radius:5px;min-height:34px;font-size:10px}
 .footer-brand{display:flex;flex-direction:column;align-items:flex-end;color:#145bb8;font-size:25px;font-weight:800;line-height:1;text-decoration:none;letter-spacing:-1px}
 .footer-brand small{margin-top:8px;color:#697487;font-size:12px;font-weight:400;letter-spacing:0}
-.reference-header-search .workspace-search-popover{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:30;padding:10px;border:1px solid #dce4ee;border-radius:10px;background:#fff;box-shadow:0 8px 25px #1b2c451a}
+.reference-header-search .workspace-search-popover{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:30;padding:10px;border:1px solid #dce4ee;border-radius:10px;background:#fff;box-shadow:0 8px 25px #1b2c451a;display:block;max-height:min(65vh,460px);overflow:auto}
 .reference-header-search .workspace-search-popover:empty{display:none}
 .reference-header-search .search-result{display:block;padding:9px;border-radius:6px;color:#17243a;text-decoration:none}
 .reference-header-search .search-result:hover{background:#f3f7fd}
