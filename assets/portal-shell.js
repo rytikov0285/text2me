@@ -20,7 +20,7 @@ function initPortalShell(){
  var oldHeader=document.querySelector("body > header");
  if(!oldHeader)return;
  var header=document.createElement("header");header.className="portal-shell-header";
- header.innerHTML='<a class="portal-shell-skip" href="#main">Перейти к содержанию</a><div class="portal-shell-wrap portal-shell-top"><a class="portal-shell-brand" href="/text2me/" aria-label="text2me — главная">text2<span class="shell-brand-mark">me</span></a><nav class="portal-shell-audience" aria-label="Выбор аудитории"><a href="/text2me/people/" data-audience="citizens">Физическим лицам</a><a href="/text2me/ip/" data-audience="ip">ИП</a><a href="/text2me/business/" data-audience="business">Юридическим лицам</a></nav><div class="portal-shell-actions"><a class="portal-shell-contact" href="/text2me/request/">Контакты</a><button type="button" class="portal-shell-search" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">⌕ Поиск</button></div></div><nav class="portal-shell-wrap portal-shell-nav" aria-label="Основная навигация"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/documents/?audience=citizens">Каталог документов</a><a href="/text2me/documents/library/">Библиотека шаблонов</a><a href="/text2me/space/">Рабочий стол</a><a href="/text2me/law/">Правовая база</a><a href="/text2me/calendar/">Сроки и календарь</a><a href="/text2me/request/">Спросите эксперта</a><a href="/text2me/experts/">Профильные эксперты</a><a href="/text2me/workflows/document-lifecycle/">Жизненный цикл документов</a><a href="/text2me/government/">Госорганы</a></nav>';
+ header.innerHTML='<a class="portal-shell-skip" href="#main">Перейти к содержанию</a><div class="portal-shell-wrap portal-shell-top"><a class="portal-shell-brand" href="/text2me/" aria-label="text2me — главная"><span class="portal-shell-brand-text">text</span><span class="shell-brand-mark">2</span><span class="portal-shell-brand-text">me</span></a><form class="portal-shell-inline-search" role="search" action="/text2me/documents/" method="get"><label class="portal-shell-visually-hidden" for="portal-shell-inline-query">Название документа</label><input id="portal-shell-inline-query" name="q" type="search" autocomplete="off" placeholder="Например: исковое заявление" aria-label="Название документа"><button type="submit" aria-label="Найти документ">НАЙТИ <span aria-hidden="true">⌕</span></button></form><div class="portal-shell-actions"><a class="portal-shell-contact" href="/text2me/request/">Контакты</a><button type="button" class="portal-shell-search" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" aria-label="Открыть расширенный поиск">⌕</button></div></div><nav class="portal-shell-wrap portal-shell-nav" aria-label="Основная навигация"><a href="/text2me/people/">Жизненные ситуации</a><a href="/text2me/documents/?audience=citizens">Каталог документов</a><a href="/text2me/documents/library/">Библиотека шаблонов</a><a href="/text2me/space/">Рабочий стол</a><a href="/text2me/law/">Правовая база</a><a href="/text2me/calendar/">Сроки и календарь</a><a href="/text2me/request/">Спросите эксперта</a><a href="/text2me/experts/">Профильные эксперты</a><a href="/text2me/workflows/document-lifecycle/">Жизненный цикл документов</a><a href="/text2me/government/">Госорганы</a></nav>';
  oldHeader.replaceWith(header);
  /* Breadcrumb trail: make the user's current section and next step visible on every internal page. */
  var base="/text2me", clean=path.indexOf(base)===0?path.slice(base.length):path;
@@ -68,11 +68,26 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 /* Global document navigation and selected-text tools */
 (function(){ "use strict";
 function addUtilities(){
-if(!document.querySelector(".text2me-rail")){
+if(!document.querySelector(".text2me-rail-trigger")){
 var rails=[
-{cls:"text2me-rail-left",title:"Быстрый старт",intro:"Действия, а не виды документов",links:[["＋","Создать документ","/text2me/documents/"],["⌖","Описать ситуацию","/text2me/people/"],["✓","Проверить документ","/text2me/ai/"],["↗","Подготовить к отправке","/text2me/start/"],["§","Заявления в госорганы","/text2me/government/"]]},
-{cls:"text2me-rail-right",title:"Справка и инструменты",intro:"Сопутствующие сервисы",links:[["?","Спросите эксперта","/text2me/request/"],["▤","Мои документы","/text2me/space/"],["§","Правовые источники","/text2me/law/"],["▦","Календарь и сроки","/text2me/calendar/"],["∑","Таблицы и расчёты","/text2me/calculators/"],["⌖","Адреса и учреждения","/text2me/data-engine/"],["↗","Новости России","https://government.ru/news/"],["i","Помощь по сайту","/text2me/start/"]]}];
-rails.forEach(function(d){var el=document.createElement("aside");el.className="text2me-rail "+d.cls;if(d.cls==="text2me-rail-left")el.id="quick-start";el.setAttribute("aria-label",d.title);var h=document.createElement("h2");h.textContent=d.title;var p=document.createElement("p");p.textContent=d.intro;el.append(h,p);d.links.forEach(function(x){var a=document.createElement("a");a.href=x[2];if(x[2].indexOf("http")===0){a.target="_blank";a.rel="noopener";}var m=document.createElement("span");m.className="rail-mark";m.textContent=x[0];var t=document.createElement("span");t.textContent=x[1];a.append(m,t);el.appendChild(a);});document.body.appendChild(el);});
+{cls:"text2me-rail-left",id:"quick-start",title:"Быстрый старт",trigger:"Быстрый старт",intro:"Действия, а не виды документов",links:[["＋","Создать документ","/text2me/documents/"],["⌖","Описать ситуацию","/text2me/people/"],["✓","Проверить документ","/text2me/ai/"],["↗","Подготовить к отправке","/text2me/start/"],["§","Заявления в госорганы","/text2me/government/"]]},
+{cls:"text2me-rail-right",id:"text2me-tools-panel",title:"Инструменты",trigger:"Инструменты",intro:"Справка и сопутствующие сервисы",links:[["?","Спросите эксперта","/text2me/request/"],["▤","Мои документы","/text2me/space/"],["§","Правовые источники","/text2me/law/"],["▦","Календарь и сроки","/text2me/calendar/"],["∑","Таблицы и расчёты","/text2me/calculators/"],["⌖","Адреса и учреждения","/text2me/data-engine/"],["↗","Новости России","https://government.ru/news/"],["i","Помощь по сайту","/text2me/start/"]]}
+];
+rails.forEach(function(d){
+ var trigger=document.createElement("button");trigger.type="button";trigger.className="text2me-rail-trigger "+d.cls+"-trigger";trigger.textContent=d.trigger;trigger.setAttribute("aria-controls",d.id);trigger.setAttribute("aria-expanded","false");
+ var panel=document.createElement("aside");panel.className="text2me-rail "+d.cls;panel.id=d.id;panel.hidden=true;panel.setAttribute("role","dialog");panel.setAttribute("aria-modal","true");panel.setAttribute("aria-label",d.title);
+ var heading=document.createElement("div");heading.className="text2me-rail-heading";
+ var h=document.createElement("h2");h.textContent=d.title;
+ var close=document.createElement("button");close.type="button";close.className="text2me-rail-close";close.textContent="Закрыть";close.setAttribute("aria-label","Закрыть панель "+d.title);
+ heading.append(h,close);
+ var p=document.createElement("p");p.textContent=d.intro;panel.append(heading,p);
+ d.links.forEach(function(x){var a=document.createElement("a");a.href=x[2];if(x[2].indexOf("http")===0){a.target="_blank";a.rel="noopener noreferrer";}var m=document.createElement("span");m.className="rail-mark";m.textContent=x[0];m.setAttribute("aria-hidden","true");var t=document.createElement("span");t.textContent=x[1];a.append(m,t);panel.appendChild(a);});
+ function shut(){panel.hidden=true;trigger.setAttribute("aria-expanded","false");trigger.focus();}
+ trigger.addEventListener("click",function(){document.querySelectorAll(".text2me-rail").forEach(function(other){other.hidden=true;});document.querySelectorAll(".text2me-rail-trigger").forEach(function(other){other.setAttribute("aria-expanded","false");});panel.hidden=false;trigger.setAttribute("aria-expanded","true");close.focus();});
+ close.addEventListener("click",shut);
+ document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!panel.hidden)shut();});
+ document.body.append(trigger,panel);
+});
 }
 if(!document.querySelector(".text2me-selection-tools")){
 var bar=document.createElement("div");bar.className="text2me-selection-tools";bar.hidden=true;bar.setAttribute("role","toolbar");bar.setAttribute("aria-label","Действия с выделенным текстом");[["copy","Копировать"],["share","Поделиться"],["print","Печать"]].forEach(function(x){var b=document.createElement("button");b.type="button";b.dataset.action=x[0];b.textContent=x[1];bar.appendChild(b);});document.body.appendChild(bar);var selected="";
@@ -87,9 +102,7 @@ if(act==="print"){var w=window.open("","_blank");if(w){w.document.write("<!docty
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addUtilities);else addUtilities();
 })();
 
-/* Mobile equivalent of persistent side rails */
-(function(){function addMobileActions(){if(document.querySelector(".text2me-mobile-actions"))return;var nav=document.createElement("nav");nav.className="text2me-mobile-actions";nav.setAttribute("aria-label","Быстрый доступ");[["Создать документ","/text2me/documents/"],["Описать ситуацию","/text2me/people/"],["Спросить эксперта","/text2me/request/"],["Календарь","/text2me/calendar/"]].forEach(function(x){var a=document.createElement("a");a.href=x[1];a.textContent=x[0];nav.appendChild(a);});document.body.appendChild(nav);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addMobileActions);else addMobileActions();})();
-
+/* Side-panel triggers are responsive; no duplicate mobile action strip. */
 /* Official public-resource links in the footer; the third-party counter is linked, not embedded. */
 (function(){
  "use strict";
@@ -123,18 +136,25 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 (function(){
  "use strict";
  function addGlobalAudience(){
-  var currentPath=window.location.pathname.replace(/\/+$/, "")||"/text2me";
-  if((currentPath==="/text2me"||currentPath==="/")&&document.querySelector(".mockup-role-row"))return;
+  var existingHome=document.querySelector(".reference-audience");
+  if(existingHome){
+   existingHome.classList.add("global-audience-switcher");
+   existingHome.querySelectorAll("a.mockup-role-card").forEach(function(a){
+    a.classList.add("global-audience-card");
+    a.querySelectorAll(".reference-open").forEach(function(n){n.remove();});
+   });
+   return;
+  }
   if(document.querySelector(".global-audience-switcher"))return;
-  var header=document.querySelector(".portal-shell-header,body > header");
-  if(!header||header.querySelector(".portal-shell-audience"))return;
+  var header=document.querySelector(".portal-shell-header,.reference-header,.portal-header,.site-header,body > header");
+  if(!header)return;
   var section=document.createElement("nav");
   section.className="global-audience-switcher";
-  section.setAttribute("aria-label","Выберите тип пользователя");
+  section.setAttribute("aria-label","Выберите рабочее пространство");
   var items=[
-   {href:"/text2me/people/",icon:"♙",title:"Физическим лицам",desc:"Защита прав, жизненные ситуации, жильё, семья, работа и личные тексты",cta:"Открыть раздел"},
-   {href:"/text2me/ip/",icon:"▦",title:"Индивидуальным предпринимателям",desc:"Договоры, акты, клиенты, поставщики, налоги и деловая переписка",cta:"Открыть раздел"},
-   {href:"/text2me/business/",icon:"▤",title:"Юридическим лицам",desc:"Документы организации, договорная работа, претензии и корпоративные вопросы",cta:"Открыть раздел"}
+   {href:"/text2me/people/",icon:"♙",title:"Физическим лицам",desc:"Жизненные ситуации, жильё, семья, работа и личные документы"},
+   {href:"/text2me/ip/",icon:"▦",title:"Индивидуальным предпринимателям",desc:"Договоры, акты, налоги и деловая переписка"},
+   {href:"/text2me/business/",icon:"▤",title:"Юридическим лицам",desc:"Документы организации, претензии и корпоративные вопросы"}
   ];
   items.forEach(function(item){
    var a=document.createElement("a");a.className="global-audience-card";a.href=item.href;
@@ -142,8 +162,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
    var copy=document.createElement("span");copy.className="global-audience-copy";
    var title=document.createElement("strong");title.textContent=item.title;
    var desc=document.createElement("small");desc.textContent=item.desc;
-   var cta=document.createElement("em");cta.textContent=item.cta+" →";
-   copy.append(title,desc,cta);a.append(icon,copy);section.appendChild(a);
+   copy.append(title,desc);a.append(icon,copy);section.appendChild(a);
   });
   header.insertAdjacentElement("afterend",section);
  }
@@ -181,7 +200,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
    var kind=document.createElement("span");kind.className="text2me-service-kind";kind.textContent=item.kind;
    copy.append(title,desc,kind);a.appendChild(copy);nav.appendChild(a);
   });
-  header.insertAdjacentElement("afterend",nav);
+  header.parentNode.insertBefore(nav,header);
  }
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",addServiceNetwork);else addServiceNetwork();
 })();
