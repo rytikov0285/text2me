@@ -60,13 +60,16 @@ function syncCrm(data){
    if(at>=0)x[k].splice(at,1);
    if(k==="cases"){
     ["documents","tasks","events"].forEach(function(q){x[q].forEach(function(z){if(z.caseId===o.id)z.caseId=""})});
+    (data.items||[]).forEach(function(i){if(i.caseId===o.id)i.caseId="";if(i.case===o.title)i.case=""});
    }
    if(k==="documents"){
     ["tasks","events"].forEach(function(q){x[q].forEach(function(z){if(z.documentId===o.id)z.documentId=""})});
+    (data.items||[]).forEach(function(i){if(i.documentId===o.id)i.documentId=""});
     if(o.libraryId){var lib=safeParse("text2me.space.v1",[]);if(Array.isArray(lib)){lib=lib.filter(function(d){return d.id!==o.libraryId});try{localStorage.setItem("text2me.space.v1",JSON.stringify(lib))}catch(e){}}}
    }
    if(k==="contacts"){
     ["cases","documents"].forEach(function(q){x[q].forEach(function(z){z.contactIds=(z.contactIds||[]).filter(function(cid){return cid!==o.id})})});
+    (data.items||[]).forEach(function(i){i.contactIds=(i.contactIds||[]).filter(function(cid){return cid!==o.id})});
    }
    log(x,"Удалена запись: "+(o.title||o.name||o.id),o);
   });
