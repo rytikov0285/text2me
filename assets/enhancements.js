@@ -34,6 +34,7 @@ document.querySelectorAll(".brand,.dash-logo").forEach(function(b){
 var primaryLinks=[
 ["/text2me/space/","Моё пространство"],
 ["/text2me/documents/","Документы"],
+ ["/text2me/documents/library/","Библиотека шаблонов"],
 ["/text2me/prompts/#personal-prompts","Личное"],
 ["/text2me/guides/","Инструкции"],
 ["/text2me/people/","Гражданам"],
