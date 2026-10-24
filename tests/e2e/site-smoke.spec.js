@@ -70,6 +70,26 @@ test.describe("text2me published-site smoke tests", () => {
     await form.locator('select[name="contactIds"]').selectOption({ label: "Контакт E2E" });
     await form.locator('button[type="submit"]').click();
     await expect(board).toContainText("Задача E2E");
+
+    await newButton.click();
+    await form.locator('select[name="type"]').selectOption("Документ");
+    await form.locator('input[name="title"]').fill("Документ E2E");
+    await form.locator('select[name="caseId"]').selectOption({ label: "Дело E2E" });
+    await form.locator('select[name="contactIds"]').selectOption({ label: "Контакт E2E" });
+    await form.locator('button[type="submit"]').click();
+    await expect(board).toContainText("Документ E2E");
+
+    await page.goto(baseURL + "/calendar/", { waitUntil: "domcontentloaded" });
+    await page.locator("#add").click();
+    await page.locator("#name").fill("Событие E2E");
+    await page.locator("#eventCase").selectOption({ label: "Дело E2E" });
+    await page.locator("#eventDocument").selectOption({ label: "Документ E2E" });
+    await page.locator("#eventContacts").selectOption({ label: "Контакт E2E" });
+    await page.locator('#form button[type="submit"]').click();
+    await expect(page.locator("#events")).toContainText("Событие E2E");
+    await expect(page.locator("#events")).toContainText("Дело: Дело E2E");
+    await expect(page.locator("#events")).toContainText("Документ: Документ E2E");
+    await expect(page.locator("#events")).toContainText("Контакты: Контакт E2E");
   });
 
   test("shared navigation avoids duplicate audience and quick-access links", async ({ page }) => {
