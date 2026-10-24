@@ -99,7 +99,7 @@ if(currentPath!=="/text2me"&&currentPath!=="/text2me/index.html"&&currentPath!==
   var side=document.createElement("aside");side.className="t2m-global-sidebar";side.setAttribute("aria-label","Основное меню");
   var sideNav=document.createElement("nav");sideNav.setAttribute("aria-label","Основное меню");
   var sideLinks=[
-   ["⌂","Главная","/text2me/"],["⊕","Создать документ","/text2me/documents/"],["⌕","Документ по ситуации","/text2me/situations/"],["⚖","Правовая база","/text2me/knowledge/"],["▦","Календарь и сроки","/text2me/calendar/"],["▤","Расчёты и госпошлины","/text2me/calculators/"],["◇","Проверка контрагентов","/text2me/business/"],["▣","База знаний","/text2me/knowledge/"],["✳","Профильные эксперты","/text2me/experts/"],["♧","Спросите эксперта по сайту","/text2me/request/"]
+   ["⌂","Главная","/text2me/"],["⊕","Создать документ","/text2me/documents/"],["⌕","Документ по ситуации","/text2me/situations/"],["⚖","Правовая база","/text2me/knowledge/"],["▦","Календарь и сроки","/text2me/calendar/"],["▤","Расчёты и госпошлины","/text2me/calculators/"],["◇","Проверка контрагентов","/text2me/business/"],["♧","Спросите эксперта по сайту","/text2me/request/"]
   ];
   sideLinks.forEach(function(item){var a=document.createElement("a");a.href=item[2];var mark=document.createElement("span");mark.className="t2m-global-sidebar-icon";mark.setAttribute("aria-hidden","true");mark.textContent=item[0];var label=document.createElement("span");label.textContent=item[1];a.append(mark,label);if(currentPath===item[2].replace(/\/+$/,""))a.setAttribute("aria-current","page");sideNav.appendChild(a);});
   side.appendChild(sideNav);document.body.appendChild(side);
