@@ -846,3 +846,13 @@ body:has(.portal-shell-header) .t2m-breadcrumbs [aria-current=page]{color:#193a5
 .text2me-service-brand-main,.text2me-service-brand-tail{color:#176bc0}
 .text2me-service-brand-mark{color:#142b4c}
 .text2me-service-domain{margin-left:2px;color:#5d6873;font-size:.8em;letter-spacing:0}
+
+
+/* Persistent main menu for internal pages; the homepage uses its native sticky sidebar. */
+.t2m-global-sidebar{position:fixed;left:72px;top:142px;bottom:18px;width:160px;z-index:39;overflow:auto;padding:9px;background:#fff;border:1px solid #d4d9de;border-radius:10px;box-shadow:0 4px 16px rgba(24,42,56,.06);font:12px/1.35 Arial,"Segoe UI",sans-serif}
+.t2m-global-sidebar nav{display:flex;flex-direction:column;gap:4px}
+.t2m-global-sidebar a{display:flex;align-items:flex-start;gap:7px;min-width:0;padding:8px 6px;border:1px solid transparent;border-radius:7px;color:#273640;text-decoration:none;font-weight:700}
+.t2m-global-sidebar a:hover,.t2m-global-sidebar a[aria-current=page]{background:#eef1f3;border-color:#d4d9de;color:#202a33}
+.t2m-global-sidebar-icon{display:inline-grid;place-items:center;flex:0 0 22px;width:22px;height:22px;border-radius:5px;background:#eef1f3;color:#315c7b;font-size:15px}
+@media(max-width:1199px){.t2m-global-sidebar{display:none!important}}
+@media(max-height:620px){.t2m-global-sidebar{top:90px}}
