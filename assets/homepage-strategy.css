@@ -282,3 +282,6 @@ body{font-size:14px;line-height:1.45}
 .reference-header-space{order:8!important;display:inline-flex!important;align-items:center;justify-content:center;min-width:132px;background:#fff!important;color:#243746!important;border:1px solid #aebbc8!important}
 .reference-header-space:hover{background:#eef1f3!important;color:#202a33!important}
 @media(max-width:800px){.reference-header-space{display:inline-flex!important;order:8!important;flex:1 1 100%!important}}
+
+.reference-header-link.reference-header-space[href="/text2me/space/"]{order:8!important;background:#fff!important;color:#243746!important;border-color:#aebbc8!important;min-width:132px!important}
+.reference-header-link.reference-header-space[href="/text2me/space/"]:hover{background:#eef1f3!important;color:#202a33!important}
