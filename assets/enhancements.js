@@ -670,25 +670,26 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 function installContextualLinks(){
  if(document.getElementById("text2me-related-panel"))return;
  var path=(location.pathname||"/").replace(/index\.html$/,"").replace(/\/+$/,"")||"/text2me";
+ var routePath=path.replace(/^\/text2me(?=\/|$)/,"")||"/";
  var text=(document.querySelector("main")||document.body).innerText.toLowerCase();
  var cards=[];
  function add(title,desc,url){if(!cards.some(function(x){return x.url===url}))cards.push({title:title,desc:desc,url:url})}
  add("Документы и шаблоны","Найдите заявление, претензию, договор или другой документ.","/text2me/documents/");
  add("Мои документы","Сохраните файлы и продолжите работу с черновиками в этом браузере.","/text2me/space/");
- if(path.indexOf("/situations")===0||/ситуац|что делать|возврат|некачествен|потребител|продавц/.test(text)){
+ if(routePath.indexOf("/situations")===0||/ситуац|что делать|возврат|некачествен|потребител|продавц/.test(text)){
   add("Претензия продавцу","Подготовьте обращение по поводу товара или услуги.","/text2me/documents/pretenziya-prodavtsu/");
   add("Жизненные ситуации","Выберите ситуацию и посмотрите возможные следующие шаги.","/text2me/situations/");
  }
- if(path.indexOf("/documents/isk-v-sud")===0||/иск в суд|судебн|исковое заявление|судопроизводств/.test(text)){
+ if(routePath.indexOf("/documents/isk-v-sud")===0||/иск в суд|судебн|исковое заявление|судопроизводств/.test(text)){
   add("Исковое заявление","Откройте конструктор судебного документа.","/text2me/documents/isk-v-sud/");
   add("Правовая база","Проверьте правовую тему и связанные официальные источники.","/text2me/law/");
   add("Календарь сроков","Зафиксируйте заседание, дату подачи или другой срок.","/text2me/calendar/");
  }
- if(path.indexOf("/documents/dogovor-arendy")===0||/аренд|найм жилья|договор аренды/.test(text)){
+ if(routePath.indexOf("/documents/dogovor-arendy")===0||/аренд|найм жилья|договор аренды/.test(text)){
   add("Договор аренды","Откройте документ для согласования условий аренды.","/text2me/documents/dogovor-arendy/");
   add("Жилищные ситуации","Посмотрите материалы по вопросам жилья и коммунальных услуг.","/text2me/situations/#housing");
  }
- if(/госуслуг|государственн|мфц|паспорт|регистраци[яию]|пособи|пенси|социальн|запись к врачу|записаться к врачу|госорган/.test(text)||path==="/text2me/law"||path.indexOf("/situations/")===0&&/государств|госуслуг|мфц/.test(text)){
+ if(/госуслуг|государственн|мфц|паспорт|регистраци[яию]|пособи|пенси|социальн|запись к врачу|записаться к врачу|госорган/.test(text)||routePath==="/law"||routePath.indexOf("/situations/")===0&&/государств|госуслуг|мфц/.test(text)){
   add("Госуслуги — официальный портал","Перейдите к государственным и муниципальным услугам на официальном портале.","https://www.gosuslugi.ru/");
  }
  if(/налог|деклараци[яию]|фнс/.test(text)){
@@ -700,7 +701,7 @@ function installContextualLinks(){
  if(/затоплен|залив квартир|жкх|коммунальн|управляющ[аяей]+ компани/.test(text)){
   add("Залив квартиры и ЖКХ","Соберите информацию и выберите дальнейший шаг по жилищной ситуации.","/text2me/situations/#housing");
  }
- if(path==="/text2me"||path==="/text2me/"){
+ if(routePath==="/"){
   add("Рабочий стол","Объедините дела, задачи, события и ссылки на документы.","/text2me/dashboard/");
   add("Календарь","Отслеживайте события и задачи со сроками.","/text2me/calendar/");
   add("Госуслуги","Официальный портал государственных и муниципальных услуг.","https://www.gosuslugi.ru/");
