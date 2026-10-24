@@ -27,6 +27,14 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Check critical JavaScript syntax
+        run: |
+          node --check assets/portal-shell.js
+          node --check assets/enhancements.js
+          node --check assets/main.js
+          node --check assets/document-workflow.js
+          node --check assets/dadata-config.js
+
       - name: Write deployment marker
         env:
           DEPLOY_COMMIT: ${{ github.sha }}

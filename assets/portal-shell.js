@@ -122,7 +122,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 (function(){
  "use strict";
  function addGlobalAudience(){
-  var currentPath=window.location.pathname.replace(/\\/+$/, "")||"/text2me";
+  var currentPath=window.location.pathname.replace(/\/+$/, "")||"/text2me";
   if((currentPath==="/text2me"||currentPath==="/")&&document.querySelector(".mockup-role-row"))return;
   if(document.querySelector(".global-audience-switcher"))return;
   var header=document.querySelector(".portal-shell-header,body > header");
@@ -132,7 +132,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   section.setAttribute("aria-label","Выберите тип пользователя");
   var items=[
    {href:"/text2me/people/",icon:"♙",title:"Физическим лицам",desc:"Защита прав, жизненные ситуации, жильё, семья, работа и личные тексты",cta:"Открыть раздел"},
-   {href:"/text2me/business/",icon:"▦",title:"Индивидуальным предпринимателям",desc:"Договоры, акты, клиенты, поставщики, налоги и деловая переписка",cta:"Открыть раздел"},
+   {href:"/text2me/ip/",icon:"▦",title:"Индивидуальным предпринимателям",desc:"Договоры, акты, клиенты, поставщики, налоги и деловая переписка",cta:"Открыть раздел"},
    {href:"/text2me/business/",icon:"▤",title:"Юридическим лицам",desc:"Документы организации, договорная работа, претензии и корпоративные вопросы",cta:"Открыть раздел"}
   ];
   items.forEach(function(item){

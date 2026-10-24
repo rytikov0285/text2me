@@ -5,6 +5,8 @@ const html = readFileSync("dashboard/index.html", "utf8");
 const schema = JSON.parse(readFileSync("data-engine/user-workspace-schema.json", "utf8"));
 const calendar = readFileSync("calendar/index.html", "utf8");
 const enhancements = readFileSync("assets/enhancements.js", "utf8");
+const portalShell = readFileSync("assets/portal-shell.js", "utf8");
+const homePage = readFileSync("index.html", "utf8");
 const sitemap = readFileSync("sitemap.xml", "utf8");
 const requiredIds = [
   "taskList", "eventList", "caseList", "entryForm", "exportData",
@@ -43,10 +45,14 @@ const cEnd = calendar.lastIndexOf("</script>");
 assert.ok(cStart >= 0 && cEnd > cStart, "Calendar script not found");
 new Function(calendar.slice(cStart + 8, cEnd));
 new Function(enhancements);
+new Function(portalShell);
 assert.ok(enhancements.includes('["/text2me/calendar/","Календарь"]'), "Calendar navigation link is missing");
 assert.ok(!sitemap.includes("https://rytikov0285.github.io/text2me/space/"), "Noindex personal workspace must not be listed in sitemap");
 assert.ok(!sitemap.includes("https://rytikov0285.github.io/text2me/request/"), "Noindex request form must not be listed in sitemap");
 assert.ok(sitemap.includes("https://rytikov0285.github.io/text2me/situations/zatoplenie-kvartiry/"), "Indexable flood-situation page must remain in sitemap");
+assert.ok(portalShell.includes('{href:"/text2me/ip/",icon:"▦",title:"Индивидуальным предпринимателям"'), "Global individual-entrepreneur card must link to the IP workspace");
+assert.ok(homePage.includes('<a class="mockup-role-card" href="/text2me/ip/">\\n      <span class="mockup-role-icon" aria-hidden="true">▣</span>\\n      <span class="mockup-role-copy"><strong>Индивидуальным предпринимателям</strong>'), "Homepage individual-entrepreneur card must link to the IP workspace");
+assert.ok(portalShell.includes('{href:"/text2me/business/",icon:"▤",title:"Юридическим лицам"'), "Legal-entity card must remain linked to the organization workspace");
 assert.ok(enhancements.includes('var routePath=path.replace(/^\\/text2me(?=\\/|$)/,"")||"/";'), "Contextual links must normalize the GitHub Pages base path");
 assert.ok(enhancements.includes('if(routePath.indexOf("/situations")===0||'), "Situation contextual links must match normalized routes");
 assert.ok(enhancements.includes('if(routePath.indexOf("/documents/isk-v-sud")===0||'), "Court-document contextual links must match normalized routes");
