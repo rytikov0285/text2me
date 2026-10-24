@@ -203,3 +203,16 @@ body{font-size:14px;line-height:1.45}
 
 .reference-open{top:16px;right:14px;margin:0;transform:none}
 @media(max-width:1050px){.reference-open{top:auto;right:auto}}
+
+
+/* Homepage refinements requested in AI review tasks. */
+.reference-header{position:sticky;top:0;z-index:900}
+.reference-header-tagline{font-size:14px;line-height:1.4}
+.reference-header-search .workspace-search-submit{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:9px 16px;font-size:18px;font-weight:850;letter-spacing:.01em}
+.reference-header-search .workspace-search-submit span{font-size:27px;line-height:1}
+.reference-header-search input{font-size:15px;min-height:42px}
+.reference-trust{width:100%;max-width:none;grid-template-columns:minmax(0,1fr);margin:24px 0;padding:17px 20px;border:1px solid #dce4ee;border-radius:10px;background:#fff;box-sizing:border-box}
+.reference-trust>div{min-width:0}
+.reference-trust strong{font-size:14px;line-height:1.45}
+.reference-trust span{font-size:13px;line-height:1.5}
+@media(max-width:800px){.reference-header{grid-template-columns:auto minmax(0,1fr);gap:10px;padding:10px 14px}.reference-header-tagline{display:block;font-size:12px}.reference-header-search{grid-column:1/-1;grid-row:2}.reference-header-contact,.reference-header-link{display:none}.reference-header-search .workspace-search-submit{font-size:16px;padding:8px 12px}}
