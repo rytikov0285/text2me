@@ -5,7 +5,7 @@ function initPortalShell(){
  var isHome=path==="/text2me"||path==="/";
  var audience=path==="/text2me/people"||path==="/text2me"||path==="/"?"citizens":path==="/text2me/ip"?"ip":path==="/text2me/business"?"business":path==="/text2me/lawyer"?"business":"";
  if(path.indexOf("/text2me/documents/pretenziya-prodavtsu")===0||path.indexOf("/text2me/documents/isk-v-sud")===0||path.indexOf("/text2me/documents/dogovor-arendy")===0)audience="citizens";
- if(!document.querySelector("script[data-t2m-ai-review]")){var aiReviewScript=document.createElement("script");aiReviewScript.src="/text2me/assets/ai-block-review.js?v=1";aiReviewScript.defer=true;aiReviewScript.dataset.t2mAiReview="1";document.head.appendChild(aiReviewScript);}
+ if(!document.querySelector("script[data-t2m-ai-review]")){var aiReviewScript=document.createElement("script");aiReviewScript.src="/text2me/assets/ai-block-review.js?v=2";aiReviewScript.defer=true;aiReviewScript.dataset.t2mAiReview="1";document.head.appendChild(aiReviewScript);}
  var params=new URLSearchParams(window.location.search);
  if(!document.querySelector("script[data-t2m-document-workflow]")){var workflowScript=document.createElement("script");workflowScript.src="/text2me/assets/document-workflow.js?v=workflow3";workflowScript.defer=true;workflowScript.dataset.t2mDocumentWorkflow="1";document.head.appendChild(workflowScript);}
  if(path==="/text2me/documents"&&params.get("audience")==="citizens")audience="citizens";
