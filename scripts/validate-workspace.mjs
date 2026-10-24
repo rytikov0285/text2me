@@ -7,6 +7,8 @@ const calendar = readFileSync("calendar/index.html", "utf8");
 const enhancements = readFileSync("assets/enhancements.js", "utf8");
 const portalShell = readFileSync("assets/portal-shell.js", "utf8");
 const homePage = readFileSync("index.html", "utf8");
+const guidesPage = readFileSync("guides/index.html", "utf8");
+const sourcesPage = readFileSync("sources/index.html", "utf8");
 const sitemap = readFileSync("sitemap.xml", "utf8");
 const requiredIds = [
   "taskList", "eventList", "caseList", "entryForm", "exportData",
@@ -53,6 +55,8 @@ assert.ok(sitemap.includes("https://rytikov0285.github.io/text2me/situations/zat
 assert.ok(portalShell.includes('{href:"/text2me/ip/",icon:"▦",title:"Индивидуальным предпринимателям"'), "Global individual-entrepreneur card must link to the IP workspace");
 assert.ok(homePage.includes('<a class="mockup-role-card" href="/text2me/ip/">\n      <span class="mockup-role-icon" aria-hidden="true">▣</span>\n      <span class="mockup-role-copy"><strong>Индивидуальным предпринимателям</strong>'), "Homepage individual-entrepreneur card must link to the IP workspace");
 assert.ok(portalShell.includes('{href:"/text2me/business/",icon:"▤",title:"Юридическим лицам"'), "Legal-entity card must remain linked to the organization workspace");
+assert.ok(!guidesPage.includes('href="/text2me/#situations"') && guidesPage.includes('href="/text2me/situations/"'), "Guides must link to the existing situations page, not a missing homepage fragment");
+assert.ok(!sourcesPage.includes('href="/text2me/#situations"') && sourcesPage.includes('href="/text2me/situations/"'), "Sources must link to the existing situations page, not a missing homepage fragment");
 assert.ok(enhancements.includes('var routePath=path.replace(/^\\/text2me(?=\\/|$)/,"")||"/";'), "Contextual links must normalize the GitHub Pages base path");
 assert.ok(enhancements.includes('if(routePath.indexOf("/situations")===0||'), "Situation contextual links must match normalized routes");
 assert.ok(enhancements.includes('if(routePath.indexOf("/documents/isk-v-sud")===0||'), "Court-document contextual links must match normalized routes");
