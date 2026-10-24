@@ -97,7 +97,17 @@ function upsertLibraryDocument(doc){var x=read(),stamp=now(),caseItem=doc.caseId
 function linkContactToCase(caseId,name,details){name=String(name||"").trim();if(!name)return null;details=details||{};var x=read(),c=byId(x.cases,caseId);if(!c)return null;var contact=x.contacts.find(function(o){return String(o.name||o.title||"").trim().toLocaleLowerCase("ru")===name.toLocaleLowerCase("ru")});if(!contact){contact={id:uid("contact"),type:"contact",title:name,name:name,kind:details.organization?"organization":"party",createdAt:now(),updatedAt:now()};x.contacts.unshift(contact);log(x,"Создан контакт из реквизитов документа: "+name,contact)}contact.email=details.email||contact.email||"";contact.phone=details.phone||contact.phone||"";contact.organization=details.organization||contact.organization||"";contact.updatedAt=now();c.contactIds=validContactIds(x,c.contactIds);if(c.contactIds.indexOf(contact.id)<0)c.contactIds.push(contact.id);c.updatedAt=now();["documents","tasks","events"].forEach(function(k){x[k].forEach(function(o){if(o.caseId===caseId){o.contactIds=validContactIds(x,o.contactIds);if(o.contactIds.indexOf(contact.id)<0)o.contactIds.push(contact.id)}})});log(x,"Контакт «"+name+"» связан с делом",c);write(x);return contact}
 
 
-function removeEntity(collection,id){var x=read(),arr=x[collection];if(!Array.isArray(arr))return false;var item=byId(arr,id);if(!item)return false;arr.splice(arr.indexOf(item),1);if(collection==="cases"){["documents","tasks","events"].forEach(function(k){x[k].forEach(function(o){if(o.caseId===id)o.caseId=""})})}if(collection==="documents"){["tasks","events"].forEach(function(k){x[k].forEach(function(o){if(o.documentId===id)o.documentId=""})})}if(collection==="contacts"){["cases","documents","tasks","events"].forEach(function(k){x[k].forEach(function(o){o.contactIds=(o.contactIds||[]).filter(function(cid){return cid!==id})})})}log(x,"Удалена запись: "+(item.title||item.name||id),item);return write(x)}
+function removeEntity(collection,id){
+ var x=read(),arr=x[collection];if(!Array.isArray(arr))return false;
+ var item=byId(arr,id);if(!item)return false;arr.splice(arr.indexOf(item),1);
+ if(collection==="cases"){["documents","tasks","events"].forEach(function(k){x[k].forEach(function(o){if(o.caseId===id)o.caseId=""})})}
+ if(collection==="documents"){
+  ["tasks","events"].forEach(function(k){x[k].forEach(function(o){if(o.documentId===id)o.documentId=""})});
+  x.documents.forEach(function(o){if(o.id!==id&&o.documentId===id){o.documentId="";if(!o.libraryDocumentId&&item.libraryId)o.libraryDocumentId=item.libraryId}});
+ }
+ if(collection==="contacts"){["cases","documents","tasks","events"].forEach(function(k){x[k].forEach(function(o){o.contactIds=(o.contactIds||[]).filter(function(cid){return cid!==id})})})}
+ log(x,"Удалена запись: "+(item.title||item.name||id),item);return write(x);
+}
 
 function attachDocumentToCase(documentId,caseId){var x=read(),d=byId(x.documents,documentId),c=byId(x.cases,caseId);if(!d||!c)return false;d.caseId=c.id;d.updatedAt=now();log(x,"Документ «"+d.title+"» привязан к делу «"+c.title+"»",d);return write(x)}
 function get(){return read()}
