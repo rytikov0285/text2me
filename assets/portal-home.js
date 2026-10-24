@@ -17,8 +17,8 @@ var synonyms={
 };
 function tokensOf(q){
  var raw=(q||"").toLocaleLowerCase("ru-RU").split(/[^\p{L}\p{N}]+/u).filter(Boolean),out=[];
- raw.forEach(function(t){if(t.length<2||stopWords.indexOf(t)>=0)return;out.push(t);(synonyms[t]||[]).forEach(function(s){out.push(s)})});
- return Array.from(new Set(out));
+ raw.forEach(function(t){if(t.length<2||stopWords.indexOf(t)>=0)return;out.push({term:t,group:t});(synonyms[t]||[]).forEach(function(s){out.push({term:s,group:t})})});
+ return out.filter(function(item,index,arr){return arr.findIndex(function(other){return other.term===item.term})===index;});
 }
 function search(q){
  q=(q||"").trim();
@@ -29,8 +29,10 @@ function search(q){
  if(!tokens.length)tokens=[q.toLocaleLowerCase("ru-RU")];
  var ranked=searchable.map(function(el){
   var text=(el.textContent+" "+(el.getAttribute("data-keywords")||"")).toLocaleLowerCase("ru-RU");
-  var matched=tokens.filter(function(t){return text.indexOf(t)>=0});
-  return {el:el,score:matched.length,matched:matched.length===tokens.length};
+  var groups={},matched=0,exact=0;
+  tokens.forEach(function(item){if(text.indexOf(item.term)>=0){groups[item.group]=true;if(item.term===item.group)exact++;}});
+  matched=Object.keys(groups).length;
+  return {el:el,score:matched*3+exact,matched:matched===new Set(tokens.map(function(item){return item.group;})).size};
  }).filter(function(x){return x.score>0}).sort(function(a,b){return Number(b.matched)-Number(a.matched)||b.score-a.score});
  var hits=ranked.slice(0,10).map(function(x){return x.el});
  results.classList.remove("portal-hidden");
