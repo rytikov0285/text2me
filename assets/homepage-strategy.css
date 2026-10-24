@@ -1,0 +1,35 @@
+/* Homepage strategy layer — clearer task-first hierarchy and consistent responsive cards. */
+.reference-header-tagline{font-size:13px;line-height:1.35;color:#5b6b7d;max-width:145px}
+.reference-greeting{max-width:900px}
+.reference-greeting h1{max-width:850px;text-wrap:balance}
+.reference-home-lead{max-width:760px;font-size:16px;line-height:1.65;color:#53657a;margin:10px 0 18px}
+.reference-task-search{box-shadow:0 14px 34px rgba(20,50,85,.08)}
+.reference-task-search textarea{font-size:15px;line-height:1.55;min-height:100px}
+.reference-search-bottom{gap:16px}
+.reference-search-bottom>span{font-size:12px;line-height:1.5}
+.reference-search-bottom button{white-space:nowrap}
+.reference-examples{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 25px}
+.reference-examples strong{font-size:12px;color:#4d6075;margin-right:3px}
+.reference-examples a{display:inline-flex;align-items:center;padding:7px 10px;border:1px solid #d8e3f1;border-radius:999px;background:#fff;color:#214b79;font-size:12px;text-decoration:none;line-height:1.3}
+.reference-examples a:hover{border-color:#7fa3d1;background:#f2f7ff}
+.home-workflow,.home-scope{margin-top:28px}
+.home-workflow .reference-section-heading,.home-scope .reference-section-heading{align-items:flex-end}
+.home-workflow .reference-section-heading p,.home-scope .reference-section-heading p{margin:6px 0 0;color:#617287;font-size:13px;line-height:1.5}
+.home-workflow-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.home-workflow-grid>a{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-width:0;padding:17px;background:#fff;border:1px solid #d8e0e8;border-radius:14px;text-decoration:none;color:#1b2c40;transition:border-color .15s,transform .15s}
+.home-workflow-grid>a:hover{border-color:#91afd5;transform:translateY(-1px)}
+.home-step-number{display:grid;place-items:center;width:31px;height:31px;border-radius:9px;background:#eaf1ff;color:#205b91;font-size:11px;font-weight:850}
+.home-workflow-grid strong,.home-scope-grid strong{font-size:14px;line-height:1.4}
+.home-workflow-grid small{font-size:12px;line-height:1.55;color:#5b6b7d}
+.home-scope-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.home-scope-grid>a{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;padding:17px;background:#fff;border:1px solid #d8e0e8;border-radius:14px;text-decoration:none;color:#1b2c40}
+.home-scope-grid span{font-size:12px;line-height:1.55;color:#5b6b7d;flex:1}
+.home-scope-grid em{font-style:normal;color:#205b91;font-size:12px;font-weight:800;margin-top:4px}
+.home-scope-grid>a:hover{border-color:#91afd5;background:#fbfdff}
+.home-honesty{display:flex;gap:11px;align-items:flex-start;margin-top:20px;padding:14px 16px;border:1px solid #d8e0e8;border-radius:12px;background:#f1f5f9;color:#42566c}
+.home-honesty>span{font-size:18px;font-weight:800;color:#205b91;line-height:1.2}
+.home-honesty p{margin:0;font-size:12px;line-height:1.65}
+.home-honesty strong{color:#1b2c40}
+@media(max-width:1100px){.home-workflow-grid,.home-scope-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.reference-header-tagline{display:none}}
+@media(max-width:700px){.home-workflow-grid,.home-scope-grid{grid-template-columns:1fr}.reference-home-lead{font-size:15px}.reference-search-bottom{align-items:stretch;flex-direction:column}.reference-search-bottom button{width:100%}.reference-examples{align-items:flex-start}.home-workflow-grid>a,.home-scope-grid>a{padding:15px}}
+@media(prefers-reduced-motion:reduce){.home-workflow-grid>a{transition:none}}
