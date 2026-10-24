@@ -264,6 +264,79 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 @media(max-width:950px){.reference-header{grid-template-columns:auto 1fr auto;gap:12px;padding:12px 16px}.reference-header-tagline{display:none}.reference-header-search{grid-column:1/-1;grid-row:2}.workspace-layout{grid-template-columns:220px minmax(0,1fr)}.workspace-aside{grid-column:2;position:static}.workspace-sidebar{position:static}.audience-switcher{padding:0 16px}.reference-document-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.reference-header{grid-template-columns:1fr auto auto}.reference-logo{font-size:30px}.reference-header-link{font-size:12px}.workspace-layout{display:flex;flex-direction:column;padding:0 10px}.workspace-sidebar,.workspace-main,.workspace-aside{width:100%;position:static}.workspace-main{padding:16px 13px}.audience-switcher{grid-template-columns:1fr;padding:0 10px;margin:12px auto}.audience-card{min-height:auto}.audience-copy strong{font-size:15px}.reference-greeting h1{font-size:25px}.reference-greeting p{font-size:17px}.reference-document-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.reference-trust div{display:flex;width:100%;padding:5px 0}.dash-footer{margin:18px 10px 0}.dash-footer-catalog{gap:10px}}
 
+
+/* Final product-oriented polish: readable typography, honest affordances, responsive workspace */
+:root{--blue-main:#145bb8;--blue-icon:#1766c5;--bg-body:#f3f5f8;--border-color:#e1e6ed;--text-muted:#5d6878}
+html{scroll-behavior:smooth}
+body{font-size:15px;line-height:1.55;color:#172438}
+.dash-shell{max-width:none;padding-bottom:28px;background:#f3f5f8}
+.reference-header{min-height:78px;grid-template-columns:auto minmax(155px,200px) minmax(280px,1fr) auto auto;gap:20px;padding:14px clamp(16px,2.2vw,34px);background:#fff;border-bottom:1px solid #dfe4eb}
+.reference-logo{font-size:36px;font-weight:800;letter-spacing:-1.5px;color:#145bb8}
+.reference-logo span{color:#1b2c45}
+.reference-header-tagline{font-size:14px;line-height:1.4;color:#536174}
+.reference-header-link{font-size:14px;font-weight:600;padding:9px 11px;border-radius:8px;color:#25344a}
+.reference-header-link:hover{background:#f0f5fc;color:#145bb8}
+.reference-header-search{min-height:46px;border-radius:9px;border-color:#cfd8e5;box-shadow:0 1px 2px rgba(18,39,69,.03)}
+.reference-header-search input{font-size:15px}
+.reference-header-search .workspace-search-submit{padding:11px 15px;border-radius:7px}
+.audience-switcher{max-width:1600px;margin:22px auto;padding:0 clamp(16px,2.2vw,34px);gap:16px}
+.audience-card{min-height:112px;padding:18px 20px;border-radius:12px;border:1px solid #e0e6ef;background:#fff;box-shadow:0 2px 7px rgba(25,42,66,.025);transition:border-color .15s,box-shadow .15s,transform .15s}
+.audience-card:hover{border-color:#8eb8ef;box-shadow:0 5px 16px rgba(25,75,135,.08);transform:translateY(-1px)}
+.audience-icon{width:52px;height:52px;flex-basis:52px;font-size:25px;background:#f0f6ff;color:#155fbd}
+.audience-copy strong{font-size:16px;line-height:1.4;color:#1a2a41}
+.audience-copy small{display:block;margin-top:5px;font-size:13px;line-height:1.5;color:#5c6878}
+.workspace-layout{max-width:1600px;grid-template-columns:270px minmax(460px,1fr) 320px;gap:18px;padding:0 clamp(16px,2.2vw,34px);align-items:start}
+.workspace-sidebar,.workspace-main,.workspace-aside{border:1px solid #e1e6ed;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(20,39,66,.035)}
+.workspace-sidebar{padding:15px 13px;position:sticky;top:14px}
+.reference-side-nav .workspace-nav-link{min-height:42px;padding:10px 12px;font-size:14px;border-radius:8px}
+.reference-side-nav .workspace-nav-link:hover{background:#f5f8fc}
+.reference-side-nav .workspace-nav-link.active{background:#eaf2ff;color:#145bb8}
+.reference-pro-card{margin-top:18px;border-radius:10px}
+.workspace-main{padding:25px 26px}
+.reference-greeting{padding:0 0 18px}
+.reference-eyebrow{margin:0 0 8px!important;font-size:11px!important;font-weight:800!important;letter-spacing:.09em;color:#1766c5!important}
+.reference-greeting h1{font-size:30px;line-height:1.2;letter-spacing:-.03em;margin-bottom:8px;color:#17263d}
+.reference-greeting p:not(.reference-eyebrow){font-size:18px;line-height:1.45;color:#4d5a6c}
+.reference-task-search{padding:15px;border:1px solid #d7e0ec;border-radius:12px;background:#fbfcfe;box-shadow:0 2px 7px rgba(28,55,91,.035)}
+.reference-task-search textarea{width:100%;min-height:76px;padding:13px 14px;border:1px solid #d6deea;border-radius:8px;background:#fff;font:inherit;font-size:15px;line-height:1.5;resize:vertical;outline:none}
+.reference-task-search textarea:focus{border-color:#4387dc;box-shadow:0 0 0 3px rgba(43,119,209,.12)}
+.reference-search-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px}
+.reference-search-bottom>span{font-size:12px;line-height:1.45;color:#657184}
+.reference-search-bottom button{min-height:42px;padding:0 17px;border-radius:8px;background:#145bb8;color:#fff;font-size:14px;font-weight:700;white-space:nowrap}
+.reference-search-bottom button:hover,.reference-header-search .workspace-search-submit:hover{background:#0e4b9d}
+.reference-examples{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:13px 0 28px}
+.reference-examples strong{width:100%;font-size:12px;color:#5b6879}
+.reference-examples a{display:inline-flex;align-items:center;min-height:32px;padding:6px 10px;border:1px solid #e0e6ef;border-radius:7px;background:#fff;color:#29415f;font-size:12px;line-height:1.3;text-decoration:none}
+.reference-examples a:hover{border-color:#9bbce9;color:#145bb8;background:#f5f9ff}
+.reference-section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.reference-section-heading h2{font-size:20px;line-height:1.3;letter-spacing:-.015em;color:#1a2a41}
+.reference-section-heading>a{font-size:13px;font-weight:700;color:#145bb8;white-space:nowrap}
+.reference-document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.reference-document{min-height:142px;display:grid;grid-template-columns:42px minmax(0,1fr);grid-template-rows:auto auto;align-content:center;align-items:center;gap:4px 12px;padding:16px;border:1px solid #e0e6ef;border-radius:10px;background:#fff;text-decoration:none;transition:border-color .15s,box-shadow .15s,transform .15s}
+.reference-document:hover{border-color:#91b8eb;box-shadow:0 4px 13px rgba(24,76,137,.07);transform:translateY(-1px)}
+.reference-document-icon{grid-row:1/3;display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#eef5ff;color:#145bb8;font-size:23px}
+.reference-document strong{font-size:14px;line-height:1.4;color:#20314a}
+.reference-document small{font-size:12px;line-height:1.45;color:#637084}
+.reference-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px;padding:15px;border:1px solid #d9e5f5;border-radius:10px;background:#f5f9ff}
+.reference-trust div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.reference-trust strong{font-size:12px;line-height:1.4;color:#183f78}
+.reference-trust span{font-size:11px;line-height:1.45;color:#5b6b80}
+.reference-quick-actions{padding:18px 16px;position:sticky;top:14px}
+.reference-quick-card h2{font-size:18px;margin:3px 0 14px;color:#1a2a41}
+.reference-quick-card .workspace-quick-link{grid-template-columns:42px minmax(0,1fr) 12px;gap:10px;padding:12px 9px;margin-bottom:10px;border:1px solid #e2e7ef;border-radius:9px;transition:border-color .15s,background .15s}
+.reference-quick-card .workspace-quick-link:hover{border-color:#a6c4ec;background:#f8fbff}
+.reference-quick-icon{width:38px;height:38px;font-size:21px}
+.reference-quick-card .workspace-quick-link strong{font-size:13px;line-height:1.4}
+.reference-quick-card .workspace-quick-link small{font-size:12px;line-height:1.45;color:#5e6b7e}
+.dash-footer{max-width:1532px;margin:22px auto 0;padding:18px 22px;background:#fff;border:1px solid #e1e6ed;border-radius:10px;color:#5c6878}
+.dash-footer-catalog{display:flex;flex-wrap:wrap;gap:10px 17px;padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid #edf0f4}
+.dash-footer-catalog strong{color:#25354c}
+.dash-footer-catalog a,.dash-footer>span a{color:#315d96}
+.dash-footer a:hover{text-decoration:underline}
+@media(max-width:1250px){.reference-header{grid-template-columns:auto minmax(130px,170px) minmax(240px,1fr) auto;gap:12px}.workspace-layout{grid-template-columns:230px minmax(0,1fr) 285px;gap:12px}.workspace-main{padding:20px}.audience-card{padding:15px}.audience-copy strong{font-size:15px}}
+@media(max-width:980px){.reference-header{grid-template-columns:auto 1fr auto}.reference-header-tagline{display:none}.reference-header-search{grid-column:1/-1;grid-row:2}.workspace-layout{grid-template-columns:220px minmax(0,1fr)}.workspace-aside{grid-column:2;position:static}.workspace-sidebar{position:static}.audience-switcher{grid-template-columns:1fr;padding:0 16px}.audience-card{min-height:82px}.reference-trust{grid-template-columns:1fr}.reference-trust div{display:flex}.dash-footer{margin-left:16px;margin-right:16px}}
+@media(max-width:640px){.reference-header{grid-template-columns:1fr auto auto;padding:12px}.reference-logo{font-size:30px}.reference-header-link{font-size:12px;padding:8px 5px}.reference-header-search{min-width:0}.reference-header-search .workspace-search-submit{padding:10px;font-size:12px}.audience-switcher{padding:0 10px;margin:12px auto}.workspace-layout{display:flex;flex-direction:column;padding:0 10px;gap:12px}.workspace-sidebar,.workspace-main,.workspace-aside{width:100%;position:static}.workspace-sidebar{padding:10px}.reference-side-nav .workspace-nav-link{padding:9px 10px}.workspace-main{padding:17px 13px}.reference-greeting h1{font-size:26px}.reference-greeting p:not(.reference-eyebrow){font-size:16px}.reference-search-bottom{align-items:stretch;flex-direction:column}.reference-search-bottom button{width:100%}.reference-document-grid{grid-template-columns:1fr}.reference-document{min-height:95px}.reference-trust{padding:12px}.reference-quick-actions{padding:15px}.dash-footer{margin:16px 10px 0;padding:14px}.dash-footer-catalog{gap:9px 12px}}
+
 </style>
 </head>
 <body>
@@ -271,7 +344,7 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <div class="dash-shell">
 <header class="dash-header workspace-header reference-header">
 <a class="dash-logo reference-logo" href="/text2me/" aria-label="text2me — главная">text<span>2</span>me</a>
-<div class="reference-header-tagline">Ваш помощник в подготовке<br>документов</div>
+<div class="reference-header-tagline">Документы и тексты<br>для жизни и работы</div>
 <form id="title-search-form" role="search" class="workspace-search reference-header-search">
 <label class="sr-only" for="title-search">Поиск документов, ситуаций и материалов</label>
 <span class="workspace-search-icon" aria-hidden="true">⌕</span>
@@ -279,9 +352,8 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <button class="workspace-search-submit" type="submit">Найти документ <span aria-hidden="true">⌕</span></button>
 <div class="workspace-search-popover"><p class="inline-status" id="title-search-status" aria-live="polite"></p><div id="title-search-results" class="search-results" aria-live="polite"></div></div>
 </form>
-<div class="reference-header-contact"><strong>☎ &nbsp;8 800 302-18-68</strong><small>Пн–Пт с 9:00 до 18:00 МСК</small></div>
-<a class="reference-header-link" href="/text2me/guides/">♧ &nbsp;Контакты</a>
-<a class="reference-header-link" href="/text2me/space/">♙ &nbsp;Войти</a>
+<a class="reference-header-link" href="/text2me/guides/">♧ &nbsp;Справка</a>
+<a class="reference-header-link" href="/text2me/space/">♙ &nbsp;Мои документы</a>
 </header>
 
   <nav class="audience-switcher" aria-label="Выберите для кого готовите документ">
@@ -321,20 +393,20 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 </aside>
 <main id="main" class="workspace-main">
 <section class="reference-home" aria-label="Главная страница text2me">
-  <div class="reference-greeting"><h1>Добрый день!</h1><p>Чем мы можем помочь сегодня?</p></div>
+  <div class="reference-greeting"><p class="reference-eyebrow">РАБОЧЕЕ ПРОСТРАНСТВО TEXT2ME</p><h1>Добрый день!</h1><p>Какой документ или текст нужно подготовить?</p></div>
   <form class="reference-task-search" action="/text2me/start/" method="get">
     <label class="sr-only" for="reference-task">Опишите ситуацию или документ, который вам нужен</label>
-    <textarea id="reference-task" name="task" rows="2" placeholder="Опишите, что нужно сделать или какой документ подготовить…"></textarea>
-    <div class="reference-search-bottom"><span>Например: вернуть деньги за товар, составить договор, проверить условия документа</span><button type="submit">Найти</button></div>
+    <textarea id="reference-task" name="task" rows="2" placeholder="Например: подготовить претензию, составить договор, написать деловое письмо или отредактировать текст…"></textarea>
+    <div class="reference-search-bottom"><span>Опишите задачу своими словами — не обязательно знать название документа.</span><button type="submit">Подобрать решение <span aria-hidden="true">→</span></button></div>
   </form>
-  <div class="reference-examples"><strong>Примеры запросов:</strong><a href="/text2me/documents/pretenziya-prodavtsu/">Вернуть деньги за товар</a><a href="/text2me/documents/dogovor-arendy/">Составить договор аренды</a><a href="/text2me/documents/isk-v-sud/">Подготовиться к суду</a><a href="/text2me/situations/">Не знаю, какой документ нужен</a></div>
+  <div class="reference-examples"><strong>Попробуйте:</strong><a href="/text2me/documents/pretenziya-prodavtsu/">Вернуть деньги за товар</a><a href="/text2me/documents/dogovor-arendy/">Составить договор аренды</a><a href="/text2me/business/">Подготовить деловое письмо</a><a href="/text2me/situations/">Не знаю, с чего начать</a></div>
   <section class="reference-popular" aria-labelledby="reference-popular-title">
     <div class="reference-section-heading"><h2 id="reference-popular-title">Популярные документы</h2><a href="/text2me/documents/">Все документы →</a></div>
     <div class="reference-document-grid">
       <a class="reference-document" href="/text2me/documents/pretenziya-prodavtsu/"><span class="reference-document-icon">▤</span><strong>Претензия продавцу</strong><small>Возврат денег, товар с недостатками</small></a>
       <a class="reference-document" href="/text2me/documents/dogovor-arendy/"><span class="reference-document-icon">▧</span><strong>Договор аренды</strong><small>Жильё, условия и передача имущества</small></a>
       <a class="reference-document" href="/text2me/documents/isk-v-sud/"><span class="reference-document-icon">⚖</span><strong>Исковое заявление</strong><small>Подготовка обращения в суд</small></a>
-      <a class="reference-document" href="/text2me/documents/"><span class="reference-document-icon">✎</span><strong>Деловое письмо</strong><small>Запрос, уведомление или ответ</small></a>
+      <a class="reference-document" href="/text2me/prompts/"><span class="reference-document-icon">✎</span><strong>Тексты и редактура</strong><small>Письма, обращения, правка и улучшение текста</small></a>
     </div>
   </section>
   <section class="reference-trust" aria-label="Принципы работы">
@@ -350,8 +422,8 @@ body{background:#f4f4f5!important;color:#202124!important;font-family:Arial,Helv
 <a class="workspace-quick-link" href="/text2me/situations/"><span class="reference-quick-icon" aria-hidden="true">⌕</span><span><strong>Подбор по ситуации</strong><small>Ответьте на несколько вопросов и получите подходящий документ</small></span><span aria-hidden="true">›</span></a>
 <a class="workspace-quick-link" href="/text2me/documents/"><span class="reference-quick-icon" aria-hidden="true">＋</span><span><strong>Создать документ</strong><small>Выберите шаблон и создайте документ за несколько минут</small></span><span aria-hidden="true">›</span></a>
 <a class="workspace-quick-link" href="/text2me/space/"><span class="reference-quick-icon" aria-hidden="true">▦</span><span><strong>Календарь и сроки</strong><small>Отслеживайте важные даты и процессуальные сроки</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/guides/"><span class="reference-quick-icon" aria-hidden="true">✓</span><span><strong>Проверить документ</strong><small>Проверка на ошибки, реквизиты и соответствие требованиям</small></span><span aria-hidden="true">›</span></a>
-<a class="workspace-quick-link" href="/text2me/guides/"><span class="reference-quick-icon" aria-hidden="true">♙</span><span><strong>Обращение к юристу</strong><small>Получите информацию о возможной консультации</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/guides/"><span class="reference-quick-icon" aria-hidden="true">✓</span><span><strong>Как проверить документ</strong><small>Памятки по проверке текста, условий и реквизитов перед использованием</small></span><span aria-hidden="true">›</span></a>
+<a class="workspace-quick-link" href="/text2me/guides/"><span class="reference-quick-icon" aria-hidden="true">♙</span><span><strong>Спросите эксперта</strong><small>Узнайте, какие вопросы стоит уточнить по вашей ситуации</small></span><span aria-hidden="true">›</span></a>
 </section>
 </aside>
 </div>
