@@ -14,6 +14,10 @@ function normalizeRelations(x){
  var changed=false,caseIds=new Set((x.cases||[]).map(function(o){return o.id})),taskIds=new Set((x.tasks||[]).map(function(o){return o.id}));
  (x.cases||[]).forEach(function(c){
   var ids=validContactIds(x,c.contactIds);
+  if(!ids.length&&(c.contactName||c.contact)){
+   var name=String(c.contactName||c.contact).trim().toLocaleLowerCase("ru"),match=x.contacts.find(function(contact){return String(contact.name||contact.title||"").trim().toLocaleLowerCase("ru")===name});
+   if(match)ids=[match.id]
+  }
   if(!Array.isArray(c.contactIds)||JSON.stringify(ids)!==JSON.stringify(c.contactIds)){c.contactIds=ids;changed=true}
  });
  ["documents","tasks","events"].forEach(function(k){
