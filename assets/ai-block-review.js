@@ -5,11 +5,11 @@ var KEY="text2me.ai-review.v1",ROOT="t2m-ai-review-root",active=false,selected=n
 var css=`
 #t2m-ai-review-root{font:14px/1.45 Arial,"Segoe UI",sans-serif;color:#17243a;position:relative;z-index:2147483000}
 #t2m-ai-review-root *{box-sizing:border-box}#t2m-ai-review-root [hidden]{display:none!important}
-#t2m-ai-review-root .bar{position:fixed;right:18px;bottom:18px;display:flex;flex-wrap:wrap;gap:8px;max-width:calc(100vw - 36px);padding:10px;background:#fff;border:1px solid #cbd5e1;border-radius:14px;box-shadow:0 8px 28px #0f172a33}
+#t2m-ai-review-root .bar{position:fixed;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;width:190px;max-width:calc(100vw - 32px);padding:10px;background:#fff;border:1px solid #9bb8d3;border-radius:14px;box-shadow:0 8px 28px #0f172a44}
 #t2m-ai-review-root button{font:inherit;font-weight:700;line-height:1.3;min-width:0;min-height:40px;padding:9px 12px;border:1px solid #9aa9ba;border-radius:8px;cursor:pointer;overflow-wrap:anywhere;background:#fff;color:#1b2c40}
 #t2m-ai-review-root button:focus-visible,#t2m-ai-review-root textarea:focus-visible{outline:3px solid #f2b84b;outline-offset:2px}
 #t2m-ai-review-root .primary{background:#205b91;color:#fff;border-color:#205b91}
-#t2m-ai-review-root .panel{position:fixed;right:18px;bottom:88px;width:min(440px,calc(100vw - 36px));max-height:min(72vh,680px);overflow:auto;padding:18px;background:#fff;border:1px solid #cbd5e1;border-radius:14px;box-shadow:0 12px 40px #0f172a3d}
+#t2m-ai-review-root .panel{position:fixed;right:222px;top:50%;bottom:auto;transform:translateY(-50%);width:min(440px,calc(100vw - 244px));max-height:min(78vh,760px);overflow:auto;padding:18px;background:#fff;border:1px solid #9bb8d3;border-radius:14px;box-shadow:0 12px 40px #0f172a4d}
 #t2m-ai-review-root .head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;font-size:16px}
 #t2m-ai-review-root .head button{min-width:40px;font-size:22px;padding:5px}
 #t2m-ai-review-root .id{margin:0 0 6px;font-weight:800;color:#205b91;overflow-wrap:anywhere}
@@ -23,7 +23,7 @@ var css=`
 #t2m-ai-review-root .item strong{color:#205b91}#t2m-ai-review-root .item p{margin:6px 0}#t2m-ai-review-root .item .small{color:#53657a;font-size:12px}
 .t2m-ai-review-hover{outline:3px solid #f0a500!important;outline-offset:2px!important;cursor:crosshair!important}
 #t2m-ai-review-root.is-selecting .bar{border-color:#f0a500}
-@media(max-width:560px){#t2m-ai-review-root .bar{left:10px;right:10px;bottom:10px;gap:6px;padding:8px}#t2m-ai-review-root .bar button{flex:1 1 auto;font-size:12px;padding:8px 9px}#t2m-ai-review-root .panel{left:10px;right:10px;bottom:82px;width:auto;max-height:70vh;padding:14px}#t2m-ai-review-root .status{left:10px;right:10px;bottom:72px;max-width:none}}
+@media(max-width:700px){#t2m-ai-review-root .bar{left:10px;right:10px;top:auto;bottom:10px;transform:none;flex-direction:row;flex-wrap:wrap;width:auto;gap:6px;padding:8px}#t2m-ai-review-root .bar button{flex:1 1 auto;font-size:12px;padding:8px 9px}#t2m-ai-review-root .panel{left:10px;right:10px;top:auto;bottom:82px;transform:none;width:auto;max-height:70vh;padding:14px}#t2m-ai-review-root .status{left:10px;right:10px;bottom:72px;max-width:none}}
 `;
 var style=document.createElement("style");style.textContent=css;document.head.appendChild(style);
 var root=document.createElement("div");root.id=ROOT;
