@@ -87,7 +87,8 @@
         "followupTaskId": "optional task ID",
         "createdAt": "ISO-8601",
         "updatedAt": "ISO-8601",
-        "linkageInitialized": "boolean; prevents deleted case links from being recreated during legacy-library initialization"
+        "linkageInitialized": "boolean; prevents deleted case links from being recreated during legacy-library initialization",
+        "libraryDocumentId": "optional source library ID referenced by a dashboard document-reference record"
       }
     },
     "task": {
