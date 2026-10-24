@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Государственные обращения — text2me</title>
+<meta name="description" content="Подбор официальных государственных приёмных России для граждан, ИП и организаций. Подготовка заявления и переход к официальной подаче.">
+<link rel="stylesheet" href="/text2me/assets/portal-shell.css?v=government1">
+<style>
+.gov-page{max-width:1180px;margin:0 auto;padding:28px 22px 72px;color:#1b2c40;font-family:Arial,"Segoe UI",sans-serif}.gov-hero{padding:clamp(24px,4vw,44px);border-radius:18px;background:linear-gradient(125deg,#15385b,#205b91);color:white}.gov-hero h1{font-size:clamp(30px,4vw,46px);line-height:1.12;margin:0 0 14px}.gov-hero p{font-size:18px;line-height:1.6;max-width:800px;margin:0}.gov-notice{margin-top:18px;padding:14px 16px;border-left:4px solid #b83243;background:#f4f6f8;line-height:1.55}.gov-controls{display:grid;grid-template-columns:minmax(220px,1fr) minmax(180px,.45fr);gap:12px;margin:24px 0}.gov-controls input,.gov-controls select{width:100%;min-height:48px;border:1px solid #b8c7d6;border-radius:9px;padding:10px 13px;font:inherit;background:#fff}.gov-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.gov-card{display:flex;flex-direction:column;gap:10px;padding:20px;border:1px solid #d8e0e8;border-radius:13px;background:#fff;box-shadow:0 8px 24px rgba(21,56,91,.05)}.gov-card h2{font-size:21px;line-height:1.25;margin:0}.gov-card p{margin:0;line-height:1.55;color:#4d6074}.gov-tags{display:flex;flex-wrap:wrap;gap:6px}.gov-tag{font-size:12px;border-radius:999px;padding:5px 9px;background:#edf2f7;color:#23496f}.gov-link{display:inline-flex;align-self:flex-start;margin-top:auto;padding-top:6px;color:#205b91;font-weight:750;text-underline-offset:3px}.gov-empty{padding:24px;text-align:center;color:#5b6b7d}.gov-meta{font-size:12px;color:#5b6b7d;margin-top:20px}.gov-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}.gov-step{padding:16px;border:1px solid #d8e0e8;border-radius:12px}.gov-step strong{display:block;margin-bottom:7px}.gov-step p{margin:0;color:#4d6074;line-height:1.5}@media(max-width:700px){.gov-grid,.gov-controls,.gov-steps{grid-template-columns:1fr}.gov-page{padding:18px 14px 52px}.gov-card{padding:16px}}
+</style>
+</head>
+<body>
+<header><div class="portal-shell-wrap" style="padding:16px 0"><a href="/text2me/" style="font-size:25px;font-weight:850;color:#15385b;text-decoration:none">text2<span style="color:#b83243">me</span></a></div></header>
+<main id="main" class="gov-page">
+<section class="gov-hero">
+<h1>Заявления в государственные органы</h1>
+<p>Опишите задачу, подготовьте документ и перейдите к официальному каналу подачи. Выберите орган по ситуации — не обязательно заранее знать его название.</p>
+</section>
+<div class="gov-notice"><strong>Важно.</strong> text2me помогает подготовить документ и найти официальную приёмную. Отправка заявления не происходит внутри сервиса, если для конкретной процедуры не подключена и не подтверждена официальная интеграция. Проверяйте требования к авторизации, подписи и приложениям на странице ведомства.</div>
+<section class="gov-steps" aria-label="Порядок работы">
+<div class="gov-step"><strong>1. Найдите ситуацию</strong><p>Поиск по ведомству, теме или типу заявителя.</p></div>
+<div class="gov-step"><strong>2. Подготовьте документы</strong><p>Сформируйте обращение и проверьте комплектность.</p></div>
+<div class="gov-step"><strong>3. Подайте официально</strong><p>Перейдите на сайт ведомства и сохраните подтверждение отправки.</p></div>
+</section>
+<div class="gov-controls">
+<input id="gov-search" type="search" placeholder="Поиск: налоги, зарплата, потребитель…" aria-label="Поиск по государственным сервисам">
+<select id="gov-audience" aria-label="Категория заявителя"><option value="all">Все заявители</option><option value="citizens">Физические лица</option><option value="ip">Индивидуальные предприниматели</option><option value="business">Юридические лица</option></select>
+</div>
+<div id="gov-results" class="gov-grid" aria-live="polite"></div>
+<p class="gov-meta">Источники отобраны по официальным страницам. Проверка ссылок и требований должна повторяться регулярно; дата формирования этого перечня: 24 октября 2026 года. Компетенция и доступность конкретной процедуры зависят от ситуации.</p>
+</main>
+<script>
+(function(){
+const records=[
+{title:"Федеральная налоговая служба (ФНС)",url:"https://www.nalog.gov.ru/rn77/apply_fts/obr/",audience:["citizens","ip","business"],topics:"налоги обращение задолженность налоговый вычет инн регистрация организация предприниматель",desc:"Официальные способы обращения в налоговый орган, письменная и электронная подача, порядок рассмотрения. Для типовых ситуаций физических лиц доступна отдельная пошаговая форма.",tags:["Налоги","Обращения","Физлица, ИП и организации"]},
+{title:"ФНС: обращение физического лица по жизненной ситуации",url:"https://www.nalog.gov.ru/rn77/service/obr_fts/snu/pnncpc/select/",audience:["citizens"],topics:"налог уведомление вычет неверный инн адрес персональные данные задолженность",desc:"Формализованные сценарии по налоговым уведомлениям, объектам налогообложения, персональным данным, задолженности и сведениям о вычете.",tags:["Пошаговая форма","Налоги","Физлица"]},
+{title:"Роструд — общественная приёмная",url:"https://rostrud.gov.ru/obshestvennaya-priemnaya/",audience:["citizens","ip","business"],topics:"зарплата труд работодатель работник инспекция труда несчастный случай госключ жалоба",desc:"Электронные обращения, переход к «Онлайнинспекция.рф», консультации и сведения об отслеживании обращений. Для отдельных процедур могут требоваться специальные документы или подпись.",tags:["Трудовые отношения","Жалобы","Работники и работодатели"]},
+{title:"Онлайнинспекция.рф",url:"https://онлайнинспекция.рф/",audience:["citizens","ip","business"],topics:"зарплата отпуск увольнение трудовой договор охрана труда работник работодатель",desc:"Электронные сервисы по вопросам трудовых отношений, включая обращение в инспекцию труда и онлайн-консультации.",tags:["Трудовые споры","Электронные сервисы"]},
+{title:"Роспотребнадзор — приём обращений",url:"https://petition.rospotrebnadzor.ru/petition",audience:["citizens","ip","business"],topics:"потребитель магазин товар услуга продавец возврат денег качество санитарный",desc:"Официальный канал обращений по вопросам, относящимся к компетенции Роспотребнадзора. Для спора о покупке может потребоваться сначала претензия продавцу.",tags:["Потребительские права","Жалобы"]},
+{title:"Обращения Президенту России",url:"https://letters.kremlin.ru/",audience:["citizens"],topics:"президент обращение жалоба предложение гражданин федеральный орган",desc:"Официальная электронная приёмная. Перед отправкой предусмотрены требования к данным заявителя и идентификации/аутентификации.",tags:["Обращения граждан","Требуется проверка условий подачи"]},
+{title:"Правительство Российской Федерации — обращения",url:"https://services.government.ru/letters/",audience:["citizens","ip","business"],topics:"правительство обращение федеральный орган заявление жалоба организация",desc:"Официальный ресурс для обращения в Правительство России. Перед подготовкой проверьте, относится ли вопрос к компетенции адресата.",tags:["Федеральный уровень","Обращения"]},
+{title:"Госуслуги",url:"https://www.gosuslugi.ru/",audience:["citizens","ip","business"],topics:"государственная услуга заявление авторизация жалоба разрешение пособие регистрация",desc:"Единый портал государственных услуг. Используйте для поиска конкретной услуги и официальной процедуры; условия зависят от выбранной услуги.",tags:["Госуслуги","Авторизация может требоваться"]}
+];
+const names={citizens:"Физические лица",ip:"ИП",business:"Юридические лица"};
+const search=document.getElementById("gov-search"), audience=document.getElementById("gov-audience"), results=document.getElementById("gov-results");
+function render(){
+ const q=search.value.trim().toLocaleLowerCase("ru"), a=audience.value;
+ const list=records.filter(r=>(a==="all"||r.audience.includes(a))&&(!q||(r.title+" "+r.topics+" "+r.desc+" "+r.tags.join(" ")).toLocaleLowerCase("ru").includes(q)));
+ results.replaceChildren();
+ if(!list.length){const p=document.createElement("p");p.className="gov-empty";p.textContent="По этому запросу ничего не найдено. Попробуйте другое слово или категорию заявителя.";results.appendChild(p);return;}
+ list.forEach(r=>{const card=document.createElement("article");card.className="gov-card";const h=document.createElement("h2");h.textContent=r.title;const p=document.createElement("p");p.textContent=r.desc;const tags=document.createElement("div");tags.className="gov-tags";r.tags.forEach(t=>{const s=document.createElement("span");s.className="gov-tag";s.textContent=t;tags.appendChild(s)});const link=document.createElement("a");link.className="gov-link";link.href=r.url;link.target="_blank";link.rel="noopener noreferrer";link.textContent="Открыть официальный ресурс ↗";card.append(h,tags,p,link);results.appendChild(card);});
+}
+search.addEventListener("input",render);audience.addEventListener("change",render);render();
+})();
+</script>
+</body>
+</html>
