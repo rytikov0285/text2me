@@ -81,9 +81,23 @@ function ensureLinkedDocuments(x){
 }
 
 function createCase(title,details){var x=read(),o={id:uid("case"),type:"case",title:title,name:title,description:details||"",status:"active",contactIds:[],createdAt:now(),updatedAt:now()};x.cases.unshift(o);log(x,"Создано дело: "+title,o);write(x);return o}
-function createDocument(opts){opts=opts||{};var x=read(),caseItem=opts.caseId&&byId(x.cases,opts.caseId);if(!caseItem&&opts.createCase!==false){caseItem=createCase(opts.caseTitle||opts.title||"Дело по документу «"+(opts.title||"Без названия")+"»",opts.description||"Создано вместе с документом");x=read()}
- var o={id:uid("doc"),type:"document",title:opts.title||"Новый документ",name:opts.title||"Новый документ",content:opts.content||"",url:opts.url||"",caseId:caseItem?caseItem.id:"",contactIds:validContactIds(x,opts.contactIds),status:"draft",source:opts.source||"text2me",createdAt:now(),updatedAt:now(),metadata:opts.metadata||{}};x.documents.unshift(o);if(caseItem){caseItem.updatedAt=now();log(x,"Документ связан с делом «"+caseItem.title+"»: "+o.title,o)}else log(x,"Создан документ: "+o.title,o);write(x);return o}
- var o={id:uid("doc"),type:"document",title:opts.title||"Новый документ",name:opts.title||"Новый документ",content:opts.content||"",url:opts.url||"",caseId:caseItem&&caseItem.id||opts.caseId||"",status:"draft",source:opts.source||"text2me",createdAt:now(),updatedAt:now(),metadata:opts.metadata||{}};x.documents.unshift(o);if(caseItem){caseItem.updatedAt=now();log(x,"Документ связан с делом «"+caseItem.title+"»: "+o.title,o)}else log(x,"Создан документ: "+o.title,o);write(x);return o}
+function createDocument(opts){
+ opts=opts||{};
+ var x=read(),caseItem=opts.caseId&&byId(x.cases,opts.caseId);
+ if(!caseItem&&opts.createCase!==false){
+  var createdCase=createCase(opts.caseTitle||opts.title||"Дело по документу «"+(opts.title||"Без названия")+"»",opts.description||"Создано вместе с документом");
+  x=read();caseItem=byId(x.cases,createdCase.id);
+ }
+ var title=opts.title||"Новый документ";
+ var o={id:uid("doc"),type:"document",title:title,name:title,content:opts.content||"",url:opts.url||"",
+  caseId:caseItem?caseItem.id:"",contactIds:validContactIds(x,opts.contactIds),status:"draft",
+  source:opts.source||"text2me",createdAt:now(),updatedAt:now(),metadata:opts.metadata||{}};
+ x.documents.unshift(o);
+ if(caseItem){caseItem.updatedAt=now();log(x,"Документ связан с делом «"+caseItem.title+"»: "+o.title,o)}
+ else log(x,"Создан документ: "+o.title,o);
+ write(x);return o;
+}
+
 function addTask(opts){opts=opts||{};var x=read(),o={id:uid("task"),type:"task",title:opts.title||"Следующее действие",name:opts.title||"Следующее действие",description:opts.description||"",due:opts.due||"",date:opts.due||"",caseId:opts.caseId&&byId(x.cases,opts.caseId)?opts.caseId:"",documentId:resolveDocumentId(x,opts.documentId),contactIds:validContactIds(x,opts.contactIds),status:"active",priority:opts.priority||"normal",createdAt:now(),updatedAt:now()};x.tasks.unshift(o);log(x,"Добавлена задача: "+o.title,o);write(x);return o}
 function addEvent(opts){opts=opts||{};var x=read(),o={id:uid("event"),type:"event",title:opts.title||"Контрольная дата",name:opts.title||"Контрольная дата",description:opts.description||"",date:opts.date||"",caseId:opts.caseId&&byId(x.cases,opts.caseId)?opts.caseId:"",documentId:resolveDocumentId(x,opts.documentId),contactIds:validContactIds(x,opts.contactIds),createdAt:now(),updatedAt:now()};x.events.unshift(o);log(x,"Добавлено событие: "+o.title,o);write(x);return o}
 
