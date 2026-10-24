@@ -80,13 +80,16 @@ function filterCatalog(r){
 function adaptFields(r){
  var form=document.querySelector("form");if(!form)return;
  var roleHints={citizen:"Укажите ФИО сторон и факты простыми словами. Не заполняйте реквизиты организации, если вы обращаетесь как частное лицо.",ip:"Укажите статус ИП, ОГРНИП и реквизиты контрагента. Печать указывается только если она фактически используется.",organization:"Укажите полное наименование, ОГРН, адрес организации и основание полномочий подписанта."};
- if(!form.querySelector(".rw-form-role-hint")&&form.querySelector("input,textarea,select")){var hint=el("p",{class:"rw-form-role-hint"});hint.textContent=roleHints[r];form.insertBefore(hint,form.firstChild)}
+ var hint=form.querySelector(".rw-form-role-hint");if(!hint&&form.querySelector("input,textarea,select")){hint=el("p",{class:"rw-form-role-hint"});form.insertBefore(hint,form.firstChild)}if(hint)hint.textContent=roleHints[r];
  form.querySelectorAll("label").forEach(function(label){var t=(label.innerText||label.textContent||"").toLowerCase(),field=label.querySelector("input,select,textarea"),wrap=label;
-  if(!field&&label.htmlFor)field=document.getElementById(label.htmlFor);
-  if(!field)return;
-  if(r==="citizen"&&/(ндс|огрн организации|огрнип|основание полномочий|генеральн.*директор)/i.test(t)){wrap.hidden=true;field.required=false}
-  if(r!=="organization"&&/основание полномочий/i.test(t)){wrap.hidden=true;field.required=false}
-  if(r==="citizen"&&/(контрагент.*огрн|реквизиты юридического лица)/i.test(t)){wrap.hidden=true;field.required=false}
+  if(!field&&label.htmlFor)field=document.getElementById(label.htmlFor);if(!field)return;
+  if(label.dataset.rwOriginalHidden===undefined)label.dataset.rwOriginalHidden=label.hidden?"1":"0";
+  if(field.dataset.rwOriginalRequired===undefined)field.dataset.rwOriginalRequired=field.required?"1":"0";
+  label.hidden=label.dataset.rwOriginalHidden==="1";field.required=field.dataset.rwOriginalRequired==="1";
+  if(/основание полномочий/i.test(t)){label.hidden=r!=="organization";field.required=r==="organization";return}
+  if(/ндс/i.test(t)){label.hidden=r==="citizen";if(r==="citizen")field.required=false}
+  if(r==="citizen"&&/(огрн организации|огрнип|генеральн.*директор|контрагент.*огрн|реквизиты юридического лица)/i.test(t)){label.hidden=true;field.required=false}
+  if(r==="ip"&&/печать/i.test(t))label.hidden=false;
  });
 }
 function enforcePageRole(r){
@@ -120,7 +123,8 @@ function patchDraftRole(){
 }
 function footer(){
  var f=document.querySelector("body > footer");if(!f)return;
- if(!f.querySelector(".rw-footer-note")){var n=el("p",{class:"rw-footer-note"});n.textContent="Черновики и настройки хранятся локально в этом браузере. Они не синхронизируются между устройствами.";f.append(n)}
+ if(!f.querySelector(".rw-footer-note")){var n=el("p",{class:"rw-footer-note"});n.textContent="Черновики и настройки хранятся локально в этом браузере. Облачная синхронизация не подключена. Дата правовой проверки указывается в карточке документа; если её нет, проверьте актуальность перед использованием.";f.append(n)}
+ if(!f.querySelector(".rw-footer-links")){var nav=el("nav",{class:"rw-footer-links","aria-label":"Навигация по рабочему пространству"});[["Каталог","/text2me/documents/"],["Черновики","/text2me/drafts/"],["Калькуляторы","/text2me/calculators/"],["Источники","/text2me/sources/"],["Настройки","/text2me/settings/"]].forEach(function(x){nav.append(el("a",{href:x[1]},x[0]))});f.append(nav)}
 }
 function init(){
  addStyle();var h=header();var r=role();
