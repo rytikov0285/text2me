@@ -6,7 +6,7 @@ function initPortalShell(){
  var audience=path==="/text2me/people"||path==="/text2me"||path==="/"?"citizens":path==="/text2me/ip"?"ip":path==="/text2me/business"?"business":path==="/text2me/lawyer"?"business":"";
  if(path.indexOf("/text2me/documents/pretenziya-prodavtsu")===0||path.indexOf("/text2me/documents/isk-v-sud")===0||path.indexOf("/text2me/documents/dogovor-arendy")===0)audience="citizens";
  var params=new URLSearchParams(window.location.search);
- if(!document.querySelector("script[data-t2m-document-workflow]")){var workflowScript=document.createElement("script");workflowScript.src="/text2me/assets/document-workflow.js?v=workflow2";workflowScript.defer=true;workflowScript.dataset.t2mDocumentWorkflow="1";document.head.appendChild(workflowScript);}
+ if(!document.querySelector("script[data-t2m-document-workflow]")){var workflowScript=document.createElement("script");workflowScript.src="/text2me/assets/document-workflow.js?v=workflow3";workflowScript.defer=true;workflowScript.dataset.t2mDocumentWorkflow="1";document.head.appendChild(workflowScript);}
  if(path==="/text2me/documents"&&params.get("audience")==="citizens")audience="citizens";
  if(path==="/text2me/documents"&&params.get("audience")==="business")audience="business";
  if(isHome){
