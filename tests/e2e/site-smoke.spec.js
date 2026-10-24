@@ -50,7 +50,7 @@ test.describe("text2me published-site smoke tests", () => {
     await input.fill("Исковое заявление");
     await input.press("Enter");
     await expect(results).toContainText("Исковое заявление");
-    await expect(results.locator("a").first()).toHaveAttribute("href", /documents\\/isk-v-sud/);
+    await expect(results.locator("a").first()).toHaveAttribute("href", /documents\/isk-v-sud/);
 
     await input.fill("снимаю квартиру хочу зафиксировать условия");
     await input.press("Enter");
