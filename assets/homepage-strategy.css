@@ -200,3 +200,6 @@ body{font-size:14px;line-height:1.45}
  .official-resource{justify-content:flex-start;border-left:0;border-top:1px solid #e5e9ef;padding:8px 0}
  .footer-brand{align-items:flex-start;grid-column:1/-1;padding-top:8px}
 }
+
+.reference-open{top:16px;right:14px;margin:0;transform:none}
+@media(max-width:1050px){.reference-open{top:auto;right:auto}}
