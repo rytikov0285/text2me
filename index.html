@@ -434,6 +434,19 @@ body{background:#f4f5f7;color:#202124;font-family:Arial,Helvetica,sans-serif;fon
 .reference-header-search .workspace-search-submit,.universal-search-controls .dash-btn,.dash-btn,.reference-search-bottom button{box-sizing:border-box;max-width:100%;min-width:0;min-height:44px;line-height:1.25;text-align:center;white-space:normal;overflow-wrap:anywhere}
 @media(max-width:650px){.reference-header-search .workspace-search-submit{padding:8px 10px;font-size:12px}}
 </style>
+<style>
+/* Final cascade overrides for the homepage header, search action and trust strip. */
+.reference-header{position:sticky!important;top:0!important;z-index:900!important}
+.reference-header-tagline{font-size:14px!important;line-height:1.4!important}
+.reference-header-search .workspace-search-submit{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;min-height:46px!important;padding:9px 16px!important;font-size:18px!important;font-weight:850!important;letter-spacing:.01em!important}
+.reference-header-search .workspace-search-submit span{font-size:27px!important;line-height:1!important}
+.reference-header-search input{font-size:15px!important;min-height:42px!important}
+.reference-trust{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;max-width:none!important;margin:24px 0!important;padding:17px 20px!important;border:1px solid #dce4ee!important;border-radius:10px!important;background:#fff!important;box-sizing:border-box!important}
+.reference-trust>div{min-width:0!important}
+.reference-trust strong{font-size:14px!important;line-height:1.45!important}
+.reference-trust span{font-size:13px!important;line-height:1.5!important}
+@media(max-width:800px){.reference-header{grid-template-columns:auto minmax(0,1fr)!important;gap:10px!important;padding:10px 14px!important}.reference-header-tagline{display:block!important;font-size:12px!important}.reference-header-search{grid-column:1/-1!important;grid-row:2!important}.reference-header-contact,.reference-header-link{display:none!important}.reference-header-search .workspace-search-submit{font-size:16px!important;padding:8px 12px!important}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
