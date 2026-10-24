@@ -735,4 +735,31 @@ function installAudienceNavigation(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installAudienceNavigation);else installAudienceNavigation();
 
+/* Keyboard-accessible catalogue search shared by pages that load this script. */
+function installPortalQuickSearch(){
+ if(document.querySelector(".portal-quick-search-dialog"))return;
+ var host=document.querySelector(".site-header .header-inner,header.top");
+ if(!host)return;
+ var button=document.createElement("button");button.type="button";button.className="portal-quick-search-button";button.textContent="⌕ Поиск";button.setAttribute("aria-haspopup","dialog");button.setAttribute("aria-keyshortcuts","Control+K Meta+K");button.title="Поиск по каталогу (Ctrl+K)";
+ var dialog=document.createElement("div");dialog.className="portal-quick-search-dialog";dialog.hidden=true;
+ var panel=document.createElement("section");panel.className="portal-quick-search-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-modal","true");panel.setAttribute("aria-labelledby","portal-quick-search-title");
+ var heading=document.createElement("h2");heading.id="portal-quick-search-title";heading.textContent="Поиск по Text2me";
+ var close=document.createElement("button");close.type="button";close.className="portal-quick-search-close";close.textContent="Закрыть";close.setAttribute("aria-label","Закрыть поиск");
+ var form=document.createElement("form");form.className="portal-quick-search-form";form.action="/text2me/documents/";form.method="get";
+ var label=document.createElement("label");label.className="portal-quick-search-label";label.htmlFor="portal-quick-search-input";label.textContent="Название документа, тема или задача";
+ var input=document.createElement("input");input.id="portal-quick-search-input";input.name="q";input.type="search";input.placeholder="Например: договор, претензия, налоги";input.autocomplete="off";
+ var submit=document.createElement("button");submit.type="submit";submit.className="portal-quick-search-submit";submit.textContent="Найти в каталоге";
+ var note=document.createElement("p");note.textContent="Enter — открыть результаты. Esc — закрыть. Каталог поддерживает фильтр по аудитории.";
+ form.append(label,input,submit);panel.append(heading,close,form,note);dialog.appendChild(panel);document.body.appendChild(dialog);
+ host.appendChild(button);
+ function open(){dialog.hidden=false;input.value="";window.setTimeout(function(){input.focus()},0)}
+ function shut(){dialog.hidden=true;button.focus()}
+ button.addEventListener("click",open);close.addEventListener("click",shut);
+ dialog.addEventListener("click",function(e){if(e.target===dialog)shut()});
+ document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();open()}else if(e.key==="Escape"&&!dialog.hidden){e.preventDefault();shut()}});
+ form.addEventListener("submit",function(e){if(!input.value.trim()){e.preventDefault();input.focus()}});
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",installPortalQuickSearch);else installPortalQuickSearch();
+
+
 })();
