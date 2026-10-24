@@ -749,6 +749,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 
 /* Keyboard-accessible catalogue search shared by pages that load this script. */
 function installPortalQuickSearch(){
+ if(document.querySelector('link[href*="portal-shell.css"]'))return;
  if(document.querySelector(".portal-quick-search-dialog"))return;
  var host=document.querySelector(".site-header .header-inner,header.top");
  if(!host)return;
