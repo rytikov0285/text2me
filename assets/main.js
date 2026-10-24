@@ -97,7 +97,12 @@
     });
   }
 
-  var incomingTask = new URLSearchParams(window.location.search).get("task");
+  var incomingTask = "";
+  try {
+    incomingTask = window.sessionStorage.getItem("text2me.pending-situation.v1") || "";
+    if (incomingTask) window.sessionStorage.removeItem("text2me.pending-situation.v1");
+  } catch (error) {}
+  if (!incomingTask) incomingTask = new URLSearchParams(window.location.search).get("task") || "";
   var incomingPrompt = document.getElementById("ai-path-input");
   if (incomingTask && incomingPrompt && aiPathForm && incomingTask.trim()) {
     incomingPrompt.value = incomingTask.trim().slice(0, 1200);
