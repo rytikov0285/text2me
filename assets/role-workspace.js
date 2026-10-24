@@ -103,15 +103,15 @@ function adaptFields(r){
  var form=Array.from(document.querySelectorAll("main form")).find(function(f){return f.id!=="complex-request-form"&&f.querySelector("input,textarea,select")});if(!form)return;
  var roleHints={citizen:"Укажите ФИО сторон и факты простыми словами. Не заполняйте реквизиты организации, если вы обращаетесь как частное лицо.",ip:"Укажите статус ИП, ОГРНИП и реквизиты контрагента. Печать указывается только если она фактически используется.",organization:"Укажите полное наименование, ОГРН, адрес организации и основание полномочий подписанта."};
  var hint=form.querySelector(".rw-form-role-hint");if(!hint&&form.querySelector("input,textarea,select")){hint=el("p",{class:"rw-form-role-hint"});form.insertBefore(hint,form.firstChild)}if(hint)hint.textContent=roleHints[r];
- form.querySelectorAll("label").forEach(function(label){var t=(label.innerText||label.textContent||"").toLowerCase(),field=label.querySelector("input,select,textarea"),wrap=label;
+ form.querySelectorAll("label").forEach(function(label){var t=(label.innerText||label.textContent||"").toLowerCase(),field=label.querySelector("input,select,textarea"),wrap=label.closest(".form-field, .form-group, .field, .request-field, .form-row")||label;
   if(!field&&label.htmlFor)field=document.getElementById(label.htmlFor);if(!field)return;
-  if(label.dataset.rwOriginalHidden===undefined)label.dataset.rwOriginalHidden=label.hidden?"1":"0";
+  if(wrap.dataset.rwOriginalHidden===undefined)wrap.dataset.rwOriginalHidden=wrap.hidden?"1":"0";
   if(field.dataset.rwOriginalRequired===undefined)field.dataset.rwOriginalRequired=field.required?"1":"0";
-  label.hidden=label.dataset.rwOriginalHidden==="1";field.required=field.dataset.rwOriginalRequired==="1";
-  if(/основание полномочий/i.test(t)){label.hidden=r!=="organization";field.required=r==="organization";return}
-  if(/ндс/i.test(t)){label.hidden=r==="citizen";if(r==="citizen")field.required=false}
-  if(r==="citizen"&&/(огрн организации|огрнип|генеральн.*директор|контрагент.*огрн|реквизиты юридического лица)/i.test(t)){label.hidden=true;field.required=false}
-  if(r==="ip"&&/печать/i.test(t))label.hidden=false;
+  wrap.hidden=wrap.dataset.rwOriginalHidden==="1";field.required=field.dataset.rwOriginalRequired==="1";
+  if(/основание полномочий/i.test(t)){wrap.hidden=r!=="organization";field.required=r==="organization";return}
+  if(/ндс/i.test(t)){wrap.hidden=r==="citizen";if(r==="citizen")field.required=false}
+  if(r==="citizen"&&/(огрн организации|огрнип|генеральн.*директор|контрагент.*огрн|реквизиты юридического лица)/i.test(t)){wrap.hidden=true;field.required=false}
+  if(r==="ip"&&/печать/i.test(t))wrap.hidden=false;
  });
 }
 function enforcePageRole(r){
