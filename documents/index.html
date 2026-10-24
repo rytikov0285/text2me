@@ -29,6 +29,31 @@
 .route-custom .button{min-height:42px}
 .route-picker-note{font-size:12px;color:var(--muted);margin:12px 0 0}
 @media(max-width:650px){.route-picker{padding:15px}.route-levels{grid-template-columns:1fr}.route-custom{grid-template-columns:1fr}.route-choice-actions{align-items:stretch}.route-choice-actions>*{flex:1 1 100%;text-align:center}}
+
+/* Shared text2me catalog visual language */
+:root{--ink:#172235;--muted:#667085;--line:#e1e6ee;--paper:#fff;--soft:#f3f5f8;--blue:#1458b8;--blue-dark:#0b3f91;--radius:15px;--shadow:0 8px 24px rgba(20,38,68,.055)}
+body{background:linear-gradient(180deg,#f8f9fb 0,#f1f3f6 420px,#f6f7f9 100%);color:#172235;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.55}
+main,.container,.page-wrap{max-width:1480px}
+h1,h2,h3{color:#172235;letter-spacing:-.035em}
+h1{font-size:clamp(30px,4vw,44px);line-height:1.12}
+h2{font-size:clamp(23px,3vw,30px);line-height:1.2}
+a{transition:color .16s,border-color .16s,background .16s}
+button,.button,[type=submit]{border-radius:10px;transition:transform .16s,box-shadow .16s}
+button:hover,.button:hover,[type=submit]:hover{transform:translateY(-1px)}
+.catalog-search-panel,.route-picker,.full-catalog-grid>a,.catalog-filters,.document-card,.content-card{border-radius:15px;box-shadow:var(--shadow)}
+.catalog-search-panel{padding:20px;border-color:#e1e6ee;background:#fff;gap:12px}
+.catalog-search-panel input,.catalog-filters input,.catalog-filters select{min-height:46px;border:1px solid #dfe5ee;border-radius:10px;padding:10px 13px;background:#fff;color:#172235}
+.catalog-search-panel input:focus,.catalog-filters input:focus,.catalog-filters select:focus{outline:0;border-color:#8cb7f2;box-shadow:0 0 0 4px #1458b814}
+.route-picker{border:1px solid #dce7f7;background:linear-gradient(125deg,#fff,#f4f8ff);padding:24px}
+.route-picker h2{letter-spacing:-.04em}
+.full-catalog-grid{gap:14px}
+.full-catalog-grid>a{min-height:172px;padding:20px;border:1px solid #e2e7ef;background:#fff;display:flex;flex-direction:column;gap:9px;transition:transform .16s,border-color .16s,box-shadow .16s}
+.full-catalog-grid>a:hover{transform:translateY(-2px);border-color:#a9c9f7;box-shadow:0 14px 32px rgba(20,38,68,.09)}
+.full-catalog-grid>a strong{font-size:17px;line-height:1.35;color:#172235}
+.full-catalog-grid>a>span:not(.status-badge){font-size:14px;line-height:1.5;color:#596579}
+.status-badge{border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;align-self:flex-start}
+.catalog-filters{padding:16px;border:1px solid #e1e6ee;background:#fff}
+@media(max-width:640px){.catalog-search-panel,.route-picker{padding:16px}.full-catalog-grid>a{min-height:unset;padding:17px}}
 </style><link rel="manifest" href="/text2me/manifest.webmanifest">
 <meta name="theme-color" content="#214f91">
 <script defer src="/text2me/assets/pwa.js"></script>
